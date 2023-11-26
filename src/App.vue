@@ -19,7 +19,7 @@ export default {
   },
 
   methods: {
-   
+
   },
 
   created() {
@@ -41,8 +41,19 @@ export default {
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  <AppMain></AppMain>
- 
+  <div class="_app">
+    <h1 class="text-center mb-4"> <strong>Save Money</strong></h1>
+    <AppMain></AppMain>
+  </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+._app {
+  background-color: rgb(11, 11, 11);
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  padding: 1em;
+  margin: 0
+}
+</style>
