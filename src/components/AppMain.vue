@@ -19,7 +19,10 @@ export default {
         Ottobre: '',
         Novembre: '',
         Dicembre: '',
-      }
+      },
+      totaleRisparmioMese: '',
+      totaleSpeseMese: '',
+      totaleEntrateAnnue: '',
     }
   },
 
@@ -273,6 +276,9 @@ export default {
       this.risparmi.Novembre = this.store.data.user.mesi.Novembre.stipendio - this.store.data.user.mesi.Novembre.stipendioAffitto - this.store.data.user.mesi.Novembre.stipendoSpesaAlimenti - this.store.data.user.mesi.Novembre.stipendioBollette - this.store.data.user.mesi.Novembre.stipendioAltreSpese;
       this.risparmi.Dicembre = this.store.data.user.mesi.Dicembre.stipendio - this.store.data.user.mesi.Dicembre.stipendioAffitto - this.store.data.user.mesi.Dicembre.stipendoSpesaAlimenti - this.store.data.user.mesi.Dicembre.stipendioBollette - this.store.data.user.mesi.Dicembre.stipendioAltreSpese;
 
+      this.totaleSpeseMese = parseInt(this.store.data.user.mesi.Gennaio.stipendioAffitto) + parseInt(this.store.data.user.mesi.Gennaio.stipendoSpesaAlimenti) + parseInt(this.store.data.user.mesi.Gennaio.stipendioBollette) + parseInt(this.store.data.user.mesi.Gennaio.stipendioAltreSpese) + parseInt(this.store.data.user.mesi.Febbraio.stipendioAffitto) + parseInt(this.store.data.user.mesi.Febbraio.stipendoSpesaAlimenti) + parseInt(this.store.data.user.mesi.Febbraio.stipendioBollette) + parseInt(this.store.data.user.mesi.Febbraio.stipendioAltreSpese) + parseInt(this.store.data.user.mesi.Marzo.stipendioAffitto) + parseInt(this.store.data.user.mesi.Marzo.stipendoSpesaAlimenti) + parseInt(this.store.data.user.mesi.Marzo.stipendioBollette) + parseInt(this.store.data.user.mesi.Marzo.stipendioAltreSpese) + parseInt(this.store.data.user.mesi.Aprile.stipendioAffitto) + parseInt(this.store.data.user.mesi.Aprile.stipendoSpesaAlimenti) + parseInt(this.store.data.user.mesi.Aprile.stipendioBollette) + parseInt(this.store.data.user.mesi.Aprile.stipendioAltreSpese) + parseInt(this.store.data.user.mesi.Maggio.stipendioAffitto) + parseInt(this.store.data.user.mesi.Maggio.stipendoSpesaAlimenti) + parseInt(this.store.data.user.mesi.Maggio.stipendioBollette) + parseInt(this.store.data.user.mesi.Maggio.stipendioAltreSpese) + parseInt(this.store.data.user.mesi.Giugno.stipendioAffitto) + parseInt(this.store.data.user.mesi.Giugno.stipendoSpesaAlimenti) + parseInt(this.store.data.user.mesi.Giugno.stipendioBollette) + parseInt(this.store.data.user.mesi.Giugno.stipendioAltreSpese) + parseInt(this.store.data.user.mesi.Luglio.stipendioAffitto) + parseInt(this.store.data.user.mesi.Luglio.stipendoSpesaAlimenti) + parseInt(this.store.data.user.mesi.Luglio.stipendioBollette) + parseInt(this.store.data.user.mesi.Luglio.stipendioAltreSpese) + parseInt(this.store.data.user.mesi.Agosto.stipendioAffitto) + parseInt(this.store.data.user.mesi.Agosto.stipendoSpesaAlimenti) + parseInt(this.store.data.user.mesi.Agosto.stipendioBollette) + parseInt(this.store.data.user.mesi.Agosto.stipendioAltreSpese) + parseInt(this.store.data.user.mesi.Settembre.stipendioAffitto) + parseInt(this.store.data.user.mesi.Settembre.stipendoSpesaAlimenti) + parseInt(this.store.data.user.mesi.Settembre.stipendioBollette) + parseInt(this.store.data.user.mesi.Settembre.stipendioAltreSpese) + parseInt(this.store.data.user.mesi.Ottobre.stipendioAffitto) + parseInt(this.store.data.user.mesi.Ottobre.stipendoSpesaAlimenti) + parseInt(this.store.data.user.mesi.Ottobre.stipendioBollette) + parseInt(this.store.data.user.mesi.Ottobre.stipendioAltreSpese) + parseInt(this.store.data.user.mesi.Novembre.stipendioAffitto) + parseInt(this.store.data.user.mesi.Novembre.stipendoSpesaAlimenti) + parseInt(this.store.data.user.mesi.Novembre.stipendioBollette) + parseInt(this.store.data.user.mesi.Novembre.stipendioAltreSpese) + parseInt(this.store.data.user.mesi.Dicembre.stipendioAffitto) + parseInt(this.store.data.user.mesi.Dicembre.stipendoSpesaAlimenti) + parseInt(this.store.data.user.mesi.Dicembre.stipendioBollette) + parseInt(this.store.data.user.mesi.Dicembre.stipendioAltreSpese)
+      this.totaleRisparmioMese = parseInt(this.risparmi.Gennaio) + parseInt(this.risparmi.Febbraio) + parseInt(this.risparmi.Marzo) + parseInt(this.risparmi.Aprile) + parseInt(this.risparmi.Maggio) + parseInt(this.risparmi.Giugno) + parseInt(this.risparmi.Luglio) + parseInt(this.risparmi.Agosto) + parseInt(this.risparmi.Settembre) + parseInt(this.risparmi.Ottobre) + parseInt(this.risparmi.Novembre) + parseInt(this.risparmi.Dicembre)
+      this.totaleEntrateAnnue = parseInt(this.store.data.user.mesi.Gennaio.stipendio) + parseInt(this.store.data.user.mesi.Febbraio.stipendio) + parseInt(this.store.data.user.mesi.Marzo.stipendio) + parseInt(this.store.data.user.mesi.Aprile.stipendio) + parseInt(this.store.data.user.mesi.Maggio.stipendio) + parseInt(this.store.data.user.mesi.Giugno.stipendio) + parseInt(this.store.data.user.mesi.Luglio.stipendio) + parseInt(this.store.data.user.mesi.Agosto.stipendio) + parseInt(this.store.data.user.mesi.Settembre.stipendio) + parseInt(this.store.data.user.mesi.Ottobre.stipendio) + parseInt(this.store.data.user.mesi.Novembre.stipendio) + parseInt(this.store.data.user.mesi.Dicembre.stipendio)
     }
   },
 
@@ -302,40 +308,52 @@ export default {
       <table class="table table-striped table-dark">
         <thead>
           <tr class="table-light">
-            <th scope="row"></th>
-            <th scope="row">Stipendio</th>
-            <th scope="row">Bollette</th>
-            <th scope="row">Affitto</th>
-            <th scope="row">Spesa</th>
-            <th scope="row">Altre Spese</th>
-            <th scope="row">Risparmio</th>
+            <th class="text-danger"></th>
+            <th class="text-warning">Stipendio</th>
+            <th class="text-danger">Bollette</th>
+            <th class="text-danger">Affitto</th>
+            <th class="text-danger">Spesa</th>
+            <th class="text-danger">Altre Spese</th>
+            <th class=" text-success">Risparmio</th>
           </tr>
         </thead>
 
         <tbody>
           <tr v-for="(mese, key) in this.store.data.user.mesi" :key="mese">
             <th>{{ key }}</th>
-            <td><input @change="this.calcRisparmio()" class=" _input-table" type="text" v-model="mese.stipendio"></td>
+            <td><input @change="this.calcRisparmio()" class=" _input-table text-warning" type="text"
+                v-model="mese.stipendio"><span style="font-size:.5em">€</span></td>
             <td><input @change="this.calcRisparmio()" class=" _input-table" type="text" v-model="mese.stipendioBollette">
+              <span style="font-size:.5em">€</span>
             </td>
             <td><input @change="this.calcRisparmio()" class=" _input-table" type="text" v-model="mese.stipendioAffitto">
+              <span style="font-size:.5em">€</span>
             </td>
             <td><input @change="this.calcRisparmio()" class=" _input-table" type="text"
-                v-model="mese.stipendoSpesaAlimenti"></td>
+                v-model="mese.stipendoSpesaAlimenti"><span style="font-size:.5em">€</span></td>
             <td><input @change="this.calcRisparmio()" class=" _input-table" type="text"
                 v-model="mese.stipendioAltreSpese">
+              <span style="font-size:.5em">€</span>
             </td>
-            <td><input class=" _input-table text-white" type="text" disabled v-model="this.risparmi[key]">
+            <td><input class=" _input-table text-success" type="text" disabled v-model="this.risparmi[key]">
+              <span style="font-size:.5em">€</span>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
 
+    <div class="_totale d-flex justify-content-center w-100">
+      <span class="me-4 ">Totale Entrate Annuali: <strong class="text-warning">{{ this.totaleEntrateAnnue }}
+          €</strong></span>
+      <span class="me-4 ">Totale Speso: <strong class="text-danger">{{ this.totaleSpeseMese }} €</strong></span>
+      <span class="">Totale Risparmiato: <strong class="text-success">{{ this.totaleRisparmioMese }} €</strong></span>
+    </div>
+
     <!-- BOTTON -->
-    <div class="">
-      <button class="btn btn-primary" @click="salvaMyData()">Save</button>
-      <button class="btn btn-primary" @click="resetData()">Reset</button>
+    <div class="mb-2">
+      <button class="btn btn-outline-success px-3 mx-4" @click="salvaMyData()">Save</button>
+      <button class="btn btn-outline-warning  px-3" @click="resetData()">Reset</button>
     </div>
 
   </div>
@@ -368,7 +386,7 @@ export default {
         th {
           border-right: 1px solid rgb(75, 75, 75);
           background-color: rgba(11, 11, 11, 0.377) !important;
-          color: white;
+
           text-transform: uppercase;
         }
       }
@@ -378,13 +396,14 @@ export default {
         tr {
 
           td {
-            text-align: center;
+            text-align: start;
 
             input {
               border: none;
               background: none;
-              text-align: center;
+              text-align: end;
               width: 60%;
+              margin-right: .3em;
             }
           }
         }
