@@ -19,10 +19,16 @@ export default {
   },
 
   methods: {
-
+   
   },
 
   created() {
+
+    // console.log('localStorage:')
+    // console.log(localStorage)
+    // console.log('this.store.data.user')
+    // console.log(this.store.data.user)
+    // //this.salvaMyData()
 
   },
 
@@ -36,6 +42,7 @@ export default {
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <AppMain></AppMain>
+ 
 </template>
 
 <style lang="scss" scoped></style>
