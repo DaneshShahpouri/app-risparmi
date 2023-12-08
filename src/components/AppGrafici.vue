@@ -60,6 +60,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use '../scss/variables' as *;
+
 ._main {
   height: calc(80vh - .5em);
   width: 90%;

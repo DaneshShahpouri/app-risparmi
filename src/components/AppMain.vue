@@ -531,6 +531,7 @@ export default {
 
       this.totaleRisparmioMese[this.anno] = parseInt(this.risparmi[this.anno][1]) + parseInt(this.risparmi[this.anno][2]) + parseInt(this.risparmi[this.anno][3]) + parseInt(this.risparmi[this.anno][4]) + parseInt(this.risparmi[this.anno][5]) + parseInt(this.risparmi[this.anno][6]) + parseInt(this.risparmi[this.anno][7]) + parseInt(this.risparmi[this.anno][8]) + parseInt(this.risparmi[this.anno][9]) + parseInt(this.risparmi[this.anno][10]) + parseInt(this.risparmi[this.anno][11]) + parseInt(this.risparmi[this.anno][12])
       this.totaleEntrateAnnue[this.anno] = parseInt(this.store.data.user[this.anno][1].s.tot) + parseInt(this.store.data.user[this.anno][2].s.tot) + parseInt(this.store.data.user[this.anno][3].s.tot) + parseInt(this.store.data.user[this.anno][4].s.tot) + parseInt(this.store.data.user[this.anno][5].s.tot) + parseInt(this.store.data.user[this.anno][6].s.tot) + parseInt(this.store.data.user[this.anno][7].s.tot) + parseInt(this.store.data.user[this.anno][8].s.tot) + parseInt(this.store.data.user[this.anno][9].s.tot) + parseInt(this.store.data.user[this.anno][10].s.tot) + parseInt(this.store.data.user[this.anno][11].s.tot) + parseInt(this.store.data.user[this.anno][12].s.tot)
+      this.store.totaleRisparmi = parseInt(this.totaleEntrateAnnue[23]) + parseInt(this.totaleEntrateAnnue[24]) + parseInt(this.totaleEntrateAnnue[25]) + parseInt(this.totaleEntrateAnnue[26])
     },
 
     calcVoci(dato, mese) {
@@ -610,53 +611,45 @@ export default {
 
 <template>
   <div class="_main bg-dark">
-    <div class="row container">
-      <button class="col-3 btn px-1 py-0 my-0" :class="this.anno == 23 ? 'btn-outline-light' : 'btn-dark'"
+    <div class="row container justify-content-around pt-2 _btn-container">
+      <button class="col-2 btn px-1 py-0 my-0" :class="this.anno == 23 ? '_btn-primary' : ''"
         @click="setAnno(23), calcRisparmio()">2023</button>
-      <button class="col-3 btn px-1 py-0 my-0" :class="this.anno == 24 ? 'btn-outline-light' : 'btn-dark'"
+      <button class="col-2 btn px-1 py-0 my-0" :class="this.anno == 24 ? '_btn-primary' : ''"
         @click="setAnno(24), calcRisparmio()">2024</button>
-      <button class="col-3 btn px-1 py-0 my-0" :class="this.anno == 25 ? 'btn-outline-light' : 'btn-dark'"
+      <button class="col-2 btn px-1 py-0 my-0" :class="this.anno == 25 ? '_btn-primary' : ''"
         @click="setAnno(25), calcRisparmio()">2025</button>
-      <button class="col-3 btn px-1 py-0 my-0" :class="this.anno == 26 ? 'btn-outline-light' : 'btn-dark'"
+      <button class="col-2 btn px-1 py-0 my-0" :class="this.anno == 26 ? '_btn-primary' : ''"
         @click="setAnno(26), calcRisparmio()">2026</button>
-    </div>
-    <!-- INFO -->
-    <div class="_info-input row">
-      <input type="text" class="col-4" v-model="this.store.data.user.nome">
-      <input type="text" class="col-4" v-model="this.store.data.user.cognome">
-      <input type="text" class="col-2" v-model="this.store.data.user.eta">
-      <input type="text" class="col-2" v-model="this.store.data.user.sesso">
-
     </div>
 
     <div class="table-responsive _tabella-wrapper">
       <table class="table table-striped table-dark">
         <thead>
           <tr class="table-light">
-            <th class="text-danger"></th>
-            <th class="text-warning">Stipendio</th>
-            <th class="text-danger">Bollette</th>
-            <th class="text-danger">Affitto</th>
-            <th class="text-danger">Spesa</th>
-            <th class="text-danger">Altre Spese</th>
-            <th class=" text-success">Risparmio</th>
+            <th class="_text-thirdary"></th>
+            <th class="_text-secondary">Stipendio</th>
+            <th class="_text-thirdary">Bollette</th>
+            <th class="_text-thirdary">Affitto</th>
+            <th class="_text-thirdary">Spesa</th>
+            <th class="_text-thirdary">Altre Spese</th>
+            <th class="_text-primary">Risparmio</th>
           </tr>
         </thead>
 
         <tbody>
           <tr v-for="(mese, key) in this.store.data.user[this.anno]" :key="mese" class="_myrow">
-            <th>
+            <th style=" border-right:1px solid grey;">
               <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
-                style="cursor:pointer">
+                style="cursor:pointer;">
                 {{ this.store.mesi[key - 1] }}
               </div>
             </th>
 
             <!-- STIENDIO mensile -->
-            <td>
+            <td style=" border-right:1px solid grey;">
               <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
                 style="cursor:pointer">
-                <span class=" _input-table text-warning">{{ mese.s.tot }}</span>
+                <span class=" _input-table _text-secondary">{{ mese.s.tot }}</span>
                 <span style="font-size:.5em">€</span>
               </div>
 
@@ -674,7 +667,7 @@ export default {
                     <!-- Cancella record -->
                     <button class="btn btn-outline-danger ms-2"
                       style="font-size: .7em; padding: .2em .6em; margin-top: .2em;"
-                      @click.stop="deleteEl(key, 's', index)">
+                      @click.stop="deleteEl(key, 's', index), calcVoci('s', key), calcRisparmio()">
                       <i class="fa-solid fa-trash"></i>
                     </button>
                   </li>
@@ -693,7 +686,7 @@ export default {
             </td>
 
             <!-- bollette -->
-            <td>
+            <td style=" border-right:1px solid grey;">
               <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
                 style="cursor:pointer">
                 <span class=" _input-table">{{ mese.sb.tot }}</span>
@@ -734,7 +727,7 @@ export default {
 
 
             <!-- spese affitto -->
-            <td>
+            <td style=" border-right:1px solid grey;">
               <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
                 style="cursor:pointer">
                 <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.sc.tot }}</span>
@@ -774,7 +767,7 @@ export default {
             </td>
 
             <!-- spese alimentari -->
-            <td>
+            <td style=" border-right:1px solid grey;">
               <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
                 style="cursor:pointer">
                 <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.ss.tot }}</span>
@@ -814,7 +807,7 @@ export default {
             </td>
 
             <!-- altre spese-->
-            <td>
+            <td style=" border-right:1px solid grey;">
               <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
                 style="cursor:pointer">
                 <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.sas.tot }}</span>
@@ -857,7 +850,7 @@ export default {
             <td>
               <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
                 style="cursor:pointer">
-                <span class=" _input-table text-success">{{ this.risparmi[this.anno][key] }}</span>
+                <span class=" _input-table _text-primary">{{ this.risparmi[this.anno][key] }}</span>
                 <span style="font-size:.5em">€</span>
               </div>
             </td>
@@ -869,27 +862,29 @@ export default {
     </div>
 
     <div class="_totale d-flex justify-content-center w-100">
-      <span class="me-4 ">Totale Entrate Annuali: <strong class="text-warning">{{ this.totaleEntrateAnnue[this.anno] }}
+      <span class="me-4 ">Totale Entrate Annuali: <strong class="_text-secondary">{{ this.totaleEntrateAnnue[this.anno] }}
           €</strong></span>
-      <span class="me-4 ">Totale Speso: <strong class="text-danger">{{ this.totaleSpeseMese[this.anno] }}
+      <span class="me-4 ">Totale Speso: <strong class="_text-thirdary">{{ this.totaleSpeseMese[this.anno] }}
           €</strong></span>
-      <span class="">Totale Risparmiato: <strong class="text-success">{{ this.totaleRisparmioMese[this.anno] }}
+      <span class="">Totale Risparmiato: <strong class="_text-primary">{{ this.totaleRisparmioMese[this.anno] }}
           €</strong></span>
     </div>
 
     <!-- BOTTON -->
     <div class="mb-2">
-      <button class="btn btn-outline-success px-3 mx-4" @click="save()">Save</button>
-      <button class="btn btn-outline-warning  px-3" @click="resetData()">Reset</button>
+      <button class="btn _btn-primary  mx-4" @click="save()">Save</button>
+      <button class="btn _btn-secondary  " @click="resetData()">Reset</button>
     </div>
 
   </div>
 </template>
 
 <style lang="scss" scoped>
+@use '../scss/variables' as *;
+
 ._main {
-  height: 80vh;
-  width: 90%;
+  height: 88vh;
+  width: 95%;
   margin: 0 auto;
   overflow-y: auto;
 
@@ -898,6 +893,10 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+
+
+
 
   ._info-input {
     --bs-gutter-x: 0rem;
@@ -930,6 +929,7 @@ export default {
               background: linear-gradient(to bottom, #0000000e, #ffffff1c, #0000000e) !important;
               --bs-table-bg-type: none;
               //cursor: pointer;
+
               border-color: transparent;
 
               input {
@@ -1040,7 +1040,7 @@ export default {
               max-height: 0px;
               opacity: 0;
               max-width: 150px;
-
+              margin: auto;
               display: flex;
               flex-direction: column;
               overflow-y: hidden;

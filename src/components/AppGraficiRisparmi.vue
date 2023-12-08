@@ -113,4 +113,6 @@ export default {
   <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use '../scss/variables' as *;
+</style>
