@@ -9,60 +9,60 @@ export default {
       anno: 23,
       risparmi: {
         23: {
-          [1]: '',
-          [2]: '',
-          [3]: '',
-          [4]: '',
-          [5]: '',
-          [6]: '',
-          [7]: '',
-          [8]: '',
-          [9]: '',
-          [10]: '',
-          [11]: '',
-          [12]: '',
+          [1]: 0,
+          [2]: 0,
+          [3]: 0,
+          [4]: 0,
+          [5]: 0,
+          [6]: 0,
+          [7]: 0,
+          [8]: 0,
+          [9]: 0,
+          [10]: 0,
+          [11]: 0,
+          [12]: 0,
         },
         24: {
-          [1]: '',
-          [2]: '',
-          [3]: '',
-          [4]: '',
-          [5]: '',
-          [6]: '',
-          [7]: '',
-          [8]: '',
-          [9]: '',
-          [10]: '',
-          [11]: '',
-          [12]: '',
+          [1]: 0,
+          [2]: 0,
+          [3]: 0,
+          [4]: 0,
+          [5]: 0,
+          [6]: 0,
+          [7]: 0,
+          [8]: 0,
+          [9]: 0,
+          [10]: 0,
+          [11]: 0,
+          [12]: 0,
         },
         25: {
-          [1]: '',
-          [2]: '',
-          [3]: '',
-          [4]: '',
-          [5]: '',
-          [6]: '',
-          [7]: '',
-          [8]: '',
-          [9]: '',
-          [10]: '',
-          [11]: '',
-          [12]: '',
+          [1]: 0,
+          [2]: 0,
+          [3]: 0,
+          [4]: 0,
+          [5]: 0,
+          [6]: 0,
+          [7]: 0,
+          [8]: 0,
+          [9]: 0,
+          [10]: 0,
+          [11]: 0,
+          [12]: 0,
         },
         26: {
-          [1]: '',
-          [2]: '',
-          [3]: '',
-          [4]: '',
-          [5]: '',
-          [6]: '',
-          [7]: '',
-          [8]: '',
-          [9]: '',
-          [10]: '',
-          [11]: '',
-          [12]: '',
+          [1]: 0,
+          [2]: 0,
+          [3]: 0,
+          [4]: 0,
+          [5]: 0,
+          [6]: 0,
+          [7]: 0,
+          [8]: 0,
+          [9]: 0,
+          [10]: 0,
+          [11]: 0,
+          [12]: 0,
         },
       },
 
@@ -76,8 +76,10 @@ export default {
     // msg: String
   },
   methods: {
+
     console(parametro) {
       console.log(parametro);
+      console.log(this.totaleEntrateAnnue[23]);
     },
 
     prop() {
@@ -514,29 +516,96 @@ export default {
 
     calcRisparmio() {
       //console.log('calcola risparmio')
-      this.risparmi[this.anno][1] = this.store.data.user[this.anno][1].s.tot - this.store.data.user[this.anno][1].sc.tot - this.store.data.user[this.anno][1].ss.tot - this.store.data.user[this.anno][1].sb.tot - this.store.data.user[this.anno][1].sas.tot;
-      this.risparmi[this.anno][2] = this.store.data.user[this.anno][2].s.tot - this.store.data.user[this.anno][2].sc.tot - this.store.data.user[this.anno][2].ss.tot - this.store.data.user[this.anno][2].sb.tot - this.store.data.user[this.anno][2].sas.tot;
-      this.risparmi[this.anno][3] = this.store.data.user[this.anno][3].s.tot - this.store.data.user[this.anno][3].sc.tot - this.store.data.user[this.anno][3].ss.tot - this.store.data.user[this.anno][3].sb.tot - this.store.data.user[this.anno][3].sas.tot;
-      this.risparmi[this.anno][4] = this.store.data.user[this.anno][4].s.tot - this.store.data.user[this.anno][4].sc.tot - this.store.data.user[this.anno][4].ss.tot - this.store.data.user[this.anno][4].sb.tot - this.store.data.user[this.anno][4].sas.tot;
-      this.risparmi[this.anno][5] = this.store.data.user[this.anno][5].s.tot - this.store.data.user[this.anno][5].sc.tot - this.store.data.user[this.anno][5].ss.tot - this.store.data.user[this.anno][5].sb.tot - this.store.data.user[this.anno][5].sas.tot;
-      this.risparmi[this.anno][6] = this.store.data.user[this.anno][6].s.tot - this.store.data.user[this.anno][6].sc.tot - this.store.data.user[this.anno][6].ss.tot - this.store.data.user[this.anno][6].sb.tot - this.store.data.user[this.anno][6].sas.tot;
-      this.risparmi[this.anno][7] = this.store.data.user[this.anno][7].s.tot - this.store.data.user[this.anno][7].sc.tot - this.store.data.user[this.anno][7].ss.tot - this.store.data.user[this.anno][7].sb.tot - this.store.data.user[this.anno][7].sas.tot;
-      this.risparmi[this.anno][8] = this.store.data.user[this.anno][8].s.tot - this.store.data.user[this.anno][8].sc.tot - this.store.data.user[this.anno][8].ss.tot - this.store.data.user[this.anno][8].sb.tot - this.store.data.user[this.anno][8].sas.tot;
-      this.risparmi[this.anno][9] = this.store.data.user[this.anno][9].s.tot - this.store.data.user[this.anno][9].sc.tot - this.store.data.user[this.anno][9].ss.tot - this.store.data.user[this.anno][9].sb.tot - this.store.data.user[this.anno][9].sas.tot;
-      this.risparmi[this.anno][10] = this.store.data.user[this.anno][10].s.tot - this.store.data.user[this.anno][10].sc.tot - this.store.data.user[this.anno][10].ss.tot - this.store.data.user[this.anno][10].sb.tot - this.store.data.user[this.anno][10].sas.tot;
-      this.risparmi[this.anno][11] = this.store.data.user[this.anno][11].s.tot - this.store.data.user[this.anno][11].sc.tot - this.store.data.user[this.anno][11].ss.tot - this.store.data.user[this.anno][11].sb.tot - this.store.data.user[this.anno][11].sas.tot;
-      this.risparmi[this.anno][12] = this.store.data.user[this.anno][12].s.tot - this.store.data.user[this.anno][12].sc.tot - this.store.data.user[this.anno][12].ss.tot - this.store.data.user[this.anno][12].sb.tot - this.store.data.user[this.anno][12].sas.tot;
+      //2023 - risparmio
+      this.risparmi[23][1] = this.store.data.user[23][1].s.tot - this.store.data.user[23][1].sc.tot - this.store.data.user[23][1].ss.tot - this.store.data.user[23][1].sb.tot - this.store.data.user[23][1].sas.tot;
+      this.risparmi[23][2] = this.store.data.user[23][2].s.tot - this.store.data.user[23][2].sc.tot - this.store.data.user[23][2].ss.tot - this.store.data.user[23][2].sb.tot - this.store.data.user[23][2].sas.tot;
+      this.risparmi[23][3] = this.store.data.user[23][3].s.tot - this.store.data.user[23][3].sc.tot - this.store.data.user[23][3].ss.tot - this.store.data.user[23][3].sb.tot - this.store.data.user[23][3].sas.tot;
+      this.risparmi[23][4] = this.store.data.user[23][4].s.tot - this.store.data.user[23][4].sc.tot - this.store.data.user[23][4].ss.tot - this.store.data.user[23][4].sb.tot - this.store.data.user[23][4].sas.tot;
+      this.risparmi[23][5] = this.store.data.user[23][5].s.tot - this.store.data.user[23][5].sc.tot - this.store.data.user[23][5].ss.tot - this.store.data.user[23][5].sb.tot - this.store.data.user[23][5].sas.tot;
+      this.risparmi[23][6] = this.store.data.user[23][6].s.tot - this.store.data.user[23][6].sc.tot - this.store.data.user[23][6].ss.tot - this.store.data.user[23][6].sb.tot - this.store.data.user[23][6].sas.tot;
+      this.risparmi[23][7] = this.store.data.user[23][7].s.tot - this.store.data.user[23][7].sc.tot - this.store.data.user[23][7].ss.tot - this.store.data.user[23][7].sb.tot - this.store.data.user[23][7].sas.tot;
+      this.risparmi[23][8] = this.store.data.user[23][8].s.tot - this.store.data.user[23][8].sc.tot - this.store.data.user[23][8].ss.tot - this.store.data.user[23][8].sb.tot - this.store.data.user[23][8].sas.tot;
+      this.risparmi[23][9] = this.store.data.user[23][9].s.tot - this.store.data.user[23][9].sc.tot - this.store.data.user[23][9].ss.tot - this.store.data.user[23][9].sb.tot - this.store.data.user[23][9].sas.tot;
+      this.risparmi[23][10] = this.store.data.user[23][10].s.tot - this.store.data.user[23][10].sc.tot - this.store.data.user[23][10].ss.tot - this.store.data.user[23][10].sb.tot - this.store.data.user[23][10].sas.tot;
+      this.risparmi[23][11] = this.store.data.user[23][11].s.tot - this.store.data.user[23][11].sc.tot - this.store.data.user[23][11].ss.tot - this.store.data.user[23][11].sb.tot - this.store.data.user[23][11].sas.tot;
+      this.risparmi[23][12] = this.store.data.user[23][12].s.tot - this.store.data.user[23][12].sc.tot - this.store.data.user[23][12].ss.tot - this.store.data.user[23][12].sb.tot - this.store.data.user[23][12].sas.tot;
+      //2024 - risparmio
+      this.risparmi[24][1] = this.store.data.user[24][1].s.tot - this.store.data.user[24][1].sc.tot - this.store.data.user[24][1].ss.tot - this.store.data.user[24][1].sb.tot - this.store.data.user[24][1].sas.tot;
+      this.risparmi[24][2] = this.store.data.user[24][2].s.tot - this.store.data.user[24][2].sc.tot - this.store.data.user[24][2].ss.tot - this.store.data.user[24][2].sb.tot - this.store.data.user[24][2].sas.tot;
+      this.risparmi[24][3] = this.store.data.user[24][3].s.tot - this.store.data.user[24][3].sc.tot - this.store.data.user[24][3].ss.tot - this.store.data.user[24][3].sb.tot - this.store.data.user[24][3].sas.tot;
+      this.risparmi[24][4] = this.store.data.user[24][4].s.tot - this.store.data.user[24][4].sc.tot - this.store.data.user[24][4].ss.tot - this.store.data.user[24][4].sb.tot - this.store.data.user[24][4].sas.tot;
+      this.risparmi[24][5] = this.store.data.user[24][5].s.tot - this.store.data.user[24][5].sc.tot - this.store.data.user[24][5].ss.tot - this.store.data.user[24][5].sb.tot - this.store.data.user[24][5].sas.tot;
+      this.risparmi[24][6] = this.store.data.user[24][6].s.tot - this.store.data.user[24][6].sc.tot - this.store.data.user[24][6].ss.tot - this.store.data.user[24][6].sb.tot - this.store.data.user[24][6].sas.tot;
+      this.risparmi[24][7] = this.store.data.user[24][7].s.tot - this.store.data.user[24][7].sc.tot - this.store.data.user[24][7].ss.tot - this.store.data.user[24][7].sb.tot - this.store.data.user[24][7].sas.tot;
+      this.risparmi[24][8] = this.store.data.user[24][8].s.tot - this.store.data.user[24][8].sc.tot - this.store.data.user[24][8].ss.tot - this.store.data.user[24][8].sb.tot - this.store.data.user[24][8].sas.tot;
+      this.risparmi[24][9] = this.store.data.user[24][9].s.tot - this.store.data.user[24][9].sc.tot - this.store.data.user[24][9].ss.tot - this.store.data.user[24][9].sb.tot - this.store.data.user[24][9].sas.tot;
+      this.risparmi[24][10] = this.store.data.user[24][10].s.tot - this.store.data.user[24][10].sc.tot - this.store.data.user[24][10].ss.tot - this.store.data.user[24][10].sb.tot - this.store.data.user[24][10].sas.tot;
+      this.risparmi[24][11] = this.store.data.user[24][11].s.tot - this.store.data.user[24][11].sc.tot - this.store.data.user[24][11].ss.tot - this.store.data.user[24][11].sb.tot - this.store.data.user[24][11].sas.tot;
+      this.risparmi[24][12] = this.store.data.user[24][12].s.tot - this.store.data.user[24][12].sc.tot - this.store.data.user[24][12].ss.tot - this.store.data.user[24][12].sb.tot - this.store.data.user[24][12].sas.tot;
+      //2025 - risparmio
+      this.risparmi[25][1] = this.store.data.user[25][1].s.tot - this.store.data.user[25][1].sc.tot - this.store.data.user[25][1].ss.tot - this.store.data.user[25][1].sb.tot - this.store.data.user[25][1].sas.tot;
+      this.risparmi[25][2] = this.store.data.user[25][2].s.tot - this.store.data.user[25][2].sc.tot - this.store.data.user[25][2].ss.tot - this.store.data.user[25][2].sb.tot - this.store.data.user[25][2].sas.tot;
+      this.risparmi[25][3] = this.store.data.user[25][3].s.tot - this.store.data.user[25][3].sc.tot - this.store.data.user[25][3].ss.tot - this.store.data.user[25][3].sb.tot - this.store.data.user[25][3].sas.tot;
+      this.risparmi[25][4] = this.store.data.user[25][4].s.tot - this.store.data.user[25][4].sc.tot - this.store.data.user[25][4].ss.tot - this.store.data.user[25][4].sb.tot - this.store.data.user[25][4].sas.tot;
+      this.risparmi[25][5] = this.store.data.user[25][5].s.tot - this.store.data.user[25][5].sc.tot - this.store.data.user[25][5].ss.tot - this.store.data.user[25][5].sb.tot - this.store.data.user[25][5].sas.tot;
+      this.risparmi[25][6] = this.store.data.user[25][6].s.tot - this.store.data.user[25][6].sc.tot - this.store.data.user[25][6].ss.tot - this.store.data.user[25][6].sb.tot - this.store.data.user[25][6].sas.tot;
+      this.risparmi[25][7] = this.store.data.user[25][7].s.tot - this.store.data.user[25][7].sc.tot - this.store.data.user[25][7].ss.tot - this.store.data.user[25][7].sb.tot - this.store.data.user[25][7].sas.tot;
+      this.risparmi[25][8] = this.store.data.user[25][8].s.tot - this.store.data.user[25][8].sc.tot - this.store.data.user[25][8].ss.tot - this.store.data.user[25][8].sb.tot - this.store.data.user[25][8].sas.tot;
+      this.risparmi[25][9] = this.store.data.user[25][9].s.tot - this.store.data.user[25][9].sc.tot - this.store.data.user[25][9].ss.tot - this.store.data.user[25][9].sb.tot - this.store.data.user[25][9].sas.tot;
+      this.risparmi[25][10] = this.store.data.user[25][10].s.tot - this.store.data.user[25][10].sc.tot - this.store.data.user[25][10].ss.tot - this.store.data.user[25][10].sb.tot - this.store.data.user[25][10].sas.tot;
+      this.risparmi[25][11] = this.store.data.user[25][11].s.tot - this.store.data.user[25][11].sc.tot - this.store.data.user[25][11].ss.tot - this.store.data.user[25][11].sb.tot - this.store.data.user[25][11].sas.tot;
+      this.risparmi[25][12] = this.store.data.user[25][12].s.tot - this.store.data.user[25][12].sc.tot - this.store.data.user[25][12].ss.tot - this.store.data.user[25][12].sb.tot - this.store.data.user[25][12].sas.tot;
+      //2026 - risparmio
+      this.risparmi[26][1] = this.store.data.user[26][1].s.tot - this.store.data.user[26][1].sc.tot - this.store.data.user[26][1].ss.tot - this.store.data.user[26][1].sb.tot - this.store.data.user[26][1].sas.tot;
+      this.risparmi[26][2] = this.store.data.user[26][2].s.tot - this.store.data.user[26][2].sc.tot - this.store.data.user[26][2].ss.tot - this.store.data.user[26][2].sb.tot - this.store.data.user[26][2].sas.tot;
+      this.risparmi[26][3] = this.store.data.user[26][3].s.tot - this.store.data.user[26][3].sc.tot - this.store.data.user[26][3].ss.tot - this.store.data.user[26][3].sb.tot - this.store.data.user[26][3].sas.tot;
+      this.risparmi[26][4] = this.store.data.user[26][4].s.tot - this.store.data.user[26][4].sc.tot - this.store.data.user[26][4].ss.tot - this.store.data.user[26][4].sb.tot - this.store.data.user[26][4].sas.tot;
+      this.risparmi[26][5] = this.store.data.user[26][5].s.tot - this.store.data.user[26][5].sc.tot - this.store.data.user[26][5].ss.tot - this.store.data.user[26][5].sb.tot - this.store.data.user[26][5].sas.tot;
+      this.risparmi[26][6] = this.store.data.user[26][6].s.tot - this.store.data.user[26][6].sc.tot - this.store.data.user[26][6].ss.tot - this.store.data.user[26][6].sb.tot - this.store.data.user[26][6].sas.tot;
+      this.risparmi[26][7] = this.store.data.user[26][7].s.tot - this.store.data.user[26][7].sc.tot - this.store.data.user[26][7].ss.tot - this.store.data.user[26][7].sb.tot - this.store.data.user[26][7].sas.tot;
+      this.risparmi[26][8] = this.store.data.user[26][8].s.tot - this.store.data.user[26][8].sc.tot - this.store.data.user[26][8].ss.tot - this.store.data.user[26][8].sb.tot - this.store.data.user[26][8].sas.tot;
+      this.risparmi[26][9] = this.store.data.user[26][9].s.tot - this.store.data.user[26][9].sc.tot - this.store.data.user[26][9].ss.tot - this.store.data.user[26][9].sb.tot - this.store.data.user[26][9].sas.tot;
+      this.risparmi[26][10] = this.store.data.user[26][10].s.tot - this.store.data.user[26][10].sc.tot - this.store.data.user[26][10].ss.tot - this.store.data.user[26][10].sb.tot - this.store.data.user[26][10].sas.tot;
+      this.risparmi[26][11] = this.store.data.user[26][11].s.tot - this.store.data.user[26][11].sc.tot - this.store.data.user[26][11].ss.tot - this.store.data.user[26][11].sb.tot - this.store.data.user[26][11].sas.tot;
+      this.risparmi[26][12] = this.store.data.user[26][12].s.tot - this.store.data.user[26][12].sc.tot - this.store.data.user[26][12].ss.tot - this.store.data.user[26][12].sb.tot - this.store.data.user[26][12].sas.tot;
 
-      this.totaleSpeseMese[this.anno] = parseInt(this.store.data.user[this.anno][1].sc.tot) + parseInt(this.store.data.user[this.anno][1].ss.tot) + parseInt(this.store.data.user[this.anno][1].sb.tot) + parseInt(this.store.data.user[this.anno][1].sas.tot) + parseInt(this.store.data.user[this.anno][2].sc.tot) + parseInt(this.store.data.user[this.anno][2].ss.tot) + parseInt(this.store.data.user[this.anno][2].sb.tot) + parseInt(this.store.data.user[this.anno][2].sas.tot) + parseInt(this.store.data.user[this.anno][3].sc.tot) + parseInt(this.store.data.user[this.anno][3].ss.tot) + parseInt(this.store.data.user[this.anno][3].sb.tot) + parseInt(this.store.data.user[this.anno][3].sas.tot) + parseInt(this.store.data.user[this.anno][4].sc.tot) + parseInt(this.store.data.user[this.anno][4].ss.tot) + parseInt(this.store.data.user[this.anno][4].sb.tot) + parseInt(this.store.data.user[this.anno][4].sas.tot) + parseInt(this.store.data.user[this.anno][5].sc.tot) + parseInt(this.store.data.user[this.anno][5].ss.tot) + parseInt(this.store.data.user[this.anno][5].sb.tot) + parseInt(this.store.data.user[this.anno][5].sas.tot) + parseInt(this.store.data.user[this.anno][6].sc.tot) + parseInt(this.store.data.user[this.anno][6].ss.tot) + parseInt(this.store.data.user[this.anno][6].sb.tot) + parseInt(this.store.data.user[this.anno][6].sas.tot) + parseInt(this.store.data.user[this.anno][7].sc.tot) + parseInt(this.store.data.user[this.anno][7].ss.tot) + parseInt(this.store.data.user[this.anno][7].sb.tot) + parseInt(this.store.data.user[this.anno][7].sas.tot) + parseInt(this.store.data.user[this.anno][8].sc.tot) + parseInt(this.store.data.user[this.anno][8].ss.tot) + parseInt(this.store.data.user[this.anno][8].sb.tot) + parseInt(this.store.data.user[this.anno][8].sas.tot) + parseInt(this.store.data.user[this.anno][9].sc.tot) + parseInt(this.store.data.user[this.anno][9].ss.tot) + parseInt(this.store.data.user[this.anno][9].sb.tot) + parseInt(this.store.data.user[this.anno][9].sas.tot) + parseInt(this.store.data.user[this.anno][10].sc.tot) + parseInt(this.store.data.user[this.anno][10].ss.tot) + parseInt(this.store.data.user[this.anno][10].sb.tot) + parseInt(this.store.data.user[this.anno][10].sas.tot) + parseInt(this.store.data.user[this.anno][11].sc.tot) + parseInt(this.store.data.user[this.anno][11].ss.tot) + parseInt(this.store.data.user[this.anno][11].sb.tot) + parseInt(this.store.data.user[this.anno][11].sas.tot) + parseInt(this.store.data.user[this.anno][12].sc.tot) + parseInt(this.store.data.user[this.anno][12].ss.tot) + parseInt(this.store.data.user[this.anno][12].sb.tot) + parseInt(this.store.data.user[this.anno][12].sas.tot)
+      this.totaleRisparmioMese[23] = parseInt(this.risparmi[23][1]) + parseInt(this.risparmi[23][2]) + parseInt(this.risparmi[23][3]) + parseInt(this.risparmi[23][4]) + parseInt(this.risparmi[23][5]) + parseInt(this.risparmi[23][6]) + parseInt(this.risparmi[23][7]) + parseInt(this.risparmi[23][8]) + parseInt(this.risparmi[23][9]) + parseInt(this.risparmi[23][10]) + parseInt(this.risparmi[23][11]) + parseInt(this.risparmi[23][12])
+      this.totaleRisparmioMese[24] = parseInt(this.risparmi[24][1]) + parseInt(this.risparmi[24][2]) + parseInt(this.risparmi[24][3]) + parseInt(this.risparmi[24][4]) + parseInt(this.risparmi[24][5]) + parseInt(this.risparmi[24][6]) + parseInt(this.risparmi[24][7]) + parseInt(this.risparmi[24][8]) + parseInt(this.risparmi[24][9]) + parseInt(this.risparmi[24][10]) + parseInt(this.risparmi[24][11]) + parseInt(this.risparmi[24][12])
+      this.totaleRisparmioMese[25] = parseInt(this.risparmi[25][1]) + parseInt(this.risparmi[25][2]) + parseInt(this.risparmi[25][3]) + parseInt(this.risparmi[25][4]) + parseInt(this.risparmi[25][5]) + parseInt(this.risparmi[25][6]) + parseInt(this.risparmi[25][7]) + parseInt(this.risparmi[25][8]) + parseInt(this.risparmi[25][9]) + parseInt(this.risparmi[25][10]) + parseInt(this.risparmi[25][11]) + parseInt(this.risparmi[25][12])
+      this.totaleRisparmioMese[26] = parseInt(this.risparmi[26][1]) + parseInt(this.risparmi[26][2]) + parseInt(this.risparmi[26][3]) + parseInt(this.risparmi[26][4]) + parseInt(this.risparmi[26][5]) + parseInt(this.risparmi[26][6]) + parseInt(this.risparmi[26][7]) + parseInt(this.risparmi[26][8]) + parseInt(this.risparmi[26][9]) + parseInt(this.risparmi[26][10]) + parseInt(this.risparmi[26][11]) + parseInt(this.risparmi[26][12])
 
-      this.totaleRisparmioMese[this.anno] = parseInt(this.risparmi[this.anno][1]) + parseInt(this.risparmi[this.anno][2]) + parseInt(this.risparmi[this.anno][3]) + parseInt(this.risparmi[this.anno][4]) + parseInt(this.risparmi[this.anno][5]) + parseInt(this.risparmi[this.anno][6]) + parseInt(this.risparmi[this.anno][7]) + parseInt(this.risparmi[this.anno][8]) + parseInt(this.risparmi[this.anno][9]) + parseInt(this.risparmi[this.anno][10]) + parseInt(this.risparmi[this.anno][11]) + parseInt(this.risparmi[this.anno][12])
-      this.totaleEntrateAnnue[this.anno] = parseInt(this.store.data.user[this.anno][1].s.tot) + parseInt(this.store.data.user[this.anno][2].s.tot) + parseInt(this.store.data.user[this.anno][3].s.tot) + parseInt(this.store.data.user[this.anno][4].s.tot) + parseInt(this.store.data.user[this.anno][5].s.tot) + parseInt(this.store.data.user[this.anno][6].s.tot) + parseInt(this.store.data.user[this.anno][7].s.tot) + parseInt(this.store.data.user[this.anno][8].s.tot) + parseInt(this.store.data.user[this.anno][9].s.tot) + parseInt(this.store.data.user[this.anno][10].s.tot) + parseInt(this.store.data.user[this.anno][11].s.tot) + parseInt(this.store.data.user[this.anno][12].s.tot)
-      this.store.totaleRisparmi = parseInt(this.totaleEntrateAnnue[23]) + parseInt(this.totaleEntrateAnnue[24]) + parseInt(this.totaleEntrateAnnue[25]) + parseInt(this.totaleEntrateAnnue[26])
+      this.totaleSpeseMese[23] = parseInt(this.store.data.user[23][1].sc.tot) + parseInt(this.store.data.user[23][1].ss.tot) + parseInt(this.store.data.user[23][1].sb.tot) + parseInt(this.store.data.user[23][1].sas.tot) + parseInt(this.store.data.user[23][2].sc.tot) + parseInt(this.store.data.user[23][2].ss.tot) + parseInt(this.store.data.user[23][2].sb.tot) + parseInt(this.store.data.user[23][2].sas.tot) + parseInt(this.store.data.user[23][3].sc.tot) + parseInt(this.store.data.user[23][3].ss.tot) + parseInt(this.store.data.user[23][3].sb.tot) + parseInt(this.store.data.user[23][3].sas.tot) + parseInt(this.store.data.user[23][4].sc.tot) + parseInt(this.store.data.user[23][4].ss.tot) + parseInt(this.store.data.user[23][4].sb.tot) + parseInt(this.store.data.user[23][4].sas.tot) + parseInt(this.store.data.user[23][5].sc.tot) + parseInt(this.store.data.user[23][5].ss.tot) + parseInt(this.store.data.user[23][5].sb.tot) + parseInt(this.store.data.user[23][5].sas.tot) + parseInt(this.store.data.user[23][6].sc.tot) + parseInt(this.store.data.user[23][6].ss.tot) + parseInt(this.store.data.user[23][6].sb.tot) + parseInt(this.store.data.user[23][6].sas.tot) + parseInt(this.store.data.user[23][7].sc.tot) + parseInt(this.store.data.user[23][7].ss.tot) + parseInt(this.store.data.user[23][7].sb.tot) + parseInt(this.store.data.user[23][7].sas.tot) + parseInt(this.store.data.user[23][8].sc.tot) + parseInt(this.store.data.user[23][8].ss.tot) + parseInt(this.store.data.user[23][8].sb.tot) + parseInt(this.store.data.user[23][8].sas.tot) + parseInt(this.store.data.user[23][9].sc.tot) + parseInt(this.store.data.user[23][9].ss.tot) + parseInt(this.store.data.user[23][9].sb.tot) + parseInt(this.store.data.user[23][9].sas.tot) + parseInt(this.store.data.user[23][10].sc.tot) + parseInt(this.store.data.user[23][10].ss.tot) + parseInt(this.store.data.user[23][10].sb.tot) + parseInt(this.store.data.user[23][10].sas.tot) + parseInt(this.store.data.user[23][11].sc.tot) + parseInt(this.store.data.user[23][11].ss.tot) + parseInt(this.store.data.user[23][11].sb.tot) + parseInt(this.store.data.user[23][11].sas.tot) + parseInt(this.store.data.user[23][12].sc.tot) + parseInt(this.store.data.user[23][12].ss.tot) + parseInt(this.store.data.user[23][12].sb.tot) + parseInt(this.store.data.user[23][12].sas.tot)
+      this.totaleSpeseMese[24] = parseInt(this.store.data.user[24][1].sc.tot) + parseInt(this.store.data.user[24][1].ss.tot) + parseInt(this.store.data.user[24][1].sb.tot) + parseInt(this.store.data.user[24][1].sas.tot) + parseInt(this.store.data.user[24][2].sc.tot) + parseInt(this.store.data.user[24][2].ss.tot) + parseInt(this.store.data.user[24][2].sb.tot) + parseInt(this.store.data.user[24][2].sas.tot) + parseInt(this.store.data.user[24][3].sc.tot) + parseInt(this.store.data.user[24][3].ss.tot) + parseInt(this.store.data.user[24][3].sb.tot) + parseInt(this.store.data.user[24][3].sas.tot) + parseInt(this.store.data.user[24][4].sc.tot) + parseInt(this.store.data.user[24][4].ss.tot) + parseInt(this.store.data.user[24][4].sb.tot) + parseInt(this.store.data.user[24][4].sas.tot) + parseInt(this.store.data.user[24][5].sc.tot) + parseInt(this.store.data.user[24][5].ss.tot) + parseInt(this.store.data.user[24][5].sb.tot) + parseInt(this.store.data.user[24][5].sas.tot) + parseInt(this.store.data.user[24][6].sc.tot) + parseInt(this.store.data.user[24][6].ss.tot) + parseInt(this.store.data.user[24][6].sb.tot) + parseInt(this.store.data.user[24][6].sas.tot) + parseInt(this.store.data.user[24][7].sc.tot) + parseInt(this.store.data.user[24][7].ss.tot) + parseInt(this.store.data.user[24][7].sb.tot) + parseInt(this.store.data.user[24][7].sas.tot) + parseInt(this.store.data.user[24][8].sc.tot) + parseInt(this.store.data.user[24][8].ss.tot) + parseInt(this.store.data.user[24][8].sb.tot) + parseInt(this.store.data.user[24][8].sas.tot) + parseInt(this.store.data.user[24][9].sc.tot) + parseInt(this.store.data.user[24][9].ss.tot) + parseInt(this.store.data.user[24][9].sb.tot) + parseInt(this.store.data.user[24][9].sas.tot) + parseInt(this.store.data.user[24][10].sc.tot) + parseInt(this.store.data.user[24][10].ss.tot) + parseInt(this.store.data.user[24][10].sb.tot) + parseInt(this.store.data.user[24][10].sas.tot) + parseInt(this.store.data.user[24][11].sc.tot) + parseInt(this.store.data.user[24][11].ss.tot) + parseInt(this.store.data.user[24][11].sb.tot) + parseInt(this.store.data.user[24][11].sas.tot) + parseInt(this.store.data.user[24][12].sc.tot) + parseInt(this.store.data.user[24][12].ss.tot) + parseInt(this.store.data.user[24][12].sb.tot) + parseInt(this.store.data.user[24][12].sas.tot)
+      this.totaleSpeseMese[25] = parseInt(this.store.data.user[25][1].sc.tot) + parseInt(this.store.data.user[25][1].ss.tot) + parseInt(this.store.data.user[25][1].sb.tot) + parseInt(this.store.data.user[25][1].sas.tot) + parseInt(this.store.data.user[25][2].sc.tot) + parseInt(this.store.data.user[25][2].ss.tot) + parseInt(this.store.data.user[25][2].sb.tot) + parseInt(this.store.data.user[25][2].sas.tot) + parseInt(this.store.data.user[25][3].sc.tot) + parseInt(this.store.data.user[25][3].ss.tot) + parseInt(this.store.data.user[25][3].sb.tot) + parseInt(this.store.data.user[25][3].sas.tot) + parseInt(this.store.data.user[25][4].sc.tot) + parseInt(this.store.data.user[25][4].ss.tot) + parseInt(this.store.data.user[25][4].sb.tot) + parseInt(this.store.data.user[25][4].sas.tot) + parseInt(this.store.data.user[25][5].sc.tot) + parseInt(this.store.data.user[25][5].ss.tot) + parseInt(this.store.data.user[25][5].sb.tot) + parseInt(this.store.data.user[25][5].sas.tot) + parseInt(this.store.data.user[25][6].sc.tot) + parseInt(this.store.data.user[25][6].ss.tot) + parseInt(this.store.data.user[25][6].sb.tot) + parseInt(this.store.data.user[25][6].sas.tot) + parseInt(this.store.data.user[25][7].sc.tot) + parseInt(this.store.data.user[25][7].ss.tot) + parseInt(this.store.data.user[25][7].sb.tot) + parseInt(this.store.data.user[25][7].sas.tot) + parseInt(this.store.data.user[25][8].sc.tot) + parseInt(this.store.data.user[25][8].ss.tot) + parseInt(this.store.data.user[25][8].sb.tot) + parseInt(this.store.data.user[25][8].sas.tot) + parseInt(this.store.data.user[25][9].sc.tot) + parseInt(this.store.data.user[25][9].ss.tot) + parseInt(this.store.data.user[25][9].sb.tot) + parseInt(this.store.data.user[25][9].sas.tot) + parseInt(this.store.data.user[25][10].sc.tot) + parseInt(this.store.data.user[25][10].ss.tot) + parseInt(this.store.data.user[25][10].sb.tot) + parseInt(this.store.data.user[25][10].sas.tot) + parseInt(this.store.data.user[25][11].sc.tot) + parseInt(this.store.data.user[25][11].ss.tot) + parseInt(this.store.data.user[25][11].sb.tot) + parseInt(this.store.data.user[25][11].sas.tot) + parseInt(this.store.data.user[25][12].sc.tot) + parseInt(this.store.data.user[25][12].ss.tot) + parseInt(this.store.data.user[25][12].sb.tot) + parseInt(this.store.data.user[25][12].sas.tot)
+      this.totaleSpeseMese[26] = parseInt(this.store.data.user[26][1].sc.tot) + parseInt(this.store.data.user[26][1].ss.tot) + parseInt(this.store.data.user[26][1].sb.tot) + parseInt(this.store.data.user[26][1].sas.tot) + parseInt(this.store.data.user[26][2].sc.tot) + parseInt(this.store.data.user[26][2].ss.tot) + parseInt(this.store.data.user[26][2].sb.tot) + parseInt(this.store.data.user[26][2].sas.tot) + parseInt(this.store.data.user[26][3].sc.tot) + parseInt(this.store.data.user[26][3].ss.tot) + parseInt(this.store.data.user[26][3].sb.tot) + parseInt(this.store.data.user[26][3].sas.tot) + parseInt(this.store.data.user[26][4].sc.tot) + parseInt(this.store.data.user[26][4].ss.tot) + parseInt(this.store.data.user[26][4].sb.tot) + parseInt(this.store.data.user[26][4].sas.tot) + parseInt(this.store.data.user[26][5].sc.tot) + parseInt(this.store.data.user[26][5].ss.tot) + parseInt(this.store.data.user[26][5].sb.tot) + parseInt(this.store.data.user[26][5].sas.tot) + parseInt(this.store.data.user[26][6].sc.tot) + parseInt(this.store.data.user[26][6].ss.tot) + parseInt(this.store.data.user[26][6].sb.tot) + parseInt(this.store.data.user[26][6].sas.tot) + parseInt(this.store.data.user[26][7].sc.tot) + parseInt(this.store.data.user[26][7].ss.tot) + parseInt(this.store.data.user[26][7].sb.tot) + parseInt(this.store.data.user[26][7].sas.tot) + parseInt(this.store.data.user[26][8].sc.tot) + parseInt(this.store.data.user[26][8].ss.tot) + parseInt(this.store.data.user[26][8].sb.tot) + parseInt(this.store.data.user[26][8].sas.tot) + parseInt(this.store.data.user[26][9].sc.tot) + parseInt(this.store.data.user[26][9].ss.tot) + parseInt(this.store.data.user[26][9].sb.tot) + parseInt(this.store.data.user[26][9].sas.tot) + parseInt(this.store.data.user[26][10].sc.tot) + parseInt(this.store.data.user[26][10].ss.tot) + parseInt(this.store.data.user[26][10].sb.tot) + parseInt(this.store.data.user[26][10].sas.tot) + parseInt(this.store.data.user[26][11].sc.tot) + parseInt(this.store.data.user[26][11].ss.tot) + parseInt(this.store.data.user[26][11].sb.tot) + parseInt(this.store.data.user[26][11].sas.tot) + parseInt(this.store.data.user[26][12].sc.tot) + parseInt(this.store.data.user[26][12].ss.tot) + parseInt(this.store.data.user[26][12].sb.tot) + parseInt(this.store.data.user[26][12].sas.tot)
+
+
+      this.totaleEntrateAnnue[23] = parseInt(this.store.data.user[23][1].s.tot) + parseInt(this.store.data.user[23][2].s.tot) + parseInt(this.store.data.user[23][3].s.tot) + parseInt(this.store.data.user[23][4].s.tot) + parseInt(this.store.data.user[23][5].s.tot) + parseInt(this.store.data.user[23][6].s.tot) + parseInt(this.store.data.user[23][7].s.tot) + parseInt(this.store.data.user[23][8].s.tot) + parseInt(this.store.data.user[23][9].s.tot) + parseInt(this.store.data.user[23][10].s.tot) + parseInt(this.store.data.user[23][11].s.tot) + parseInt(this.store.data.user[23][12].s.tot)
+      this.totaleEntrateAnnue[24] = parseInt(this.store.data.user[24][1].s.tot) + parseInt(this.store.data.user[24][2].s.tot) + parseInt(this.store.data.user[24][3].s.tot) + parseInt(this.store.data.user[24][4].s.tot) + parseInt(this.store.data.user[24][5].s.tot) + parseInt(this.store.data.user[24][6].s.tot) + parseInt(this.store.data.user[24][7].s.tot) + parseInt(this.store.data.user[24][8].s.tot) + parseInt(this.store.data.user[24][9].s.tot) + parseInt(this.store.data.user[24][10].s.tot) + parseInt(this.store.data.user[24][11].s.tot) + parseInt(this.store.data.user[24][12].s.tot)
+      this.totaleEntrateAnnue[25] = parseInt(this.store.data.user[25][1].s.tot) + parseInt(this.store.data.user[25][2].s.tot) + parseInt(this.store.data.user[25][3].s.tot) + parseInt(this.store.data.user[25][4].s.tot) + parseInt(this.store.data.user[25][5].s.tot) + parseInt(this.store.data.user[25][6].s.tot) + parseInt(this.store.data.user[25][7].s.tot) + parseInt(this.store.data.user[25][8].s.tot) + parseInt(this.store.data.user[25][9].s.tot) + parseInt(this.store.data.user[25][10].s.tot) + parseInt(this.store.data.user[25][11].s.tot) + parseInt(this.store.data.user[25][12].s.tot)
+      this.totaleEntrateAnnue[26] = parseInt(this.store.data.user[26][1].s.tot) + parseInt(this.store.data.user[26][2].s.tot) + parseInt(this.store.data.user[26][3].s.tot) + parseInt(this.store.data.user[26][4].s.tot) + parseInt(this.store.data.user[26][5].s.tot) + parseInt(this.store.data.user[26][6].s.tot) + parseInt(this.store.data.user[26][7].s.tot) + parseInt(this.store.data.user[26][8].s.tot) + parseInt(this.store.data.user[26][9].s.tot) + parseInt(this.store.data.user[26][10].s.tot) + parseInt(this.store.data.user[26][11].s.tot) + parseInt(this.store.data.user[26][12].s.tot)
+
+
+
+      this.store.totaleEntrate = parseInt(this.totaleEntrateAnnue[23]) + parseInt(this.totaleEntrateAnnue[24]) + parseInt(this.totaleEntrateAnnue[25]) + parseInt(this.totaleEntrateAnnue[26])
+      this.store.totaleRisparmi = parseInt(this.totaleRisparmioMese[23]) + parseInt(this.totaleRisparmioMese[24]) + parseInt(this.totaleRisparmioMese[25]) + parseInt(this.totaleRisparmioMese[26])
+      this.store.totaleSpese = parseInt(this.totaleSpeseMese[23]) + parseInt(this.totaleSpeseMese[24]) + parseInt(this.totaleRisparmioMese[25]) + parseInt(this.totaleRisparmioMese[26])
+
+      // console.log('23')
+      // console.log(this.totaleRisparmioMese[23])
+      //console.log('24')
+      //console.log(this.totaleRisparmioMese[24])
+      //console.log(parseInt(this.risparmi[24][1]) + parseInt(this.risparmi[24][2]))
+      //console.log(parseInt(this.risparmi[24][1]) + parseInt(this.risparmi[23][2]) + parseInt(this.risparmi[23][3]) + parseInt(this.risparmi[23][4]) + parseInt(this.risparmi[23][5]) + parseInt(this.risparmi[23][6]) + parseInt(this.risparmi[23][7]) + parseInt(this.risparmi[23][8]) + parseInt(this.risparmi[23][9]) + parseInt(this.risparmi[23][10]) + parseInt(this.risparmi[23][11]) + parseInt(this.risparmi[23][12]))
+      // console.log('25')
+      // console.log(this.totaleRisparmioMese[25])
+      // console.log('26')
+      // console.log(this.totaleRisparmioMese[26])
     },
 
     calcVoci(dato, mese) {
       // console.log(eval(this.store.data.user[this.anno][11].s.mag.pre))
-      console.log(mese)
+      //console.log(mese)
       let tot = 0;
       if (dato == 's') {
         Object.keys(this.store.data.user[this.anno][mese].s.mag.pre).forEach(key => {
@@ -600,6 +669,7 @@ export default {
   created() {
     this.calcRisparmio();
     this.focusInput();
+    //console.log(this.totaleEntrateAnnue[23]);
 
   },
 
@@ -610,15 +680,15 @@ export default {
 </script>
 
 <template>
-  <div class="_main bg-dark">
+  <div class="_main" style="background:rgb(11, 11, 11)">
     <div class="row container justify-content-around pt-2 _btn-container">
-      <button class="col-2 btn px-1 py-0 my-0" :class="this.anno == 23 ? '_btn-primary' : ''"
+      <button class="col-2 btn px-1 py-0 my-0" :class="this.anno == 23 ? '_btn-outline-primary-darkness' : ''"
         @click="setAnno(23), calcRisparmio()">2023</button>
-      <button class="col-2 btn px-1 py-0 my-0" :class="this.anno == 24 ? '_btn-primary' : ''"
+      <button class="col-2 btn px-1 py-0 my-0" :class="this.anno == 24 ? '_btn-outline-primary-darkness' : ''"
         @click="setAnno(24), calcRisparmio()">2024</button>
-      <button class="col-2 btn px-1 py-0 my-0" :class="this.anno == 25 ? '_btn-primary' : ''"
+      <button class="col-2 btn px-1 py-0 my-0" :class="this.anno == 25 ? '_btn-outline-primary-darkness' : ''"
         @click="setAnno(25), calcRisparmio()">2025</button>
-      <button class="col-2 btn px-1 py-0 my-0" :class="this.anno == 26 ? '_btn-primary' : ''"
+      <button class="col-2 btn px-1 py-0 my-0" :class="this.anno == 26 ? '_btn-outline-primary-darkness' : ''"
         @click="setAnno(26), calcRisparmio()">2026</button>
     </div>
 
@@ -665,7 +735,7 @@ export default {
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
-                    <button class="btn btn-outline-danger ms-2"
+                    <button class="btn _btn-outline-thirdary-darkness-hover ms-2"
                       style="font-size: .7em; padding: .2em .6em; margin-top: .2em;"
                       @click.stop="deleteEl(key, 's', index), calcVoci('s', key), calcRisparmio()">
                       <i class="fa-solid fa-trash"></i>
@@ -705,7 +775,7 @@ export default {
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
-                    <button class="btn btn-outline-danger ms-2"
+                    <button class="btn _btn-outline-thirdary-darkness-hover ms-2"
                       style="font-size: .7em; padding: .2em .6em; margin-top: .2em;"
                       @click.stop="deleteEl(key, 'sb', index), calcVoci('sb', key), calcRisparmio()">
                       <i class="fa-solid fa-trash"></i>
@@ -746,7 +816,7 @@ export default {
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
-                    <button class="btn btn-outline-danger ms-2"
+                    <button class="btn _btn-outline-thirdary-darkness-hover ms-2"
                       style="font-size: .7em; padding: .2em .6em; margin-top: .2em;"
                       @click.stop="deleteEl(key, 'sc', index), calcVoci('sc', key), calcRisparmio()">
                       <i class="fa-solid fa-trash"></i>
@@ -786,7 +856,7 @@ export default {
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
-                    <button class="btn btn-outline-danger ms-2"
+                    <button class="btn _btn-outline-thirdary-darkness-hover ms-2"
                       style="font-size: .7em; padding: .2em .6em; margin-top: .2em;"
                       @click.stop="deleteEl(key, 'ss', index), calcVoci('ss', key), calcRisparmio()">
                       <i class="fa-solid fa-trash"></i>
@@ -826,7 +896,7 @@ export default {
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
-                    <button class="btn btn-outline-danger ms-2"
+                    <button class="btn _btn-outline-thirdary-darkness-hover ms-2"
                       style="font-size: .7em; padding: .2em .6em; margin-top: .2em;"
                       @click.stop="deleteEl(key, 'sas', index), calcVoci('sas', key), calcRisparmio()">
                       <i class="fa-solid fa-trash"></i>
@@ -872,8 +942,10 @@ export default {
 
     <!-- BOTTON -->
     <div class="mb-2">
-      <button class="btn _btn-primary  mx-4" @click="save()">Save</button>
-      <button class="btn _btn-secondary  " @click="resetData()">Reset</button>
+      <button class="btn _btn-outline-primary-darkness-hover  mx-4" @click="save()"><i style="font-size: .8em;"
+          class="fa-regular fa-floppy-disk"></i> <span>Save</span></button>
+      <button class="btn _btn-outline-secondary-darkness-hover  " @click="resetData()"><i style="font-size: .8em;"
+          class="fa-solid fa-clock-rotate-left"></i> <span>Reset</span></button>
     </div>
 
   </div>
@@ -883,7 +955,7 @@ export default {
 @use '../scss/variables' as *;
 
 ._main {
-  height: 88vh;
+  height: 86vh;
   width: 95%;
   margin: 0 auto;
   overflow-y: auto;
@@ -905,15 +977,16 @@ export default {
   }
 
   ._tabella-wrapper {
-    width: 95%;
+    width: 99%;
+    border-radius: 10px;
 
     table {
+
       thead {
 
         th {
           border-right: 1px solid rgb(75, 75, 75);
-          background-color: rgba(11, 11, 11, 0.377) !important;
-
+          background-color: #212529 !important;
           text-transform: uppercase;
         }
       }

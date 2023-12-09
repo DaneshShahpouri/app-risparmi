@@ -10,6 +10,7 @@ export default {
   data() {
     return {
       store,
+      showNavInfo: false,
     }
   },
 
@@ -39,6 +40,15 @@ export default {
 
       this.store.currentPage = this.store.pages[this.store.contatorePage]
 
+    },
+
+    changeVariables() {
+      if (this.showNavInfo == true) {
+        this.showNavInfo = false
+      } else {
+        this.showNavInfo = true
+      }
+      console.log(this.showNavInfo)
     }
   },
 
@@ -90,9 +100,15 @@ export default {
       <!-- INFO -->
       <div class="_info-input w-25" style="position:relative">
 
-        <div class="_btn_wrapper">I</div>
+        <div class="_btn_wrapper" @click="changeVariables()"
+          :class="this.showNavInfo ? '_border-primary _light-primary' : ''">
+          <div class="circle_fisso" :class="this.showNavInfo ? '_border-white' : ''"></div>
+          <div class="wrapper-icon" :class="this.showNavInfo ? 'start_animated_gear' : ''">
+            <i class="fa-solid fa-gear" :class="this.showNavInfo ? '_color-primary' : ''"></i>
+          </div>
+        </div>
 
-        <div class="_module-btn">
+        <div class="_module-btn" :class="this.showNavInfo ? 'start_animated' : 'end_animated'">
 
           <div class="info-wrapper d-flex">
             <h6 class="">Ciao, <span class=" _text-primary text-uppercase">{{ this.store.data.user.nome }}</span>. </h6>
@@ -118,8 +134,17 @@ export default {
             <input type="text" name="sesso" v-model="this.store.data.user.sesso">
           </fieldset>
 
-          <div class="info-wrapper mt-3 pe-1">
-            <span>Credito: <span class="_text-primary">{{
+          <div class="info-wrapper-money mt-3 pe-1 d-flex flex-column">
+
+            <span style="font-size: .7em; margin-top: 1em; margin-bottom: 1em">Entrate Tot: <span
+                style="font-size: 1.2em;" class="mx-2 _text-secondary">{{
+                  this.store.totaleEntrate }} </span> €</span>
+
+            <span style="font-size: .7em; margin-bottom: 1em;">Uscite Tot: <span style="font-size: 1.2em;"
+                class="mx-2 _text-thirdary">{{
+                  this.store.totaleSpese }} </span> €</span>
+
+            <span>Credito: <span style="font-size: 1.2em;" class="mx-2 _text-primary">{{
               this.store.totaleRisparmi }} </span> €</span>
           </div>
         </div>
@@ -267,6 +292,7 @@ export default {
   border-radius: 50px;
   cursor: pointer;
   background-color: rgb(11, 11, 11);
+  transition-timing-function: ease-in-out;
 
   position: absolute;
   right: 20px;
@@ -275,25 +301,88 @@ export default {
   &:hover {
     color: white;
     border: 1px solid rgb(183, 182, 182);
-    background-color: rgb(40, 40, 40);
+    background-color: rgb(11, 11, 11);
+
+    .wrapper-icon {
+
+      i {
+        //color: rgb(215, 215, 215);
+      }
+    }
+
+    .circle_fisso {
+      border: 1px solid $primary;
+    }
+  }
+
+  .circle_fisso {
+    position: absolute;
+    top: -1px;
+    right: 29px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid darken($primary, 35%);
+    border-radius: 50%;
+    transition: all .45s;
+  }
+
+  .wrapper-icon {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    transform: (rotate(0deg));
+    transition: all 1s;
+    transition-timing-function: ease-in-out;
+
+    i {
+      transition: all 1s;
+      transition-timing-function: ease-in-out;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.6) (rotate(0deg));
+      color: rgb(76, 76, 76);
+    }
+  }
+
+  .start_animated_gear {
+    right: 29px;
+    top: -5px;
+    transform: (rotate(-180deg));
+
+
+    i {
+      color: $primary;
+    }
   }
 
 }
 
 ._module-btn {
+  overflow-y: hidden;
   position: absolute;
   z-index: 20;
-  top: 20px;
+  top: 15px;
+  opacity: 0;
   right: 20px;
-  background-color: rgb(40 40 40);
+  background-color: rgb(29 29 29);
   width: 240px;
-  padding: 1em;
+  padding: 0em 1em;
   border-radius: 10px;
   box-shadow: -3px 4px 10px #00000091;
+  max-height: 0px;
+
+  transition: all 1s;
 
   .info-wrapper {
     border-bottom: 1px solid $primary;
     margin-bottom: 1em;
+  }
+
+  .info-wrapper-money {
+    border-top: 1px solid $primary;
+    margin-top: 1em;
   }
 
   fieldset {
@@ -308,5 +397,13 @@ export default {
   }
 
 
+}
+
+
+.start_animated {
+  max-height: 400px;
+  padding: 1em 1em;
+  top: 20px;
+  opacity: 1;
 }
 </style>

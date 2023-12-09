@@ -164,7 +164,114 @@
         color: rgb(236, 236, 236) !important;
         background-color: darken($thirdary, 25%) !important;
     }
+
 }
+
+._btn-outline-primary-darkness {
+    border: 1px solid darken($primary, 15%);
+    padding: .3em 1em !important;
+    border-radius: 20px !important;
+    border: 1px solid $primary;
+    color: white;
+    background-color: darken($primary, 35%);
+    box-shadow: 0px 0px 8px lighten($primary, 10%);
+    text-shadow: 0px 0px 8px white;
+    transition: background-color, color, border .4s;
+
+    &:hover {
+        border: 1px solid $primary;
+        color: white;
+        background-color: darken($primary, 35%);
+        box-shadow: 0px 0px 8px lighten($primary, 10%);
+    }
+
+    &:active {
+        border: 1px solid lighten($primary, 15%);
+        border-color: darken($primary, 15%) !important;
+        color: white;
+        background-color: lighten($primary, 15%);
+    }
+}
+
+._btn-outline-primary-darkness-hover {
+    border: 1px solid darken($primary, 15%);
+    padding: .3em 1em !important;
+    border-radius: 20px !important;
+    border: 1px solid $primary;
+    color: white;
+    background-color: darken($primary, 35%);
+    box-shadow: 0px 0px 8px lighten($primary, 10%);
+    text-shadow: 0px 0px 8px white;
+    transition: all 1s;
+
+    &:hover {
+        border: 1px solid $primary;
+        color: white;
+        background-color: darken($primary, 5%);
+        box-shadow: 0px 0px 8px lighten($primary, 10%);
+    }
+
+    &:active {
+        border: 1px solid lighten($primary, 15%);
+        border-color: darken($primary, 15%) !important;
+        color: white;
+        background-color: lighten($primary, 15%);
+    }
+}
+
+._btn-outline-secondary-darkness-hover {
+    border: 1px solid darken($secondary, 15%);
+    padding: .3em 1em !important;
+    border-radius: 20px !important;
+    border: 1px solid $secondary;
+    color: white;
+    background-color: darken($secondary, 25%);
+    box-shadow: 0px 0px 8px lighten($secondary, 10%);
+    text-shadow: 0px 0px 8px white;
+    transition: all 1s;
+
+    &:hover {
+        border: 1px solid $secondary;
+        color: white;
+        background-color: darken($secondary, 5%);
+        box-shadow: 0px 0px 8px lighten($secondary, 10%);
+    }
+
+    &:active {
+        border: 1px solid lighten($secondary, 15%);
+        border-color: darken($secondary, 15%) !important;
+        color: white;
+        background-color: lighten($secondary, 15%);
+    }
+}
+
+._btn-outline-thirdary-darkness-hover {
+    border: 1px solid darken($thirdary, 15%);
+    padding: .3em 1em !important;
+    border-radius: 20px !important;
+    border: 1px solid $thirdary;
+    color: white;
+    background-color: darken($thirdary, 25%);
+    box-shadow: 0px 0px 8px lighten($thirdary, 10%);
+    text-shadow: 0px 0px 8px white;
+    transition: all 1s;
+
+    &:hover {
+        border: 1px solid $thirdary;
+        color: white;
+        background-color: darken($thirdary, 5%);
+        box-shadow: 0px 0px 8px lighten($thirdary, 10%);
+    }
+
+    &:active {
+        border: 1px solid lighten($thirdary, 15%);
+        border-color: darken($thirdary, 15%) !important;
+        color: white;
+        background-color: lighten($thirdary, 15%);
+    }
+}
+
+
 
 //----------------------------------------------------------------------
 
@@ -193,6 +300,27 @@
 
 ._bg-thirdary {
     background: $thirdary !important;
+}
+
+._border-primary {
+    border: 1px solid $primary !important;
+}
+
+._border-secondary {
+    border: 1px solid $secondary !important;
+}
+
+._border-thirdary {
+    border: 1px solid $thirdary !important;
+}
+
+._border-white {
+    border: 1px solid $primary !important;
+    box-shadow: 0px 0px 4px lighten($primary, 0%)
+}
+
+._light-primary {
+    box-shadow: 0px 0px 8px lighten($primary, 20%)
 }
 
 //----------------------------------------------------------------------
