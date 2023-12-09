@@ -47,15 +47,20 @@ export default {
 </script>
 
 <template>
-  <div class="_bott-wrapper d-flex justify-content-center w-100 gap-2">
-    <button class="btn btn-outline-danger badge rounded-pill text-danger text-white"
-      @click="this.setGraph('spese')">Spese</button>
-    <button class="btn btn-outline-success badge rounded-pill text-success text-white"
-      @click="this.setGraph('risparmi')">Risparmi</button>
-  </div>
   <div class="_main">
-    <AppGraficiRisparmi v-show="this.optionGraph == 'risparmi'"></AppGraficiRisparmi>
-    <AppGraficiSpese v-show="this.optionGraph == 'spese'"></AppGraficiSpese>
+
+    <div class="_bott-wrapper d-flex justify-content-center w-100 gap-2">
+      <button class="btn btn-outline-danger badge rounded-pill text-danger text-white"
+        @click="this.setGraph('spese')">Spese</button>
+      <button class="btn btn-outline-success badge rounded-pill text-success text-white"
+        @click="this.setGraph('risparmi')">Risparmi</button>
+    </div>
+
+    <div class="_graph-container">
+      <AppGraficiRisparmi v-if="this.optionGraph == 'risparmi'"></AppGraficiRisparmi>
+      <AppGraficiSpese v-if="this.optionGraph == 'spese'"></AppGraficiSpese>
+    </div>
+
   </div>
 </template>
 
@@ -63,18 +68,21 @@ export default {
 @use '../scss/variables' as *;
 
 ._main {
-  height: calc(80vh - .5em);
+  height: 80vh;
   width: 90%;
   margin: 0 auto;
   overflow-y: auto;
+
 
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  //background: rgba(80, 80, 80, 0.664);
-  //color: white;
-  margin-bottom: .5em;
+
+  ._graph-container {
+    height: 90%;
+    width: 90%;
+  }
 }
 </style>

@@ -100,7 +100,7 @@ export default {
   },
 
   created() {
-    this.createGrap()
+    //this.createGrap()
   },
 
   mounted() {

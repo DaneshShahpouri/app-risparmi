@@ -11,6 +11,16 @@
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps"
   },
+  "build": {
+    "appId": "app-risparmi.app",
+    "productName": "Danesh Shahpouri",
+    "mac": {
+      "icon": "logo.png"
+    },
+    "win": {
+      "icon": "logo.png"
+    }
+  },
   "main": "background.js",
   "dependencies": {
     "chart.js": "^4.4.0",
