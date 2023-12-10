@@ -13,6 +13,7 @@ export default {
       store,
       showNavInfo: false,
       navMenuToggle: 'open',
+      animationModule: false,
     }
   },
 
@@ -23,6 +24,37 @@ export default {
     AppMain,
     AppGrafici,
     AppStatistiche,
+  },
+
+  watch: {
+    'store.viewModule': function () {
+
+      this.animationModule = true;
+      // console.log('partito')
+      setTimeout(() => {
+        this.store.viewModule = false;
+      }, 1800);
+      setTimeout(() => {
+        this.animationModule = false;
+      }, 2500);
+    },
+    'store.confermReset': function () {
+
+      if (this.store.confermReset == true) {
+
+
+        this.store.animationReset = true;
+
+        setTimeout(() => {
+          this.store.viewModuleReset = false;
+        }, 2200);
+
+        setTimeout(() => {
+          this.store.animationReset = false;
+        }, 2700);
+      }
+
+    },
   },
 
   methods: {
@@ -66,6 +98,15 @@ export default {
         this.navMenuToggle = 'close'
       }
     },
+
+    resetData() {
+      this.store.confermReset = true;
+      setTimeout(() => {
+        this.store.confermReset = false
+        //console.log(this.store.confermReset)
+      }, 500);
+      //console.log(this.store.confermReset)
+    }
   },
 
   created() {
@@ -127,7 +168,9 @@ export default {
           <div class="_module-btn" :class="this.showNavInfo ? 'start_animated' : 'end_animated'">
 
             <div class="info-wrapper d-flex">
-              <h6 class="">Ciao, <span class=" _text-primary text-uppercase">{{ this.store.data.user.nome }}</span>. </h6>
+              <h6 style="font-size:0.9em">Ciao <span class=" _text-primary" style="font-size:1.2em">{{
+                this.store.data.user.nome + ' ' + this.store.data.user.cognome
+              }}</span>. </h6>
             </div>
 
             <fieldset class="d-flex align-items-center gap-2 " style="justify-content: space-between;">
@@ -215,6 +258,57 @@ export default {
     </div>
 
   </div>
+
+  <!-- MODULO SAVE E RESET -->
+
+  <!-- SAVE -->
+  <div class="_modulo_save" :class="this.store.viewModule ? 'open' : 'close'">
+    <div class="_icons_animation">
+      <!-- CIRCLE -->
+      <div class="circle_wrapper" :class="this.animationModule ? 'animated' : ''">
+        <div class="_circle"></div>
+      </div>
+      <!-- ICONS -->
+      <i class="fa-solid fa-arrow-down _freccia" :class="this.animationModule ? 'animated' : ''"></i>
+      <i class="fa-regular fa-floppy-disk _disk" :class="this.animationModule ? 'animated' : ''"></i>
+    </div>
+    <!-- TEXT -->
+    <div class="messages">
+      <span class="_text-primary">SALVATO!</span>
+    </div>
+  </div>
+  <div class=" bg"></div>
+
+  <!-- RESET -->
+  <div class="_modulo_save" :class="this.store.viewModuleReset ? 'open ' : 'close'">
+    <div class="_wrapper" v-if="this.store.animationReset == false">
+      <span class="text-white">Vuoi davvero cancellare tutti i dati?</span>
+      <p>L'eliminazione dei dati sarà permanenete e non si potrà tornare indietro. Clicca su 'NO' per tornare
+        all'applicazione.</p>
+      <div class="btn-wrapper m-5 d-flex justify-content-center gap-4">
+        <button class="_btn-outline-secondary-darkness-hover" @click="this.store.viewModuleReset = false">NO</button>
+        <button class="_btn-outline-thirdary-darkness-hover" @click="resetData()">SI</button>
+      </div>
+    </div>
+    <div class="_wrapper-reset" v-else>
+      <div class="_icons_animation">
+        <!-- CIRCLE -->
+        <div class="circle_wrapper" :class="this.animationModule ? 'animated' : ''">
+          <div class="_circle"></div>
+        </div>
+
+        <div class="_folder-disapper">
+          <i class="fa-solid fa-folder-minus"></i>
+          <div class="_disapper"> </div>
+
+        </div>
+        <i class="fa-solid fa-check _conferm"></i>
+        <span class="_text-thirdary _deleted">Deleted</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg"></div>
 </template>
 
 <style lang="scss" scoped>
@@ -335,7 +429,7 @@ export default {
       text-align: center;
       border-radius: 50px;
       cursor: pointer;
-      background-color: rgb(11, 11, 11);
+      background-color: $background;
       transition-timing-function: ease-in-out;
 
       position: absolute;
@@ -345,7 +439,7 @@ export default {
       &:hover {
         color: white;
         border: 1px solid rgb(183, 182, 182);
-        background-color: rgb(11, 11, 11);
+        background-color: $background;
 
         .wrapper-icon {
 
@@ -410,7 +504,7 @@ export default {
       top: 15px;
       opacity: 0;
       right: 20px;
-      background-color: rgb(29 29 29);
+      background-color: darken($background, 0.5%);
       width: 240px;
       padding: 0em 1em;
       border-radius: 10px;
@@ -511,6 +605,478 @@ export default {
   }
 }
 
+
+//------------------------------------------------
+//MODULO SAVE _ RESET
+//------------------------------------------------
+
+._modulo_save {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: darken($background, 10%);
+  z-index: 201;
+
+  border-radius: 50px;
+  //box-shadow: 0px 0px 6px darken($primary, 40%);
+  box-shadow: 0px 0px 16px darken(black, 40%);
+
+  transform: scale(1) translateX(-50%) translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  transition: all .8s;
+
+  &+.bg {
+    transition: all .4s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 200;
+
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  ._icons_animation {
+    height: 40vh;
+    width: 30vw;
+    position: relative;
+    padding: 2em;
+
+    i {
+      font-size: 5em;
+      position: absolute;
+      color: white;
+      z-index: 3;
+    }
+
+    ._freccia {
+      top: 40%;
+      left: 50%;
+      transform: scale(1) translateX(-50%) translateY(-50%);
+      color: lighten($primary, 40%);
+      transition: all .5s;
+    }
+
+    ._disk {
+      top: 75%;
+      left: 50%;
+      font-size: 6em;
+      transform: scale(1) translateX(-50%) translateY(-50%);
+      transition: all .5s;
+    }
+
+    ._freccia.animated {
+      animation: 2.2s arrowAnimation;
+      opacity: 1
+    }
+
+    ._disk.animated {
+      animation: 2.2s diskAnimation;
+      opacity: 1
+    }
+
+    .circle_wrapper {
+      width: 100px;
+      height: 100px;
+      border: 5px solid transparent;
+      border-radius: 50%;
+      background-color: $primary;
+      position: absolute;
+      transform: translateX(-50%) translateY(-50%) scale(3);
+      top: 60%;
+      left: 50%;
+      z-index: 1;
+
+      &.animated {
+        animation: 2.2s lightCircle;
+
+        ._circle {
+          animation: 2.2s rotateCircle;
+        }
+      }
+
+
+      ._circle {
+        background: darken($background, 30%);
+        width: 105px;
+        height: 105px;
+        position: absolute;
+        transform: translateX(-50%) translateY(-50%) rotate(0deg);
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+
+      }
+    }
+  }
+
+  .messages {
+    height: 20%;
+    font-size: 1em;
+    color: white;
+    //text-shadow: 1px 1px 2px $primary;
+    width: 30vw;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    top: 20px;
+
+    transition: all 2s;
+  }
+
+  //RESET
+  ._wrapper {
+    position: relative;
+    width: 40vw;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    span {
+
+      margin: 1em auto;
+      color: rgb(255, 255, 255);
+      font-size: 1.1em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    p {
+      width: 60%;
+      margin: 1em auto;
+      color: rgb(167, 167, 167);
+      font-size: .8em;
+      text-align: center;
+    }
+
+  }
+
+  ._wrapper-reset {
+    ._icons_animation {
+      position: relative;
+
+      .circle_wrapper {
+        top: 42%;
+        background-color: $thirdary;
+        animation: 2.2s lightCircleRed;
+
+
+        ._circle {
+
+          animation: 2.2s rotateCircle;
+        }
+
+
+      }
+
+      ._folder-disapper {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%) scale(1.2);
+
+        //debug
+        width: 81px;
+        height: 77px;
+        // border: 1px solid blue;
+        z-index: 210;
+
+        ._disapper {
+          position: absolute;
+          width: 90px;
+          height: 150px;
+          top: 0px;
+          left: -1px;
+          //background-color: darken($background, 10%);
+          background-image: linear-gradient(to bottom, darken($background, 10%) 50%, transparent);
+          z-index: 210;
+
+          animation: 2.6s desapear;
+
+        }
+
+        i {
+          animation: 2s colored;
+        }
+
+      }
+
+
+    }
+
+    ._conferm {
+      position: absolute;
+      font-size: 10em;
+      z-index: 230;
+      color: darken($thirdary, 20%);
+      text-shadow: 0px 0px 7px $thirdary;
+      transform: translateX(-50%) translateY(-50%) scale(1);
+      top: 41%;
+      left: 50%;
+      opacity: 0;
+
+      animation: 2.6s conferm;
+    }
+
+    ._deleted {
+      position: absolute;
+      top: 63%;
+      left: 50%;
+      font-size: 1.5em;
+      z-index: 230;
+      text-align: center;
+      transform: translateX(-50%) translateY(-50%) scale(1);
+      animation: 2.6s conferm;
+    }
+  }
+}
+
+._modulo_save.open {
+  width: 40vw;
+  height: 50vh;
+  opacity: 1;
+
+  &+.bg {
+    opacity: 1;
+    display: block;
+  }
+
+
+  .messages {
+    opacity: 1;
+  }
+}
+
+._modulo_save.close {
+  width: 0vw;
+  height: 0vh;
+  opacity: 0;
+
+  &+.bg {
+    opacity: 0;
+    display: none;
+  }
+
+  .messages {
+    opacity: 0;
+  }
+
+  ._icons_animation {}
+}
+
+//ANIMATION MODULE
+@keyframes arrowAnimation {
+  0% {
+    top: 40%;
+    left: 50%;
+    transform: scale(1) translateX(-50%) translateY(-50%);
+    color: white;
+  }
+
+  5% {
+    top: 40%;
+    left: 50%;
+    transform: scale(1) translateX(-50%) translateY(-50%);
+  }
+
+  15% {
+    top: 36%;
+    left: 50%;
+    transform: scale(1) translateX(-50%) translateY(-50%);
+    color: white;
+  }
+
+  36% {
+    color: white;
+
+  }
+
+  80% {
+    top: 45%;
+    left: 50%;
+    transform: scale(1) translateX(-50%) translateY(-50%);
+    color: lighten($primary, 10%);
+  }
+
+  100% {
+    top: 40%;
+    left: 50%;
+    transform: scale(1) translateX(-50%) translateY(-50%);
+    color: $primary;
+  }
+}
+
+@keyframes diskAnimation {
+  0% {
+    top: 75%;
+    left: 50%;
+    transform: scale(1) translateX(-50%) translateY(-50%);
+    color: white;
+  }
+
+  35% {
+    top: 75%;
+    left: 50%;
+    transform: scale(1) translateX(-50%) translateY(-50%);
+    color: white;
+  }
+
+  42% {
+    top: 75%;
+    left: 49%;
+    transform: scale(.95) translateX(-50%) translateY(-50%);
+  }
+
+  80% {
+    top: 75%;
+    left: 52%;
+    transform: scale(1.2) translateX(-50%) translateY(-50%);
+    text-shadow: 0px 0px 2px $primary;
+  }
+
+  100% {
+    top: 75%;
+    left: 50%;
+    transform: scale(1) translateX(-50%) translateY(-50%);
+    color: $primary;
+    text-shadow: 0px 0px 10px $primary;
+  }
+}
+
+@keyframes lightCircle {
+
+
+  60% {
+    box-shadow: 0px 0px 0px darken($primary, 20%);
+  }
+
+
+  80% {
+    box-shadow: 0px 0px 6px darken($primary, 20%);
+
+  }
+
+  100% {
+    box-shadow: 0px 0px 6px darken($primary, 20%);
+
+  }
+}
+
+@keyframes lightCircleRed {
+
+
+  60% {
+    box-shadow: 0px 0px 0px darken($thirdary, 20%);
+  }
+
+
+  80% {
+    box-shadow: 0px 0px 6px darken($thirdary, 20%);
+
+  }
+
+  100% {
+    box-shadow: 0px 0px 6px darken($thirdary, 20%);
+
+  }
+}
+
+@keyframes rotateCircle {
+  0% {
+    width: 150px;
+    height: 110px;
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+    top: 50%;
+    left: 50%;
+  }
+
+  10% {
+    width: 150px;
+    height: 110px;
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+    top: 51%;
+    left: 50%;
+  }
+
+
+  80% {
+    width: 98px;
+    height: 98px;
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
+    top: 50%;
+    left: 50%;
+  }
+
+  100% {
+    width: 98px;
+    height: 98px;
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
+    top: 50%;
+    left: 50%;
+  }
+}
+
+//RESET
+@keyframes desapear {
+  0% {
+    height: 0px;
+    background-image: linear-gradient(to bottom, darken($background, 10%) 50%, transparent);
+  }
+
+
+  80% {
+    height: 150px;
+    background-image: linear-gradient(to bottom, darken($background, 10%) 50%, transparent);
+  }
+
+  100% {
+    height: 150px;
+    background-image: linear-gradient(to bottom, darken($background, 10%) 50%, transparent);
+  }
+}
+
+@keyframes conferm {
+  0% {
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes colored {
+  0% {
+    color: white;
+  }
+
+
+  100% {
+    color: rgb(200, 0, 0);
+  }
+}
+
+//------------------------------------------------
+//MEDIAQUERY
+//------------------------------------------------
 @media only screen and (max-width: 992px) {
   ._app {
 
@@ -614,5 +1180,6 @@ export default {
       }
     }
   }
+
 }
 </style>

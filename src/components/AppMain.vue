@@ -13,6 +13,15 @@ export default {
   props: {
     // msg: String
   },
+
+  watch: {
+    'store.confermReset': function () {
+      if (this.store.confermReset) {
+        this.resetData();
+      }
+    },
+  },
+
   methods: {
 
     console(parametro) {
@@ -392,10 +401,10 @@ export default {
         }
       };
 
+
       // Salva myData in localStorage
       localStorage.setItem('myData', JSON.stringify(myData));
 
-      console.log('myData Reset!');
     },
 
     allowRow(index) {
@@ -588,6 +597,13 @@ export default {
           }, 100);
         }
       }, true);
+    },
+    showModule() {
+      if (this.store.viewModule) {
+        this.store.viewModule = false;
+      } else {
+        this.store.viewModule = true
+      }
     }
   },
 
@@ -871,12 +887,13 @@ export default {
 
       <!-- BOTTON save reset -->
       <div class="mb-2">
-        <button class="btn _btn-outline-primary-darkness-hover  mx-4" @click="save()"><i style="font-size: .8em;"
-            class="fa-regular fa-floppy-disk"></i> <span>Save</span></button>
-        <button class="btn _btn-outline-secondary-darkness-hover  " @click="resetData()"><i style="font-size: .8em;"
-            class="fa-solid fa-clock-rotate-left"></i> <span>Reset</span></button>
+        <button class="btn _btn-outline-primary-darkness-hover  mx-4" @click="save(), showModule()"><i
+            style="font-size: .8em;" class="fa-regular fa-floppy-disk"></i> <span>Save</span></button>
+        <button class="btn _btn-outline-thirdary-darkness-hover  " @click=" this.store.viewModuleReset = true"><i
+            style="font-size: .8em;" class="fa-solid fa-clock-rotate-left"></i> <span>Reset</span></button>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -889,6 +906,7 @@ export default {
   margin: 0 auto;
   padding-top: 1em;
   overflow-y: auto;
+  position: relative;
 
   //border: 1px solid green;
   display: flex;

@@ -135,7 +135,7 @@ export default {
 
 
       //console.log('array[0]')
-      console.log(array[0])
+      //console.log(array[0])
       if (array) {
         if (array[0] == 1) {
           this.chartData.datasets[0].data = this.risparmi
