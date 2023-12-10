@@ -72,7 +72,7 @@ export const store = reactive({
             [12]: 0,
         },
     },
-
+    optionGraph: 'spese',
     totaleRisparmioMese: { 23: 0, 24: 0, 25: 0, 26: 0 },
     totaleSpeseMese: { 23: 0, 24: 0, 25: 0, 26: 0 },
     totaleEntrateAnnue: { 23: 0, 24: 0, 25: 0, 26: 0 },

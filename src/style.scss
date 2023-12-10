@@ -271,6 +271,32 @@
     }
 }
 
+._btn-outline-success-darkness-hover {
+    border: 1px solid darken($success, 15%);
+    padding: .3em 1em !important;
+    border-radius: 20px !important;
+    border: 1px solid $success;
+    color: white;
+    background-color: darken($success, 25%);
+    box-shadow: 0px 0px 8px lighten($success, 10%);
+    text-shadow: 0px 0px 8px white;
+    transition: all 1s;
+
+    &:hover {
+        border: 1px solid $success;
+        color: white;
+        background-color: darken($success, 5%);
+        box-shadow: 0px 0px 8px lighten($success, 10%);
+    }
+
+    &:active {
+        border: 1px solid lighten($success, 15%);
+        border-color: darken($success, 15%) !important;
+        color: white;
+        background-color: lighten($success, 15%);
+    }
+}
+
 ._btn {
     padding: .3em 1em !important;
     transition: all 1s;
@@ -419,23 +445,3 @@
 }
 
 
-//----------------------------------------------------------------------
-//SCROLLBAR
-body::-webkit-scrollbar {
-    width: 12px;
-    /* width of the entire scrollbar */
-}
-
-body::-webkit-scrollbar-track {
-    background: orange;
-    /* color of the tracking area */
-}
-
-body::-webkit-scrollbar-thumb {
-    background-color: blue;
-    /* color of the scroll thumb */
-    border-radius: 20px;
-    /* roundness of the scroll thumb */
-    border: 3px solid orange;
-    /* creates padding around scroll thumb */
-}

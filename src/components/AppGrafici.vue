@@ -16,7 +16,7 @@ export default {
       store,
       spesePerMese: [],
       risparmiPerMese: [],
-      optionGraph: 'spese',
+      
     }
   },
 
@@ -30,9 +30,6 @@ export default {
   },
 
   methods: {
-    setGraph(parametro) {
-      this.optionGraph = parametro;
-    },
 
   },
 
@@ -49,17 +46,11 @@ export default {
 <template>
   <div class="_main">
 
-    <div class="_bott-wrapper d-flex justify-content-center w-100 gap-2">
-      <button class="btn btn-outline-danger badge rounded-pill text-danger text-white"
-        @click="this.setGraph('spese')">Spese</button>
-      <button class="btn btn-outline-success badge rounded-pill text-success text-white"
-        @click="this.setGraph('risparmi')">Risparmi</button>
+    <div class="_graph-container">
+      <AppGraficiRisparmi v-if="this.store.optionGraph == 'risparmi'"></AppGraficiRisparmi>
+      <AppGraficiSpese v-if="this.store.optionGraph == 'spese'"></AppGraficiSpese>
     </div>
 
-    <div class="_graph-container">
-      <AppGraficiRisparmi v-if="this.optionGraph == 'risparmi'"></AppGraficiRisparmi>
-      <AppGraficiSpese v-if="this.optionGraph == 'spese'"></AppGraficiSpese>
-    </div>
 
   </div>
 </template>

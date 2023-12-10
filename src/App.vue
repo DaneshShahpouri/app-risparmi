@@ -5,6 +5,7 @@ import { store } from './store.js';
 // import HelloWorld from './components/HelloWorld.vue'
 import AppMain from './components/AppMain.vue'
 import AppGrafici from './components/AppGrafici.vue'
+import AppStatistiche from './components/AppStatistiche.vue'
 
 export default {
   data() {
@@ -21,6 +22,7 @@ export default {
     // HelloWorld
     AppMain,
     AppGrafici,
+    AppStatistiche,
   },
 
   methods: {
@@ -82,8 +84,6 @@ export default {
   <div class="_app">
 
     <div class="_top">
-
-
       <!-- NAVBAR -->
       <nav class="navbar d-flex justify-content-between navbar-expand-lg navbar logo">
 
@@ -196,7 +196,7 @@ export default {
           <AppGrafici></AppGrafici>
         </div>
         <div class="" v-if="this.store.currentPage == 'stat'">
-          STATISTICHE
+          <AppStatistiche></AppStatistiche>
         </div>
 
       </div>

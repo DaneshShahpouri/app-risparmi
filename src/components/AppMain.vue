@@ -894,7 +894,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-ar;
+  justify-content: space-around;
 
 
 
@@ -918,9 +918,6 @@ export default {
   ._tabella-wrapper {
     width: 100%;
     border-radius: 10px;
-
-
-
   }
 
 }

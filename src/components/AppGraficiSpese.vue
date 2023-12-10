@@ -294,6 +294,10 @@ export default {
       return arrayEl
     },
 
+    setGraph(parametro) {
+      this.store.optionGraph = parametro;
+    },
+
   },
 
   created() {
@@ -313,34 +317,46 @@ export default {
 
   <div class="console_legend">
 
-    <!-- CAMBIA TIPO -->
-    <button @click="changeType()" class="btn _btn-outline-primary-darkness-hover me-5">
-      <i :class="this.displayType == 'line' ? 'fa-solid fa-chart-simple' : 'fa-solid fa-chart-line'"></i>
-    </button>
+    <div class="first">
 
-    <!-- SHOW SPESE MENSILI -->
-    <button class="_btn" :class="this.displaySpesePerMese == 'NO' ? '' : ' _btn-spesemensili'"
-      @click="() => { this.displaySpesePerMese = this.changeArray(this.displaySpesePerMese, 1); this.changeGraphFunc(); this.createGrap(); }">Totale</button>
+      <!-- CAMBIA TIPO -->
+      <button @click="setGraph('risparmi')" class="btn _btn-outline-primary-darkness-hover">
+        Income
+      </button>
+      <!-- CAMBIA TIPO -->
+      <button @click="changeType()" class="btn _btn-outline-primary-darkness-hover me-5">
+        <i :class="this.displayType == 'line' ? 'fa-solid fa-chart-simple' : 'fa-solid fa-chart-line'"></i>
+      </button>
+    </div>
 
-    <!-- SHOW SPESE AFFITTO -->
-    <button class="_btn" :class="this.displayAffitto == 'NO' ? '' : ' _btn-affitto'"
-      @click="() => { this.displayAffitto = changeArray(this.displayAffitto, 2); this.changeGraphFunc(); this.createGrap(); }">Spese
-      affitto</button>
 
-    <!-- SHOW SPESE BOLLETTE -->
-    <button class="_btn" :class="this.displayBollette == 'NO' ? '' : ' _btn-bollette'"
-      @click="() => { this.displayBollette = changeArray(this.displayBollette, 3); this.changeGraphFunc(); this.createGrap(); }">Spese
-      Bollette</button>
+    <div class="second">
 
-    <!-- SHOW SPESE ALIMENTARI -->
-    <button class="_btn" :class="this.displayAlimentari == 'NO' ? '' : ' _btn-alimentari'"
-      @click="() => { this.displayAlimentari = changeArray(this.displayAlimentari, 4); this.changeGraphFunc(); this.createGrap(); }">Spese
-      Alimentari</button>
+      <!-- SHOW SPESE MENSILI -->
+      <button class="_btn" :class="this.displaySpesePerMese == 'NO' ? '' : ' _btn-spesemensili'"
+        @click="() => { this.displaySpesePerMese = this.changeArray(this.displaySpesePerMese, 1); this.changeGraphFunc(); this.createGrap(); }">Totale</button>
 
-    <!-- SHOW SPESE ALTRE SPESE -->
-    <button class="_btn" :class="this.displayAltreSpese == 'NO' ? '' : ' _btn-altrespese'"
-      @click="() => { this.displayAltreSpese = changeArray(this.displayAltreSpese, 5); this.changeGraphFunc(); this.createGrap(); }">Spese
-      Altre Spese</button>
+      <!-- SHOW SPESE AFFITTO -->
+      <button class="_btn" :class="this.displayAffitto == 'NO' ? '' : ' _btn-affitto'"
+        @click="() => { this.displayAffitto = changeArray(this.displayAffitto, 2); this.changeGraphFunc(); this.createGrap(); }">Affitto</button>
+
+      <!-- SHOW SPESE BOLLETTE -->
+      <button class="_btn" :class="this.displayBollette == 'NO' ? '' : ' _btn-bollette'"
+        @click="() => { this.displayBollette = changeArray(this.displayBollette, 3); this.changeGraphFunc(); this.createGrap(); }">
+        Bollette</button>
+
+      <!-- SHOW SPESE ALIMENTARI -->
+      <button class="_btn" :class="this.displayAlimentari == 'NO' ? '' : ' _btn-alimentari'"
+        @click="() => { this.displayAlimentari = changeArray(this.displayAlimentari, 4); this.changeGraphFunc(); this.createGrap(); }">
+        Casa</button>
+
+      <!-- SHOW SPESE ALTRE SPESE -->
+      <button class="_btn" :class="this.displayAltreSpese == 'NO' ? '' : ' _btn-altrespese'"
+        @click="() => { this.displayAltreSpese = changeArray(this.displayAltreSpese, 5); this.changeGraphFunc(); this.createGrap(); }">
+        Altro</button>
+    </div>
+
+
 
   </div>
 </template>
@@ -357,8 +373,16 @@ export default {
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1em;
+
+  .first,
+  .second {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+  }
 
   ._btn {
     font-size: .8em;
