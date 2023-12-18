@@ -348,7 +348,7 @@ export default {
       <!-- SHOW SPESE ALIMENTARI -->
       <button class="_btn" :class="this.displayAlimentari == 'NO' ? '' : ' _btn-alimentari'"
         @click="() => { this.displayAlimentari = changeArray(this.displayAlimentari, 4); this.changeGraphFunc(); this.createGrap(); }">
-        Casa</button>
+        Alimenti</button>
 
       <!-- SHOW SPESE ALTRE SPESE -->
       <button class="_btn" :class="this.displayAltreSpese == 'NO' ? '' : ' _btn-altrespese'"
@@ -455,6 +455,32 @@ export default {
 
     &:hover {
       background-color: rgb(42, 149, 3);
+    }
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .console_legend {
+    width: 100%;
+    height: 100px;
+    //border: 1px solid red;
+
+    margin-top: 1em;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+
+
+    .first,
+    .second {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1em;
+      flex-wrap: wrap;
+      margin-top: 2em;
     }
   }
 }

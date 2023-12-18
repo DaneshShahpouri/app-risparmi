@@ -1,8 +1,9 @@
 import { reactive } from 'vue';
 //console.log(localStorage)
 export const store = reactive({
+
     //routing
-    //-------------------
+    //----------------------------------------------
     pages: ['home', 'graph', 'stat'],
     currentPage: 'home',
     contatorePage: 0,
@@ -11,9 +12,12 @@ export const store = reactive({
     totaleSpese: 0,
     anno: 23,
     changeGraph: true,
-    //-------------------
+    //----------------------------------------------
+
     data: JSON.parse(localStorage.getItem('myData')),
     mesi: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+    week: ['Domenica', 'Lunedì', 'MArtedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
+
     risparmi: {
         23: {
             [1]: 0,
@@ -80,5 +84,13 @@ export const store = reactive({
     viewModuleReset: false,
     viewModule: false,
     confermReset: false,
-    animationReset:false,
+    animationReset: false,
+
+    currentYear: '',
+    currentMonth: '',
+    currentDay: '',
+    currentHour: '',
+    currentMin: '',
+    currentWeekDay: '',
+
 });

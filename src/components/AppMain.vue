@@ -644,9 +644,8 @@ export default {
           <tr v-for="(mese, key) in this.store.data.user[this.store.anno]" :key="mese" class="_myrow">
 
             <!-- MESI -->
-            <th>
-              <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
-                style="cursor:pointer;">
+            <th @click="allowRow(key - 1)">
+              <div class="d-flex align-items-center justify-content-center gap-1" style="cursor:pointer;">
                 {{ this.store.mesi[key - 1] }}
               </div>
             </th>
@@ -655,7 +654,7 @@ export default {
             <td>
               <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
                 style="cursor:pointer">
-                <span class=" _input-table _text-secondary">{{ mese.s.tot }}</span>
+                <span class=" _input-table _text-secondary">{{ mese.s.tot.toFixed(2) }}</span>
                 <span style="font-size:.5em">€</span>
               </div>
 
@@ -671,10 +670,9 @@ export default {
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
-                    <button class="btn _btn-outline-thirdary-darkness-hover ms-2"
-                      style="font-size: .7em; padding: .2em .6em; margin-top: .2em;"
+                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
                       @click.stop="deleteEl(key, 's', index), calcVoci('s', key), calcRisparmio()">
-                      <i class="fa-solid fa-trash"></i>
+                      <i class="fa-regular fa-trash-can"></i>
                     </button>
                   </li>
 
@@ -696,7 +694,7 @@ export default {
             <td>
               <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
                 style="cursor:pointer">
-                <span class=" _input-table">{{ mese.sb.tot }}</span>
+                <span class=" _input-table">{{ mese.sb.tot.toFixed(2) }}</span>
                 <span style="font-size:.5em">€</span>
               </div>
 
@@ -712,10 +710,9 @@ export default {
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
-                    <button class="btn _btn-outline-thirdary-darkness-hover ms-2"
-                      style="font-size: .7em; padding: .2em .6em; margin-top: .2em;"
+                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
                       @click.stop="deleteEl(key, 'sb', index), calcVoci('sb', key), calcRisparmio()">
-                      <i class="fa-solid fa-trash"></i>
+                      <i class="fa-regular fa-trash-can"></i>
                     </button>
                   </li>
 
@@ -737,7 +734,7 @@ export default {
             <td>
               <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
                 style="cursor:pointer">
-                <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.sc.tot }}</span>
+                <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.sc.tot.toFixed(2) }}</span>
                 <span style="font-size:.5em">€</span>
               </div>
 
@@ -753,10 +750,9 @@ export default {
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
-                    <button class="btn _btn-outline-thirdary-darkness-hover ms-2"
-                      style="font-size: .7em; padding: .2em .6em; margin-top: .2em;"
+                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
                       @click.stop="deleteEl(key, 'sc', index), calcVoci('sc', key), calcRisparmio()">
-                      <i class="fa-solid fa-trash"></i>
+                      <i class="fa-regular fa-trash-can"></i>
                     </button>
                   </li>
 
@@ -778,7 +774,7 @@ export default {
             <td>
               <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
                 style="cursor:pointer">
-                <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.ss.tot }}</span>
+                <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.ss.tot.toFixed(2) }}</span>
                 <span style="font-size:.5em">€</span>
               </div>
 
@@ -794,10 +790,9 @@ export default {
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
-                    <button class="btn  _btn-outline-thirdary-darkness-hover ms-2"
-                      style="font-size: .7em; padding: .2em .6em; margin-top: .2em;"
+                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
                       @click.stop="deleteEl(key, 'ss', index), calcVoci('ss', key), calcRisparmio()">
-                      <i class="fa-solid fa-trash"></i>
+                      <i class="fa-regular fa-trash-can"></i>
                     </button>
                   </li>
 
@@ -819,7 +814,7 @@ export default {
             <td>
               <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
                 style="cursor:pointer">
-                <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.sas.tot }}</span>
+                <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.sas.tot.toFixed(2) }}</span>
                 <span style="font-size:.5em">€</span>
               </div>
 
@@ -835,10 +830,9 @@ export default {
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
-                    <button class="btn _btn-outline-thirdary-darkness-hover ms-2"
-                      style="font-size: .7em; padding: .2em .6em; margin-top: .2em;"
+                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
                       @click.stop="deleteEl(key, 'sas', index), calcVoci('sas', key), calcRisparmio()">
-                      <i class="fa-solid fa-trash"></i>
+                      <i class="fa-regular fa-trash-can"></i>
                     </button>
                   </li>
 
@@ -860,7 +854,8 @@ export default {
             <td>
               <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
                 style="cursor:pointer">
-                <span class=" _input-table _text-primary">{{ this.store.risparmi[this.store.anno][key] }}</span>
+                <span class=" _input-table _text-primary">{{ this.store.risparmi[this.store.anno][key].toFixed(2)
+                }}</span>
                 <span style="font-size:.5em">€</span>
               </div>
             </td>
@@ -874,13 +869,14 @@ export default {
     <div class="_bottom">
       <!-- TOTALI ANNUALI -->
       <div class="_totale d-flex justify-content-center w-100">
-        <span class="me-4 ">Totale Entrate Annuali: <strong class="_text-secondary">{{
-          this.store.totaleEntrateAnnue[this.store.anno] }}
+        <span class="me-4 ">Entrate Annuali: <strong class="_text-secondary">{{
+          this.store.totaleEntrateAnnue[this.store.anno].toFixed(2) }}
             €</strong></span>
-        <span class="me-4 ">Totale Speso: <strong class="_text-thirdary">{{ this.store.totaleSpeseMese[this.store.anno] }}
+        <span class="me-4 ">Spese Annuali: <strong class="_text-thirdary">{{
+          this.store.totaleSpeseMese[this.store.anno].toFixed(2) }}
             €</strong></span>
-        <span class="">Totale Risparmiato: <strong class="_text-primary">{{
-          this.store.totaleRisparmioMese[this.store.anno]
+        <span class="">Risparmi Annuali: <strong class="_text-primary">{{
+          this.store.totaleRisparmioMese[this.store.anno].toFixed(2)
         }}
             €</strong></span>
       </div>
@@ -1006,6 +1002,28 @@ export default {
               //color: red;
               span {
                 font-size: .7em;
+              }
+
+              ._btn-delete {
+                font-size: 0.1em;
+                margin-left: 22em;
+                width: 18px;
+                height: 18px;
+                position: relative;
+                box-shadow: none;
+
+
+
+                i {
+                  position: absolute;
+                  transform: translateX(-50%) translateY(-50%);
+                  top: 50%;
+                  left: 50%;
+                  text-shadow: 0px 0px 8px #ffffff00;
+                  font-size: 9em;
+                  color: white;
+
+                }
               }
 
 

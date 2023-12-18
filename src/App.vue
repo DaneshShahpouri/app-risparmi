@@ -2,7 +2,6 @@
 //import axios from 'axios';
 import { store } from './store.js';
 
-// import HelloWorld from './components/HelloWorld.vue'
 import AppMain from './components/AppMain.vue'
 import AppGrafici from './components/AppGrafici.vue'
 import AppStatistiche from './components/AppStatistiche.vue'
@@ -41,8 +40,6 @@ export default {
     'store.confermReset': function () {
 
       if (this.store.confermReset == true) {
-
-
         this.store.animationReset = true;
 
         setTimeout(() => {
@@ -110,8 +107,27 @@ export default {
   },
 
   created() {
+    //Set DATE
+    //------------------------------------------------------
+    let date = new Date();
+    this.store.currentYear = date.getFullYear();
+    this.store.currentMonth = date.getMonth();
+    this.store.currentDay = date.getDate();
+    this.store.currentHours = date.getHours();
+    this.store.currentMin = date.getMinutes();
+    this.store.currentWeekDay = this.store.week[date.getDay()];
 
-
+    console.log(date)
+    setInterval(() => {
+      let date = new Date();
+      this.store.currentYear = date.getFullYear();
+      this.store.currentMonth = date.getMonth();
+      this.store.currentDay = date.getDate();
+      this.store.currentHours = date.getHours();
+      this.store.currentMin = date.getMinutes();
+      this.store.currentWeekDay = this.store.week[date.getDay()];
+    }, 5000);
+    //------------------------------------------------------
 
   },
 
@@ -194,17 +210,17 @@ export default {
             </fieldset>
 
             <div class="info-wrapper-money mt-3 pe-1 d-flex flex-column">
-
+              <!-- 
               <span style="font-size: .7em; margin-top: 1em; margin-bottom: 1em">Entrate Tot: <span
                   style="font-size: 1.2em;" class="mx-2 _text-secondary">{{
-                    this.store.totaleEntrate }} </span> €</span>
+                    this.store.totaleEntrate.toFixed(2) }} </span> €</span>
 
               <span style="font-size: .7em; margin-bottom: 1em;">Uscite Tot: <span style="font-size: 1.2em;"
                   class="mx-2 _text-thirdary">{{
-                    this.store.totaleSpese }} </span> €</span>
+                    this.store.totaleSpese.toFixed(2) }} </span> €</span> -->
 
               <span>Credito: <span style="font-size: 1.2em;" class="mx-2 _text-primary">{{
-                this.store.totaleRisparmi }} </span> €</span>
+                this.store.totaleRisparmi.toFixed(2) }} </span> €</span>
             </div>
           </div>
         </div>
@@ -431,10 +447,15 @@ export default {
       cursor: pointer;
       background-color: $background;
       transition-timing-function: ease-in-out;
+      cursor: pointer;
 
       position: absolute;
       right: 20px;
       bottom: -15px;
+
+      * {
+        cursor: pointer;
+      }
 
       &:hover {
         color: white;

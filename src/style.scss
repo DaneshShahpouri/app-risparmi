@@ -17,11 +17,25 @@
 }
 
 * {
-    font-family: 'Kanit', sans-serif;
+    font-family: 'League Spartan', sans-serif;
+    font-family: 'Roboto', sans-serif;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    cursor: default;
+}
+
+button {
+    * {
+        cursor: pointer;
+    }
+}
+
+input,
+select,
+a {
+    cursor: pointer;
 }
 
 
@@ -316,6 +330,21 @@
 
 //TESTO e BACKground
 //----------------------------------------------------------------------
+._text-primary-light {
+    color: lighten($primary, 25%) !important;
+    text-shadow: 1px 1px 8px darken($primary, 10%) !important;
+}
+
+._text-secondary-light {
+    color: lighten($secondary, 25%) !important;
+    text-shadow: 1px 1px 8px darken($secondary, 10%) !important;
+}
+
+._text-thirdary-light {
+    color: lighten($thirdary, 25%) !important;
+    text-shadow: 1px 1px 8px darken($thirdary, 10%) !important;
+}
+
 ._text-primary {
     color: $primary !important;
 }
@@ -425,17 +454,26 @@
             td {
                 padding: .6em;
                 vertical-align: top;
-                font-size: .9em;
+                font-size: .85em;
                 text-align: center;
 
                 input {
                     background-color: transparent;
                     border: none;
                     font-size: 1em;
+                    border: 1px solid transparent;
+                    transition: all .4s;
+                    border-radius: 4px;
+                    padding: .2em;
+
+                    &:hover {
+                        border: 1px solid grey;
+                    }
                 }
 
                 input[type=num] {
                     color: $primary;
+                    text-align: right;
                 }
 
                 i {}
@@ -443,5 +481,3 @@
         }
     }
 }
-
-

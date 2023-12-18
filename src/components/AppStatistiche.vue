@@ -1,12 +1,39 @@
 <script>
 import { store } from '../store.js';
+import AppStatisticheMeseCorrente from './AppStatisticheMeseCorrente.vue'
+
 export default {
   name: 'AppStatistiche',
 
   data() {
     return {
       store,
+      clockDiv: true,
+
+      questoMese: '',
+      mesePassato: '',
+      mesiPassati: [],
+
+      speseAffittoDodiciMesi: [],
+      speseBolletteDodiciMesi: [],
+      speseAlimentariDodiciMesi: [],
+      speseAltreSpeseDodiciMesi: [],
+      stipendiDodiciMesi: [],
+      risparmiDodiciMesi: [],
+
+      mediaAffitto: 0,
+      mediaBollette: 0,
+      mediaAlimentari: 0,
+      mediaAltreSpese: 0,
+      mediaStipendi: 0,
+      mediaRisparmi: 0,
+
+      mensilitaCalcolo: 12,
     }
+  },
+
+  components: {
+    AppStatisticheMeseCorrente,
   },
 
   props: {
@@ -18,29 +45,36 @@ export default {
 
   created() {
 
+
   },
 
   mounted() {
-
   },
 }
 </script>
 
 <template>
   <div class="_main">
-    <div class="degub _top-left"></div>
-
-    <div class="degub _top-right">
-      <div class="degub _top-right-top"></div>
-      <div class="degub _top-right-bottom"></div>
+    <!-- TOP LEFT -->
+    <div class="degub _top-left">
     </div>
 
+    <!-- TOP RIGHT -->
+    <div class=" _top-right">
+      <AppStatisticheMeseCorrente></AppStatisticheMeseCorrente>
+    </div>
+
+    <!-- BOTTOM LEFT -->
     <div class="degub _bottom-left"></div>
+
+    <!-- BOTTOM RIGHT -->
     <div class="degub _bottom-right"></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@use '../scss/variables' as *;
+
 .degub {
   border: 1px solid green;
 }
@@ -66,6 +100,14 @@ export default {
   ._top-right {
     width: 70%;
     height: calc((100vh - 150px) / 12 * 8);
+    padding: .5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    flex-wrap: nowrap;
+
   }
 
   ._bottom-left {
@@ -81,6 +123,25 @@ export default {
 
 }
 
+
+
+// ANIMATION
+@keyframes uparrow {
+  0% {
+    top: 50%;
+    opacity: .8;
+  }
+
+
+
+  100% {
+    top: 40%;
+    opacity: 1;
+  }
+
+}
+
+// MEDIAQUERY
 @media only screen and (max-width: 720px) {
   ._main {
 
@@ -92,10 +153,6 @@ export default {
       width: 100%;
       height: 100%;
     }
-
-
-
-
 
   }
 
