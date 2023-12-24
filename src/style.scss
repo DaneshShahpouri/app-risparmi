@@ -51,6 +51,48 @@ a {
     }
 }
 
+
+//BARRA DI SCORRIMENTO
+//CHORME
+/* Barra di scorrimento orizzontale */
+::-webkit-scrollbar:horizontal {
+    height: 8px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    /* Larghezza della barra di scorrimento */
+}
+
+::-webkit-scrollbar-thumb:horizontal,
+::-webkit-scrollbar-thumb {
+    background-color: darken($primary, 25%);
+    border: 1px solid $primary;
+    /* Colore del pulsante di scorrimento */
+    border-radius: 6px;
+    /* Bordo arrotondato del pulsante di scorrimento */
+}
+
+::-webkit-scrollbar-track:horizontal,
+::-webkit-scrollbar-track {
+    background-color: darken($primary, 45%);
+    border: 1px solid darken($primary, 35%);
+    /* Colore di sfondo della barra di scorrimento */
+}
+
+//FIREFOX
+/* Barra di scorrimento verticale in Firefox */
+html {
+    scrollbar-color: #3498db #f2f2f2;
+}
+
+/* Barra di scorrimento orizzontale in Firefox */
+html {
+    scrollbar-color: #3498db #f2f2f2;
+    scrollbar-width: thin;
+}
+
+
 //BOTTONI
 //----------------------------------------------------------------------
 ._btn-outline-primary {
@@ -394,7 +436,7 @@ a {
 
 //TABLE
 //----------------------------------------------------------------------
-._table {}
+
 
 ._table-light {
     background-color: $background;

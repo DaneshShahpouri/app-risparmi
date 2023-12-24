@@ -96,6 +96,12 @@ export default {
       }
     },
 
+    closeNav() {
+      this.navMenuToggle = 'open'
+      this.showNavInfo = false
+
+    },
+
     resetData() {
       this.store.confermReset = true;
       setTimeout(() => {
@@ -105,11 +111,11 @@ export default {
       //console.log(this.store.confermReset)
     },
 
-   
+
   },
 
   created() {
-   
+
 
 
     //Set DATE
@@ -153,7 +159,7 @@ export default {
 </script>
 
 <template>
-  <div class="_app">
+  <div class="_app" @click="closeNav()">
 
     <div class="_top">
       <!-- NAVBAR -->
@@ -164,9 +170,69 @@ export default {
             <!-- LOGO -->
             <!-- <img alt="Vue logo" src="./assets/logo2.png"> -->
             <i class="fa-solid fa-euro-sign"></i>
-            <button class="menubtn" @click="openNav()">III</button>
+            <button class="menubtn" @click.stop="openNav()">III</button>
           </a>
           <ul class=" navbar-nav mr-auto mt-2 mt-lg-0" :class="this.navMenuToggle == 'open' ? '_open' : ''">
+            <!-- LOGO small screen -->
+            <a class="navbar-brand brand_menu_hidden" href="#">
+              <!-- <img alt="Vue logo" src="./assets/logo2.png"> -->
+              <i class="fa-solid fa-euro-sign"></i>
+              <button class="menubtn" @click.stop="openNav()">III</button>
+            </a>
+            <!-- INFO small -->
+            <div class="_info-input _info-input-small w-25" @click.stop="">
+
+              <div class="_btn_wrapper" @click="changeVariables()"
+                :class="this.showNavInfo ? '_border-primary _light-primary' : ''">
+                <div class="circle_fisso" :class="this.showNavInfo ? '_border-white' : ''"></div>
+                <div class="wrapper-icon" :class="this.showNavInfo ? 'start_animated_gear' : ''">
+                  <i class="fa-solid fa-gear" :class="this.showNavInfo ? '_color-primary' : ''"></i>
+                </div>
+              </div>
+
+              <div class="_module-btn" :class="this.showNavInfo ? 'start_animated' : 'end_animated'">
+                <div class="info-wrapper d-flex">
+                  <h6 style="font-size:0.9em">Ciao <span class=" _text-primary" style="font-size:1.2em">{{
+                    this.store.data.user.nome + ' ' + this.store.data.user.cognome
+                  }}</span>. </h6>
+                </div>
+
+                <fieldset class="d-flex align-items-center gap-2 " style="justify-content: space-between;">
+                  <label style="font-size:.5em;" for="nome">Nome.</label>
+                  <input type="text" name="nome" v-model="this.store.data.user.nome">
+                </fieldset>
+
+                <fieldset class="d-flex align-items-center gap-2 " style="justify-content: space-between;">
+                  <label style="font-size:.5em;" for="cognome">Cognome.</label>
+                  <input type="text" name="cognome" v-model="this.store.data.user.cognome">
+                </fieldset>
+
+                <fieldset class="d-flex align-items-center gap-2 " style="justify-content: space-between;">
+                  <label style="font-size:.5em;" for="eta">Età.</label>
+                  <input type="text" name="eta" v-model="this.store.data.user.eta">
+                </fieldset>
+
+                <fieldset class="d-flex align-items-center gap-2 " style="justify-content: space-between;">
+                  <label style="font-size:.5em;" for="sesso">Sesso.</label>
+                  <input type="text" name="sesso" v-model="this.store.data.user.sesso">
+                </fieldset>
+
+                <div class="info-wrapper-money mt-3 pe-1 d-flex flex-column">
+                  <!-- 
+    <span style="font-size: .7em; margin-top: 1em; margin-bottom: 1em">Entrate Tot: <span
+        style="font-size: 1.2em;" class="mx-2 _text-secondary">{{
+          this.store.totaleEntrate.toFixed(2) }} </span> €</span>
+
+    <span style="font-size: .7em; margin-bottom: 1em;">Uscite Tot: <span style="font-size: 1.2em;"
+        class="mx-2 _text-thirdary">{{
+          this.store.totaleSpese.toFixed(2) }} </span> €</span> -->
+
+                  <span>Credito: <span style="font-size: 1.2em;" class="mx-2 _text-primary">{{
+                    this.store.totaleRisparmi.toFixed(2) }} </span> €</span>
+                </div>
+              </div>
+            </div>
+
             <li class="nav-item " :class="this.store.currentPage == this.store.pages[0] ? 'active-link' : ''"
               @click="this.store.currentPage = this.store.pages[0]">
               <a class="nav-link" href="#">HOME</a>
@@ -186,7 +252,7 @@ export default {
         </div>
 
         <!-- INFO -->
-        <div class="_info-input w-25" style="position:relative">
+        <div class="_info-input w-25" style="position:relative" @click.stop="">
 
           <div class="_btn_wrapper" @click="changeVariables()"
             :class="this.showNavInfo ? '_border-primary _light-primary' : ''">
@@ -276,15 +342,13 @@ export default {
       </div>
 
       <!-- BUTTONS NEXT PREV -->
-      <button class="carousel-control-prev" type="button" @click="this.navPage('prev')"
-        style="justify-content: start; top: 50%; width: 35px; height: 50px;">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden _text-primary">Previous</span>
+      <button class="carousel-control-prev btn_pages" type="button" @click="this.navPage('prev')"
+        style="justify-content: start; border-radius: 20px 0px 0px 20px; ">
+        <i class="fa-solid fa-caret-left" style="left: 55%;"></i>
       </button>
-      <button class="carousel-control-next" type="button" @click="this.navPage('next')"
-        style="justify-content: flex-end; top: 50%; width: 35px; height: 50px; ">
-        <span class="visually-hidden _text-primary">Next</span>
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <button class="carousel-control-next btn_pages" type="button" @click="this.navPage('next')"
+        style="justify-content: flex-end; border-radius: 0px 20px 20px 0px; margin-right:.2em; ">
+        <i class="fa-solid fa-caret-right" style="left: 45%;"></i>
       </button>
     </div>
 
@@ -394,6 +458,17 @@ export default {
       ul {
         position: relative;
         z-index: 2;
+
+        .brand_menu_hidden {
+          display: none
+        }
+
+        ._info-input-small {
+          position: absolute;
+          top: 25px;
+          right: 2px;
+          display: none;
+        }
       }
     }
 
@@ -537,7 +612,7 @@ export default {
       overflow-y: hidden;
       position: absolute;
       z-index: 20;
-      top: 15px;
+      top: 10px;
       opacity: 0;
       right: 20px;
       background-color: darken($background, 0.5%);
@@ -637,6 +712,42 @@ export default {
       height: 30px;
       top: 2px;
 
+    }
+  }
+
+
+
+  .btn_pages {
+    top: 50%;
+    width: 35px;
+    height: 70vh;
+    border: 1px solid;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all .5s;
+
+    i {
+      position: absolute;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      font-size: 3em;
+      transition: all .5s;
+      color: $primary;
+    }
+
+    &:hover {
+      opacity: 1;
+      background: darken($primary, 46%);
+      color: $primary;
+
+    }
+
+    &:active {
+      background: $primary;
+
+      i {
+        color: white;
+      }
     }
   }
 }
@@ -1145,9 +1256,13 @@ export default {
 
           ul {
             position: absolute;
-            left: 70px;
-            top: -5px;
-            background: rgb(20, 22, 28);
+            left: 0;
+            top: -10px;
+            width: calc(100vw - 30px);
+            padding: 0.7em 3em;
+            max-height: 200px;
+            transition: all 1s;
+            background: $background;
             padding: 0.7em 7em;
             z-index: 200;
             display: flex;
@@ -1156,13 +1271,50 @@ export default {
             align-items: center;
             border-radius: 10px;
             overflow: hidden;
-            max-height: 200px;
+
             transition: all 1s;
             box-shadow: 1px 1px 20px black;
 
             &._open {
               max-height: 0px;
               padding: 0 7em;
+            }
+
+            .brand_menu_hidden {
+              display: block;
+              position: absolute;
+              background: rgb(48, 48, 48);
+              top: 10px;
+              left: 7px;
+              border: 1px solid white;
+
+              i {
+                text-shadow: 0px 0px 2px white;
+              }
+            }
+
+            ._info-input-small {
+              position: absolute;
+              top: 25px;
+              right: 2px;
+              display: block;
+
+              ._btn_wrapper {
+                border: 1px solid darken($primary, 30%);
+
+                .circle_fisso {
+                  border: 1px solid rgb(141, 141, 141);
+                }
+              }
+
+              ._module-btn {
+                background: #dadada;
+                color: black;
+
+                input {
+                  color: black;
+                }
+              }
             }
           }
         }
@@ -1199,9 +1351,9 @@ export default {
 
           ul {
             position: absolute;
-            left: 70px;
-            top: -9px;
-            padding: .7em 3em;
+            top: -10px;
+            left: 0;
+            width: calc(100vw - 30px);
 
 
             max-height: 200px;

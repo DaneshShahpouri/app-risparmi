@@ -208,10 +208,10 @@ export default {
     <div class="first">
       <!-- CAMBIA TIPO -->
       <button @click="setGraph('spese')" class="btn _btn-outline-primary-darkness-hover">
-        Out
+        <i class="fa-solid fa-arrow-trend-down"></i>
       </button>
       <!-- CAMBIA TIPO -->
-      <button @click="changeType()" class="btn _btn-outline-primary-darkness-hover me-5">
+      <button @click="changeType()" class="btn _btn-outline-primary-darkness-hover">
         <i :class="this.displayType == 'line' ? 'fa-solid fa-chart-simple' : 'fa-solid fa-chart-line'"></i>
       </button>
     </div>

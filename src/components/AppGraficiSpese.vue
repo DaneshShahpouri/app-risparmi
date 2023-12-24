@@ -321,10 +321,10 @@ export default {
 
       <!-- CAMBIA TIPO -->
       <button @click="setGraph('risparmi')" class="btn _btn-outline-primary-darkness-hover">
-        Income
+        <i class="fa-solid fa-arrow-trend-up"></i>
       </button>
       <!-- CAMBIA TIPO -->
-      <button @click="changeType()" class="btn _btn-outline-primary-darkness-hover me-5">
+      <button @click="changeType()" class="btn _btn-outline-primary-darkness-hover ">
         <i :class="this.displayType == 'line' ? 'fa-solid fa-chart-simple' : 'fa-solid fa-chart-line'"></i>
       </button>
     </div>

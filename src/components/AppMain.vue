@@ -52,9 +52,26 @@ export default {
     },
     //visualizza la riga al click
     allowRow(index) {
-      let element = document.getElementsByClassName('_myrow')
+      let elements = document.getElementsByClassName('_myrow')
 
-      element[index].classList.toggle("view");
+      for (let element of elements) {
+        if (element.classList.contains('view')) {
+          if (element != elements[index]) {
+            element.classList.remove('view');
+          }
+        }
+      }
+
+      elements[index].classList.toggle("view");
+    },
+    closeRow() {
+      let elements = document.getElementsByClassName('_myrow')
+
+      for (let element of elements) {
+        if (element.classList.contains('view')) {
+          element.classList.remove('view');
+        }
+      }
     },
     //Aggiungi una spesa
     createEl(mese, dato, nuovorecord, nuovoprezzo) {
@@ -328,7 +345,7 @@ export default {
 </script>
 
 <template>
-  <div class="_main" style="background:rgb(11, 11, 11)">
+  <div class="_main" style="background:rgb(11, 11, 11)" @click="closeRow()">
 
     <!-- TABLE -->
     <div class="table-responsive _tabella-wrapper d-flex align-items-center justify-content-center">
@@ -347,10 +364,10 @@ export default {
         </thead>
 
         <tbody>
-          <tr v-for="(mese, key) in this.store.data.user[this.store.anno]" :key="mese" class="_myrow">
+          <tr v-for="(mese, key) in this.store.data.user[this.store.anno]" :key="mese" class="_myrow" @click.stop="">
 
             <!-- MESI -->
-            <th @click="allowRow(key - 1)">
+            <th @click.stop="allowRow(key - 1)">
               <div class="d-flex align-items-center justify-content-center gap-1" style="cursor:pointer;">
                 {{ this.store.mesi[key - 1] }}
               </div>
@@ -358,7 +375,7 @@ export default {
 
             <!-- STIENDIO mensile -->
             <td>
-              <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
+              <div class="d-flex align-items-center justify-content-center gap-1" @click.stop="allowRow(key - 1)"
                 style="cursor:pointer">
                 <span class=" _input-table _text-secondary">{{ mese.s.tot.toFixed(2) }}</span>
                 <span style="font-size:.5em">€</span>
@@ -389,7 +406,7 @@ export default {
                 <div class="d-flex justify-content-center">
                   <button class="btn btn-outline-light"
                     style=" margin-top: .2em; font-size: 1.2em; padding: 0em .4em; margin-top: 0.2em; border-radius: 50%;"
-                    @click="prop(), createEl(key, 's', 'prod', 0), calcVoci('s', key), calcRisparmio()">+</button>
+                    @click.stop="prop(), createEl(key, 's', 'prod', 0), calcVoci('s', key), calcRisparmio()">+</button>
 
                 </div>
               </div>
@@ -398,7 +415,7 @@ export default {
 
             <!-- bollette -->
             <td>
-              <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
+              <div class="d-flex align-items-center justify-content-center gap-1" @click.stop="allowRow(key - 1)"
                 style="cursor:pointer">
                 <span class=" _input-table">{{ mese.sb.tot.toFixed(2) }}</span>
                 <span style="font-size:.5em">€</span>
@@ -409,10 +426,11 @@ export default {
                 <ul v-if="Object.keys(mese.sb.mag.art).length > 0">
                   <li v-for="(articolo, index) in mese.sb.mag.art" :key="index">
                     <input type="text" v-model="this.store.data.user[this.store.anno][key].sb.mag.art[index]"
-                      @click="() => { this.prop() }" class="art_class">
+                      @click.stop="() => { this.prop() }" class="art_class">
                     <span class="_sepa"> : </span>
                     <input type="num" v-model="this.store.data.user[this.store.anno][key].sb.mag.pre[index]"
-                      @click="() => { this.prop() }" class="pre_class" @change="calcVoci('sb', key), calcRisparmio()">
+                      @click.stop="() => { this.prop() }" class="pre_class"
+                      @change="calcVoci('sb', key), calcRisparmio()">
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
@@ -438,7 +456,7 @@ export default {
 
             <!-- spese affitto -->
             <td>
-              <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
+              <div class="d-flex align-items-center justify-content-center gap-1" @click.stop="allowRow(key - 1)"
                 style="cursor:pointer">
                 <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.sc.tot.toFixed(2) }}</span>
                 <span style="font-size:.5em">€</span>
@@ -449,10 +467,11 @@ export default {
                 <ul v-if="Object.keys(mese.sc.mag.art).length > 0">
                   <li v-for="(articolo, index) in mese.sc.mag.art" :key="index">
                     <input type="text" v-model="this.store.data.user[this.store.anno][key].sc.mag.art[index]"
-                      @click="() => { this.prop() }" class="art_class">
+                      @click.stop="() => { this.prop() }" class="art_class">
                     <span class="_sepa"> : </span>
                     <input type="num" v-model="this.store.data.user[this.store.anno][key].sc.mag.pre[index]"
-                      @click="() => { this.prop() }" class="pre_class" @change="calcVoci('sc', key), calcRisparmio()">
+                      @click.stop="() => { this.prop() }" class="pre_class"
+                      @change="calcVoci('sc', key), calcRisparmio()">
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
@@ -478,7 +497,7 @@ export default {
 
             <!-- spese alimentari -->
             <td>
-              <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
+              <div class="d-flex align-items-center justify-content-center gap-1" @click.stop="allowRow(key - 1)"
                 style="cursor:pointer">
                 <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.ss.tot.toFixed(2) }}</span>
                 <span style="font-size:.5em">€</span>
@@ -489,10 +508,11 @@ export default {
                 <ul v-if="Object.keys(mese.ss.mag.art).length > 0">
                   <li v-for="(articolo, index) in mese.ss.mag.art" :key="index">
                     <input type="text" v-model="this.store.data.user[this.store.anno][key].ss.mag.art[index]"
-                      @click="() => { this.prop() }" class="art_class">
+                      @click.stop="() => { this.prop() }" class="art_class">
                     <span class="_sepa"> : </span>
                     <input type="num" v-model="this.store.data.user[this.store.anno][key].ss.mag.pre[index]"
-                      @click="() => { this.prop() }" class="pre_class" @change="calcVoci('ss', key), calcRisparmio()">
+                      @click.stop="() => { this.prop() }" class="pre_class"
+                      @change="calcVoci('ss', key), calcRisparmio()">
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
@@ -518,7 +538,7 @@ export default {
 
             <!-- altre spese-->
             <td>
-              <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
+              <div class="d-flex align-items-center justify-content-center gap-1" @click.stop="allowRow(key - 1)"
                 style="cursor:pointer">
                 <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.sas.tot.toFixed(2) }}</span>
                 <span style="font-size:.5em">€</span>
@@ -529,10 +549,11 @@ export default {
                 <ul v-if="Object.keys(mese.sas.mag.art).length > 0">
                   <li v-for="(articolo, index) in mese.sas.mag.art" :key="index">
                     <input type="text" v-model="this.store.data.user[this.store.anno][key].sas.mag.art[index]"
-                      @click="() => { this.prop() }" class="art_class">
+                      @click.stop="() => { this.prop() }" class="art_class">
                     <span class="_sepa"> : </span>
                     <input type="num" v-model="this.store.data.user[this.store.anno][key].sas.mag.pre[index]"
-                      @click="() => { this.prop() }" class="pre_class" @change="calcVoci('sas', key), calcRisparmio()">
+                      @click.stop="() => { this.prop() }" class="pre_class"
+                      @change="calcVoci('sas', key), calcRisparmio()">
                     <span class="_euro">€</span>
 
                     <!-- Cancella record -->
@@ -558,7 +579,7 @@ export default {
 
             <!-- risparmi -->
             <td>
-              <div class="d-flex align-items-center justify-content-center gap-1" @click="allowRow(key - 1)"
+              <div class="d-flex align-items-center justify-content-center gap-1" @click.stop="allowRow(key - 1)"
                 style="cursor:pointer">
                 <span class=" _input-table _text-primary">{{ this.store.risparmi[this.store.anno][key].toFixed(2)
                 }}</span>
@@ -590,9 +611,9 @@ export default {
 
       <!-- BOTTON save reset -->
       <div class="mb-2">
-        <button class="btn _btn-outline-primary-darkness-hover  mx-4" @click="save(), showModule()"><i
+        <button class="btn _btn-outline-primary-darkness-hover  mx-4" @click.stop="save(), showModule()"><i
             style="font-size: .8em;" class="fa-regular fa-floppy-disk"></i> <span>Save</span></button>
-        <button class="btn _btn-outline-thirdary-darkness-hover  " @click=" this.store.viewModuleReset = true"><i
+        <button class="btn _btn-outline-thirdary-darkness-hover  " @click.stop=" this.store.viewModuleReset = true"><i
             style="font-size: .8em;" class="fa-solid fa-clock-rotate-left"></i> <span>Reset</span></button>
       </div>
     </div>

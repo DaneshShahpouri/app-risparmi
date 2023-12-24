@@ -155,6 +155,15 @@ export default {
     ._top-left {
       width: 100%;
       height: 100%;
+      order: 2;
+      margin-bottom: 5em;
+      padding-bottom: 2em;
+      border-bottom: 1px solid $primary;
+    }
+
+    ._top-right {
+      order: 1;
+      min-height: 700px;
     }
 
   }
