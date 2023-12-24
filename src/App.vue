@@ -103,10 +103,15 @@ export default {
         //console.log(this.store.confermReset)
       }, 500);
       //console.log(this.store.confermReset)
-    }
+    },
+
+   
   },
 
   created() {
+   
+
+
     //Set DATE
     //------------------------------------------------------
     let date = new Date();
@@ -117,7 +122,7 @@ export default {
     this.store.currentMin = date.getMinutes();
     this.store.currentWeekDay = this.store.week[date.getDay()];
 
-    console.log(date)
+
     setInterval(() => {
       let date = new Date();
       this.store.currentYear = date.getFullYear();
@@ -127,6 +132,16 @@ export default {
       this.store.currentMin = date.getMinutes();
       this.store.currentWeekDay = this.store.week[date.getDay()];
     }, 5000);
+    //------------------------------------------------------
+
+    //------------------------------------------------------
+    //Spese Fisse
+
+    //this.store.data.sp = spesa fissa
+    //array di [n=nome,s=spesa,f=frequenza,d=datainserimento,c=categoria]
+
+    //this.store.data.sp = [{ n: 'spesa fissa 1', s: 100, f: 2, d: '2-12-2023', c: 'sas' }, { n: 'stipendio', s: 1200, f: 'om', d: '2-12-2023', c: 's' }, { n: 'tabacco', s: 60, f: 'om', d: '2-12-2023', c: 'sas' }]
+    //console.log(this.store.data.sp)
     //------------------------------------------------------
 
   },

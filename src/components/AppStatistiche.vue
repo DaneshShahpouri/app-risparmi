@@ -1,6 +1,7 @@
 <script>
 import { store } from '../store.js';
 import AppStatisticheMeseCorrente from './AppStatisticheMeseCorrente.vue'
+import AppStatisticheProgramma from './AppStatisticheProgramma.vue'
 
 export default {
   name: 'AppStatistiche',
@@ -34,6 +35,7 @@ export default {
 
   components: {
     AppStatisticheMeseCorrente,
+    AppStatisticheProgramma,
   },
 
   props: {
@@ -56,7 +58,8 @@ export default {
 <template>
   <div class="_main">
     <!-- TOP LEFT -->
-    <div class="degub _top-left">
+    <div class="_top-left">
+      <AppStatisticheProgramma></AppStatisticheProgramma>
     </div>
 
     <!-- TOP RIGHT -->

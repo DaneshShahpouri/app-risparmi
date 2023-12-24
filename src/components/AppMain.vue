@@ -23,12 +23,10 @@ export default {
   },
 
   methods: {
-
     console(parametro) {
       console.log(parametro);
       console.log(this.store.totaleEntrateAnnue[23]);
     },
-
     prop() {
       event.stopPropagation()
 
@@ -39,379 +37,26 @@ export default {
       // Salva myData in localStorage
       localStorage.setItem('myData', JSON.stringify(myData));
 
-      console.log('myData salvato con successo!');
+      //console.log('myData salvato con successo!');
     },
-
     //Reset
     resetData() {
-      const myData = {
-        user: {
-          nome: 'Danesh',
-          cognome: 'Shahpouri',
-          eta: 30,
-          sesso: 'M',
-          23: {
-            1: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            2: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            3: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            4: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            5: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            6: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            7: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            8: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            9: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            10: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            11: {
-              s: { mag: { art: ['stipendio'], pre: [890] }, tot: 890 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: ['minoxidil', 'lenzuola', 'shampo'], pre: [72, 60, 20] }, tot: 0 },
-            },
-            12: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            }
 
-          },
-          24: {
-            1: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            2: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            3: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            4: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            5: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            6: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            7: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            8: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            9: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            10: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            11: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            12: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            }
-
-          },
-          25: {
-            1: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            2: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            3: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            4: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            5: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            6: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            7: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            8: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            9: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            10: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            11: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            12: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            }
-
-          },
-          26: {
-            1: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            2: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            3: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            4: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            5: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            6: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            7: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            8: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            9: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            10: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            11: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            },
-            12: {
-              s: { mag: { art: [], pre: [] }, tot: 0 },
-              sb: { mag: { art: [], pre: [] }, tot: 0 },
-              sc: { mag: { art: [], pre: [] }, tot: 0 },
-              ss: { mag: { art: [], pre: [] }, tot: 0 },
-              sas: { mag: { art: [], pre: [] }, tot: 0 },
-            }
-
-          },
-        }
-      };
-
+      const myData = this.store.tempData
 
       // Salva myData in localStorage
       localStorage.setItem('myData', JSON.stringify(myData));
-
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     },
-
+    //visualizza la riga al click
     allowRow(index) {
       let element = document.getElementsByClassName('_myrow')
+
       element[index].classList.toggle("view");
     },
-
+    //Aggiungi una spesa
     createEl(mese, dato, nuovorecord, nuovoprezzo) {
       // console.log(this.store.data.user[this.store.anno][mese].s.mag)
       if (dato == 's') {
@@ -435,7 +80,7 @@ export default {
       }
 
     },
-
+    //cancella una spesa
     deleteEl(mese, dato, index) {
       //console.log(this.store.data.user[this.store.anno][mese].s.mag)
       if (dato == 's') {
@@ -456,7 +101,7 @@ export default {
       }
 
     },
-
+    //calcola il risparmio di tutti gli anni
     calcRisparmio() {
       //console.log('calcola risparmio')
       //2023 - risparmio
@@ -534,12 +179,12 @@ export default {
       this.store.totaleRisparmi = parseInt(this.store.totaleRisparmioMese[23]) + parseInt(this.store.totaleRisparmioMese[24]) + parseInt(this.store.totaleRisparmioMese[25]) + parseInt(this.store.totaleRisparmioMese[26])
       this.store.totaleSpese = parseInt(this.store.totaleSpeseMese[23]) + parseInt(this.store.totaleSpeseMese[24]) + parseInt(this.store.totaleRisparmioMese[25]) + parseInt(this.store.totaleRisparmioMese[26])
 
-      console.log('risaprmio calcolato')
+      //console.log('risaprmio calcolato')
     },
-
+    //calcola il totale
     calcVoci(dato, mese) {
       // console.log(eval(this.store.data.user[this.store.anno][11].s.mag.pre))
-      //console.log(mese)
+
       let tot = 0;
       if (dato == 's') {
         Object.keys(this.store.data.user[this.store.anno][mese].s.mag.pre).forEach(key => {
@@ -582,7 +227,7 @@ export default {
 
 
     },
-
+    //focus automatico su tutto l'input
     focusInput() {
       document.addEventListener('focus', function (event) {
         var focusedElement = event.target;
@@ -598,21 +243,82 @@ export default {
         }
       }, true);
     },
+    //visualizza il modale
     showModule() {
       if (this.store.viewModule) {
         this.store.viewModule = false;
       } else {
         this.store.viewModule = true
       }
+    },
+    //Calcola le spese programmate
+    speseProgrammateSet() {
+      let spese = this.store.data.sp;
+
+      let date = new Date();
+      let year = date.getFullYear();
+      let month = date.getMonth();
+      let day = date.getDate();
+
+      //PROVA_-----------
+      //data di oggi = 
+      // year = 2024;
+      // month = 2;
+      //-----------------
+
+      let arrayYear = String(year).slice(2)
+      let dateNow = year + '-' + (month + 1) + '-' + day;
+
+
+
+      for (let i = 0; i < spese.length; i++) {
+
+        let mesespesa = spese[i].d.split('-')
+        mesespesa = parseInt(mesespesa[1]) + 1
+
+        if (!this.store.data.user[arrayYear][month + 1][spese[i].c].mag.art.includes(spese[i].n)) {
+
+          if (spese[i].f == 'om') {
+
+            this.store.data.user[arrayYear][month + 1][spese[i].c].mag.art.push(spese[i].n)
+            this.store.data.user[arrayYear][month + 1][spese[i].c].mag.pre.push(spese[i].s)
+            this.store.data.user[arrayYear][month + 1][spese[i].c].mag.tot += spese[i].s
+            spese[i].d = dateNow
+            this.calcVoci(spese[i].c, month + 1)
+
+
+          } else {
+            //Logica per spese programmatiche: si va a cercare il mese di inserimento 
+            //in base alla frequenza e poi se corrisponde al mese corrente si aggiunge il dato
+
+            let mesePerInserimento = parseInt(mesespesa) + parseInt(spese[i].f)
+
+            if (mesePerInserimento > 12) {
+              mesePerInserimento -= 12
+            }
+
+            if (year + '-' + mesePerInserimento + '-1' <= dateNow && year + '-' + mesePerInserimento + '28' >= dateNow) {
+              this.store.data.user[arrayYear][month + 1][spese[i].c].mag.art.push(spese[i].n)
+              this.store.data.user[arrayYear][month + 1][spese[i].c].mag.pre.push(spese[i].s)
+              this.store.data.user[arrayYear][month + 1][spese[i].c].mag.tot += spese[i].s
+              spese[i].d = dateNow
+              this.calcVoci(spese[i].c, month + 1)
+
+            }
+
+          }
+
+        }
+
+      }
+
     }
   },
 
   created() {
+    this.speseProgrammateSet();
     this.calcRisparmio();
-
     this.focusInput();
-    //console.log(this.store.totaleEntrateAnnue[23]);
-
   },
 
   mounted() {
@@ -863,6 +569,7 @@ export default {
 
           </tr>
         </tbody>
+
       </table>
     </div>
 
