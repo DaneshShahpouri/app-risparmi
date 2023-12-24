@@ -75,8 +75,8 @@ a {
 
 ::-webkit-scrollbar-track:horizontal,
 ::-webkit-scrollbar-track {
-    background-color: darken($primary, 45%);
-    border: 1px solid darken($primary, 35%);
+    background-color: $background;
+    //border: 1px solid darken($primary, 35%);
     /* Colore di sfondo della barra di scorrimento */
 }
 

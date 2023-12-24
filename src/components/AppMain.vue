@@ -174,6 +174,59 @@ export default {
       this.store.risparmi[26][11] = this.store.data.user[26][11].s.tot - this.store.data.user[26][11].sc.tot - this.store.data.user[26][11].ss.tot - this.store.data.user[26][11].sb.tot - this.store.data.user[26][11].sas.tot;
       this.store.risparmi[26][12] = this.store.data.user[26][12].s.tot - this.store.data.user[26][12].sc.tot - this.store.data.user[26][12].ss.tot - this.store.data.user[26][12].sb.tot - this.store.data.user[26][12].sas.tot;
 
+      //2023 - spese
+      this.store.spese[23][1] = this.store.data.user[23][1].sc.tot + this.store.data.user[23][1].ss.tot + this.store.data.user[23][1].sb.tot + this.store.data.user[23][1].sas.tot;
+      this.store.spese[23][2] = this.store.data.user[23][2].sc.tot + this.store.data.user[23][2].ss.tot + this.store.data.user[23][2].sb.tot + this.store.data.user[23][2].sas.tot;
+      this.store.spese[23][3] = this.store.data.user[23][3].sc.tot + this.store.data.user[23][3].ss.tot + this.store.data.user[23][3].sb.tot + this.store.data.user[23][3].sas.tot;
+      this.store.spese[23][4] = this.store.data.user[23][4].sc.tot + this.store.data.user[23][4].ss.tot + this.store.data.user[23][4].sb.tot + this.store.data.user[23][4].sas.tot;
+      this.store.spese[23][5] = this.store.data.user[23][5].sc.tot + this.store.data.user[23][5].ss.tot + this.store.data.user[23][5].sb.tot + this.store.data.user[23][5].sas.tot;
+      this.store.spese[23][6] = this.store.data.user[23][6].sc.tot + this.store.data.user[23][6].ss.tot + this.store.data.user[23][6].sb.tot + this.store.data.user[23][6].sas.tot;
+      this.store.spese[23][7] = this.store.data.user[23][7].sc.tot + this.store.data.user[23][7].ss.tot + this.store.data.user[23][7].sb.tot + this.store.data.user[23][7].sas.tot;
+      this.store.spese[23][8] = this.store.data.user[23][8].sc.tot + this.store.data.user[23][8].ss.tot + this.store.data.user[23][8].sb.tot + this.store.data.user[23][8].sas.tot;
+      this.store.spese[23][9] = this.store.data.user[23][9].sc.tot + this.store.data.user[23][9].ss.tot + this.store.data.user[23][9].sb.tot + this.store.data.user[23][9].sas.tot;
+      this.store.spese[23][10] = this.store.data.user[23][10].sc.tot + this.store.data.user[23][10].ss.tot + this.store.data.user[23][10].sb.tot + this.store.data.user[23][10].sas.tot;
+      this.store.spese[23][11] = this.store.data.user[23][11].sc.tot + this.store.data.user[23][11].ss.tot + this.store.data.user[23][11].sb.tot + this.store.data.user[23][11].sas.tot;
+      this.store.spese[23][12] = this.store.data.user[23][12].sc.tot + this.store.data.user[23][12].ss.tot + this.store.data.user[23][12].sb.tot + this.store.data.user[23][12].sas.tot;
+      //2024 - spese
+      this.store.spese[24][1] = this.store.data.user[24][1].sc.tot + this.store.data.user[24][1].ss.tot + this.store.data.user[24][1].sb.tot + this.store.data.user[24][1].sas.tot;
+      this.store.spese[24][2] = this.store.data.user[24][2].sc.tot + this.store.data.user[24][2].ss.tot + this.store.data.user[24][2].sb.tot + this.store.data.user[24][2].sas.tot;
+      this.store.spese[24][3] = this.store.data.user[24][3].sc.tot + this.store.data.user[24][3].ss.tot + this.store.data.user[24][3].sb.tot + this.store.data.user[24][3].sas.tot;
+      this.store.spese[24][4] = this.store.data.user[24][4].sc.tot + this.store.data.user[24][4].ss.tot + this.store.data.user[24][4].sb.tot + this.store.data.user[24][4].sas.tot;
+      this.store.spese[24][5] = this.store.data.user[24][5].sc.tot + this.store.data.user[24][5].ss.tot + this.store.data.user[24][5].sb.tot + this.store.data.user[24][5].sas.tot;
+      this.store.spese[24][6] = this.store.data.user[24][6].sc.tot + this.store.data.user[24][6].ss.tot + this.store.data.user[24][6].sb.tot + this.store.data.user[24][6].sas.tot;
+      this.store.spese[24][7] = this.store.data.user[24][7].sc.tot + this.store.data.user[24][7].ss.tot + this.store.data.user[24][7].sb.tot + this.store.data.user[24][7].sas.tot;
+      this.store.spese[24][8] = this.store.data.user[24][8].sc.tot + this.store.data.user[24][8].ss.tot + this.store.data.user[24][8].sb.tot + this.store.data.user[24][8].sas.tot;
+      this.store.spese[24][9] = this.store.data.user[24][9].sc.tot + this.store.data.user[24][9].ss.tot + this.store.data.user[24][9].sb.tot + this.store.data.user[24][9].sas.tot;
+      this.store.spese[24][10] = this.store.data.user[24][10].sc.tot + this.store.data.user[24][10].ss.tot + this.store.data.user[24][10].sb.tot + this.store.data.user[24][10].sas.tot;
+      this.store.spese[24][11] = this.store.data.user[24][11].sc.tot + this.store.data.user[24][11].ss.tot + this.store.data.user[24][11].sb.tot + this.store.data.user[24][11].sas.tot;
+      this.store.spese[24][12] = this.store.data.user[24][12].sc.tot + this.store.data.user[24][12].ss.tot + this.store.data.user[24][12].sb.tot + this.store.data.user[24][12].sas.tot;
+      //2025 - spese
+      this.store.spese[25][1] = this.store.data.user[25][1].sc.tot + this.store.data.user[25][1].ss.tot + this.store.data.user[25][1].sb.tot + this.store.data.user[25][1].sas.tot;
+      this.store.spese[25][2] = this.store.data.user[25][2].sc.tot + this.store.data.user[25][2].ss.tot + this.store.data.user[25][2].sb.tot + this.store.data.user[25][2].sas.tot;
+      this.store.spese[25][3] = this.store.data.user[25][3].sc.tot + this.store.data.user[25][3].ss.tot + this.store.data.user[25][3].sb.tot + this.store.data.user[25][3].sas.tot;
+      this.store.spese[25][4] = this.store.data.user[25][4].sc.tot + this.store.data.user[25][4].ss.tot + this.store.data.user[25][4].sb.tot + this.store.data.user[25][4].sas.tot;
+      this.store.spese[25][5] = this.store.data.user[25][5].sc.tot + this.store.data.user[25][5].ss.tot + this.store.data.user[25][5].sb.tot + this.store.data.user[25][5].sas.tot;
+      this.store.spese[25][6] = this.store.data.user[25][6].sc.tot + this.store.data.user[25][6].ss.tot + this.store.data.user[25][6].sb.tot + this.store.data.user[25][6].sas.tot;
+      this.store.spese[25][7] = this.store.data.user[25][7].sc.tot + this.store.data.user[25][7].ss.tot + this.store.data.user[25][7].sb.tot + this.store.data.user[25][7].sas.tot;
+      this.store.spese[25][8] = this.store.data.user[25][8].sc.tot + this.store.data.user[25][8].ss.tot + this.store.data.user[25][8].sb.tot + this.store.data.user[25][8].sas.tot;
+      this.store.spese[25][9] = this.store.data.user[25][9].sc.tot + this.store.data.user[25][9].ss.tot + this.store.data.user[25][9].sb.tot + this.store.data.user[25][9].sas.tot;
+      this.store.spese[25][10] = this.store.data.user[25][10].sc.tot + this.store.data.user[25][10].ss.tot + this.store.data.user[25][10].sb.tot + this.store.data.user[25][10].sas.tot;
+      this.store.spese[25][11] = this.store.data.user[25][11].sc.tot + this.store.data.user[25][11].ss.tot + this.store.data.user[25][11].sb.tot + this.store.data.user[25][11].sas.tot;
+      this.store.spese[25][12] = this.store.data.user[25][12].sc.tot + this.store.data.user[25][12].ss.tot + this.store.data.user[25][12].sb.tot + this.store.data.user[25][12].sas.tot;
+      //2026 - spese
+      this.store.spese[26][1] = this.store.data.user[26][1].sc.tot + this.store.data.user[26][1].ss.tot + this.store.data.user[26][1].sb.tot + this.store.data.user[26][1].sas.tot;
+      this.store.spese[26][2] = this.store.data.user[26][2].sc.tot + this.store.data.user[26][2].ss.tot + this.store.data.user[26][2].sb.tot + this.store.data.user[26][2].sas.tot;
+      this.store.spese[26][3] = this.store.data.user[26][3].sc.tot + this.store.data.user[26][3].ss.tot + this.store.data.user[26][3].sb.tot + this.store.data.user[26][3].sas.tot;
+      this.store.spese[26][4] = this.store.data.user[26][4].sc.tot + this.store.data.user[26][4].ss.tot + this.store.data.user[26][4].sb.tot + this.store.data.user[26][4].sas.tot;
+      this.store.spese[26][5] = this.store.data.user[26][5].sc.tot + this.store.data.user[26][5].ss.tot + this.store.data.user[26][5].sb.tot + this.store.data.user[26][5].sas.tot;
+      this.store.spese[26][6] = this.store.data.user[26][6].sc.tot + this.store.data.user[26][6].ss.tot + this.store.data.user[26][6].sb.tot + this.store.data.user[26][6].sas.tot;
+      this.store.spese[26][7] = this.store.data.user[26][7].sc.tot + this.store.data.user[26][7].ss.tot + this.store.data.user[26][7].sb.tot + this.store.data.user[26][7].sas.tot;
+      this.store.spese[26][8] = this.store.data.user[26][8].sc.tot + this.store.data.user[26][8].ss.tot + this.store.data.user[26][8].sb.tot + this.store.data.user[26][8].sas.tot;
+      this.store.spese[26][9] = this.store.data.user[26][9].sc.tot + this.store.data.user[26][9].ss.tot + this.store.data.user[26][9].sb.tot + this.store.data.user[26][9].sas.tot;
+      this.store.spese[26][10] = this.store.data.user[26][10].sc.tot + this.store.data.user[26][10].ss.tot + this.store.data.user[26][10].sb.tot + this.store.data.user[26][10].sas.tot;
+      this.store.spese[26][11] = this.store.data.user[26][11].sc.tot + this.store.data.user[26][11].ss.tot + this.store.data.user[26][11].sb.tot + this.store.data.user[26][11].sas.tot;
+      this.store.spese[26][12] = this.store.data.user[26][12].sc.tot + this.store.data.user[26][12].ss.tot + this.store.data.user[26][12].sb.tot + this.store.data.user[26][12].sas.tot;
+
       this.store.totaleRisparmioMese[23] = parseInt(this.store.risparmi[23][1]) + parseInt(this.store.risparmi[23][2]) + parseInt(this.store.risparmi[23][3]) + parseInt(this.store.risparmi[23][4]) + parseInt(this.store.risparmi[23][5]) + parseInt(this.store.risparmi[23][6]) + parseInt(this.store.risparmi[23][7]) + parseInt(this.store.risparmi[23][8]) + parseInt(this.store.risparmi[23][9]) + parseInt(this.store.risparmi[23][10]) + parseInt(this.store.risparmi[23][11]) + parseInt(this.store.risparmi[23][12])
       this.store.totaleRisparmioMese[24] = parseInt(this.store.risparmi[24][1]) + parseInt(this.store.risparmi[24][2]) + parseInt(this.store.risparmi[24][3]) + parseInt(this.store.risparmi[24][4]) + parseInt(this.store.risparmi[24][5]) + parseInt(this.store.risparmi[24][6]) + parseInt(this.store.risparmi[24][7]) + parseInt(this.store.risparmi[24][8]) + parseInt(this.store.risparmi[24][9]) + parseInt(this.store.risparmi[24][10]) + parseInt(this.store.risparmi[24][11]) + parseInt(this.store.risparmi[24][12])
       this.store.totaleRisparmioMese[25] = parseInt(this.store.risparmi[25][1]) + parseInt(this.store.risparmi[25][2]) + parseInt(this.store.risparmi[25][3]) + parseInt(this.store.risparmi[25][4]) + parseInt(this.store.risparmi[25][5]) + parseInt(this.store.risparmi[25][6]) + parseInt(this.store.risparmi[25][7]) + parseInt(this.store.risparmi[25][8]) + parseInt(this.store.risparmi[25][9]) + parseInt(this.store.risparmi[25][10]) + parseInt(this.store.risparmi[25][11]) + parseInt(this.store.risparmi[25][12])
@@ -594,16 +647,57 @@ export default {
       </table>
     </div>
 
+
+
+    <!-- TABLE - small screen -->
+    <div class="_table-small">
+      <div class="mese-container">
+
+        <!-- //titoli -->
+        <div class="th-small">
+          <div class="_title lato _text-thirdary"><i class="fa-solid fa-arrow-trend-down"></i></div>
+          <span class="_title"><i class="fa-solid fa-calendar-days"></i></span>
+          <div class="_title lato _text-primary"><i class="fa-solid fa-arrow-trend-up"></i></div>
+        </div>
+
+        <div v-for="(mese, key) in this.store.data.user[this.store.anno]" :key="mese" class="_myrow" @click.stop="">
+          <!-- TITOLO E FONDAMENTALI -->
+
+          <div class="mese_inner_container">
+
+            <div class="risparmi_mese">
+              <span class=" _input-table _text-thirdary">{{ this.store.spese[this.store.anno][key].toFixed(2)
+              }}</span>
+              <span style="font-size:.5em">€</span>
+            </div>
+
+            <span class="mese-title">
+              {{ this.store.mesi[key - 1] }}
+            </span>
+
+            <div class="risparmi_mese">
+              <span class=" _input-table _text-primary">{{ this.store.risparmi[this.store.anno][key].toFixed(2)
+              }}</span>
+              <span style="font-size:.5em">€</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
     <div class="_bottom">
       <!-- TOTALI ANNUALI -->
       <div class="_totale d-flex justify-content-center w-100">
-        <span class="me-4 ">Entrate Annuali: <strong class="_text-secondary">{{
+        <span class="me-4 "><span>Entrate Annuali:</span> <strong class="_text-secondary">{{
           this.store.totaleEntrateAnnue[this.store.anno].toFixed(2) }}
             €</strong></span>
-        <span class="me-4 ">Spese Annuali: <strong class="_text-thirdary">{{
+        <span class="me-4 "><span>Spese Annuali:</span> <strong class="_text-thirdary">{{
           this.store.totaleSpeseMese[this.store.anno].toFixed(2) }}
             €</strong></span>
-        <span class="">Risparmi Annuali: <strong class="_text-primary">{{
+        <span class=""><span>Risparmi Annuali:</span> <strong class="_text-primary">{{
           this.store.totaleRisparmioMese[this.store.anno].toFixed(2)
         }}
             €</strong></span>
@@ -611,7 +705,7 @@ export default {
 
       <!-- BOTTON save reset -->
       <div class="mb-2">
-        <button class="btn _btn-outline-primary-darkness-hover  mx-4" @click.stop="save(), showModule()"><i
+        <button class="btn _btn-outline-primary-darkness-hover  me-4" @click.stop="save(), showModule()"><i
             style="font-size: .8em;" class="fa-regular fa-floppy-disk"></i> <span>Save</span></button>
         <button class="btn _btn-outline-thirdary-darkness-hover  " @click.stop=" this.store.viewModuleReset = true"><i
             style="font-size: .8em;" class="fa-solid fa-clock-rotate-left"></i> <span>Reset</span></button>
@@ -766,6 +860,247 @@ export default {
               opacity: 1;
               max-height: 1000px;
             }
+          }
+        }
+      }
+    }
+  }
+
+  ._table-small {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+
+  ._table-light {
+    thead {
+      tr {
+
+        th {
+          padding: .2em 0em;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: .2em 0em;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+
+  ._table-light {
+
+    thead {
+      tr {
+
+        th {
+          padding: .2em 0em;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+
+        td,
+        th {
+          padding: .4em 0em;
+          max-width: 70px;
+
+          ._detailsRow {
+            span {
+              width: auto !important;
+            }
+          }
+
+          ul {
+            li {
+              input.art_class {
+
+                display: block;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                min-width: 30px !important;
+              }
+
+              button._btn-delete {
+                margin-left: 5em !important;
+              }
+            }
+          }
+        }
+
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  ._main {
+    padding: 0;
+
+    .table-responsive {
+      display: none !important;
+    }
+
+    ._table-small {
+      display: block;
+      height: calc(100vh - 280px);
+      //border: 1px solid;
+      width: 100%;
+      overflow-y: scroll;
+
+      .mese-container {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100%;
+        gap: 0.3em;
+
+        .th-small,
+        .mese_inner_container {
+          display: flex;
+          gap: .2em;
+          width: 350px;
+          //border: 1px solid;
+          justify-content: center;
+          gap: .5em;
+
+          ._title.lato:hover,
+          ._title.lato {
+            min-width: 50px;
+            position: relative;
+
+            i {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translateX(-50%) translateY(-50%);
+            }
+
+          }
+
+          ._title,
+          ._title:hover,
+          .mese-title {
+            padding: .4em 2em;
+            background: #131313;
+            min-width: 200px;
+            text-align: center;
+            cursor: pointer;
+
+          }
+
+          .mese-title:hover {
+            background: rgb(81, 80, 80)
+          }
+
+          .risparmi_mese {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: .5em;
+            width: 50px;
+            font-size: .9em;
+          }
+        }
+      }
+    }
+
+    ._bottom {
+      height: 75px;
+      padding-bottom: .5em;
+
+      ._totale {
+        span {
+          font-size: .8em !important;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  ._main {
+    justify-content: space-between;
+
+    .table-responsive {
+      display: none !important;
+    }
+
+    ._table-small {
+      height: calc(100vh - 250px);
+
+      .mese-container {
+
+
+        .th-small,
+        .mese_inner_container {
+          display: flex;
+          gap: .2em;
+          width: 100%;
+          //border: 1px solid;
+          justify-content: center;
+          gap: .5em;
+
+          ._title.lato:hover,
+          ._title.lato {
+            width: 50px;
+            position: relative;
+
+            i {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translateX(-50%) translateY(-50%);
+            }
+
+          }
+
+          ._title,
+          ._title:hover,
+          .mese-title {
+            padding: .4em .5em;
+            background: #131313;
+            min-width: 100px;
+            text-align: center;
+            cursor: pointer;
+
+          }
+
+          .mese-title:hover {
+            background: rgb(81, 80, 80)
+          }
+
+          .risparmi_mese {
+
+            font-size: .8em;
+          }
+        }
+      }
+    }
+
+    ._bottom {
+
+      height: 75px;
+      padding-bottom: .5em;
+
+
+      ._totale {
+        span {
+          span {
+            display: none !important;
           }
         }
       }

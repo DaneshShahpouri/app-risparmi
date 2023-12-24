@@ -615,7 +615,7 @@ export default {
       top: 10px;
       opacity: 0;
       right: 20px;
-      background-color: darken($background, 0.5%);
+      background-color: rgb(16, 16, 16);
       width: 240px;
       padding: 0em 1em;
       border-radius: 10px;
@@ -1262,7 +1262,7 @@ export default {
             padding: 0.7em 3em;
             max-height: 200px;
             transition: all 1s;
-            background: $background;
+            background: rgba(11, 11, 11, 0.9);
             padding: 0.7em 7em;
             z-index: 200;
             display: flex;
@@ -1322,6 +1322,8 @@ export default {
     }
   }
 }
+
+
 
 @media only screen and (max-width: 520px) {
   ._app {
