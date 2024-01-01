@@ -86,7 +86,6 @@ export default {
 
     setAnno(anno) {
       this.store.anno = anno;
-
     },
 
     openNav() {
@@ -152,6 +151,7 @@ export default {
     VediLocalStorage()
 
 
+
     //Set DATE
     //------------------------------------------------------
     let date = new Date();
@@ -187,7 +187,7 @@ export default {
 
     <div class="_top">
       <!-- NAVBAR -->
-      <nav class="navbar d-flex justify-content-between navbar-expand-lg navbar logo">
+      <nav class="d-flex justify-content-between navbar-expand-lg navbar logo">
 
         <div class="navbar d-flex justify-content-between">
           <a class="navbar-brand" href="#">
@@ -223,8 +223,28 @@ export default {
 
         </div>
 
+        <div class="anno-slyder">
+
+          <button class="btn-left" @click="this.store.anno > 23 ? this.setAnno(this.store.anno - 1) : ''">
+            <i class="fa-solid fa-caret-left"></i>
+          </button>
+
+          <div class="_anno-wrapper">
+            <span v-if="this.store.anno == 23">2023</span>
+            <span v-if="this.store.anno == 24">2024</span>
+            <span v-if="this.store.anno == 25">2025</span>
+            <span v-if="this.store.anno == 26">2026</span>
+          </div>
+
+          <button class="btn-right"
+            @click="console.log(this.store.anno); this.store.anno < 26 ? this.setAnno(parseInt(this.store.anno) + 1) : ''">
+            <i class="fa-solid fa-caret-right"></i>
+          </button>
+
+        </div>
+
         <!-- INFO -->
-        <div class="_info-input" style="position:relative; position: relative; height: 40px; width: 80px;" @click.stop="">
+        <div class="_info-input" @click.stop="">
 
           <div class="_btn_wrapper" @click="changeVariables()"
             :class="this.showNavInfo ? '_border-primary _light-primary' : ''">
@@ -245,7 +265,7 @@ export default {
               <div class="mattina" :class="this.store.darkmode ? 'dis' : ''">
                 <img src="./assets/darkmode/mattina-sfondo.png" alt="">
                 <img src="./assets/darkmode/mattina-nuvole.png" alt="" class="_nuvole">
-                <img src="./assets/darkmode/mattina-montagne.png" alt="">
+                <img src="./assets/darkmode/mattina-montagne.png" alt="" style="filter: brightness(8.5);">
                 <!-- <img src="./assets/darkmode/mattina-1.png" alt="" style="transform: translateX(-50%) translateY(-58%);"> -->
               </div>
               <div class="sera" :class="this.store.darkmode ? '' : 'dis'">
@@ -309,18 +329,6 @@ export default {
           </div>
         </div>
       </nav>
-
-      <!-- ANNO -->
-      <div class="d-flex gap-1 container justify-content-around  _btn-container m-auto">
-        <button class="btn px-2 py-0 my-0" :class="this.store.anno == 23 ? '_btn-outline-primary-darkness' : ' _btn'"
-          @click="setAnno(23)">2023</button>
-        <button class="btn px-2 py-0 my-0" :class="this.store.anno == 24 ? '_btn-outline-primary-darkness' : ' _btn'"
-          @click="setAnno(24)">2024</button>
-        <button class="btn px-2 py-0 my-0" :class="this.store.anno == 25 ? '_btn-outline-primary-darkness' : ' _btn'"
-          @click="setAnno(25)">2025</button>
-        <button class="btn px-2 py-0 my-0" :class="this.store.anno == 26 ? '_btn-outline-primary-darkness' : ' _btn'"
-          @click="setAnno(26)">2026</button>
-      </div>
 
     </div>
 
@@ -425,13 +433,9 @@ export default {
   justify-content: start;
 
   ._top {
-    width: 100vw;
-    height: 130px;
-    //border: 1px solid red;
     padding: 1em 0em;
-
     width: 100vw;
-    height: 130px;
+    height: 80px;
     padding: 1em 0em;
     display: flex;
     gap: 1em;
@@ -472,6 +476,61 @@ export default {
           display: none;
         }
       }
+    }
+
+    ._info-input {
+      position: relative;
+      height: 40px;
+      width: 339px;
+    }
+
+    .anno-slyder {
+      display: flex;
+      align-items: center;
+
+
+      .btn-left,
+      .btn-right {
+        font-size: .8em;
+        background-color: transparent;
+        border: 1px solid darken($primary, 30%);
+        padding: 0.6em 1em;
+        color: $primary;
+        transition: all .5s;
+
+        &:hover {
+          background-color: darken($primary, 45%);
+        }
+
+        &:active {
+          background-color: darken($primary, 25%);
+          color: white;
+        }
+      }
+
+      .btn-left {
+        border-radius: 15px 0px 0px 15px;
+      }
+
+      .btn-right {
+        border-radius: 0px 15px 15px 0px;
+      }
+
+
+      ._anno-wrapper {
+        display: inline-block;
+        max-width: 60px;
+        overflow: hidden;
+        border-top: 1px solid darken($primary, 30%);
+        border-bottom: 1px solid darken($primary, 30%);
+
+        padding: .35em 0em;
+
+        span {
+          margin: 0em .6em;
+        }
+      }
+
     }
 
     .navbar-nav {
@@ -546,7 +605,7 @@ export default {
       cursor: pointer;
 
       position: absolute;
-      top: 0px;
+      top: 5px;
       right: 20px;
       bottom: -15px;
       z-index: 2;
@@ -636,11 +695,11 @@ export default {
       .bg-theme {
         position: absolute;
         top: -10%;
-        left: -4%;
-
-        width: 164px;
+        left: 50%;
+        width: 150px;
         height: 87px;
         overflow: hidden;
+        transform: translateX(-50%);
 
 
 
@@ -657,6 +716,7 @@ export default {
 
         ._nuvole {
           animation: 40s infinite linear nuvole;
+          opacity: .5;
         }
 
         .sera,
@@ -694,6 +754,7 @@ export default {
         cursor: pointer;
         margin-bottom: 1em;
         overflow: hidden;
+        opacity: 0;
 
 
 
@@ -784,8 +845,7 @@ export default {
   }
 
   ._main-pri {
-    height: calc(100vh - 130px);
-    //border: 1px solid blue;
+    height: calc(100vh - 80px);
 
     .carousel-inner {
       height: calc(100% - 1px)
@@ -1374,6 +1434,10 @@ export default {
 
     ._top {
 
+      ._info-input {
+
+        width: 80px;
+      }
 
       nav {
         .navbar {
@@ -1438,29 +1502,7 @@ export default {
               }
             }
 
-            ._info-input-small {
-              position: absolute;
-              top: 25px;
-              right: 2px;
-              display: block;
 
-              ._btn_wrapper {
-                border: 1px solid darken($primary, 30%);
-
-                .circle_fisso {
-                  border: 1px solid rgb(141, 141, 141);
-                }
-              }
-
-              ._module-btn {
-                background: #dadada;
-                color: black;
-
-                input {
-                  color: black;
-                }
-              }
-            }
 
             li {
               border-left: 1px solid $background;
@@ -1473,8 +1515,7 @@ export default {
             }
 
             li.active-link {
-              //border-left: 1px solid $primary;
-              //border-right: 1px solid $primary;
+
               width: 120px;
               text-align: center;
               border-radius: 25px;
@@ -1621,6 +1662,35 @@ export default {
         box-shadow: 0px 0px 6px #c2e7f0;
 
       }
+
+      .anno-slyder {
+
+
+
+        .btn-left,
+        .btn-right {
+
+          background-color: transparent;
+          border: 1px solid darken($primary-light, 10%);
+
+
+          &:hover {
+            background-color: darken($background-light, 10%);
+          }
+
+          &:active {
+            background-color: $primary-light;
+            color: white;
+          }
+        }
+
+        ._anno-wrapper {
+          border-top: 1px solid darken($primary-light, 10%);
+          border-bottom: 1px solid darken($primary-light, 10%);
+        }
+
+      }
+
 
     }
 
@@ -2477,11 +2547,11 @@ export default {
 
 @keyframes nuvole {
   0% {
-    transform: translateX(20%) translateY(-30%);
+    transform: translateX(40%) translateY(-35%);
   }
 
   100% {
-    transform: translateX(-131%) translateY(-30%);
+    transform: translateX(-110%) translateY(-35%);
   }
 }
 </style>

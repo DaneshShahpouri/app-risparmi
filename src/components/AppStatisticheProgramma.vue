@@ -65,7 +65,8 @@ export default {
 
             <!-- Nome SPESA FISSA -->
             <div class="nome_wrapper">
-              <div><button class="_btn-delete" @click="this.store.data.sp.splice(key, 1); save()">Delete</button>
+              <div>
+                <button class="_btn-delete" @click="this.store.data.sp.splice(key, 1); save()">Delete</button>
               </div>
               <input class="nome" type="text" v-model="el.n" @change.stop="save()">
             </div>
@@ -82,7 +83,7 @@ export default {
                   <option value="s">Stipendio</option>
                   <option value="sc">Affitto</option>
                   <option value="sb">Bollette</option>
-                  <option value="sa">Alimentari</option>
+                  <option value="ss">Alimentari</option>
                   <option value="sas">Altre Spese</option>
                 </select>
               </span>
@@ -162,11 +163,14 @@ export default {
           align-items: center;
           justify-content: center;
           flex-direction: column;
-          margin-bottom: .5em;
+          margin-bottom: .8em;
           padding: 0;
+          padding-bottom: .4em;
+          border-bottom: 1px solid darken($primary, 40%);
 
           .nome_wrapper {
             position: relative;
+            display: flex;
 
             input.nome {
               font-weight: 900;
@@ -228,7 +232,7 @@ export default {
           }
 
           ._btn-delete {
-            opacity: 0;
+            opacity: 1;
             padding: 0.1em;
             font-size: .7em;
             transition: all .5s;
@@ -237,9 +241,6 @@ export default {
             border: 1px solid $thirdary;
             background: transparent;
             color: $thirdary;
-            position: absolute;
-            left: -40px;
-            top: 2px;
           }
 
           &:hover {

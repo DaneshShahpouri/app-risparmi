@@ -2,6 +2,8 @@
 import { store } from '../store.js';
 import AppStatisticheMeseCorrente from './AppStatisticheMeseCorrente.vue'
 import AppStatisticheProgramma from './AppStatisticheProgramma.vue'
+import AppStatisticheScorsoMese from './AppStatisticheScorsoMese.vue'
+import AppStatisticheObiettivi from './AppStatisticheObiettivi.vue'
 
 export default {
   name: 'AppStatistiche',
@@ -36,6 +38,8 @@ export default {
   components: {
     AppStatisticheMeseCorrente,
     AppStatisticheProgramma,
+    AppStatisticheScorsoMese,
+    AppStatisticheObiettivi,
   },
 
   props: {
@@ -68,10 +72,14 @@ export default {
     </div>
 
     <!-- BOTTOM LEFT -->
-    <div class="degub _bottom-left"></div>
+    <div class="degub _bottom-left">
+      <AppStatisticheScorsoMese></AppStatisticheScorsoMese>
+    </div>
 
     <!-- BOTTOM RIGHT -->
-    <div class="degub _bottom-right"></div>
+    <div class="_bottom-right">
+      <AppStatisticheObiettivi></AppStatisticheObiettivi>
+    </div>
   </div>
 </template>
 
@@ -83,10 +91,9 @@ export default {
 }
 
 ._main {
-  height: calc(100vh - 131px);
+  height: calc(100vh - 80px);
   width: 95%;
   margin: 0 auto;
-  padding-top: 1em;
   overflow-y: auto;
 
   display: flex;
@@ -97,12 +104,13 @@ export default {
 
   ._top-left {
     width: 30%;
-    height: calc((100vh - 150px) / 12 * 8);
+    height: calc((100vh - 80px) / 12 * 8);
+    overflow: auto;
   }
 
   ._top-right {
     width: 70%;
-    height: calc((100vh - 150px) / 12 * 8);
+    height: calc((100vh - 80px) / 12 * 8);
     padding: .5em;
     display: flex;
     flex-direction: column;
@@ -110,17 +118,22 @@ export default {
     align-content: stretch;
     align-items: stretch;
     flex-wrap: nowrap;
+    overflow: auto;
 
   }
 
   ._bottom-left {
     width: 50%;
-    height: calc((100vh - 150px) / 12 * 4);
+    //PARAGRAFO NON VISIBILE MESE SCORSO
+    display: none;
+    height: calc((100vh - 80px) / 12 * 4);
+    overflow: auto;
   }
 
   ._bottom-right {
-    width: 50%;
-    height: calc((100vh - 150px) / 12 * 4);
+    width: 100%;
+    height: calc((100vh - 80px) / 12 * 4);
+    overflow: auto;
   }
 
 
@@ -161,7 +174,7 @@ export default {
 
     ._top-right {
       order: 1;
-      min-height: 700px;
+      min-height: 730px;
     }
 
   }

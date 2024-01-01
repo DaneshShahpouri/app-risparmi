@@ -652,7 +652,7 @@ export default {
         </tbody>
 
       </table>
-      
+
     </div>
 
 
@@ -949,7 +949,7 @@ export default {
 @use '../scss/variables' as *;
 
 ._main {
-  height: calc(100vh - 131px);
+  height: calc(100vh - 80px);
   width: 95%;
   margin: 0 auto;
   padding-top: 1em;

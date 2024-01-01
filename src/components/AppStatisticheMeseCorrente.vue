@@ -14,6 +14,7 @@ export default {
       questoMese: '',
       mesePassato: '',
       mesiPassati: [],
+      mesiPassatiIndex: [],
 
       speseAffittoDodiciMesi: [],
       speseBolletteDodiciMesi: [],
@@ -93,6 +94,14 @@ export default {
 
           this.stipendiDodiciMesi.push(this.store.data.user[anno][index].s.tot)
           this.mesiPassati.push(this.store.mesi[mesiindex] + ' 20' + anno)
+          if (mesiindex < 10) {
+
+            this.mesiPassatiIndex.push('20' + anno + '-0' + (mesiindex + 1))
+          } else {
+
+            this.mesiPassatiIndex.push('20' + anno + '-' + (mesiindex + 1))
+          }
+
           this.speseAffittoDodiciMesi.push(this.store.data.user[anno][index].sc.tot)
           this.speseBolletteDodiciMesi.push(this.store.data.user[anno][index].sb.tot)
           this.speseAlimentariDodiciMesi.push(this.store.data.user[anno][index].ss.tot)
@@ -138,7 +147,6 @@ export default {
       this.mediaBollette = this.mediaBollette / contatore
       this.mediaAlimentari = this.mediaAlimentari / contatore
       this.mediaAltreSpese = this.mediaAltreSpese / contatore
-
 
       this.setPercentuali()
     },
@@ -196,22 +204,43 @@ export default {
     },
 
     setMeseIndexUpDown(string) {
+      let mese = '';
+
+      if ((this.questoMeseIndex + 1) < 10) {
+        mese = '0' + (this.questoMeseIndex + 1)
+      } else {
+        mese = (this.questoMeseIndex + 1)
+      }
+      let data = '20' + this.anno + '-' + mese;
+
       if (string == 'up') {
 
-        if (this.questoMeseIndex == 11) {
-          this.questoMeseIndex == 0
-        } else {
-          this.questoMeseIndex++;
+        if (data < this.mesiPassatiIndex[0]) {
+
+          if (this.questoMeseIndex == 11) {
+            this.questoMeseIndex = 0
+            if (this.anno < this.store.currentYear.toString().substring(2, 4)) {
+              this.anno++
+            }
+          } else {
+            this.questoMeseIndex++;
+          }
         }
 
       } else {
 
-        if (this.questoMeseIndex == 0) {
-          this.questoMeseIndex == 11
-        } else {
-          this.questoMeseIndex--;
+        if (data > this.mesiPassatiIndex[this.mesiPassatiIndex.length - 1]) {
+          if (this.questoMeseIndex == 0) {
+            this.questoMeseIndex = 11
+            if (this.anno == this.store.currentYear.toString().substring(2, 4)) {
+              this.anno--
+            }
+          } else {
+            this.questoMeseIndex--;
+          }
         }
       }
+
     },
 
     changeMensilita(up = false) {
@@ -325,14 +354,12 @@ export default {
   },
 
   mounted() {
-
     this.setDodiciMesi();
     this.clock();
 
 
     this.questoMese = this.store.data.user[this.store.currentYear.toString().substring(2, 4)][this.store.currentMonth]
     this.mesePassato = this.store.data.user[this.store.currentYear.toString().substring(2, 4)][this.store.currentMonth]
-
   },
 }
 </script>

@@ -468,7 +468,7 @@ export default {
 .graph-container {
   display: flex;
   flex-direction: column;
-  height: 70vh;
+  height: calc(90vh - 80px);
 
   align-content: center;
   justify-content: space-between;

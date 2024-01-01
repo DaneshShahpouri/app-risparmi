@@ -62,7 +62,7 @@ export default {
 @use '../scss/variables' as *;
 
 ._main {
-  height: 80vh;
+  height: calc(100vh - 80px);
   width: 90%;
   margin: 0 auto;
   overflow-y: auto;
@@ -75,8 +75,8 @@ export default {
   justify-content: center;
 
   ._graph-container {
-    height: 90%;
-    width: 90%;
+    height: 100%;
+    width: 100%;
   }
 }
 </style>
