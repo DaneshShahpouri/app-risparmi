@@ -1,7 +1,7 @@
 import { reactive } from 'vue';
 //console.log(localStorage)
 export const store = reactive({
-
+    darkmode: true,
     //routing
     //----------------------------------------------
     pages: ['home', 'graph', 'stat'],

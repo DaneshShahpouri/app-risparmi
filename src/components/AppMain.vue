@@ -52,7 +52,8 @@ export default {
     },
     //visualizza la riga al click
     allowRow(index) {
-      let elements = document.getElementsByClassName('_myrow')
+      let elements = document.querySelectorAll('tr._myrow')
+
 
       for (let element of elements) {
         if (element.classList.contains('view')) {
@@ -64,6 +65,20 @@ export default {
 
       elements[index].classList.toggle("view");
     },
+    allowRowSmall(index) {
+      let elements = document.querySelectorAll('div._myrow')
+
+
+      for (let element of elements) {
+        if (element.classList.contains('view')) {
+          if (element != elements[index]) {
+            element.classList.remove('view');
+          }
+        }
+      }
+      elements[index].classList.toggle("view");
+
+    },
     closeRow() {
       let elements = document.getElementsByClassName('_myrow')
 
@@ -72,6 +87,7 @@ export default {
           element.classList.remove('view');
         }
       }
+
     },
     //Aggiungi una spesa
     createEl(mese, dato, nuovorecord, nuovoprezzo) {
@@ -398,7 +414,7 @@ export default {
 </script>
 
 <template>
-  <div class="_main" style="background:rgb(11, 11, 11)" @click="closeRow()">
+  <div class="_main" @click="closeRow()" :class="this.store.darkmode ? '' : 'light'">
 
     <!-- TABLE -->
     <div class="table-responsive _tabella-wrapper d-flex align-items-center justify-content-center">
@@ -457,7 +473,7 @@ export default {
                 <!-- Aggiungi record -->
                 <span style="text-align:center; border-top:1px solid white; width:132px" v-else>Nessun prodotto</span>
                 <div class="d-flex justify-content-center">
-                  <button class="btn btn-outline-light"
+                  <button class="btn" :class="this.store.darkmode ? 'btn-outline-light' : 'btn-outline-dark'"
                     style=" margin-top: .2em; font-size: 1.2em; padding: 0em .4em; margin-top: 0.2em; border-radius: 50%;"
                     @click.stop="prop(), createEl(key, 's', 'prod', 0), calcVoci('s', key), calcRisparmio()">+</button>
 
@@ -492,19 +508,17 @@ export default {
                       <i class="fa-regular fa-trash-can"></i>
                     </button>
                   </li>
-
                 </ul>
 
                 <!-- Aggiungi record -->
                 <span style="text-align:center; border-top:1px solid white; width:132px" v-else>Nessun prodotto</span>
                 <div class="d-flex justify-content-center">
-                  <button class="btn btn-outline-light"
+                  <button class="btn" :class="this.store.darkmode ? 'btn-outline-light' : 'btn-outline-dark'"
                     style=" margin-top: .2em; font-size: 1.2em; padding: 0em .4em; margin-top: 0.2em; border-radius: 50%;"
                     @click.stop=" createEl(key, 'sb', 'prod', 0)">+</button>
 
                 </div>
               </div>
-
             </td>
 
             <!-- spese affitto -->
@@ -533,19 +547,17 @@ export default {
                       <i class="fa-regular fa-trash-can"></i>
                     </button>
                   </li>
-
                 </ul>
 
                 <!-- Aggiungi record -->
                 <span style="text-align:center; border-top:1px solid white; width:132px" v-else>Nessun prodotto</span>
                 <div class="d-flex justify-content-center">
-                  <button class="btn btn-outline-light"
+                  <button class="btn" :class="this.store.darkmode ? 'btn-outline-light' : 'btn-outline-dark'"
                     style=" margin-top: .2em; font-size: 1.2em; padding: 0em .4em; margin-top: 0.2em; border-radius: 50%;"
                     @click.stop=" createEl(key, 'sc', 'prod', 0)">+</button>
 
                 </div>
               </div>
-
             </td>
 
             <!-- spese alimentari -->
@@ -574,19 +586,17 @@ export default {
                       <i class="fa-regular fa-trash-can"></i>
                     </button>
                   </li>
-
                 </ul>
 
                 <!-- Aggiungi record -->
                 <span style="text-align:center; border-top:1px solid white; width:132px" v-else>Nessun prodotto</span>
                 <div class="d-flex justify-content-center">
-                  <button class="btn btn-outline-light"
+                  <button class="btn" :class="this.store.darkmode ? 'btn-outline-light' : 'btn-outline-dark'"
                     style=" margin-top: .2em; font-size: 1.2em; padding: 0em .4em; margin-top: 0.2em; border-radius: 50%;"
                     @click.stop=" createEl(key, 'ss', 'prod', 0)">+</button>
 
                 </div>
               </div>
-
             </td>
 
             <!-- altre spese-->
@@ -615,19 +625,17 @@ export default {
                       <i class="fa-regular fa-trash-can"></i>
                     </button>
                   </li>
-
                 </ul>
 
                 <!-- Aggiungi record -->
                 <span style="text-align:center; border-top:1px solid white; width:132px" v-else>Nessun prodotto</span>
                 <div class="d-flex justify-content-center">
-                  <button class="btn btn-outline-light"
+                  <button class="btn" :class="this.store.darkmode ? 'btn-outline-light' : 'btn-outline-dark'"
                     style=" margin-top: .2em; font-size: 1.2em; padding: 0em .4em; margin-top: 0.2em; border-radius: 50%;"
                     @click.stop=" createEl(key, 'sas', 'prod', 0)">+</button>
 
                 </div>
               </div>
-
             </td>
 
             <!-- risparmi -->
@@ -639,12 +647,12 @@ export default {
                 <span style="font-size:.5em">€</span>
               </div>
             </td>
-
-
           </tr>
+
         </tbody>
 
       </table>
+      
     </div>
 
 
@@ -660,9 +668,8 @@ export default {
           <div class="_title lato _text-primary"><i class="fa-solid fa-arrow-trend-up"></i></div>
         </div>
 
-        <div v-for="(mese, key) in this.store.data.user[this.store.anno]" :key="mese" class="_myrow" @click.stop="">
+        <div v-for="(mese, key) in this.store.data.user[this.store.anno]" :key="mese" class="_myrow">
           <!-- TITOLO E FONDAMENTALI -->
-
           <div class="mese_inner_container">
 
             <div class="risparmi_mese">
@@ -671,7 +678,7 @@ export default {
               <span style="font-size:.5em">€</span>
             </div>
 
-            <span class="mese-title">
+            <span class="mese-title" @click.stop="allowRowSmall(key - 1)">
               {{ this.store.mesi[key - 1] }}
             </span>
 
@@ -682,7 +689,230 @@ export default {
             </div>
 
           </div>
+
+          <div class="_info-wrapper">
+
+            <div>
+              <div class="d-flex align-items-center justify-content-center gap-1" style="cursor:pointer">
+                <span>Stipendio</span>
+                <span class=" _input-table _text-secondary">{{ mese.s.tot.toFixed(2) }}</span>
+                <span style="font-size:.5em">€</span>
+              </div>
+
+              <!-- dettaglio stipendio -->
+              <div class="_detailsRow">
+                <ul v-if="Object.keys(mese.s.mag.art).length > 0">
+                  <li v-for="(articolo, index) in mese.s.mag.art" :key="index">
+                    <input type="text" v-model="this.store.data.user[this.store.anno][key].s.mag.art[index]"
+                      @click.stop="" class="art_class">
+                    <span class="_sepa"> : </span>
+                    <input type="num" v-model="this.store.data.user[this.store.anno][key].s.mag.pre[index]" @click.stop=""
+                      class="pre_class" @change="calcVoci('s', key), calcRisparmio()">
+                    <span class="_euro">€</span>
+
+                    <!-- Cancella record -->
+                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
+                      @click.stop="deleteEl(key, 's', index), calcVoci('s', key), calcRisparmio()">
+                      <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                  </li>
+
+                </ul>
+
+                <!-- Aggiungi record -->
+                <span style="text-align:center; border-top:1px solid white; width:132px" v-else>Nessun prodotto</span>
+                <div class="d-flex justify-content-center">
+                  <button class="btn" :class="this.store.darkmode ? 'btn-outline-light' : 'btn-outline-dark'"
+                    style=" margin-top: .2em; font-size: 1.2em; padding: 0em .4em; margin-top: 0.2em; border-radius: 50%;"
+                    @click.stop="prop(), createEl(key, 's', 'prod', 0), calcVoci('s', key), calcRisparmio()">+</button>
+
+                </div>
+              </div>
+
+            </div>
+
+
+            <!-- bollette -->
+            <div>
+              <div class="d-flex align-items-center justify-content-center gap-1" style="cursor:pointer">
+                <span>Bollette</span>
+                <span class=" _input-table">{{ mese.sb.tot.toFixed(2) }}</span>
+                <span style="font-size:.5em">€</span>
+              </div>
+
+              <!-- dettaglio bollette -->
+              <div class="_detailsRow">
+                <ul v-if="Object.keys(mese.sb.mag.art).length > 0">
+                  <li v-for="(articolo, index) in mese.sb.mag.art" :key="index">
+                    <input type="text" v-model="this.store.data.user[this.store.anno][key].sb.mag.art[index]"
+                      @click.stop="() => { this.prop() }" class="art_class">
+                    <span class="_sepa"> : </span>
+                    <input type="num" v-model="this.store.data.user[this.store.anno][key].sb.mag.pre[index]"
+                      @click.stop="() => { this.prop() }" class="pre_class"
+                      @change="calcVoci('sb', key), calcRisparmio()">
+                    <span class="_euro">€</span>
+
+                    <!-- Cancella record -->
+                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
+                      @click.stop="deleteEl(key, 'sb', index), calcVoci('sb', key), calcRisparmio()">
+                      <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                  </li>
+
+                </ul>
+
+                <!-- Aggiungi record -->
+                <span style="text-align:center; border-top:1px solid white; width:132px" v-else>Nessun prodotto</span>
+                <div class="d-flex justify-content-center">
+                  <button class="btn" :class="this.store.darkmode ? 'btn-outline-light' : 'btn-outline-dark'"
+                    style=" margin-top: .2em; font-size: 1.2em; padding: 0em .4em; margin-top: 0.2em; border-radius: 50%;"
+                    @click.stop=" createEl(key, 'sb', 'prod', 0)">+</button>
+
+                </div>
+              </div>
+
+            </div>
+
+
+            <!-- spese affitto -->
+            <div>
+              <div class="d-flex align-items-center justify-content-center gap-1" style="cursor:pointer">
+                <span>Affitto</span>
+                <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.sc.tot.toFixed(2) }}</span>
+                <span style="font-size:.5em">€</span>
+              </div>
+
+              <!-- dettaglio stipendio -->
+              <div class="_detailsRow">
+                <ul v-if="Object.keys(mese.sc.mag.art).length > 0">
+                  <li v-for="(articolo, index) in mese.sc.mag.art" :key="index">
+                    <input type="text" v-model="this.store.data.user[this.store.anno][key].sc.mag.art[index]"
+                      @click.stop="() => { this.prop() }" class="art_class">
+                    <span class="_sepa"> : </span>
+                    <input type="num" v-model="this.store.data.user[this.store.anno][key].sc.mag.pre[index]"
+                      @click.stop="() => { this.prop() }" class="pre_class"
+                      @change="calcVoci('sc', key), calcRisparmio()">
+                    <span class="_euro">€</span>
+
+                    <!-- Cancella record -->
+                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
+                      @click.stop="deleteEl(key, 'sc', index), calcVoci('sc', key), calcRisparmio()">
+                      <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                  </li>
+
+                </ul>
+
+                <!-- Aggiungi record -->
+                <span style="text-align:center; border-top:1px solid white; width:132px" v-else>Nessun prodotto</span>
+                <div class="d-flex justify-content-center">
+                  <button class="btn" :class="this.store.darkmode ? 'btn-outline-light' : 'btn-outline-dark'"
+                    style=" margin-top: .2em; font-size: 1.2em; padding: 0em .4em; margin-top: 0.2em; border-radius: 50%;"
+                    @click.stop=" createEl(key, 'sc', 'prod', 0)">+</button>
+
+                </div>
+              </div>
+
+            </div>
+
+            <!-- spese alimentari -->
+            <div>
+              <div class="d-flex align-items-center justify-content-center gap-1" style="cursor:pointer">
+                <span>Alimentari</span>
+                <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.ss.tot.toFixed(2) }}</span>
+                <span style="font-size:.5em">€</span>
+              </div>
+
+              <!-- dettaglio alimenti -->
+              <div class="_detailsRow">
+                <ul v-if="Object.keys(mese.ss.mag.art).length > 0">
+                  <li v-for="(articolo, index) in mese.ss.mag.art" :key="index">
+                    <input type="text" v-model="this.store.data.user[this.store.anno][key].ss.mag.art[index]"
+                      @click.stop="() => { this.prop() }" class="art_class">
+                    <span class="_sepa"> : </span>
+                    <input type="num" v-model="this.store.data.user[this.store.anno][key].ss.mag.pre[index]"
+                      @click.stop="() => { this.prop() }" class="pre_class"
+                      @change="calcVoci('ss', key), calcRisparmio()">
+                    <span class="_euro">€</span>
+
+                    <!-- Cancella record -->
+                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
+                      @click.stop="deleteEl(key, 'ss', index), calcVoci('ss', key), calcRisparmio()">
+                      <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                  </li>
+
+                </ul>
+
+                <!-- Aggiungi record -->
+                <span style="text-align:center; border-top:1px solid white; width:132px" v-else>Nessun prodotto</span>
+                <div class="d-flex justify-content-center">
+                  <button class="btn" :class="this.store.darkmode ? 'btn-outline-light' : 'btn-outline-dark'"
+                    style=" margin-top: .2em; font-size: 1.2em; padding: 0em .4em; margin-top: 0.2em; border-radius: 50%;"
+                    @click.stop=" createEl(key, 'ss', 'prod', 0)">+</button>
+
+                </div>
+              </div>
+
+            </div>
+
+            <!-- altre spese-->
+            <div>
+              <div class="d-flex align-items-center justify-content-center gap-1" style="cursor:pointer">
+                <span>Altre Spese</span>
+                <span @change="this.calcRisparmio()" class=" _input-table">{{ mese.sas.tot.toFixed(2) }}</span>
+                <span style="font-size:.5em">€</span>
+              </div>
+
+              <!-- dettaglio altre spese -->
+              <div class="_detailsRow">
+                <ul v-if="Object.keys(mese.sas.mag.art).length > 0">
+                  <li v-for="(articolo, index) in mese.sas.mag.art" :key="index">
+                    <input type="text" v-model="this.store.data.user[this.store.anno][key].sas.mag.art[index]"
+                      @click.stop="() => { this.prop() }" class="art_class">
+                    <span class="_sepa"> : </span>
+                    <input type="num" v-model="this.store.data.user[this.store.anno][key].sas.mag.pre[index]"
+                      @click.stop="() => { this.prop() }" class="pre_class"
+                      @change="calcVoci('sas', key), calcRisparmio()">
+                    <span class="_euro">€</span>
+
+                    <!-- Cancella record -->
+                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
+                      @click.stop="deleteEl(key, 'sas', index), calcVoci('sas', key), calcRisparmio()">
+                      <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                  </li>
+
+                </ul>
+
+                <!-- Aggiungi record -->
+                <span style="text-align:center; border-top:1px solid white; width:132px" v-else>Nessun prodotto</span>
+                <div class="d-flex justify-content-center">
+                  <button class="btn" :class="this.store.darkmode ? 'btn-outline-light' : 'btn-outline-dark'"
+                    style=" margin-top: .2em; font-size: 1.2em; padding: 0em .4em; margin-top: 0.2em; border-radius: 50%;"
+                    @click.stop=" createEl(key, 'sas', 'prod', 0)">+</button>
+
+                </div>
+              </div>
+
+            </div>
+
+            <!-- risparmi -->
+            <div>
+              <div class="d-flex align-items-center justify-content-center gap-1" style="cursor:pointer">
+                <span>Risparmi</span>
+                <span class=" _input-table _text-primary">{{ this.store.risparmi[this.store.anno][key].toFixed(2)
+                }}</span>
+                <span style="font-size:.5em">€</span>
+              </div>
+            </div>
+
+
+
+          </div>
+
         </div>
+
       </div>
     </div>
 
@@ -993,8 +1223,8 @@ export default {
           ._title,
           ._title:hover,
           .mese-title {
-            padding: .4em 2em;
-            background: #131313;
+            padding: .4em 0em;
+            background: lighten($background, 5%);
             min-width: 200px;
             text-align: center;
             cursor: pointer;
@@ -1002,7 +1232,7 @@ export default {
           }
 
           .mese-title:hover {
-            background: rgb(81, 80, 80)
+            background: lighten($background, 25%);
           }
 
           .risparmi_mese {
@@ -1013,6 +1243,61 @@ export default {
             width: 50px;
             font-size: .9em;
           }
+        }
+
+        //PANNELLO VIEW
+        ._myrow {
+          ._info-wrapper {
+            overflow: hidden;
+            max-height: 0px;
+            padding: 0;
+            transition: all .6s;
+
+            ._detailsRow {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: .6em;
+              flex-direction: column;
+              border-bottom: 1px solid darken($primary, 30%);
+              padding-bottom: 1.2em;
+              margin-bottom: 1em;
+
+              ul {
+                padding: .2em;
+                margin: 0;
+
+                li {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  gap: .4em;
+
+                  input {
+                    width: 30%;
+                    background: transparent;
+                    border: 1px solid darken($primary, 30%);
+                    border-radius: 8px;
+                    padding: 0em .2em;
+                    text-align: end;
+                  }
+
+                  ._btn-delete {
+                    margin-left: .4em;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        ._myrow.view {
+          ._info-wrapper {
+            max-height: 250px;
+            padding: 0.5em;
+            overflow-y: scroll;
+          }
+
         }
       }
     }
@@ -1026,6 +1311,33 @@ export default {
           font-size: .8em !important;
           text-align: center;
         }
+      }
+    }
+  }
+}
+
+._main.light {
+
+  ._table-small {
+
+
+    .mese-container {
+
+
+      .th-small,
+      .mese_inner_container {
+
+        ._title,
+        ._title:hover,
+        .mese-title {
+          background: lighten($background-light, 5%);
+
+        }
+
+        .mese-title:hover {
+          background: lighten($background-light, 25%);
+        }
+
       }
     }
   }
@@ -1071,7 +1383,7 @@ export default {
           ._title,
           ._title:hover,
           .mese-title {
-            padding: .4em .5em;
+            padding: .4em 0em;
             background: #131313;
             min-width: 100px;
             text-align: center;
@@ -1106,5 +1418,245 @@ export default {
       }
     }
   }
+}
+
+._main.light {
+  ._tabella-wrapper table tbody ._myrow td ._detailsRow ._btn-delete i {
+    color: black;
+  }
+
+  ._tabella-wrapper table tbody ._myrow td ul {
+    border-top: 1px solid black;
+  }
+
+  ._table-small .mese-container ._myrow ._info-wrapper ._detailsRow ul li input {
+    color: rgb(77, 75, 75);
+  }
+
+  ._text-primary {
+    color: $primary-light !important;
+  }
+
+  ._text-secondary {
+    color: $secondary-light !important;
+  }
+
+  ._btn-outline-primary-darkness-hover {
+    border: 1px solid darken($primary-light, 15%);
+    padding: .3em 1em !important;
+    border-radius: 20px !important;
+    border: 1px solid $primary-light;
+    color: $primary-light;
+    background-color: transparent;
+    box-shadow: 0px 0px 8px #05b0d742;
+    text-shadow: 0px 0px 8px white;
+    transition: all 1s;
+
+    &:hover {
+      border: 1px solid $primary-light;
+      color: $primary-light;
+      background-color: darken($primary-light, 5%);
+      box-shadow: 0px 0px 8px #05b0d742;
+    }
+
+    &:active {
+      border: 1px solid lighten($primary-light, 15%);
+      border-color: darken($primary-light, 15%) !important;
+      color: $primary-light;
+      background-color: lighten($primary-light, 15%);
+    }
+  }
+
+  ._btn-outline-secondary-darkness-hover {
+    border: 1px solid darken($secondary-light, 15%);
+    padding: .3em 1em !important;
+    border-radius: 20px !important;
+    border: 1px solid $secondary-light;
+    color: white;
+    background-color: darken($secondary-light, 25%);
+    box-shadow: 0px 0px 8px lighten($secondary-light, 10%);
+    text-shadow: 0px 0px 8px white;
+    transition: all 1s;
+
+    &:hover {
+      border: 1px solid $secondary-light;
+      color: white;
+      background-color: darken($secondary-light, 5%);
+      box-shadow: 0px 0px 8px lighten($secondary-light, 10%);
+    }
+
+    &:active {
+      border: 1px solid lighten($secondary-light, 15%);
+      border-color: darken($secondary-light, 15%) !important;
+      color: white;
+      background-color: lighten($secondary-light, 15%);
+    }
+  }
+
+  ._btn-outline-thirdary-darkness-hover {
+    border: 1px solid darken($thirdary-light, 15%);
+    padding: .3em 1em !important;
+    border-radius: 20px !important;
+    border: 1px solid $thirdary-light;
+    color: $thirdary-light;
+    background-color: transparent;
+    box-shadow: 0px 0px 8px #ad001142;
+    text-shadow: 0px 0px 8px white;
+    transition: all 1s;
+
+    &:hover {
+      border: 1px solid $thirdary-light;
+      color: $thirdary-light;
+      background-color: transparent;
+      box-shadow: 0px 0px 8px #ad001142;
+    }
+
+    &:active {
+      border: 1px solid lighten($thirdary-light, 15%);
+      border-color: darken($thirdary-light, 15%) !important;
+      color: $thirdary-light;
+      background-color: lighten($thirdary-light, 15%);
+    }
+  }
+
+  ._btn-outline-success-darkness-hover {
+    border: 1px solid darken($success, 15%);
+    padding: .3em 1em !important;
+    border-radius: 20px !important;
+    border: 1px solid $success;
+    color: white;
+    background-color: darken($success, 25%);
+    box-shadow: 0px 0px 8px lighten($success, 10%);
+    text-shadow: 0px 0px 8px white;
+    transition: all 1s;
+
+    &:hover {
+      border: 1px solid $success;
+      color: white;
+      background-color: darken($success, 5%);
+      box-shadow: 0px 0px 8px lighten($success, 10%);
+    }
+
+    &:active {
+      border: 1px solid lighten($success, 15%);
+      border-color: darken($success, 15%) !important;
+      color: white;
+      background-color: lighten($success, 15%);
+    }
+  }
+
+  //TABLE
+  //----------------------------------------------------------------------
+  ._table-light {
+    background-color: $background-light;
+    width: 90%;
+
+    thead {
+      background-color: darken($background-light, 1%);
+
+      tr {
+        background-color: transparent;
+        transition: all .3s;
+
+        &:hover {
+          background-color: lighten($background-light, 3%);
+        }
+
+
+        th {
+          padding: .6em;
+          vertical-align: top;
+          font-size: .9em;
+          text-align: center;
+        }
+      }
+    }
+
+    tbody {
+
+      th {
+        padding: .6em;
+        vertical-align: top;
+        font-size: .9em;
+        text-align: start;
+        background-color: darken($background-light, 3%);
+        color: darken(rgb(244, 244, 244), 30%);
+        transition: all .3s;
+        cursor: pointer;
+
+        &:hover {
+          color: rgb(95, 95, 95);
+          background-color: lighten($background-light, 10%);
+
+        }
+      }
+
+      tr {
+        background-color: transparent;
+        transition: all .5s;
+
+
+        &:nth-child(odd) {
+          background-color: #f3f3f3;
+        }
+
+        &:hover {
+          background-color: darken($background-light, 5%);
+        }
+
+
+        td {
+          padding: .6em;
+          vertical-align: top;
+          font-size: .85em;
+          text-align: center;
+          border: 1px solid #dddddd;
+
+
+          input {
+            background-color: transparent;
+            border: none;
+            font-size: 1em;
+            border: 1px solid transparent;
+            transition: all .4s;
+            border-radius: 4px;
+            padding: .2em;
+            color: black;
+
+            &:hover {
+              border: 1px solid grey;
+            }
+          }
+
+          input[type=num] {
+            color: $primary-light;
+            text-align: right;
+          }
+
+        }
+      }
+    }
+  }
+
+  //BARRA DI SCORRIMENTO
+  //CHORME
+  /* Barra di scorrimento orizzontale */
+
+  ::-webkit-scrollbar-thumb:horizontal,
+  ::-webkit-scrollbar-thumb {
+    background-color: lighten($primary-light, 65%);
+    border: 1px solid $primary-light;
+    /* Colore del pulsante di scorrimento */
+    border-radius: 6px;
+    /* Bordo arrotondato del pulsante di scorrimento */
+  }
+
+  ::-webkit-scrollbar-track:horizontal,
+  ::-webkit-scrollbar-track {
+    background-color: $background-light;
+    //border: 1px solid darken($primary, 35%);
+    /* Colore di sfondo della barra di scorrimento */
+  }
+
 }
 </style>

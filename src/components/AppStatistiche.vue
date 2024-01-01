@@ -56,7 +56,7 @@ export default {
 </script>
 
 <template>
-  <div class="_main">
+  <div class="_main" :class="this.store.darkmode ? '' : 'light'">
     <!-- TOP LEFT -->
     <div class="_top-left">
       <AppStatisticheProgramma></AppStatisticheProgramma>
@@ -126,8 +126,6 @@ export default {
 
 }
 
-
-
 // ANIMATION
 @keyframes uparrow {
   0% {
@@ -168,5 +166,34 @@ export default {
 
   }
 
+}
+
+.light {
+
+  ._btn-outline-primary-darkness-hover {
+    border: 1px solid darken($primary-light, 15%);
+    padding: .3em 1em !important;
+    border-radius: 20px !important;
+    border: 1px solid $primary-light;
+    color: $primary-light;
+    background-color: transparent;
+    box-shadow: 0px 0px 8px #05b0d742;
+    text-shadow: 0px 0px 8px white;
+    transition: all 1s;
+
+    &:hover {
+      border: 1px solid $primary-light;
+      color: $primary-light;
+      background-color: darken($primary-light, 5%);
+      box-shadow: 0px 0px 8px #05b0d742;
+    }
+
+    &:active {
+      border: 1px solid lighten($primary-light, 15%);
+      border-color: darken($primary-light, 15%) !important;
+      color: $primary-light;
+      background-color: lighten($primary-light, 15%);
+    }
+  }
 }
 </style>

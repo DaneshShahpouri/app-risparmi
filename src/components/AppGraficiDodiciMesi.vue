@@ -12,12 +12,12 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 
 export default {
-  name: 'AppGraficiSpese',
+  name: 'AppGraficiDodiciMesi',
 
   data() {
     return {
       chartData: {
-        labels: ["Spese Totali", "Affitto", "Bollette", "Spesa Alimentari", "Altre spese"],
+        labels: ["Spese Totali", "Affitto", "Bollette", "Spesa Alimentari", "Altre spese", "Risparmi"],
         datasets: [
           {
             label: "Spese Totali",
@@ -25,8 +25,6 @@ export default {
 
             backgroundColor: 'rgba(161, 22, 32,.7)',
             borderColor: 'rgba(161, 22, 32, 1)',
-
-            //pointStyle: 'rectRot',
             backgroundShadowColor: 'rgba(161, 22, 32, 1)',
 
             data: [],
@@ -83,6 +81,17 @@ export default {
             backgroundShadowColor: 'rgb(32, 191, 169)',
             data: [],
           },
+          {
+            label: "Risparmi",
+            type: 'line',
+
+            backgroundColor: 'rgba(69, 217, 15,.7)',
+            borderColor: 'rgba(69, 217, 15, 1)',
+
+            //pointStyle: 'rectRot',
+            backgroundShadowColor: 'rgba(69, 217, 15, 1)',
+            data: [],
+          },
         ],
 
 
@@ -130,13 +139,13 @@ export default {
 
       store,
 
-      anno: 23,
       spesePerMese: [],
       affitto: [],
       bollette: [],
       alimentari: [],
       altreSpese: [],
       risparmiPerMese: [],
+      risparmi: [],
 
       //variabili dispaly CHARTJS
       displaySpesePerMese: 1,
@@ -144,6 +153,7 @@ export default {
       displayBollette: 3,
       displayAlimentari: 4,
       displayAltreSpese: 5,
+      displayRisparmi: 6,
       displayType: 'line',
       displayLineWight: 0.5,
 
@@ -168,24 +178,25 @@ export default {
 
   methods: {
 
-    createGrap(type = this.displayType, borderWidth = this.displayLineWight, array = [this.displaySpesePerMese, this.displayAffitto, this.displayBollette, this.displayAlimentari, this.displayAltreSpese]) {
-      //console.log(Object.keys(this.store.data.user[this.store.anno][1]))
-      //console.log('createChart')
-      //console.log(type)
-      //this.chartData.labels = Object.keys(this.store.data.user[this.store.anno])
-      this.chartData.labels = this.store.mesi
-
-
+    createGrap(type = this.displayType, borderWidth = this.displayLineWight, array = [this.displaySpesePerMese, this.displayAffitto, this.displayBollette, this.displayAlimentari, this.displayAltreSpese, this.displayRisparmi]) {
+      let mesiindex = this.store.currentMonth
       //Array temporanei
       this.spesePerMese = []
       this.affitto = []
       this.bollette = []
       this.alimentari = []
       this.altreSpese = []
+      this.risparmi = []
 
-      for (const mese in this.store.data.user[this.store.anno]) {
-        let mesecorrente = this.store.data.user[this.store.anno][mese];
+      let index = this.store.currentMonth + 1
+      let anno = this.store.currentYear.toString().substring(2, 4)
+      let labels = []
 
+
+      for (let i = 12; i > 0; i--) {
+        labels.push(this.store.mesi[mesiindex] + ' - 20' + anno)
+
+        let mesecorrente = this.store.data.user[anno][index];
 
         if (mesecorrente.s.tot != 0 || mesecorrente.sb.tot != 0 || mesecorrente.sc.tot != 0 || mesecorrente.ss.tot != 0 || mesecorrente.sas.tot != 0) {
           let spesePerMeseArray = (parseFloat(mesecorrente.sc.tot) + parseFloat(mesecorrente.sas.tot) + parseFloat(mesecorrente.ss.tot) + parseFloat(mesecorrente.sb.tot))
@@ -199,6 +210,23 @@ export default {
         this.bollette.push(mesecorrente.sb.tot)
         this.alimentari.push(mesecorrente.ss.tot)
         this.altreSpese.push(mesecorrente.sas.tot)
+        this.risparmi.push(mesecorrente.s.tot - (mesecorrente.sc.tot + mesecorrente.sb.tot + mesecorrente.ss.tot + mesecorrente.sas.tot))
+
+
+        if (index == 1) {
+          index = 12
+          anno--
+
+        } else {
+          index--
+        }
+
+
+        if (mesiindex == 0) {
+          mesiindex = 11
+        } else {
+          mesiindex--
+        }
 
       }
 
@@ -255,6 +283,17 @@ export default {
           this.chartData.datasets[4].type = ''
           this.chartData.datasets[4].borderWidth = 0
         }
+
+        if (array[5] == 6) {
+          this.chartData.datasets[5].data = this.risparmi
+          this.chartData.datasets[5].type = type
+          this.chartData.datasets[5].borderWidth = borderWidth
+        } else {
+          this.chartData.datasets[5].data = []
+          this.chartData.datasets[5].type = ''
+          this.chartData.datasets[5].borderWidth = 0
+        }
+        this.chartData.labels = labels
       }
 
     },
@@ -318,11 +357,11 @@ export default {
     <div class="console_legend">
 
       <div class="first">
+
         <!-- CAMBIA Dodici Mesi-->
         <button @click="setGraph('dodici')" class="btn _btn-outline-primary-darkness-hover">
           <i class="fa-solid fa-y"></i>
         </button>
-
         <!-- CAMBIA TIPO -->
         <button @click="setGraph('risparmi')" class="btn _btn-outline-primary-darkness-hover">
           <i class="fa-solid fa-arrow-trend-up"></i>
@@ -360,7 +399,13 @@ export default {
         <button class="_btn" :class="this.displayAltreSpese == 'NO' ? '' : ' _btn-altrespese'"
           @click="() => { this.displayAltreSpese = changeArray(this.displayAltreSpese, 5); this.changeGraphFunc(); this.createGrap(); }">
           <i class="fa-solid fa-martini-glass-citrus me-2"></i> Altro</button>
+
+        <!-- SHOW SPESE ALTRE SPESE -->
+        <button class="_btn" :class="this.displayRisparmi == 'NO' ? '' : ' _btn-risparmi'"
+          @click="() => { this.displayRisparmi = changeArray(this.displayRisparmi, 6); this.changeGraphFunc(); this.createGrap(); }">
+          <i class="fa-solid fa-coins"></i> Risparmi</button>
       </div>
+
 
 
     </div>
@@ -463,6 +508,21 @@ export default {
       background-color: rgb(13, 168, 147) !important;
     }
   }
+
+  ._btn-risparmi {
+    padding: .3em 1em !important;
+    transition: all 1s;
+    border-radius: 20px !important;
+    box-shadow: 0px 0px 8px lighten(rgb(42, 149, 3), 20%);
+    border: 1px solid lighten(rgb(42, 149, 3), 20%);
+    background-color: darken(rgb(42, 149, 3), 15%);
+    color: white;
+
+    &:hover {
+      color: white !important;
+      background-color: rgb(42, 149, 3) !important;
+    }
+  }
 }
 
 .graph-container {
@@ -478,9 +538,8 @@ export default {
     height: 50vw;
     width: 90vw;
   }
-
-
 }
+
 
 @media only screen and (max-width: 720px) {
   .console_legend {
@@ -501,10 +560,10 @@ export default {
       gap: 1em;
       flex-wrap: wrap;
       flex-direction: column;
+
     }
   }
 }
-
 
 .light {
 

@@ -47,7 +47,7 @@ export default {
 </script>
 
 <template>
-  <div class="container_programma">
+  <div class="container_programma" :class="this.store.darkmode ? '' : 'light'">
     <!-- TITLE E INFO -->
     <div class="title mb-2">
       <h4>Spese Programmate</h4>
@@ -293,6 +293,44 @@ export default {
 @media only screen and (max-width: 720px) {
   .container_programma {
     width: 100%;
+  }
+}
+
+
+.light {
+  .container_programma .main_programma ._elenco .spesefisse li .nome_wrapper input.nome {
+    color: $primary;
+  }
+
+  .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info input[data-v-3db7df0c]:hover,
+  .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info select:hover {
+    background: darken($background-light, 3%);
+  }
+
+  ._btn-outline-primary-darkness-hover {
+    border: 1px solid darken($primary-light, 15%);
+    padding: .3em 1em !important;
+    border-radius: 20px !important;
+    border: 1px solid $primary-light;
+    color: $primary-light;
+    background-color: transparent;
+    box-shadow: 0px 0px 8px #05b0d742;
+    text-shadow: 0px 0px 8px white;
+    transition: all 1s;
+
+    &:hover {
+      border: 1px solid $primary-light;
+      color: $primary-light;
+      background-color: darken($primary-light, 5%);
+      box-shadow: 0px 0px 8px #05b0d742;
+    }
+
+    &:active {
+      border: 1px solid lighten($primary-light, 15%);
+      border-color: darken($primary-light, 15%) !important;
+      color: $primary-light;
+      background-color: lighten($primary-light, 15%);
+    }
   }
 }
 </style>

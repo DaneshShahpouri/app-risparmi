@@ -3,6 +3,7 @@
 import { store } from '../store.js';
 import AppGraficiSpese from './AppGraficiSpese.vue'
 import AppGraficiRisparmi from './AppGraficiRisparmi.vue'
+import AppGraficiDodiciMesi from './AppGraficiDodiciMesi.vue'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
@@ -16,13 +17,14 @@ export default {
       store,
       spesePerMese: [],
       risparmiPerMese: [],
-      
+
     }
   },
 
   components: {
     AppGraficiSpese,
     AppGraficiRisparmi,
+    AppGraficiDodiciMesi,
   },
 
   props: {
@@ -38,7 +40,7 @@ export default {
   },
 
   mounted() {
-
+    this.store.optionGraph = 'dodici'
   },
 }
 </script>
@@ -47,6 +49,7 @@ export default {
   <div class="_main">
 
     <div class="_graph-container">
+      <AppGraficiDodiciMesi v-if="this.store.optionGraph == 'dodici'"></AppGraficiDodiciMesi>
       <AppGraficiRisparmi v-if="this.store.optionGraph == 'risparmi'"></AppGraficiRisparmi>
       <AppGraficiSpese v-if="this.store.optionGraph == 'spese'"></AppGraficiSpese>
     </div>

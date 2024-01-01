@@ -56,12 +56,12 @@ export default {
         scales: {
           x: {
             grid: {
-              color: 'rgb(11,11,11)',
-              borderColor: 'rgb(11,11,11)',
-              tickColor: 'rgb(11,11,11)'
+              color: 'rgba(11,11,11,0)',
+              borderColor: 'rgba(11,11,11,0)',
+              tickColor: 'rgba(11,11,11,0)'
             },
             ticks: {
-              color: 'white',
+              color: 'grey',
             }
           },
           y: {
@@ -71,7 +71,7 @@ export default {
               tickColor: 'rgb(40, 40, 40)'
             },
             ticks: {
-              color: 'white',
+              color: 'grey',
             }
           },
         }
@@ -191,38 +191,43 @@ export default {
   },
   created() {
     this.createGrap()
-
   },
 
   mounted() {
-
   },
 }
 </script>
 
 <template>
-  <Bar id="my-chart-id" :options="chartOptions" :data="chartData" v-if="this.store.changeGraph == true" />
-  <Bar id="my-chart-id" :options="chartOptions" :data="chartData" v-else />
+  <div class="graph-container" :class="this.store.darkmode ? '' : 'light'">
+    <Bar id="my-chart-id" :options="chartOptions" :data="chartData" v-if="this.store.changeGraph == true" />
+    <Bar id="my-chart-id" :options="chartOptions" :data="chartData" v-else />
 
-  <div class="console_legend">
-    <div class="first">
-      <!-- CAMBIA TIPO -->
-      <button @click="setGraph('spese')" class="btn _btn-outline-primary-darkness-hover">
-        <i class="fa-solid fa-arrow-trend-down"></i>
-      </button>
-      <!-- CAMBIA TIPO -->
-      <button @click="changeType()" class="btn _btn-outline-primary-darkness-hover">
-        <i :class="this.displayType == 'line' ? 'fa-solid fa-chart-simple' : 'fa-solid fa-chart-line'"></i>
-      </button>
+    <div class="console_legend">
+      <div class="first">
+        <!-- CAMBIA Dodici Mesi-->
+        <button @click="setGraph('dodici')" class="btn _btn-outline-primary-darkness-hover">
+          <i class="fa-solid fa-y"></i>
+        </button>
+        <!-- CAMBIA TIPO -->
+        <button @click="setGraph('spese')" class="btn _btn-outline-primary-darkness-hover">
+          <i class="fa-solid fa-arrow-trend-down"></i>
+        </button>
+        <!-- CAMBIA TIPO -->
+        <button @click="changeType()" class="btn _btn-outline-primary-darkness-hover">
+          <i :class="this.displayType == 'line' ? 'fa-solid fa-chart-simple' : 'fa-solid fa-chart-line'"></i>
+        </button>
+      </div>
+
+      <div class="second">
+
+        <!-- SHOW SPESE ALTRE SPESE -->
+        <button class="_btn" :class="this.displayRisparmi == 'NO' ? '' : ' _btn-risparmi'"
+          @click="() => { this.displayRisparmi = changeArray(this.displayRisparmi, 6); this.changeGraphFunc(); this.createGrap(); }">
+          <i class="fa-solid fa-coins"></i> Risparmi</button>
+      </div>
+
     </div>
-
-    <div class="second">
-
-      <!-- SHOW SPESE ALTRE SPESE -->
-      <button class="_btn" :class="this.displayRisparmi == 'NO' ? '' : ' _btn-risparmi'"
-        @click="() => { this.displayRisparmi = changeArray(this.displayRisparmi, 1); this.changeGraphFunc(); this.createGrap(); }">Risparmi</button>
-    </div>
-
   </div>
 </template>
 
@@ -279,6 +284,154 @@ export default {
 
     &:hover {
       background-color: rgb(42, 149, 3);
+    }
+  }
+}
+
+.graph-container {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+
+  #my-chart-id {
+    height: 50vw;
+    width: 90vw;
+  }
+
+
+}
+
+@media only screen and (max-width: 720px) {
+  .console_legend {
+    width: 100%;
+    height: 45vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+
+
+    .first,
+    .second {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1em;
+      flex-wrap: wrap;
+      flex-direction: column;
+
+    }
+  }
+}
+
+.light {
+
+  ._btn-outline-primary-darkness-hover {
+    border: 1px solid darken($primary-light, 15%);
+    padding: .3em 1em !important;
+    border-radius: 20px !important;
+    border: 1px solid $primary-light;
+    color: $primary-light;
+    background-color: transparent;
+    box-shadow: 0px 0px 8px #05b0d742;
+    text-shadow: 0px 0px 8px white;
+    transition: all 1s;
+
+    &:hover {
+      border: 1px solid $primary-light;
+      color: white;
+      background-color: darken($primary-light, 5%);
+      box-shadow: 0px 0px 8px #05b0d742;
+    }
+
+    &:active {
+      border: 1px solid lighten($primary-light, 15%);
+      border-color: darken($primary-light, 15%) !important;
+      color: white;
+      background-color: lighten($primary-light, 15%);
+    }
+  }
+
+  .console_legend {
+
+
+    ._btn-spesemensili {
+      box-shadow: 0px 0px 8px lighten(rgba(118, 3, 11, .3), 20%);
+      border: 1px solid lighten(rgb(118, 3, 11), 20%);
+      color: rgb(118, 3, 11);
+      background-color: transparent;
+
+      &:hover {
+        background-color: rgb(118, 3, 11);
+        color: white;
+      }
+    }
+
+    ._btn-affitto {
+      box-shadow: 0px 0px 8px lighten(rgba(162, 162, 7, .3), 20%);
+      border: 1px solid lighten(rgb(162, 162, 7), 20%);
+      color: rgb(162, 162, 7);
+      background-color: transparent;
+
+      &:hover {
+        background-color: rgb(162, 162, 7);
+        color: white;
+      }
+    }
+
+    ._btn-bollette {
+      box-shadow: 0px 0px 8px lighten(rgba(149, 98, 3, .3), 20%);
+      border: 1px solid lighten(rgb(149, 98, 3), 20%);
+      color: rgb(149, 98, 3);
+      background-color: transparent;
+
+      &:hover {
+        background-color: rgb(149, 98, 3);
+        color: white;
+      }
+    }
+
+    ._btn-alimentari {
+      box-shadow: 0px 0px 8px lighten(rgba(149, 3, 146, .3), 20%);
+      border: 1px solid lighten(rgb(149, 3, 146), 20%);
+      color: rgb(149, 3, 146);
+      background-color: transparent;
+
+      &:hover {
+        background-color: rgb(149, 3, 146);
+        color: white;
+      }
+    }
+
+    ._btn-risparmi {
+      box-shadow: 0px 0px 8px lighten(rgba(42, 149, 3, .3), 20%);
+      border: 1px solid lighten(rgb(42, 149, 3), 20%);
+      color: rgb(42, 149, 3);
+      background-color: transparent;
+
+      &:hover {
+        background-color: rgb(42, 149, 3);
+        color: white;
+      }
+    }
+  }
+
+  ._btn {
+    padding: .3em 1em !important;
+    transition: all 1s;
+    border-radius: 20px !important;
+    background-color: transparent;
+    border-color: transparent;
+    color: rgb(116, 116, 116);
+
+    &:hover {
+      background-color: rgb(237 237 237);
+      color: rgb(78 78 78);
     }
   }
 }

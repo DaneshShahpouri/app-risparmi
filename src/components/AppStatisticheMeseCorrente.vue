@@ -116,9 +116,9 @@ export default {
 
         }
 
-        if (index == 0) {
-          index = 11
-          anno = anno--
+        if (index == 1) {
+          index = 12
+          anno--
         } else {
           index--
         }
@@ -139,13 +139,6 @@ export default {
       this.mediaAlimentari = this.mediaAlimentari / contatore
       this.mediaAltreSpese = this.mediaAltreSpese / contatore
 
-
-      // console.log('post media: ')
-      // console.log('contatore: ' + contatore)
-      // console.log('Media affitto:' + this.mediaAffitto)
-      // console.log('Media Bollette:' + this.mediaBollette)
-      // console.log('Media Alimentari:' + this.mediaAlimentari)
-      // console.log('Media AltreSpese:' + this.mediaAltreSpese)
 
       this.setPercentuali()
     },
@@ -345,7 +338,7 @@ export default {
 </script>
 
 <template>
-  <div class="_top-right-top">
+  <div class="_top-right-top" :class="this.store.darkmode ? '' : 'light'">
 
     <div class="top_side">
 
@@ -423,7 +416,7 @@ export default {
         <li> <span class="_media-text">{{ this.store.mesi[this.questoMeseIndex] }} Stipendio:</span> <i
             class="fa-solid fa-money-bill"></i><span class="_text-primary">{{
               this.store.data.user[this.anno][this.questoMeseIndex + 1].s.tot.toFixed(2) }} <span
-              class="text-light">€</span></span>
+              :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
             <i v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].s.tot < this.mediaStipendi"
               class="fa-solid fa-angle-down _text-thirdary"></i>
@@ -436,7 +429,7 @@ export default {
         <li><span class="_media-text">{{ this.store.mesi[this.questoMeseIndex] }} Affitto:</span> <i
             class="fa-solid fa-house "></i> <span class="_text-primary">{{
               this.store.data.user[this.anno][this.questoMeseIndex + 1].sc.tot.toFixed(2) }} <span
-              class="text-light">€</span></span>
+              :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
             <i v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sc.tot < this.mediaAffitto"
               class="fa-solid fa-angle-down _text-thirdary"></i>
@@ -449,7 +442,7 @@ export default {
         <li><span class="_media-text">{{ this.store.mesi[this.questoMeseIndex] }} Bollette:</span> <i
             class="fa-solid fa-newspaper me-2"></i> <span class="_text-primary">{{
               this.store.data.user[this.anno][this.questoMeseIndex + 1].sb.tot.toFixed(2) }} <span
-              class="text-light">€</span></span>
+              :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
             <i v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sb.tot < this.mediaBollette"
               class="fa-solid fa-angle-down _text-thirdary"></i>
@@ -462,7 +455,7 @@ export default {
         <li> <span class="_media-text">{{ this.store.mesi[this.questoMeseIndex] }} Alimentari:</span> <i
             class="fa-solid fa-utensils me-2"></i><span class="_text-primary"> {{
               this.store.data.user[this.anno][this.questoMeseIndex + 1].ss.tot.toFixed(2) }} <span
-              class="text-light">€</span></span>
+              :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
             <i v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].ss.tot < this.mediaAlimentari"
               class="fa-solid fa-angle-down _text-thirdary"></i>
@@ -475,7 +468,7 @@ export default {
         <li><span class="_media-text">{{ this.store.mesi[this.questoMeseIndex] }} Altre Spese:</span><i
             class="fa-solid fa-martini-glass-citrus me-2"></i> <span class="_text-primary">{{
               this.store.data.user[this.anno][this.questoMeseIndex + 1].sas.tot.toFixed(2) }} <span
-              class="text-light">€</span></span>
+              :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
             <i v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sas.tot < this.mediaAltreSpese"
               class="fa-solid fa-angle-down _text-thirdary"></i>
@@ -493,7 +486,7 @@ export default {
                   this.store.data.user[this.anno][this.questoMeseIndex + 1].sb.tot +
                   this.store.data.user[this.anno][this.questoMeseIndex + 1].ss.tot +
                   this.store.data.user[this.anno][this.questoMeseIndex + 1].sas.tot)).toFixed(2) }} <span
-              class="text-light">€</span></span>
+              :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
             <i v-if="(this.store.data.user[this.anno][this.questoMeseIndex + 1].s.tot -
               (this.store.data.user[this.anno][this.questoMeseIndex + 1].sc.tot +
@@ -521,24 +514,29 @@ export default {
         </li>
         <li><span class="_media-text">Media Spese Stipendio:</span> <i class="fa-solid fa-money-bill"></i> <span
             class="_text-primary">{{
-              this.mediaStipendi.toFixed(2) }} <span class="text-light">€</span></span>
+              this.mediaStipendi.toFixed(2) }} <span
+              :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
         </li>
         <li><span class="_media-text">Media Spese Affitto:</span> <i class="fa-solid fa-house "></i> <span
             class="_text-primary">{{
-              this.mediaAffitto.toFixed(2) }} <span class="text-light">€</span></span>
+              this.mediaAffitto.toFixed(2) }} <span
+              :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
         </li>
         <li><span class="_media-text">Media Spese Bollette: </span> <i class="fa-solid fa-newspaper me-2"></i> <span
             class="_text-primary">{{
-              this.mediaBollette.toFixed(2) }} <span class="text-light">€</span></span></li>
+              this.mediaBollette.toFixed(2) }} <span
+              :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span></li>
         <li><span class="_media-text">Media Spese Alimentari:</span> <i class="fa-solid fa-utensils me-2"></i><span
             class="_text-primary"> {{
-              this.mediaAlimentari.toFixed(2) }} <span class="text-light">€</span></span></li>
+              this.mediaAlimentari.toFixed(2) }} <span
+              :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span></li>
         <li><span class="_media-text">Media Altre Spese:</span><i class="fa-solid fa-martini-glass-citrus me-2"></i> <span
             class="_text-primary">{{
-              this.mediaAltreSpese.toFixed(2) }} <span class="text-light">€</span></span></li>
+              this.mediaAltreSpese.toFixed(2) }} <span
+              :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span></li>
         <li><span class="_media-text">Media Risparmi: </span><i class="fa-solid fa-coins"></i> <span
             class="_text-primary">{{ this.mediaRisparmi.toFixed(2)
-            }} <span class="text-light">€</span></span></li>
+            }} <span :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span></li>
       </ul>
 
 
@@ -957,6 +955,189 @@ export default {
           }
         }
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  ._top-right-top {
+    .top_side {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: center;
+    }
+
+    .my_badge_wrapper {
+      .my_badge {
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 5ch;
+      }
+    }
+  }
+
+  ._top-right-bottom {
+    ._media {
+
+      ul {
+        li {
+          ._media-text {
+            display: none;
+          }
+
+          i {
+            display: block;
+          }
+        }
+      }
+
+
+    }
+
+    ._percentuali {
+
+      ._perc {
+        width: calc(50% - 1em);
+      }
+
+      ._perc._impo {
+        width: calc(100% - 1em);
+      }
+    }
+  }
+
+  ._main ._top-right {
+    min-height: 730px;
+  }
+}
+
+
+.light {
+
+  ._btn-outline-primary-darkness-hover {
+    border: 1px solid darken($primary-light, 15%);
+    padding: .3em 1em !important;
+    border-radius: 20px !important;
+    border: 1px solid $primary-light;
+    color: $primary-light;
+    background-color: transparent;
+    box-shadow: 0px 0px 8px #05b0d742;
+    text-shadow: 0px 0px 8px white;
+    transition: all 1s;
+
+    &:hover {
+      border: 1px solid $primary-light;
+      color: $primary-light;
+      background-color: darken($primary-light, 5%);
+      box-shadow: 0px 0px 8px #05b0d742;
+    }
+
+    &:active {
+      border: 1px solid lighten($primary-light, 15%);
+      border-color: darken($primary-light, 15%) !important;
+      color: $primary-light;
+      background-color: lighten($primary-light, 15%);
+    }
+  }
+
+  ._text-primary {
+    color: $primary-light !important;
+  }
+
+  ._text-secondary {
+    color: $secondary-light !important;
+  }
+
+  ._text-thirdary {
+    color: $thirdary-light !important;
+  }
+
+
+  .my_badge_wrapper {
+    border-top: 1px solid darken($primary-light, 2%);
+    border-bottom: 1px solid darken($primary-light, 2%);
+
+    ._add,
+    ._remove {
+      background: transparent;
+
+      border: 1px solid darken($primary-light, 2%);
+      color: darken($primary-light, 30%);
+
+
+      &:hover {
+        background: darken($background-light, 5%);
+        border: 1px solid darken($primary-light, 0%);
+        color: darken($primary-light, 0%);
+      }
+
+      &:active {
+        background: rgba(235, 235, 235, 0.34);
+        border: 1px solid darken($primary-light, 50%);
+        color: darken($primary-light, 50%);
+      }
+    }
+
+    .my_badge {
+      background-color: darken($background-light, 2%);
+      border: 1px solid $primary-light;
+
+      &:hover {
+        background-color: darken($background-light, 10%);
+        border: 1px solid $primary-light;
+        box-shadow: 0px 0px 5px $primary-light;
+      }
+    }
+  }
+
+}
+
+._top-right-bottom {
+
+
+  ._media {
+
+    ul {
+
+      li {
+
+        ._up-down-sign {
+          border: 1px solid rgb(77 75 75 / 35%);
+        }
+      }
+    }
+  }
+}
+
+._percentuali {
+
+
+  ._perc {
+    border: 1px solid rgb(67, 67, 67);
+
+
+    &._impo {
+      width: calc((100% / 2) - 1em);
+      border: 1px solid darken($primary-light, 20%);
+
+    }
+
+    ._perc-neg {
+      color: lighten($thirdary-light, 20%)
+    }
+
+    ._perc-pos {
+      color: lighten($primary-light, 20%)
+    }
+
+    ._perc-ultra-neg {
+      color: lighten($thirdary-light, 0%)
+    }
+
+    ._perc-ultra {
+      color: lighten($primary-light, 0%)
     }
   }
 }
