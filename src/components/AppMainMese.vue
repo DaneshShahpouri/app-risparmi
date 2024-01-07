@@ -408,6 +408,13 @@ export default {
   display: flex;
   flex-wrap: wrap;
   margin-top: 40px;
+  width: 95%;
+  margin: 0 auto;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
 
 
 
