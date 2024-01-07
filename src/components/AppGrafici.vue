@@ -62,12 +62,12 @@ export default {
 @use '../scss/variables' as *;
 
 ._main {
-  height: calc(100vh - 80px);
+  height: calc(100vh - 50px);
   width: 90%;
   margin: 0 auto;
   overflow-y: auto;
 
-
+  padding-top: 1em;
 
   display: flex;
   flex-direction: column;
@@ -77,6 +77,7 @@ export default {
   ._graph-container {
     height: 100%;
     width: 100%;
+
   }
 }
 </style>

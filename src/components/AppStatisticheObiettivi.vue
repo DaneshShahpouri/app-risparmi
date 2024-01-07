@@ -7,6 +7,7 @@ export default {
   data() {
     return {
       store,
+      dynamicProgress: [],
     }
   },
 
@@ -15,12 +16,61 @@ export default {
     // msg: String
   },
 
+
+  computed: {
+
+  },
+
+
   methods: {
+    createBar() {
+      this.setPerc();
+
+      //style="  background: conic-gradient(${course.color} ${3.6 * course.percent}deg, #fff 0deg);"
+
+      const progressGroups = document.querySelectorAll(".progress-group");
+
+      let progessTimer = []
+      progressGroups.forEach((progress, index) => {
+        let progressStartValue = 0;
+        let progressStartEnd = parseInt(this.dynamicProgress[index]);
+        if (progressStartEnd > 100 || progressStartEnd == Infinity) {
+          progressStartEnd = 100;
+        }
+        let speed = 20;
+        progessTimer[index] = setInterval(() => {
+          progressStartValue++;
+          if (progressStartValue == progressStartEnd) {
+            clearInterval(progessTimer[index]);
+          }
+
+          progress.querySelector(".circular-progress").style.background = `
+          conic-gradient(rgb(29, 149, 210) ${3.6 * progressStartValue}deg, rgba(29, 150, 210, 0.142) 0deg)`;
+
+          progress.querySelector(".course-value").innerHTML = progressStartValue + "%";
+        }, speed);
+      });
+    },
+
     addObbEl() {
       let object = { n: 'Aggiungi Nome', p: 0 }
 
       this.store.data.o.push(object)
       this.save();
+    },
+
+
+    setPerc() {
+      this.dynamicProgress = [];
+      this.store.data.o.forEach(element => {
+        let percentuale = (this.store.totaleRisparmi / element.p) * 100;
+        if (element.p == 0) {
+          percentuale = 100
+        }
+        this.dynamicProgress.push(percentuale)
+      });
+
+      console.log(this.dynamicProgress)
     },
 
 
@@ -34,11 +84,11 @@ export default {
   },
 
   created() {
-    console.log(this.store.data.o.length)
   },
 
   mounted() {
-
+    this.setPerc()
+    this.createBar()
   },
 }
 </script>
@@ -56,14 +106,14 @@ export default {
           <ul v-if="this.store.data.o.length > 0">
 
             <li v-for="(element, key) in this.store.data.o" :key="key" @click.stop="console.log('aprimi')">
-              <button class="_btn-delete" @click.stop="this.store.data.o.splice(key, 1); save()">
+              <button class="_btn-delete" @click.stop="this.store.data.o.splice(key, 1); save(); createBar()">
                 <i class="fa-solid fa-circle-minus"></i>
               </button>
 
               <div>
-                <input type="text" v-model="element.n" @change.stop="save()">
+                <input type="text" v-model="element.n" @change.stop="save(); createBar()">
                 <span> - </span>
-                <input type="num" v-model="element.p" @change.stop="save()">
+                <input type="num" v-model="element.p" @change.stop="save(); createBar()">
                 <span>€</span>
               </div>
             </li>
@@ -71,11 +121,11 @@ export default {
           </ul>
 
           <div class="no-ob" v-else>
-            <span class="text-center">Fissa un nuovo obiettivo e controlla gli sviluppi.</span>
+            <span class="text-center">Fissa un nuovo obiettivo cliccando qui sotto.</span>
           </div>
 
           <div class="_botton-wrapper" v-if="this.store.data.o.length < 6">
-            <button class="btn _btn-outline-primary-darkness-hover" @click.stop="addObbEl()">
+            <button class="btn _btn-outline-primary-darkness-hover" @click.stop="addObbEl(); createBar()">
               <i class="fa-solid fa-circle-plus"></i>
             </button>
           </div>
@@ -87,13 +137,39 @@ export default {
       <!-- Obiettivi Progressi -->
       <div class="right-side">
 
+        <div class="progress-bar-container" v-if="this.store.data.o.length > 0">
+
+          <div class=" o_container">
+            <div class="progress-group" v-for="( element, key ) in  this.store.data.o " :key="key">
+              <div class="circular-progress">
+                <span class="course-value">0%</span>
+              </div>
+              <label class="text">{{ element.n == 'Aggiungi Nome' ? ' - ' : element.n }}</label>
+              <div v-if="element.p > 0">
+                <span v-if="element.p - this.store.totaleRisparmi > 0">Ti mancano: <span class="_text-primary">{{
+                  element.p
+                  - this.store.totaleRisparmi }}</span>€</span>
+                <span class="_text-primary" v-else>Hai raggiunto l'obiettivo!</span>
+              </div>
+              <span v-else>Buona fortuna per il tuo nuovo obiettivo.</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div v-else>
+          <p class="ms-4">
+            Aggiungi fino a sei obiettivi da raggiungere e controllane il progresso per il raggiungimento.
+          </p>
+        </div>
+
       </div>
 
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../scss/variables' as *;
 
 .container_obiettivi {
@@ -133,8 +209,8 @@ export default {
           align-content: space-between;
           justify-content: flex-start;
           align-items: flex-start;
-          padding: 0.3em;
-          gap: 0.2em;
+          padding: 0em;
+          gap: 0em;
           margin: 0;
 
           li {
@@ -253,23 +329,230 @@ export default {
 
     .right-side {
       width: 70vw;
+      display: flex;
+
+      .o_container {
+        display: flex;
+        gap: 10px;
+
+        .progress-group {
+          width: calc((70vw / 6) - 10px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border-radius: 5px;
+
+
+          .circular-progress {
+            height: calc((70vw / 6) - 35px);
+            width: calc((70vw / 6) - 35px);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: 0.5s;
+            box-shadow: inset 0px 0px 8px 2px rgb(11 11 11);
+            //color: rgba(29, 150, 210, 0.142);
+
+          }
+
+          .circular-progress::before {
+            content: "";
+            position: absolute;
+            height: calc((70vw / 6) - 75px);
+            width: calc((70vw / 6) - 75px);
+            border-radius: 50%;
+            background-color: $background;
+            box-shadow: 0px 0px 8px 2px rgb(11 11 11);
+          }
+
+          .course-value {
+            position: relative;
+            color: $primary;
+            font-size: 35px;
+            font-weight: 500;
+          }
+
+          .text {
+            margin-top: 8px;
+            font-size: 1em;
+            font-weight: 500;
+            color: white;
+            text-align: center;
+          }
+
+          span {
+            text-align: center;
+            font-size: .9em;
+          }
+        }
+
+      }
     }
 
   }
 
-
 }
+
+
+
 
 @media only screen and (max-width: 1154px) {
   .container_obiettivi {
     width: 100%;
+    padding: 0em;
+
+    ._principale {
+      height: calc(((100vh - 80px) / 12 * 4) - 1.6em);
+      display: flex;
+
+      .left-side {
+        width: 30vw;
+        border-right: 1px solid darken($primary, 20%);
+
+        ._title-wrapper {
+
+          ul {
+
+            li {
+
+              input,
+              select {
+                max-width: 120px;
+
+              }
+            }
+          }
+        }
+      }
+
+      .right-side {
+
+        .o_container {
+
+          .progress-group {
+
+            .circular-progress {
+              height: calc((70vw / 6) - 25px);
+              width: calc((70vw / 6) - 25px);
+
+            }
+
+            .circular-progress::before {
+              height: calc((70vw / 6) - 45px);
+              width: calc((70vw / 6) - 45px);
+
+            }
+
+            .text {
+              font-size: .8em;
+            }
+
+            span {
+              font-size: .8em;
+
+            }
+
+          }
+        }
+
+      }
+
+    }
   }
 }
 
 @media only screen and (max-width: 720px) {
   .container_obiettivi {
     width: 100%;
+    padding: 0em;
+    height: 100%;
+
+    ._principale {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      flex-direction: column;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+
+      .left-side {
+        width: 100%;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        border-right: 0;
+        margin-bottom: 4em;
+
+        ._title-wrapper {
+
+          ul {
+
+            li {
+
+              input,
+              select {
+                max-width: 220px;
+
+              }
+            }
+          }
+        }
+      }
+
+      .right-side {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: flex-start;
+        align-items: center;
+
+
+        .o_container {
+          gap: 12px;
+          flex-direction: row;
+          flex-wrap: wrap;
+
+          .progress-group {
+            height: 100%;
+            width: calc((100vw / 3) - 25px);
+
+            .circular-progress {
+              height: calc((100vw / 3) - 25px);
+              width: calc((100vw / 3) - 25px);
+
+            }
+
+            .circular-progress::before {
+              height: calc((100vw / 3) - 65px);
+              width: calc((100vw / 3) - 65px);
+
+            }
+
+            .text {
+              font-size: .8em;
+            }
+
+            span {
+              font-size: .8em;
+
+            }
+
+          }
+        }
+
+      }
+
+    }
   }
+
 }
 
 
@@ -338,10 +621,35 @@ export default {
         }
       }
 
-      .right-side {}
-
     }
 
+    .right-side {
+
+
+      .o_container {
+
+
+        .progress-group {
+          .circular-progress {
+
+            box-shadow: inset 0px 0px 8px 2px rgb(11 11 11 / 20%);
+          }
+
+          .circular-progress::before {
+
+            background-color: $background-light;
+            box-shadow: 0px 0px 8px 2px rgb(11 11 11 / 20%);
+          }
+
+          .text {
+            margin-top: 18px;
+            font-size: 1em;
+            font-weight: 500;
+            color: rgb(35, 35, 35);
+          }
+        }
+      }
+    }
 
   }
 }

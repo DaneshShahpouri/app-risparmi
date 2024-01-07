@@ -3,6 +3,7 @@
 import { store } from './store.js';
 
 import AppMain from './components/AppMain.vue'
+import AppMainMese from './components/AppMainMese.vue'
 import AppGrafici from './components/AppGrafici.vue'
 import AppStatistiche from './components/AppStatistiche.vue'
 
@@ -13,6 +14,7 @@ export default {
       showNavInfo: false,
       navMenuToggle: 'open',
       animationModule: false,
+      principalVar: true,
 
     }
   },
@@ -24,6 +26,7 @@ export default {
     AppMain,
     AppGrafici,
     AppStatistiche,
+    AppMainMese,
   },
 
   watch: {
@@ -223,7 +226,8 @@ export default {
 
         </div>
 
-        <div class="anno-slyder">
+        <!-- //ANNI -->
+        <div class="anno-slyder" v-show="this.store.currentPage == 'graph' || this.store.currentPage == 'home'">
 
           <button class="btn-left" @click="this.store.anno > 23 ? this.setAnno(this.store.anno - 1) : ''">
             <i class="fa-solid fa-caret-left"></i>
@@ -240,8 +244,16 @@ export default {
             @click="console.log(this.store.anno); this.store.anno < 26 ? this.setAnno(parseInt(this.store.anno) + 1) : ''">
             <i class="fa-solid fa-caret-right"></i>
           </button>
-
         </div>
+
+        <div class="home-top-side" v-if="this.store.currentPage == 'home'">
+          <button class="_btn-principale"
+            @click="this.principalVar ? this.principalVar = false : this.principalVar = true">
+            <i class="fa-solid fa-table-list" v-if="this.principalVar"></i>
+            <i class="fa-solid fa-table" v-else></i>
+          </button>
+        </div>
+
 
         <!-- INFO -->
         <div class="_info-input" @click.stop="">
@@ -261,17 +273,23 @@ export default {
 
 
             <!-- SFONDO -->
-            <div class="bg-theme">
+            <div class="bg-theme"
+              @click="(this.store.darkmode ? this.store.darkmode = false : this.store.darkmode = true)"
+              style="cursor: pointer;">
               <div class="mattina" :class="this.store.darkmode ? 'dis' : ''">
                 <img src="./assets/darkmode/mattina-sfondo.png" alt="">
+                <img src="./assets/darkmode/solepng.png" alt="" class="sole"
+                  :class="this.store.darkmode ? '' : 'sole-animation'">
                 <img src="./assets/darkmode/mattina-nuvole.png" alt="" class="_nuvole">
-                <img src="./assets/darkmode/mattina-montagne.png" alt="" style="filter: brightness(8.5);">
+                <img src="./assets/darkmode/mattina-montagne.png" alt="" class="montagne">
                 <!-- <img src="./assets/darkmode/mattina-1.png" alt="" style="transform: translateX(-50%) translateY(-58%);"> -->
               </div>
               <div class="sera" :class="this.store.darkmode ? '' : 'dis'">
                 <img src="./assets/darkmode/sera-sfondo.png" alt="">
+                <img src="./assets/darkmode/lunapng.png" alt="" class="luna"
+                  :class="this.store.darkmode ? 'luna-animation' : ''">
                 <img src="./assets/darkmode/sera-nuvole.png" alt="" class="_nuvole">
-                <img src="./assets/darkmode/sera-montagne.png" alt="">
+                <img src="./assets/darkmode/sera-montagne.png" alt="" class="montagne">
                 <!-- <img src="./assets/darkmode/sera-1.png" alt=""> -->
               </div>
               <!-- <div class="bg-sfumato"></div> -->
@@ -335,31 +353,31 @@ export default {
 
     <!-- MAIN -->
     <div id="carouselExampleControlsNoTouching" class="carousel slide _main-pri" data-bs-touch="false">
-      <div class="carousel-inner">
-        <div class="" v-if="this.store.currentPage == 'home'">
-          <AppMain></AppMain>
-        </div>
-        <div class="" v-if="this.store.currentPage == 'graph'">
-          <AppGrafici></AppGrafici>
-        </div>
-        <div class="" v-if="this.store.currentPage == 'stat'">
-          <AppStatistiche></AppStatistiche>
-        </div>
-
+      <div class="carousel-inner" v-if="this.store.currentPage == 'home'">
+        <AppMainMese v-if="this.principalVar"></AppMainMese>
+        <AppMain v-else></AppMain>
+      </div>
+      <div class="" v-if="this.store.currentPage == 'graph'">
+        <AppGrafici></AppGrafici>
+      </div>
+      <div class="" v-if="this.store.currentPage == 'stat'">
+        <AppStatistiche></AppStatistiche>
       </div>
 
-      <!-- BUTTONS NEXT PREV -->
-      <button class="carousel-control-prev btn_pages" type="button" @click="this.navPage('prev')"
-        style="justify-content: start; border-radius: 20px 0px 0px 20px; ">
-        <i class="fa-solid fa-caret-left" style="left: 55%;"></i>
-      </button>
-      <button class="carousel-control-next btn_pages" type="button" @click="this.navPage('next')"
-        style="justify-content: flex-end; border-radius: 0px 20px 20px 0px; margin-right:.2em; ">
-        <i class="fa-solid fa-caret-right" style="left: 45%;"></i>
-      </button>
     </div>
 
+    <!-- BUTTONS NEXT PREV -->
+    <button class="carousel-control-prev btn_pages" type="button" @click="this.navPage('prev')"
+      style="justify-content: start; border-radius: 20px 0px 0px 20px; ">
+      <i class="fa-solid fa-caret-left" style="left: 55%;"></i>
+    </button>
+    <button class="carousel-control-next btn_pages" type="button" @click="this.navPage('next')"
+      style="justify-content: flex-end; border-radius: 0px 20px 20px 0px; margin-right:.2em; ">
+      <i class="fa-solid fa-caret-right" style="left: 45%;"></i>
+    </button>
   </div>
+
+
 
   <!-- MODULO SAVE E RESET -->
 
@@ -435,8 +453,8 @@ export default {
   ._top {
     padding: 1em 0em;
     width: 100vw;
-    height: 80px;
-    padding: 1em 0em;
+    height: 50px;
+    padding: 0em;
     display: flex;
     gap: 1em;
     flex-direction: column;
@@ -447,6 +465,26 @@ export default {
 
     .navbar {
       position: relative;
+
+
+      .home-top-side {
+        text-align: center;
+        padding-top: .5em;
+        height: 50px;
+        position: absolute;
+        left: 50%;
+        top: 35px;
+        transform: translateX(-50%);
+        z-index: 20;
+
+        ._btn-principale {
+          border: 1px solid;
+          padding: 0em 1.2em;
+          border-radius: 0px 0px 20px 20px;
+          color: $primary;
+          background: transparent;
+        }
+      }
 
       ._border-nav {
         position: absolute;
@@ -696,12 +734,10 @@ export default {
         position: absolute;
         top: -10%;
         left: 50%;
-        width: 150px;
-        height: 87px;
+        width: 114px;
+        height: 100px;
         overflow: hidden;
         transform: translateX(-50%);
-
-
 
         .bg-sfumato {
           transition: all .6s;
@@ -714,9 +750,18 @@ export default {
           background: radial-gradient(circle at center, rgba(255, 0, 0, 0) 20%, rgb(16, 16, 16) 75%);
         }
 
-        ._nuvole {
+        .sera ._nuvole {
           animation: 40s infinite linear nuvole;
           opacity: .5;
+        }
+
+        .mattina ._nuvole {
+          animation: 40s infinite linear nuvole;
+          opacity: .9;
+        }
+
+        .montagne {
+          top: 10px;
         }
 
         .sera,
@@ -738,6 +783,33 @@ export default {
             top: 50%;
             left: 50%;
             transform: translateX(-50%) translateY(-50%);
+          }
+
+          .sole {
+            transform: scale(2.5);
+            top: 20px;
+            left: -18px;
+            opacity: 0;
+            transition: all 0.8s;
+          }
+
+          .sole.sole-animation {
+            top: -15px;
+            opacity: 1;
+          }
+
+
+          .luna {
+            filter: saturate(2);
+            top: 10px;
+            left: 1px;
+            transition: all .8s;
+            opacity: 0;
+          }
+
+          .luna.luna-animation {
+            opacity: 1;
+            top: 0px;
           }
 
         }
@@ -845,10 +917,12 @@ export default {
   }
 
   ._main-pri {
-    height: calc(100vh - 80px);
+    height: calc(100vh - 50px);
 
     .carousel-inner {
-      height: calc(100% - 1px)
+      height: calc(100% - 1px);
+
+
     }
   }
 
@@ -1442,6 +1516,7 @@ export default {
       nav {
         .navbar {
           position: relative;
+          width: 80px;
 
           ._border-nav {
             display: none;
@@ -1697,7 +1772,7 @@ export default {
     .navbar-nav {
       .nav-item {
         a {
-          color: rgb(184, 198, 211) !important;
+          color: #b1b1b1 !important;
         }
       }
 
@@ -1896,10 +1971,10 @@ export default {
 
   .navbar-brand {
     border: 1px solid lighten($primary-light, 0%);
-    background: lighten($primary-light, 65%);
+    background: $background-light;
 
     i {
-      color: rgb(246, 246, 246);
+      color: $background-light;
       text-shadow: 0px 0px 3px $primary-light;
     }
   }
@@ -2551,7 +2626,7 @@ export default {
   }
 
   100% {
-    transform: translateX(-110%) translateY(-35%);
+    transform: translateX(-150%) translateY(-35%);
   }
 }
 </style>

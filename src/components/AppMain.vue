@@ -949,10 +949,10 @@ export default {
 @use '../scss/variables' as *;
 
 ._main {
-  height: calc(100vh - 80px);
+  height: calc(100vh - 100px);
   width: 95%;
   margin: 0 auto;
-  padding-top: 1em;
+  margin-top: 40px;
   overflow-y: auto;
   position: relative;
 
@@ -996,6 +996,13 @@ export default {
 
         ._myrow {
 
+          &:nth-child(odd) {
+            background-color: $alternative-backgroundColor;
+          }
+
+          &:hover {
+            background-color: lighten($background, 10%);
+          }
 
 
           td {
@@ -1117,7 +1124,9 @@ export default {
       tr {
         td {
           padding: .2em 0em;
+
         }
+
       }
     }
   }
@@ -1597,7 +1606,7 @@ export default {
 
 
         &:nth-child(odd) {
-          background-color: #f3f3f3;
+          background-color: $alternative-backgroundColor-light;
         }
 
         &:hover {

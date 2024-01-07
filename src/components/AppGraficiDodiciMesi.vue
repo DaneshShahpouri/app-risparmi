@@ -420,7 +420,7 @@ export default {
   height: 40px;
   //border: 1px solid red;
 
-  margin-top: 1em;
+  margin-top: 2em;
 
   display: flex;
   align-items: center;

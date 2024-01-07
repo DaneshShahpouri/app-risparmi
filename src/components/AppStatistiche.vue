@@ -91,7 +91,8 @@ export default {
 }
 
 ._main {
-  height: calc(100vh - 80px);
+  height: calc(100vh - 50px);
+  padding-top: .5em;
   width: 95%;
   margin: 0 auto;
   overflow-y: auto;
@@ -175,6 +176,10 @@ export default {
     ._top-right {
       order: 1;
       min-height: 730px;
+    }
+
+    ._bottom-right {
+      min-height: 1000px;
     }
 
   }
