@@ -241,27 +241,68 @@ export default {
   },
 
   mounted() {
-
+    let date = new Date;
+    this.store.anno = date.getFullYear() - 2000;
   },
 }
 </script>
 
 <template>
-  <div class="_main" @click="closeRow()" :class="this.store.darkmode ? '' : 'light'">
+  <div class="_main" :class="this.store.darkmode ? '' : 'light'">
 
-    <div class="_up">
-      <div class="top">
-        <div class="_top-left"></div>
-        <div class="_top-right"></div>
+    <!-- SIDEBAR -->
+    <div class="sidebar-wrapper">
+
+      <div class="top-side">
+
+        <div class="upper">
+          <i class="fa-solid fa-money-bill"></i>
+
+        </div>
+
+        <div class="downer">
+          <i class="fa-solid fa-house"></i>
+          <i class="fa-solid fa-newspaper"></i>
+          <i class="fa-solid fa-utensils"></i>
+          <i class="fa-solid fa-martini-glass-citrus"></i>
+          <i class="fa-solid fa-coins"></i>
+        </div>
+
       </div>
+
+      <div class="bottom-side">
+
+      </div>
+
     </div>
 
-    <div class="_down">
-      <div class="left">
-        <div class="_left-top"></div>
-        <div class="_left-bottom"></div>
+    <!-- MAIN -->
+    <div class="_main-container">
+
+      <!-- MESE ANNO -->
+      <div class="_main-top-title"></div>
+
+      <!-- INFO DI DESTRA -->
+      <div class="_main-bottom-container">
+
+        <!-- VOCI DI SPESA -->
+        <div class="left-side-voci"></div>
+
+        <!-- NOME - INFO - CONTATORI -->
+        <div class="right-side-info">
+
+          <!-- NOME DELLA SPESA -->
+          <div class="nome-spesa-wrapper"></div>
+
+          <!-- INFOBOX -->
+          <div class="info-box-wrapper"></div>
+
+          <!-- RIASSUNTO SPESE -->
+          <div class="riassunto-spese"></div>
+
+        </div>
+
       </div>
-      <div class="right"></div>
     </div>
 
   </div>
@@ -272,13 +313,13 @@ export default {
 
 ._main {
   height: calc(100vh - 100px);
-    width: 95%;
-    margin: 0 auto;
-    overflow-y: auto;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 40px;
+  width: 95%;
+  margin: 0 auto;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
 
 
 
@@ -287,66 +328,110 @@ export default {
   }
 
 
-  ._up {
-    display: flex;
-    width: 100%;
-    height: 25%;
+  //sidebar
+  .sidebar-wrapper {
+    width: 100px;
+    height: 100%;
 
-    .top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .top-side {
+      border: 1px solid green;
+      width: 70px;
+      height: 70%;
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+
+      .upper {
+        width: 100%;
+        height: 80px;
+        border: 1px solid blue;
+      }
+
+      .downer {
+        width: 100%;
+        height: 280px;
+        border: 1px solid blue;
+      }
+    }
+
+    .bottom-side {
+      border: 1px solid green;
+      width: 70px;
+      height: 10%;
+    }
+  }
+
+  //fine sidebar
+
+
+  //main
+  ._main-container {
+    width: calc(100% - 100px);
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    ._main-top-title {
+      width: 100%;
+      height: 80px;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    ._main-bottom-container {
       width: 100%;
       height: 100%;
 
-      display: flex;
-
-      border: 1px solid blue;
-
-      ._top-left {
-        width: 40%;
-        height: 100%;
-
-        border: 1px solid green;
-      }
-
-      ._top-right {
-        width: 60%;
-        height: 100%;
-
-        border: 1px solid green;
-      }
-    }
-  }
-
-  ._down {
-    display: flex;
-    width: 100%;
-    height: 75%;
-
-    .left {
-      width: 65%;
-      height: 100%;
-
-      display: flex;
-      flex-direction: column;
-
       border: 1px solid yellow;
 
+      display: flex;
 
-      ._left-top,
-      ._left-bottom {
-        width: 100%;
-        height: 50%;
 
-        border: 1px solid rgb(0, 255, 17);
+      .left-side-voci {
+        width: 25%;
+        height: 100%;
+
+        border: 1px solid rgb(255, 77, 0);
+      }
+
+      .right-side-info {
+        width: 75%;
+        height: 100%;
+
+        border: 1px solid rgb(84, 148, 11);
+
+        display: flex;
+        flex-direction: column;
+
+        .nome-spesa-wrapper {
+          width: 100%;
+          height: 60px;
+          background-color: rgba(255, 255, 255, 0.1);
+
+        }
+
+        .info-box-wrapper {
+          height: calc(100% - 120px);
+          width: 100%;
+
+          border: 1px solid rgb(46, 46, 135);
+        }
+
+        .riassunto-spese {
+          width: 100%;
+          height: 60px;
+          background-color: rgba(255, 255, 255, 0.1);
+        }
       }
     }
-
-    .right {
-      width: 35%;
-      height: 100%;
-
-      border: 1px solid red;
-    }
   }
+
+  //fine main
 
 }
 
