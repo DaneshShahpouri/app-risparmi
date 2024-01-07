@@ -13,6 +13,7 @@ export default {
       currentItems: ['entrate', 'affitto', 'bollette', 'alimentari', 'altro', 'risparmi'],
       currentItem: 's',
       currentSpesa: '',
+      currentVoce: 'ENTRATE',
 
     }
   },
@@ -248,7 +249,33 @@ export default {
         this.currentSpesa = this.store.data.user[this.store.anno][this.meseIndex][item]
       }
 
-    }
+      switch (item) {
+        case 's':
+          this.currentVoce = 'ENTRATE'
+          break;
+
+        case 'sc':
+          this.currentVoce = 'AFFITTO'
+          break;
+
+        case 'sb':
+          this.currentVoce = 'BOLLETTE'
+          break;
+
+        case 'ss':
+          this.currentVoce = 'ALIMENTI'
+          break;
+
+        case 'sas':
+          this.currentVoce = 'ALTRE SPESE'
+          break;
+
+        case 'risparmi':
+          this.currentVoce = 'RISPARMI'
+          break;
+
+      }
+    },
   },
 
   created() {
@@ -369,18 +396,44 @@ export default {
 
         <!-- VOCI DI SPESA -->
         <div class="left-side-voci">
-          <ul>
 
-            <li></li>
+          <div class="text-voce-corrente">
+            <h6>{{ this.currentVoce }}</h6>
+          </div>
+
+          <ul class="elenco-voci">
+
+            <li v-for="(el, key) in   this.currentSpesa.mag.art  " :key="el">
+
+              <div class="name-input">
+                <input type="text"
+                  v-model="this.store.data.user[this.store.anno][this.meseIndex][this.currentItem].mag.art[key]">
+              </div>
+              <div class="prezzo-input">
+                <input type="num"
+                  v-model="this.store.data.user[this.store.anno][this.meseIndex][this.currentItem].mag.pre[key]">
+                <span>€</span>
+              </div>
+
+            </li>
 
           </ul>
+
+          <div class="btn-wrapper">
+            <button class="btn _btn-outline-primary-darkness-hover" @click.stop="">
+              <i class="fa-solid fa-circle-plus"></i>
+            </button>
+          </div>
+
         </div>
 
         <!-- NOME - INFO - CONTATORI -->
         <div class="right-side-info">
 
           <!-- NOME DELLA SPESA -->
-          <div class="nome-spesa-wrapper"></div>
+          <div class="nome-spesa-wrapper">
+
+          </div>
 
           <!-- INFOBOX -->
           <div class="info-box-wrapper"></div>
@@ -542,16 +595,110 @@ export default {
       width: 100%;
       height: 100%;
 
-      border: 1px solid yellow;
-
       display: flex;
 
-
       .left-side-voci {
-        width: 25%;
-        height: 100%;
+        width: calc(25% - 10px);
+        height: calc(100% - 10px);
 
-        border: 1px solid rgb(255, 77, 0);
+        padding: .5em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: .5em;
+
+        background-color: lighten($background, 4%);
+        margin: 5px;
+        border-radius: 12px;
+
+
+        .text-voce-corrente {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: calc(60px - 1em);
+
+          h6 {
+            margin: 0;
+            padding: 0;
+          }
+        }
+
+        .elenco-voci {
+          width: 100%;
+          height: calc((100% - 90px) - 1em);
+          overflow-y: auto;
+          padding: 0;
+          margin: 0;
+          background-color: $background;
+          padding-top: 1em;
+          padding-left: .5em;
+          border-radius: 8px;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 1em;
+
+          list-style-type: none;
+
+          li {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: .5em;
+
+            .name-input {
+              width: calc(60% - .5em);
+              border-right: 1px solid;
+
+              input[type=text] {
+                width: 100%;
+                border: none;
+                background-color: transparent;
+              }
+            }
+
+            .prezzo-input {
+
+              width: calc(40% - .5em);
+              display: flex;
+
+              input[type=num] {
+                border: none;
+                background-color: transparent;
+                width: 50px;
+              }
+            }
+
+          }
+        }
+
+        .btn-wrapper {
+          width: 100%;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          button {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+          }
+
+          i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+          }
+        }
+
       }
 
       .right-side-info {
