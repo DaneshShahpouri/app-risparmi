@@ -227,9 +227,11 @@ export default {
         </div>
 
         <!-- //ANNI -->
-        <div class="anno-slyder" v-show="this.store.currentPage == 'graph' || this.store.currentPage == 'home'">
+        <div class="anno-slyder"
+          :class="this.store.currentPage == 'graph' || this.store.currentPage == 'home' ? '' : 'btn-dis'">
 
-          <button class="btn-left" @click="this.store.anno > 23 ? this.setAnno(this.store.anno - 1) : ''">
+          <button class="btn-left" :class="this.principalVar && this.store.currentPage == 'home' ? 'btn-dis' : ''"
+            @click="this.store.anno > 23 ? this.setAnno(this.store.anno - 1) : ''">
             <i class="fa-solid fa-caret-left"></i>
           </button>
 
@@ -240,13 +242,13 @@ export default {
             <span v-if="this.store.anno == 26">2026</span>
           </div>
 
-          <button class="btn-right"
+          <button class="btn-right" :class="this.principalVar && this.store.currentPage == 'home' ? 'btn-dis' : ''"
             @click="console.log(this.store.anno); this.store.anno < 26 ? this.setAnno(parseInt(this.store.anno) + 1) : ''">
             <i class="fa-solid fa-caret-right"></i>
           </button>
         </div>
 
-        <div class="home-top-side" v-if="this.store.currentPage == 'home'">
+        <div class="home-top-side" :class="this.store.currentPage == 'home' ? '' : 'btn-dis'">
           <button class="_btn-principale"
             @click="this.principalVar ? this.principalVar = false : this.principalVar = true">
             <i class="fa-solid fa-table-list" v-if="this.principalVar"></i>
@@ -475,14 +477,32 @@ export default {
         left: 50%;
         top: 35px;
         transform: translateX(-50%);
-        z-index: 20;
+        z-index: 8;
+        opacity: 1;
+        transition: all .5s;
+
+        &.btn-dis {
+          top: 20px;
+          opacity: 0;
+        }
+
 
         ._btn-principale {
-          border: 1px solid;
+          border: 1px solid darken($primary, 30%);
           padding: 0em 1.2em;
           border-radius: 0px 0px 20px 20px;
-          color: $primary;
+          color: inherit;
           background: transparent;
+          transition: all .5s;
+
+          &:hover {
+            background-color: darken($primary, 45%);
+          }
+
+          &:active {
+            background-color: darken($primary, 25%);
+            color: white;
+          }
         }
       }
 
@@ -525,6 +545,15 @@ export default {
     .anno-slyder {
       display: flex;
       align-items: center;
+      position: relative;
+      top: 0px;
+      opacity: 1;
+      transition: all .5s;
+
+      &.btn-dis {
+        top: -10px;
+        opacity: 0;
+      }
 
 
       .btn-left,
@@ -535,6 +564,7 @@ export default {
         padding: 0.6em 1em;
         color: $primary;
         transition: all .5s;
+        position: relative;
 
         &:hover {
           background-color: darken($primary, 45%);
@@ -548,10 +578,24 @@ export default {
 
       .btn-left {
         border-radius: 15px 0px 0px 15px;
+        left: 0px;
+        opacity: 1;
+
+
+        &.btn-dis {
+          left: 50px;
+          opacity: 0;
+        }
       }
 
       .btn-right {
         border-radius: 0px 15px 15px 0px;
+        left: 0px;
+
+        &.btn-dis {
+          left: -50px;
+          opacity: 0;
+        }
       }
 
 
@@ -559,10 +603,13 @@ export default {
         display: inline-block;
         max-width: 60px;
         overflow: hidden;
-        border-top: 1px solid darken($primary, 30%);
-        border-bottom: 1px solid darken($primary, 30%);
+        border: 1px solid darken($primary, 30%);
 
         padding: .35em 0em;
+
+        position: relative;
+        z-index: 10;
+
 
         span {
           margin: 0em .6em;
@@ -979,12 +1026,12 @@ export default {
 
 
   .btn_pages {
-    top: 50%;
+    top: 52%;
     width: 35px;
-    height: 70vh;
+    height: 93vh;
     border: 1px solid;
     transform: translateY(-50%);
-    opacity: 0;
+    opacity: 0.1;
     transition: all .5s;
 
     i {
@@ -1279,7 +1326,6 @@ export default {
     opacity: 0;
   }
 
-  ._icons_animation {}
 }
 
 //ANIMATION MODULE

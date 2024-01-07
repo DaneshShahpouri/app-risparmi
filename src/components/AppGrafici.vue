@@ -67,7 +67,7 @@ export default {
   margin: 0 auto;
   overflow-y: auto;
 
-  padding-top: 1em;
+  padding-top: 3em;
 
   display: flex;
   flex-direction: column;
