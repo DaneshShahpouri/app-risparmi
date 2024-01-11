@@ -192,7 +192,7 @@ export default {
       <!-- NAVBAR -->
       <nav class="d-flex justify-content-between navbar-expand-lg navbar logo">
 
-        <div class="navbar d-flex justify-content-between">
+        <div class="navbar d-flex justify-content-between" style="width: 340px;">
           <a class="navbar-brand" href="#">
             <!-- LOGO -->
             <!-- <img alt="Vue logo" src="./assets/logo2.png"> -->
@@ -218,7 +218,7 @@ export default {
             </li>
             <li class="nav-item" :class="this.store.currentPage == this.store.pages[2] ? 'active-link' : ''"
               @click.stop="this.store.currentPage = this.store.pages[2]">
-              <a class="nav-link " href="#"><i class="fa-solid fa-diagram-project me-1"></i><span> Statistiche</span></a>
+              <a class="nav-link " href="#"><i class="fa-solid fa-diagram-project me-1"></i><span> Dettagli</span></a>
             </li>
           </ul>
           <!-- BORDERNAV -->
@@ -467,6 +467,7 @@ export default {
 
     .navbar {
       position: relative;
+      // width: 340px;
 
 
       .home-top-side {

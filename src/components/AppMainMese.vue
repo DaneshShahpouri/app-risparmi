@@ -93,7 +93,7 @@ export default {
     //calcola il risparmio di tutti gli anni
     calcRisparmio() {
       //console.log('calcola risparmio')
-      //2023 - risparmio
+      //20this.anno - risparmio
       this.store.risparmi[23][1] = this.store.data.user[23][1].s.tot - this.store.data.user[23][1].sc.tot - this.store.data.user[23][1].ss.tot - this.store.data.user[23][1].sb.tot - this.store.data.user[23][1].sas.tot;
       this.store.risparmi[23][2] = this.store.data.user[23][2].s.tot - this.store.data.user[23][2].sc.tot - this.store.data.user[23][2].ss.tot - this.store.data.user[23][2].sb.tot - this.store.data.user[23][2].sas.tot;
       this.store.risparmi[23][3] = this.store.data.user[23][3].s.tot - this.store.data.user[23][3].sc.tot - this.store.data.user[23][3].ss.tot - this.store.data.user[23][3].sb.tot - this.store.data.user[23][3].sas.tot;
@@ -224,6 +224,53 @@ export default {
       //console.log('risaprmio calcolato')
     },
 
+    //calcola il totale
+    calcVoci(dato, mese) {
+      // console.log(eval(this.store.data.user[this.store.anno][11].s.mag.pre))
+
+      let tot = 0;
+      if (dato == 's') {
+        Object.keys(this.store.data.user[this.store.anno][mese].s.mag.pre).forEach(key => {
+          //console.log(this.store.data.user[this.store.anno][mese].s.mag.pre[key]);
+          tot += parseInt(this.store.data.user[this.store.anno][mese].s.mag.pre[key]);
+        });
+
+        this.store.data.user[this.store.anno][mese].s.tot = tot;
+      } else if (dato == 'sb') {
+        Object.keys(this.store.data.user[this.store.anno][mese].sb.mag.pre).forEach(key => {
+          //console.log(this.store.data.user[this.store.anno][mese].sb.mag.pre[key]);
+          tot += parseInt(this.store.data.user[this.store.anno][mese].sb.mag.pre[key]);
+        });
+
+        this.store.data.user[this.store.anno][mese].sb.tot = tot;
+      } else if (dato == 'sc') {
+        Object.keys(this.store.data.user[this.store.anno][mese].sc.mag.pre).forEach(key => {
+          //console.log(this.store.data.user[this.store.anno][mese].sc.mag.pre[key]);
+          tot += parseInt(this.store.data.user[this.store.anno][mese].sc.mag.pre[key]);
+        });
+
+
+        this.store.data.user[this.store.anno][mese].sc.tot = tot;
+      } else if (dato == 'ss') {
+        Object.keys(this.store.data.user[this.store.anno][mese].ss.mag.pre).forEach(key => {
+          //console.log(this.store.data.user[this.store.anno][mese].ss.mag.pre[key]);
+          tot += parseInt(this.store.data.user[this.store.anno][mese].ss.mag.pre[key]);
+        });
+
+
+        this.store.data.user[this.store.anno][mese].ss.tot = tot;
+      } else if (dato == 'sas') {
+        Object.keys(this.store.data.user[this.store.anno][mese].sas.mag.pre).forEach(key => {
+          //console.log(this.store.data.user[this.store.anno][mese].sas.mag.pre[key]);
+          tot += parseInt(this.store.data.user[this.store.anno][mese].sas.mag.pre[key]);
+        });
+
+        this.store.data.user[this.store.anno][mese].sas.tot = tot;
+      }
+
+
+    },
+
     //focus automatico su tutto l'input
     focusInput() {
       document.addEventListener('focus', function (event) {
@@ -276,6 +323,76 @@ export default {
 
       }
     },
+
+    createEl(mese = this.meseIndex, dato, nuovorecord, nuovoprezzo) {
+      if (dato != 'risparmi') {
+
+        // console.log(this.store.data.user[this.store.anno][mese].s.mag)
+        if (dato == 's') {
+          this.store.data.user[this.store.anno][mese].s.mag.pre[(Object.keys(this.store.data.user[this.store.anno][mese].s.mag.art).length)] = nuovoprezzo
+          this.store.data.user[this.store.anno][mese].s.mag.art[(Object.keys(this.store.data.user[this.store.anno][mese].s.mag.art).length)] = nuovorecord
+        } else if (dato == 'sb') {
+          this.store.data.user[this.store.anno][mese].sb.mag.pre[(Object.keys(this.store.data.user[this.store.anno][mese].sb.mag.art).length)] = nuovoprezzo
+          this.store.data.user[this.store.anno][mese].sb.mag.art[(Object.keys(this.store.data.user[this.store.anno][mese].sb.mag.art).length)] = nuovorecord
+
+        } else if (dato == 'sc') {
+          this.store.data.user[this.store.anno][mese].sc.mag.pre[(Object.keys(this.store.data.user[this.store.anno][mese].sc.mag.art).length)] = nuovoprezzo
+          this.store.data.user[this.store.anno][mese].sc.mag.art[(Object.keys(this.store.data.user[this.store.anno][mese].sc.mag.art).length)] = nuovorecord
+
+        } else if (dato == 'ss') {
+          this.store.data.user[this.store.anno][mese].ss.mag.pre[(Object.keys(this.store.data.user[this.store.anno][mese].ss.mag.art).length)] = nuovoprezzo
+          this.store.data.user[this.store.anno][mese].ss.mag.art[(Object.keys(this.store.data.user[this.store.anno][mese].ss.mag.art).length)] = nuovorecord
+
+        } else if (dato == 'sas') {
+          this.store.data.user[this.store.anno][mese].sas.mag.pre[(Object.keys(this.store.data.user[this.store.anno][mese].sas.mag.art).length)] = nuovoprezzo
+          this.store.data.user[this.store.anno][mese].sas.mag.art[(Object.keys(this.store.data.user[this.store.anno][mese].sas.mag.art).length)] = nuovorecord
+        }
+
+      }
+
+    },
+    //cancella una spesa
+    deleteEl(mese = this.meseIndex, dato, index) {
+      //console.log(this.store.data.user[this.store.anno][mese].s.mag)
+      if (dato == 's') {
+        this.store.data.user[this.store.anno][mese].s.mag.pre.splice(index, 1)
+        this.store.data.user[this.store.anno][mese].s.mag.art.splice(index, 1)
+      } else if (dato == 'sb') {
+        this.store.data.user[this.store.anno][mese].sb.mag.pre.splice(index, 1)
+        this.store.data.user[this.store.anno][mese].sb.mag.art.splice(index, 1)
+      } else if (dato == 'sc') {
+        this.store.data.user[this.store.anno][mese].sc.mag.pre.splice(index, 1)
+        this.store.data.user[this.store.anno][mese].sc.mag.art.splice(index, 1)
+      } else if (dato == 'ss') {
+        this.store.data.user[this.store.anno][mese].ss.mag.pre.splice(index, 1)
+        this.store.data.user[this.store.anno][mese].ss.mag.art.splice(index, 1)
+      } else if (dato == 'sas') {
+        this.store.data.user[this.store.anno][mese].sas.mag.pre.splice(index, 1)
+        this.store.data.user[this.store.anno][mese].sas.mag.art.splice(index, 1)
+      }
+
+    },
+
+    calcRisparmiMese() {
+
+      //this.store.risparmi[this.anno][this.meseIndex] = this.store.data.user[this.anno][this.meseIndex].s.tot - this.store.data.user[this.anno][this.meseIndex].sc.tot - this.store.data.user[this.anno][this.meseIndex].ss.tot - this.store.data.user[this.anno][this.meseIndex].sb.tot - this.store.data.user[this.anno][this.meseIndex].sas.tot;
+      console.log(this.store.risparmi[this.anno - 2000][this.meseIndex])
+      console.log(this.store.spese[this.anno - 2000][this.meseIndex])
+      console.log(this.store.data.user[this.anno - 2000][this.meseIndex].s.tot.toFixed(2))
+      console.log(this.store.data.user[this.anno - 2000][this.meseIndex].sc.tot.toFixed(2))
+      console.log(this.store.data.user[this.anno - 2000][this.meseIndex].sb.tot.toFixed(2))
+      console.log(this.store.data.user[this.anno - 2000][this.meseIndex].ss.tot.toFixed(2))
+      console.log(this.store.data.user[this.anno - 2000][this.meseIndex].sas.tot.toFixed(2))
+    },
+
+    // Funzione per salvare myData in localStorage
+    save() {
+      const myData = this.store.data
+      // Salva myData in localStorage
+      localStorage.setItem('myData', JSON.stringify(myData));
+
+      //console.log('myData salvato con successo!');
+    },
   },
 
   created() {
@@ -291,6 +408,11 @@ export default {
     this.anno = date.getFullYear()
     this.mese = this.store.mesi[date.getMonth()]
     this.meseIndex = date.getMonth() + 1
+
+    this.setCurrentItem('s');
+
+    this.calcRisparmio();
+    this.calcRisparmiMese();
   },
 }
 </script>
@@ -313,6 +435,10 @@ export default {
             </div>
 
             <span>ENTRATE</span>
+            <div class="_soldi-btn">
+              <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].s.tot.toFixed(2)
+              }}</span><span>€</span>
+            </div>
           </div>
 
         </div>
@@ -329,6 +455,10 @@ export default {
             </div>
 
             <span>AFFITTO</span>
+            <div class="_soldi-btn">
+              <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].sc.tot.toFixed(2)
+              }}</span><span>€</span>
+            </div>
           </div>
 
           <!-- SingleOption -->
@@ -339,6 +469,10 @@ export default {
             </div>
 
             <span>BOLLETTE</span>
+            <div class="_soldi-btn">
+              <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].sb.tot.toFixed(2)
+              }}</span><span>€</span>
+            </div>
           </div>
 
           <!-- SingleOption -->
@@ -349,6 +483,10 @@ export default {
             </div>
 
             <span>ALIMENTI</span>
+            <div class="_soldi-btn">
+              <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].ss.tot.toFixed(2)
+              }}</span><span>€</span>
+            </div>
           </div>
 
           <!-- SingleOption -->
@@ -359,6 +497,10 @@ export default {
             </div>
 
             <span>ALTRO</span>
+            <div class="_soldi-btn">
+              <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].sas.tot.toFixed(2)
+              }}</span><span>€</span>
+            </div>
           </div>
 
 
@@ -376,6 +518,10 @@ export default {
           </div>
 
           <span>RISPARMI</span>
+          <div class="_soldi-btn">
+            <span class="_text-primary">{{ this.store.risparmi[this.anno - 2000][this.meseIndex].toFixed(2)
+            }}</span><span>€</span>
+          </div>
         </div>
       </div>
 
@@ -401,16 +547,23 @@ export default {
             <h6>{{ this.currentVoce }}</h6>
           </div>
 
-          <ul class="elenco-voci">
+          <ul class="elenco-voci" v-if="this.currentVoce != 'RISPARMI'">
 
-            <li v-for="(el, key) in   this.currentSpesa.mag.art  " :key="el">
+            <li v-for="(el, key) in  this.currentSpesa.mag.art " :key="key">
+
+              <div class="btn-delete-wrapper">
+                <button class="btn-delete" @click.stop="deleteEl(this.meseIndex, this.currentItem, key)">
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+              </div>
 
               <div class="name-input">
-                <input type="text"
+                <input type="text" @change="calcRisparmio(), calcVoci(this.currentItem, this.meseIndex), save()"
                   v-model="this.store.data.user[this.store.anno][this.meseIndex][this.currentItem].mag.art[key]">
               </div>
+
               <div class="prezzo-input">
-                <input type="num"
+                <input type="num" @change="calcRisparmio(), calcVoci(this.currentItem, this.meseIndex), save()"
                   v-model="this.store.data.user[this.store.anno][this.meseIndex][this.currentItem].mag.pre[key]">
                 <span>€</span>
               </div>
@@ -420,7 +573,8 @@ export default {
           </ul>
 
           <div class="btn-wrapper">
-            <button class="btn _btn-outline-primary-darkness-hover" @click.stop="">
+            <button class="btn _btn-outline-primary-darkness-hover"
+              @click.stop="createEl(this.meseIndex, this.currentItem, 'Nuovo', 0); save()">
               <i class="fa-solid fa-circle-plus"></i>
             </button>
           </div>
@@ -518,13 +672,13 @@ export default {
 
     .bottom-side {
       width: 70px;
-      height: 10%;
+      height: 100px;
     }
 
 
     ._sidebar-option {
       width: 100%;
-      height: 70px;
+      height: 100px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -627,7 +781,7 @@ export default {
 
         .elenco-voci {
           width: 100%;
-          height: calc((100% - 90px) - 1em);
+          height: calc((76vh - 120px) - 1em);
           overflow-y: auto;
           padding: 0;
           margin: 0;
@@ -647,30 +801,65 @@ export default {
           li {
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             gap: .5em;
 
+            .btn-delete-wrapper {
+              width: calc(30px - .5em);
+
+              button {
+                background-color: darken($thirdary, 10%);
+                border: none;
+                width: 25px;
+                height: 25px;
+                border-radius: 20px;
+                transition: all .4s;
+
+                &:hover {
+                  background-color: darken($thirdary, 0%);
+                }
+              }
+            }
+
             .name-input {
-              width: calc(60% - .5em);
-              border-right: 1px solid;
+              width: calc(60% - .5em - 30px);
+
 
               input[type=text] {
                 width: 100%;
                 border: none;
                 background-color: transparent;
+                padding: .2em .6em;
+                border-radius: 16px;
+                background-color: lighten($background, 8%);
+
+                &:hover {
+                  background-color: lighten($background, 10%);
+                }
               }
             }
 
             .prezzo-input {
-
               width: calc(40% - .5em);
               display: flex;
+              border-radius: 16px;
+              background-color: lighten($background, 8%);
+              padding: .2em .6em;
+              justify-content: flex-end;
+
+
+              &:hover {
+                background-color: lighten($background, 10%);
+              }
 
               input[type=num] {
                 border: none;
                 background-color: transparent;
-                width: 50px;
+                width: calc(100% - 10px);
+                text-align: end;
+                padding-right: .4em;
+                color: $primary;
               }
             }
 
