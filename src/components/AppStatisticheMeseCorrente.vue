@@ -796,7 +796,6 @@ export default {
 
 ._top-right-bottom {
   width: 100%;
-  height: 100%;
   padding: 1em;
 
   ._media {

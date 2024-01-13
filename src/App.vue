@@ -441,7 +441,7 @@ export default {
 
 ._app {
   background-color: $background;
-  color: white;
+  color:$color-light;
   width: 100vw;
   height: 100vh;
   padding: 0em;
@@ -1773,7 +1773,7 @@ export default {
 //LIGHT MODE
 ._app.light {
   background-color: $background-light;
-  color: #777777;
+  color: $color-dark;
 
   ._top {
 

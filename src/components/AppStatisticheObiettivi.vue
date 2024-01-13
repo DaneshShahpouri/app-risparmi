@@ -106,11 +106,11 @@ export default {
           <ul v-if="this.store.data.o.length > 0">
 
             <li v-for="(element, key) in this.store.data.o" :key="key" @click.stop="console.log('aprimi')">
-              <button class="_btn-delete" @click.stop="this.store.data.o.splice(key, 1); save(); createBar()">
-                <i class="fa-solid fa-circle-minus"></i>
-              </button>
 
               <div>
+                <button class="_btn-delete" @click.stop="this.store.data.o.splice(key, 1); save(); createBar()">
+                  <i class="fa-solid fa-circle-minus"></i>
+                </button>
                 <input type="text" v-model="element.n" @change.stop="save(); createBar()">
                 <span> - </span>
                 <input type="num" v-model="element.p" @change.stop="save(); createBar()">
@@ -222,6 +222,7 @@ export default {
             transition: all .5s;
             padding: .2em;
             border-radius: 10px;
+            width: 100%;
 
             div {
               cursor: pointer;
@@ -304,12 +305,13 @@ export default {
           justify-content: center;
 
 
+
           .btn {
             border-radius: 50%;
-            margin-bottom: .5em;
+            margin-bottom: 0.5em;
             position: relative;
-            width: 37px;
-            height: 37px;
+            width: 30px;
+            height: 33px;
 
             i {
               position: absolute;
@@ -330,6 +332,8 @@ export default {
     .right-side {
       width: 70vw;
       display: flex;
+      justify-content: center;
+      align-items: center;
 
       .o_container {
         display: flex;
@@ -352,7 +356,7 @@ export default {
             align-items: center;
             position: relative;
             transition: 0.5s;
-            box-shadow: inset 0px 0px 8px 2px rgb(11 11 11);
+            box-shadow: inset 0px 0px 8px 2px $background;
             //color: rgba(29, 150, 210, 0.142);
 
           }
@@ -363,13 +367,13 @@ export default {
             height: calc((70vw / 6) - 75px);
             width: calc((70vw / 6) - 75px);
             border-radius: 50%;
-            background-color: $background;
-            box-shadow: 0px 0px 8px 2px rgb(11 11 11);
+            background-color: lighten($background, 5%);
+            box-shadow: 0px 0px 8px 2px $background;
           }
 
           .course-value {
             position: relative;
-            color: $primary;
+            color: white;
             font-size: 35px;
             font-weight: 500;
           }
@@ -621,35 +625,38 @@ export default {
         }
       }
 
-    }
-
-    .right-side {
+      .right-side {
 
 
-      .o_container {
+        .o_container {
 
 
-        .progress-group {
-          .circular-progress {
+          .progress-group {
+            .circular-progress {
 
-            box-shadow: inset 0px 0px 8px 2px rgb(11 11 11 / 20%);
-          }
+              box-shadow: inset 0px 0px 8px 2px rgb(11 11 11 / 20%);
+            }
 
-          .circular-progress::before {
+            .circular-progress::before {
+              background-color: $background-light;
+              box-shadow: 0px 0px 8px 2px rgb(11 11 11 / 20%);
+            }
 
-            background-color: $background-light;
-            box-shadow: 0px 0px 8px 2px rgb(11 11 11 / 20%);
-          }
+            .course-value {
+              color: $color-dark;
+            }
 
-          .text {
-            margin-top: 18px;
-            font-size: 1em;
-            font-weight: 500;
-            color: rgb(35, 35, 35);
+            .text {
+              margin-top: 18px;
+              font-size: 1em;
+              font-weight: 500;
+              color: rgb(35, 35, 35);
+            }
           }
         }
       }
     }
+
 
   }
 }

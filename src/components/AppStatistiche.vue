@@ -63,22 +63,30 @@ export default {
   <div class="_main" :class="this.store.darkmode ? '' : 'light'">
     <!-- TOP LEFT -->
     <div class="_top-left">
-      <AppStatisticheProgramma></AppStatisticheProgramma>
+      <div class="_inner">
+        <AppStatisticheProgramma></AppStatisticheProgramma>
+      </div>
     </div>
 
     <!-- TOP RIGHT -->
     <div class=" _top-right">
-      <AppStatisticheMeseCorrente></AppStatisticheMeseCorrente>
+      <div class="_inner">
+        <AppStatisticheMeseCorrente></AppStatisticheMeseCorrente>
+      </div>
     </div>
 
     <!-- BOTTOM LEFT -->
     <div class="degub _bottom-left">
-      <AppStatisticheScorsoMese></AppStatisticheScorsoMese>
+      <div class="_inner">
+        <AppStatisticheScorsoMese></AppStatisticheScorsoMese>
+      </div>
     </div>
 
     <!-- BOTTOM RIGHT -->
     <div class="_bottom-right">
-      <AppStatisticheObiettivi></AppStatisticheObiettivi>
+      <div class="_inner">
+        <AppStatisticheObiettivi></AppStatisticheObiettivi>
+      </div>
     </div>
   </div>
 </template>
@@ -107,6 +115,7 @@ export default {
     width: 30%;
     height: calc((100vh - 80px) / 12 * 8);
     overflow: auto;
+
   }
 
   ._top-right {
@@ -133,10 +142,24 @@ export default {
 
   ._bottom-right {
     width: 100%;
-    height: calc((100vh - 80px) / 12 * 4);
     overflow: auto;
   }
 
+  ._top-left,
+  ._top-right,
+  ._bottom-left,
+  ._bottom-right {
+    padding: 8px;
+
+  }
+
+  ._inner {
+    width: 100%;
+    height: 100%;
+    background-color: lighten($background, 5%);
+    border-radius: 8px;
+    box-shadow: 0px 2px 7px 0px rgb(0 0 0 / 15%);
+  }
 
 }
 
@@ -187,6 +210,11 @@ export default {
 }
 
 .light {
+
+  ._inner {
+    background-color: darken($background-light, 3%);
+
+  }
 
   ._btn-outline-primary-darkness-hover {
     border: 1px solid darken($primary-light, 15%);

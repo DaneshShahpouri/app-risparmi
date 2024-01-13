@@ -533,8 +533,9 @@ export default {
       <!-- MESE ANNO -->
       <div class="_main-top-title">
         <h1>
-          {{ this.mese + ' ' + this.anno }}
+          {{ this.mese }}
         </h1>
+        <span>{{ this.anno }}</span>
       </div>
 
       <!-- INFO DI DESTRA -->
@@ -544,7 +545,17 @@ export default {
         <div class="left-side-voci">
 
           <div class="text-voce-corrente">
+
             <h6>{{ this.currentVoce }}</h6>
+
+            <!-- VOCE E TOTALE ANTEPRIMA -->
+            <div>
+              <span class="_text-primary">{{ this.currentVoce == 'RISPARMI' ? this.store.risparmi[this.anno -
+                2000][this.meseIndex].toFixed(2) : this.store.data.user[this.anno -
+                  2000][this.meseIndex][this.currentItem].tot.toFixed(2)
+              }}</span><span>€</span>
+            </div>
+
           </div>
 
           <ul class="elenco-voci" v-if="this.currentVoce != 'RISPARMI'">
@@ -683,9 +694,15 @@ export default {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: .3em;
 
 
+      ._soldi-btn {
+        display: flex;
+
+        &>span {
+          display: flex;
+        }
+      }
 
       span {
         font-size: .7em;
@@ -700,9 +717,15 @@ export default {
         border-radius: 50%;
         transition: all .3s;
         cursor: pointer;
+        margin-bottom: .4em;
 
         &:hover {
           background-color: rgba(255, 255, 255, 0.2);
+          transition: all .1s;
+        }
+
+        &:active {
+          background-color: rgba(143, 143, 143, 0.2);
         }
 
         i {
@@ -731,17 +754,28 @@ export default {
       width: 100%;
       height: 75px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       background-color: lighten($background, 4%);
       border-radius: 12px;
       margin-bottom: 5px;
 
       h1 {
-        margin-left: .5em;
+        margin-left: 10px;
         margin-bottom: 0;
         text-transform: uppercase;
         font-weight: 900;
+        display: inline-block;
+        padding: 0;
+        height: 35px;
+        padding-top: 5px;
 
+      }
+
+      span {
+        margin-left: 13px;
+        padding-top: 5px;
+        display: flex;
       }
     }
 
@@ -769,6 +803,7 @@ export default {
 
         .text-voce-corrente {
           display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
           height: calc(60px - 1em);
@@ -931,6 +966,97 @@ export default {
 
 
 ._main.light {
+
+  //sidebar
+  .sidebar-wrapper {
+
+
+    ._sidebar-option {
+
+      .icon-wrapper {
+        background-color: darken($background-light, 2%);
+        border: 1px solid;
+
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        &:active {
+          background-color: darken($background-light, 20%);
+        }
+
+
+      }
+    }
+  }
+
+  //fine sidebar
+
+  ._main-container {
+
+    ._main-top-title {
+      background: darken($background-light, 5%);
+    }
+
+    ._main-bottom-container {
+
+      .left-side-voci {
+        background-color: darken($background-light, 4%);
+
+        .elenco-voci {
+          background: $background-light;
+
+          li {
+            .btn-delete-wrapper {
+
+              button {
+                background-color: lighten($thirdary, 7%);
+
+
+                &:hover {
+                  background-color: darken($thirdary, 5%);
+                }
+              }
+            }
+
+            .name-input {
+
+              input[type=text] {
+                background-color: lighten($background-light, 8%);
+                background-color: transparent;
+                color: $primary-light;
+                border: 1px solid $color-dark;
+
+                &:hover {
+                  background-color: lighten($background-light, 3%);
+                }
+              }
+            }
+
+            .prezzo-input {
+              background-color: lighten($background-light, 8%);
+              background-color: transparent;
+              border: 1px solid $color-dark;
+
+
+
+              &:hover {
+                background-color: lighten($background-light, 3%);
+              }
+
+              input[type=num] {
+                background-color: transparent;
+
+              }
+            }
+
+          }
+        }
+
+      }
+    }
+  }
 
 
   ._text-primary {
