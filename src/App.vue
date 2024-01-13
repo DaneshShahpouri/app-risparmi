@@ -114,7 +114,14 @@ export default {
       //console.log(this.store.confermReset)
     },
 
+    save() {
+      this.store.data.dm = this.store.darkmode;
+      const myData = this.store.data;
+      // Salva myData in localStorage
+      localStorage.setItem('myData', JSON.stringify(myData));
 
+      //console.log('myData salvato con successo!');
+    },
   },
 
   created() {
@@ -154,7 +161,7 @@ export default {
     VediLocalStorage()
 
 
-
+    this.store.darkmode = this.store.data.dm
     //Set DATE
     //------------------------------------------------------
     let date = new Date();
@@ -175,6 +182,7 @@ export default {
       this.store.currentMin = date.getMinutes();
       this.store.currentWeekDay = this.store.week[date.getDay()];
     }, 5000);
+
     //------------------------------------------------------
     this.store.anno = this.store.currentYear.toString().substring(2, 4)
   },
@@ -276,7 +284,7 @@ export default {
 
             <!-- SFONDO -->
             <div class="bg-theme"
-              @click="(this.store.darkmode ? this.store.darkmode = false : this.store.darkmode = true)"
+              @click="(this.store.darkmode ? this.store.darkmode = false : this.store.darkmode = true), this.save()"
               style="cursor: pointer;">
               <div class="mattina" :class="this.store.darkmode ? 'dis' : ''">
                 <img src="./assets/darkmode/mattina-sfondo.png" alt="">
@@ -296,14 +304,16 @@ export default {
               </div>
               <!-- <div class="bg-sfumato"></div> -->
             </div>
+
             <!-- SFONDO -->
             <div class="_theme-wrapper"
-              @click="(this.store.darkmode ? this.store.darkmode = false : this.store.darkmode = true), (this.store.darkmode ? this.store.bordercolor = 'rgba(42, 149, 3, 1)' : this.store.bordercolor = 'rgba(42, 149, 3, 0.1)')">
+              @click="(this.store.darkmode ? this.store.darkmode = false : this.store.darkmode = true), (this.store.darkmode ? this.store.bordercolor = 'rgba(42, 149, 3, 1)' : this.store.bordercolor = 'rgba(42, 149, 3, 0.1)'), this.save()">
 
               <div class="_bg-theme-switch" :class="this.store.darkmode ? 'moon' : 'sun'">
                 <i class="fa-solid fa-sun"></i>
                 <i class="fa-solid fa-moon"></i>
               </div>
+
             </div>
 
             <div class="info-wrapper d-flex">
@@ -333,18 +343,11 @@ export default {
             </fieldset>
 
             <div class="info-wrapper-money mt-3 pe-1 d-flex flex-column">
-              <!-- 
-              <span style="font-size: .7em; margin-top: 1em; margin-bottom: 1em">Entrate Tot: <span
-                  style="font-size: 1.2em;" class="mx-2 _text-secondary">{{
-                    this.store.totaleEntrate.toFixed(2) }} </span> €</span>
-
-              <span style="font-size: .7em; margin-bottom: 1em;">Uscite Tot: <span style="font-size: 1.2em;"
-                  class="mx-2 _text-thirdary">{{
-                    this.store.totaleSpese.toFixed(2) }} </span> €</span> -->
 
               <span style=" text-align: center; margin-top: 1em;">Credito: <span style="font-size: 1.2em;"
                   class="mx-2 _text-primary">{{
                     this.store.totaleRisparmi.toFixed(2) }} </span> €</span>
+
             </div>
           </div>
         </div>
@@ -524,6 +527,7 @@ export default {
         position: relative;
         z-index: 2;
         width: 274px;
+
 
 
         .brand_menu_hidden {
@@ -1604,6 +1608,7 @@ export default {
             align-items: center;
             border-radius: 10px;
             overflow: hidden;
+            gap: 1em;
 
             transition: all 1s;
             box-shadow: 1px 1px 20px black;

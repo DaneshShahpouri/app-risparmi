@@ -33,7 +33,8 @@ export default {
     },
     // Funzione per salvare myData in localStorage
     save() {
-      const myData = this.store.data
+      const myData = this.store.data;
+      this.store.data.dm = this.store.darkmode;
       // Salva myData in localStorage
       localStorage.setItem('myData', JSON.stringify(myData));
 

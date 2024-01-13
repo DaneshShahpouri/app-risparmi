@@ -9,6 +9,7 @@ export default {
       mese: 1,
       meseIndex: 1,
       anno: 2024,
+      dynamicProgress: [],
 
       currentItems: ['entrate', 'affitto', 'bollette', 'alimentari', 'altro', 'risparmi'],
       currentItem: 's',
@@ -27,6 +28,7 @@ export default {
   },
 
   methods: {
+
     //Calcola le spese programmate
     speseProgrammateSet() {
       let spese = this.store.data.sp;
@@ -351,6 +353,7 @@ export default {
       }
 
     },
+
     //cancella una spesa
     deleteEl(mese = this.meseIndex, dato, index) {
       //console.log(this.store.data.user[this.store.anno][mese].s.mag)
@@ -374,6 +377,18 @@ export default {
     },
 
 
+    setPerc() {
+      this.dynamicProgress = [];
+      this.store.data.o.forEach(element => {
+        let percentuale = (this.store.totaleRisparmi / element.p) * 100;
+        if (element.p == 0) {
+          percentuale = 100
+        }
+        this.dynamicProgress.push(percentuale)
+      });
+
+      //console.log(this.dynamicProgress)
+    },
 
     // Funzione per salvare myData in localStorage
     save() {
@@ -390,6 +405,7 @@ export default {
     this.calcRisparmio();
     this.focusInput();
     this.setCurrentItem('s');
+    this.setPerc()
   },
 
   mounted() {
@@ -559,7 +575,7 @@ export default {
 
           <ul class="elenco-voci" v-if="this.currentVoce != 'RISPARMI'">
 
-            <li v-for="(el, key) in  this.currentSpesa.mag.art " :key="key">
+            <li v-for="(el, key) in this.currentSpesa.mag.art " :key="key">
 
               <div class="btn-delete-wrapper">
                 <button class="btn-delete" @click.stop="deleteEl(this.meseIndex, this.currentItem, key)">
@@ -582,8 +598,49 @@ export default {
 
           </ul>
 
+          <div class="w-100" v-else>
+
+            <h6 class="text-center _text-primary text-uppercase"><i class="fa-solid fa-award"></i> Obiettivi
+            </h6>
+
+            <ul v-if="this.store.data.o.length > 0">
+
+              <li class="list-ob mb-3" v-for="(el, key) in   this.store.data.o   " :key="key">
+
+                <div class="list-info">
+
+                  <span>{{ el.n }}</span>
+
+                  <span>
+                    <span>{{ el.p }}</span>
+                    <span>€</span>
+                  </span>
+
+                </div>
+
+                <div class="perc-container">
+
+                  <span>{{ (this.dynamicProgress[key] > 100 ? '100' : parseInt(this.dynamicProgress[key])) + '%' }}</span>
+
+                  <div class="_perc-wrapper">
+                    <div class="_bar"></div>
+                    <div class="_bar-fu"
+                      :style="this.dynamicProgress[key] >= 100 ? 'width:100%; background:gold' : 'width :' + this.dynamicProgress[key] + '%'">
+                    </div>
+                  </div>
+
+                </div>
+
+              </li>
+
+
+            </ul>
+
+            <p v-else>Nessun Obbiettivo aggiunto</p>
+          </div>
+
           <div class="btn-wrapper">
-            <button class="btn _btn-outline-primary-darkness-hover"
+            <button class="btn _btn-outline-primary-darkness-hover" v-if="this.currentVoce != 'RISPARMI'"
               @click.stop="createEl(this.meseIndex, this.currentItem, 'Nuovo', 0); save()">
               <i class="fa-solid fa-circle-plus"></i>
             </button>
@@ -916,6 +973,65 @@ export default {
                 text-align: end;
                 padding-right: .4em;
                 color: $primary;
+              }
+            }
+
+          }
+        }
+
+        ul {
+          display: flex;
+          flex-direction: column;
+          list-style-type: none;
+          padding: .5em;
+          width: 100%;
+
+          .list-ob {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            border-radius: 12px;
+            padding: .5em;
+            background: rgba(128, 128, 128, 0.091);
+
+            .list-info {
+              display: flex;
+              flex-direction: row;
+              gap: .5em;
+              align-items: center;
+              justify-content: space-between;
+
+              span {
+                text-transform: uppercase;
+                font-weight: 300;
+              }
+            }
+
+            .perc-container {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+            }
+
+            ._perc-wrapper {
+              position: relative;
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+
+              ._bar {
+                width: 100%;
+                height: 5px;
+                background-color: rgba($primary, 0.4);
+              }
+
+              ._bar-fu {
+                height: 5px;
+                background-color: rgba($primary, 0.9);
+                position: absolute;
+                left: 0px;
               }
             }
 

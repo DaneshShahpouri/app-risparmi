@@ -953,6 +953,8 @@ export default {
 }
 
 @media only screen and (max-width: 720px) {
+
+
   ._top-right-bottom {
 
 

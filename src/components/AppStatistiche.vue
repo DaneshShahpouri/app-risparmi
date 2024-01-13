@@ -183,22 +183,23 @@ export default {
 @media only screen and (max-width: 720px) {
   ._main {
 
+    ._inner {
+      padding: 1em 0em;
+    }
 
     ._top-right,
     ._bottom-left,
     ._bottom-right,
     ._top-left {
       width: 100%;
-      height: 100%;
+      height: auto;
       order: 2;
-      margin-bottom: 5em;
+      margin-bottom: 2em;
       padding-bottom: 2em;
-      border-bottom: 1px solid $primary;
     }
 
     ._top-right {
       order: 1;
-      min-height: 730px;
     }
 
     ._bottom-right {

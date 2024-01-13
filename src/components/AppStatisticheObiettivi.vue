@@ -395,7 +395,7 @@ export default {
             transition: all 1.3s;
             transform: scale(1.5);
             color: grey;
-            text-shadow: 1px 2px 4px rgb(0 0 0 / 41%);
+            text-shadow: 1px 2px 1px rgb(0 0 0 / 15%);
 
             &.hide {
               position: absolute;
@@ -593,7 +593,8 @@ export default {
 
           .progress-group {
             height: 100%;
-            width: calc((100vw / 3) - 25px);
+            width: calc((100vw / 3) - 28px);
+            margin-bottom: 2.5em;
 
             .circular-progress {
               height: calc((100vw / 3) - 25px);
@@ -608,11 +609,13 @@ export default {
             }
 
             .text {
-              font-size: .8em;
+              font-size: .9em;
+              text-align: center;
             }
 
             span {
-              font-size: .8em;
+              font-size: .9em;
+              text-align: center;
 
             }
 
