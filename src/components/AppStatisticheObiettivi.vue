@@ -29,15 +29,13 @@ export default {
   methods: {
     createBar() {
       this.setPerc();
+
+      // console.log(rgbToHsl('rgb(95, 95, 211)'))
+
       // CREA TROFEI OBBIETTIVI MEDAGLIE PERCENTUALE
       //style="  background: conic-gradient(${course.color} ${3.6 * course.percent}deg, #fff 0deg);"
       let elColor = document.getElementById('app')
       let backgroundValue = getComputedStyle(elColor.querySelector('._app')).getPropertyValue('border-left-color')
-
-      if (this.store.darkmode == false) {
-        backgroundValue = getComputedStyle(elColor.querySelector('._app')).getPropertyValue('border-right-color')
-      }
-
       function caratteriTraParentesi(inputString) {
         const startIndex = inputString.indexOf('(');
         const endIndex = inputString.indexOf(')');
@@ -48,9 +46,6 @@ export default {
           return null; // Parentesi non trovate
         }
       }
-
-      // Esempio
-      backgroundValue = caratteriTraParentesi(backgroundValue);
 
       const progressGroups = document.querySelectorAll(".progress-group");
 
@@ -71,12 +66,20 @@ export default {
 
           if (this.store.darkmode == false) {
             backgrounds[index] = getComputedStyle(elColor.querySelector('._app')).getPropertyValue('border-right-color')
+            if (progressStartEnd <= 50) {
+              backgrounds[index] = getComputedStyle(elColor.querySelector('._app')).getPropertyValue('border-bottom-color')
+            }
           }
-          // Esempio
-          backgrounds[index] = caratteriTraParentesi(backgrounds[index]);
+
+          if (progressStartEnd <= 50 && this.store.darkmode) {
+            backgrounds[index] = getComputedStyle(elColor.querySelector('._app')).getPropertyValue('border-top-color')
+          }
+
+
+          backgrounds[index] = caratteriTraParentesi(backgrounds[index])
         }
 
-        let speed = 25;
+        let speed = 7;
         progessTimer[index] = setInterval(() => {
           progressStartValue++;
           if (progressStartValue == progressStartEnd) {
@@ -152,7 +155,6 @@ export default {
                   <i class="fa-solid fa-circle-minus"></i>
                 </button>
                 <input type="text" v-model="element.n" @change.stop="save(); createBar()">
-                <span> - </span>
                 <input type="num" v-model="element.p" @change.stop="save(); createBar()">
                 <span>€</span>
               </div>
@@ -283,7 +285,7 @@ export default {
               padding: 0 .3em;
               border-radius: 14px;
               color: $primary;
-              border: 1px solid $primary;
+              border: 1px solid rgba($primary, 0.4);
               margin: 0 .3em;
               color: white;
               transition: all .5s;
@@ -440,7 +442,7 @@ export default {
             position: relative;
             color: white;
             font-size: 35px;
-            font-weight: 500;
+            font-weight: 100;
           }
 
           .text {

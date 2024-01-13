@@ -224,7 +224,7 @@ export default {
         <!-- SHOW SPESE ALTRE SPESE -->
         <button class="_btn" :class="this.displayRisparmi == 'NO' ? '' : ' _btn-risparmi'"
           @click="() => { this.displayRisparmi = changeArray(this.displayRisparmi, 6); this.changeGraphFunc(); this.createGrap(); }">
-          <i class="fa-solid fa-coins"></i> Risparmi</button>
+          <i class="fa-solid fa-coins"></i><span class="span-icon">Risparmi</span></button>
       </div>
 
     </div>
@@ -234,9 +234,17 @@ export default {
 <style lang="scss" scoped>
 @use '../scss/variables' as *;
 
+.graph-container {
+  #my-chart-id {
+    padding: 8px;
+    border-radius: 12px;
+    background-color: rgba(128, 128, 128, 0.094);
+  }
+}
+
 .console_legend {
   width: 100%;
-  height: 40px;
+  height: 60px;
   //border: 1px solid red;
 
   margin-top: 1em;
@@ -245,6 +253,11 @@ export default {
   align-items: center;
   justify-content: space-between;
   gap: 1em;
+
+
+  padding: 8px;
+  border-radius: 12px;
+  background-color: rgba(128, 128, 128, 0.094);
 
   .first,
   .second {
@@ -308,7 +321,7 @@ export default {
 @media only screen and (max-width: 720px) {
   .console_legend {
     width: 100%;
-    height: 45vh;
+    height: auto;
 
     display: flex;
     align-items: center;
@@ -326,6 +339,17 @@ export default {
       flex-direction: column;
 
     }
+
+    .second {
+      width: 50%;
+      flex-direction: row !important;
+      gap: 2em !important;
+    }
+
+    .span-icon {
+      display: none;
+    }
+
   }
 }
 

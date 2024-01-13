@@ -49,9 +49,11 @@ export default {
   <div class="_main">
 
     <div class="_graph-container">
+
       <AppGraficiDodiciMesi v-if="this.store.optionGraph == 'dodici'"></AppGraficiDodiciMesi>
       <AppGraficiRisparmi v-if="this.store.optionGraph == 'risparmi'"></AppGraficiRisparmi>
       <AppGraficiSpese v-if="this.store.optionGraph == 'spese'"></AppGraficiSpese>
+
     </div>
 
 
@@ -77,6 +79,7 @@ export default {
   ._graph-container {
     height: 100%;
     width: 100%;
+
 
   }
 }

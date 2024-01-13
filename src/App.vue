@@ -192,7 +192,7 @@ export default {
       <!-- NAVBAR -->
       <nav class="d-flex justify-content-between navbar-expand-lg navbar logo">
 
-        <div class="navbar d-flex justify-content-between" style="width: 340px;">
+        <div class="navbar d-flex justify-content-between">
           <a class="navbar-brand" href="#">
             <!-- LOGO -->
             <!-- <img alt="Vue logo" src="./assets/logo2.png"> -->
@@ -374,7 +374,7 @@ export default {
       <i class="fa-solid fa-caret-left" style="left: 55%;"></i>
     </button>
     <button class="carousel-control-next btn_pages" type="button" @click="this.navPage('next')"
-      style="justify-content: flex-end; border-radius: 0px 20px 20px 0px; margin-right:.2em; ">
+      style="justify-content: flex-end; border-radius: 0px 20px 20px 0px; margin-right:0em; ">
       <i class="fa-solid fa-caret-right" style="left: 45%;"></i>
     </button>
   </div>
@@ -467,7 +467,7 @@ export default {
 
     .navbar {
       position: relative;
-      // width: 340px;
+
 
 
       .home-top-side {
@@ -523,6 +523,8 @@ export default {
       ul {
         position: relative;
         z-index: 2;
+        width: 274px;
+
 
         .brand_menu_hidden {
           display: none
@@ -1027,12 +1029,12 @@ export default {
 
 
   .btn_pages {
-    top: 52%;
+    top: 53.5%;
     width: 35px;
-    height: 93vh;
+    height: 91%;
     border: 1px solid;
     transform: translateY(-50%);
-    opacity: 0.1;
+    opacity: 0.03;
     transition: all .5s;
 
     i {

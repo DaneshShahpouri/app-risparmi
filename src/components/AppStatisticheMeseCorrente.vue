@@ -441,7 +441,7 @@ export default {
         </li>
 
         <li> <span class="_media-text">{{ this.store.mesi[this.questoMeseIndex] }} Stipendio:</span> <i
-            class="fa-solid fa-money-bill"></i><span class="_text-primary">{{
+            class="fa-solid fa-money-bill"></i><span class="_text-primary _extra-light">{{
               this.store.data.user[this.anno][this.questoMeseIndex + 1].s.tot.toFixed(2) }} <span
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
@@ -454,20 +454,20 @@ export default {
         </li>
 
         <li><span class="_media-text">{{ this.store.mesi[this.questoMeseIndex] }} Affitto:</span> <i
-            class="fa-solid fa-house "></i> <span class="_text-primary">{{
+            class="fa-solid fa-house "></i> <span class="_text-primary _extra-light">{{
               this.store.data.user[this.anno][this.questoMeseIndex + 1].sc.tot.toFixed(2) }} <span
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
             <i v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sc.tot < this.mediaAffitto"
               class="fa-solid fa-angle-down _text-thirdary"></i>
-            <i class="fa-solid fa-angle-up _text-primary"
+            <i class="fa-solid fa-angle-up _text-primary "
               v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sc.tot > this.mediaAffitto"></i>
             <span v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sc.tot == this.mediaAffitto">=</span>
           </span>
         </li>
 
         <li><span class="_media-text">{{ this.store.mesi[this.questoMeseIndex] }} Bollette:</span> <i
-            class="fa-solid fa-newspaper me-2"></i> <span class="_text-primary">{{
+            class="fa-solid fa-newspaper me-2"></i> <span class="_text-primary _extra-light">{{
               this.store.data.user[this.anno][this.questoMeseIndex + 1].sb.tot.toFixed(2) }} <span
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
@@ -480,20 +480,20 @@ export default {
         </li>
 
         <li> <span class="_media-text">{{ this.store.mesi[this.questoMeseIndex] }} Alimentari:</span> <i
-            class="fa-solid fa-utensils me-2"></i><span class="_text-primary"> {{
+            class="fa-solid fa-utensils me-2"></i><span class="_text-primary _extra-light"> {{
               this.store.data.user[this.anno][this.questoMeseIndex + 1].ss.tot.toFixed(2) }} <span
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
             <i v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].ss.tot < this.mediaAlimentari"
               class="fa-solid fa-angle-down _text-thirdary"></i>
-            <i class="fa-solid fa-angle-up _text-primary"
+            <i class="fa-solid fa-angle-up _text-primary "
               v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].ss.tot > this.mediaAlimentari"></i>
             <span v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].ss.tot == this.mediaAlimentari">=</span>
           </span>
         </li>
 
         <li><span class="_media-text">{{ this.store.mesi[this.questoMeseIndex] }} Altre Spese:</span><i
-            class="fa-solid fa-martini-glass-citrus me-2"></i> <span class="_text-primary">{{
+            class="fa-solid fa-martini-glass-citrus me-2"></i> <span class="_text-primary _extra-light">{{
               this.store.data.user[this.anno][this.questoMeseIndex + 1].sas.tot.toFixed(2) }} <span
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
@@ -507,7 +507,7 @@ export default {
         </li>
 
         <li> <span class="_media-text">{{ this.store.mesi[this.questoMeseIndex] }} Risparmi:</span> <i
-            class="fa-solid fa-coins"></i><span class="_text-primary">{{
+            class="fa-solid fa-coins"></i><span class="_text-primary _extra-light">{{
               (this.store.data.user[this.anno][this.questoMeseIndex + 1].s.tot -
                 (this.store.data.user[this.anno][this.questoMeseIndex + 1].sc.tot +
                   this.store.data.user[this.anno][this.questoMeseIndex + 1].sb.tot +
@@ -540,29 +540,29 @@ export default {
           <h5>MEDIA</h5>
         </li>
         <li><span class="_media-text">Media Spese Stipendio:</span> <i class="fa-solid fa-money-bill"></i> <span
-            class="_text-primary">{{
+            class="_text-primary _extra-light">{{
               this.mediaStipendi.toFixed(2) }} <span
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
         </li>
         <li><span class="_media-text">Media Spese Affitto:</span> <i class="fa-solid fa-house "></i> <span
-            class="_text-primary">{{
+            class="_text-primary _extra-light">{{
               this.mediaAffitto.toFixed(2) }} <span
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
         </li>
         <li><span class="_media-text">Media Spese Bollette: </span> <i class="fa-solid fa-newspaper me-2"></i> <span
-            class="_text-primary">{{
+            class="_text-primary _extra-light">{{
               this.mediaBollette.toFixed(2) }} <span
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span></li>
         <li><span class="_media-text">Media Spese Alimentari:</span> <i class="fa-solid fa-utensils me-2"></i><span
-            class="_text-primary"> {{
+            class="_text-primary _extra-light"> {{
               this.mediaAlimentari.toFixed(2) }} <span
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span></li>
         <li><span class="_media-text">Media Altre Spese:</span><i class="fa-solid fa-martini-glass-citrus me-2"></i> <span
-            class="_text-primary">{{
+            class="_text-primary _extra-light">{{
               this.mediaAltreSpese.toFixed(2) }} <span
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span></li>
         <li><span class="_media-text">Media Risparmi: </span><i class="fa-solid fa-coins"></i> <span
-            class="_text-primary">{{ this.mediaRisparmi.toFixed(2)
+            class="_text-primary _extra-light">{{ this.mediaRisparmi.toFixed(2)
             }} <span :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span></li>
       </ul>
 
@@ -775,7 +775,7 @@ export default {
     }
 
     .my_badge {
-      background-color: darken($primary, 50%);
+      background-color: rgba($primary, 0.1);
       border: 1px solid $primary;
       font-size: .55em;
       width: 65px;
@@ -813,6 +813,10 @@ export default {
         justify-content: space-between;
         position: relative;
 
+        ._media-text {
+          font-weight: 100;
+        }
+
         i {
           display: none
         }
@@ -836,9 +840,7 @@ export default {
             transform: translateX(-50%) translateY(-50%);
             display: block;
 
-            &._text-primary {
-              //animation: 1s infinite uparrow;
-            }
+
           }
 
         }
@@ -865,6 +867,8 @@ export default {
     border: 1px solid rgb(67, 67, 67);
 
     border-radius: 20px;
+
+
 
     &._impo {
       width: calc((100% / 2) - 1em);
@@ -1151,11 +1155,11 @@ export default {
     }
 
     ._perc-neg {
-      color: lighten($thirdary-light, 20%)
+      color: lighten($thirdary-light, 10%);
     }
 
     ._perc-pos {
-      color: lighten($primary-light, 20%)
+      color: lighten($primary-light, 10%)
     }
 
     ._perc-ultra-neg {

@@ -1,6 +1,6 @@
-$primary: #3b85c6;
-$secondary: #3468ad;
-$thirdary: #6e1938;
+$primary: #2389c9;
+$secondary: #0d71af;
+$thirdary: #cb183c;
 $background: #151515;
 $success: rgb(11, 154, 11);
 $backgroundColor: rgb(11, 11, 11);
@@ -22,7 +22,7 @@ $alternative-backgroundColor-light: rgb(235 235 235);
 $circle-perc-dark : rgb(152, 39, 158);
 $circle-perc-light : rgb(4, 135, 165);
 
-$circle-perc-dark :lighten($primary, 10%);
+$circle-perc-dark :saturate($primary, 10%);
 $circle-perc-light : lighten($primary-light, 10%);
 
 @mixin d-flex-col-center {
@@ -62,4 +62,3 @@ $primary-transparent-light-small: rgba($primary-light, 0.8);
 $secondary-transparent-light-small: rgba($secondary-light, 0.8);
 $thirdary-transparent-light-small: rgba($thirdary-light, 0.8);
 $background-transparent-light-small: rgba($background-light, 0.8);
-

@@ -164,7 +164,7 @@ export default {
           justify-content: center;
           flex-direction: column;
           padding: 1em .2em;
-          border-bottom: 1px solid darken($primary, 40%);
+          border-bottom: 1px solid rgba($primary, 0.2);
           transition: all .5s;
 
           &:hover {
@@ -180,7 +180,7 @@ export default {
               font-weight: 900;
               background-color: transparent;
               text-align: center;
-              border: 1px solid darken($primary, 30%);
+              border: 1px solid rgba($primary, 0.2);
               border-radius: 10px;
               margin-bottom: .4em;
             }
@@ -197,8 +197,8 @@ export default {
               border: none;
               padding: 0 .3em;
               border-radius: 14px;
-              color: $primary;
-              border: 1px solid;
+              color: white;
+              border: 1px solid rgba($primary, 0.3);
               margin: 0 .3em;
 
               &:hover {
@@ -312,6 +312,11 @@ export default {
     background: darken($background-light, 3%);
   }
 
+  .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info input[data-v-3db7df0c],
+  .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info select {
+    color: $color-dark;
+  }
+
   ._btn-outline-primary-darkness-hover {
     border: 1px solid darken($primary-light, 15%);
     padding: .3em 1em !important;
@@ -319,7 +324,7 @@ export default {
     border: 1px solid $primary-light;
     color: $primary-light;
     background-color: transparent;
-    box-shadow: 0px 0px 8px #05b0d742;
+    box-shadow: 0px 0px 8px rgba($primary, 0.4);
     text-shadow: 0px 0px 8px white;
     transition: all 1s;
 
@@ -327,7 +332,7 @@ export default {
       border: 1px solid $primary-light;
       color: $primary-light;
       background-color: darken($primary-light, 5%);
-      box-shadow: 0px 0px 8px #05b0d742;
+      box-shadow: 0px 0px 8px rgba($primary, 0.4);
     }
 
     &:active {

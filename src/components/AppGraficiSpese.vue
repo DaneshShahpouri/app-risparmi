@@ -339,27 +339,27 @@ export default {
         <!-- SHOW SPESE MENSILI -->
         <button class="_btn" :class="this.displaySpesePerMese == 'NO' ? '' : ' _btn-spesemensili'"
           @click="() => { this.displaySpesePerMese = this.changeArray(this.displaySpesePerMese, 1); this.changeGraphFunc(); this.createGrap(); }"><i
-            class="fa-solid fa-money-bill-wave"></i> Totale</button>
+            class="fa-solid fa-money-bill-wave"></i> <span class="span-icon">Totale</span></button>
 
         <!-- SHOW SPESE AFFITTO -->
         <button class="_btn" :class="this.displayAffitto == 'NO' ? '' : ' _btn-affitto'"
           @click="() => { this.displayAffitto = changeArray(this.displayAffitto, 2); this.changeGraphFunc(); this.createGrap(); }">
-          <i class="fa-solid fa-house "></i> Affitto</button>
+          <i class="fa-solid fa-house "></i> <span class="span-icon">Affitto</span></button>
 
         <!-- SHOW SPESE BOLLETTE -->
         <button class="_btn" :class="this.displayBollette == 'NO' ? '' : ' _btn-bollette'"
           @click="() => { this.displayBollette = changeArray(this.displayBollette, 3); this.changeGraphFunc(); this.createGrap(); }">
-          <i class="fa-solid fa-newspaper me-2"></i> Bollette</button>
+          <i class="fa-solid fa-newspaper"></i> <span class="span-icon">Bollette</span></button>
 
         <!-- SHOW SPESE ALIMENTARI -->
         <button class="_btn" :class="this.displayAlimentari == 'NO' ? '' : ' _btn-alimentari'"
           @click="() => { this.displayAlimentari = changeArray(this.displayAlimentari, 4); this.changeGraphFunc(); this.createGrap(); }">
-          <i class="fa-solid fa-utensils me-2"></i> Alimenti</button>
+          <i class="fa-solid fa-utensils"></i> <span class="span-icon">Alimenti</span></button>
 
         <!-- SHOW SPESE ALTRE SPESE -->
         <button class="_btn" :class="this.displayAltreSpese == 'NO' ? '' : ' _btn-altrespese'"
           @click="() => { this.displayAltreSpese = changeArray(this.displayAltreSpese, 5); this.changeGraphFunc(); this.createGrap(); }">
-          <i class="fa-solid fa-martini-glass-citrus me-2"></i> Altro</button>
+          <i class="fa-solid fa-martini-glass-citrus"></i> <span class="span-icon">Altro</span></button>
       </div>
 
 
@@ -370,9 +370,17 @@ export default {
 <style lang="scss" scoped>
 @use '../scss/variables' as *;
 
+.graph-container {
+  #my-chart-id {
+    padding: 8px;
+    border-radius: 12px;
+    background-color: rgba(128, 128, 128, 0.094);
+  }
+}
+
 .console_legend {
   width: 100%;
-  height: 40px;
+  height: 60px;
   //border: 1px solid red;
 
   margin-top: 1em;
@@ -381,6 +389,11 @@ export default {
   align-items: center;
   justify-content: space-between;
   gap: 1em;
+
+
+  padding: 8px;
+  border-radius: 12px;
+  background-color: rgba(128, 128, 128, 0.094);
 
   .first,
   .second {
@@ -485,7 +498,7 @@ export default {
 @media only screen and (max-width: 720px) {
   .console_legend {
     width: 100%;
-    height: 45vh;
+    height: auto;
 
     display: flex;
     align-items: center;
@@ -502,6 +515,17 @@ export default {
       flex-wrap: wrap;
       flex-direction: column;
     }
+
+    .second {
+      width: 50%;
+      flex-direction: row !important;
+      gap: 2em !important;
+    }
+
+    .span-icon {
+      display: none;
+    }
+
   }
 }
 

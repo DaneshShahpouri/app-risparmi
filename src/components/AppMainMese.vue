@@ -545,11 +545,11 @@ export default {
 
           <div class="text-voce-corrente">
 
-            <h6>{{ this.currentVoce }}</h6>
+            <h6 class="_bold">{{ this.currentVoce }}</h6>
 
             <!-- VOCE E TOTALE ANTEPRIMA -->
             <div>
-              <span class="_text-primary">{{ this.currentVoce == 'RISPARMI' ? this.store.risparmi[this.anno -
+              <span class="_text-primary _extra-bold">{{ this.currentVoce == 'RISPARMI' ? this.store.risparmi[this.anno -
                 2000][this.meseIndex].toFixed(2) : this.store.data.user[this.anno -
                   2000][this.meseIndex][this.currentItem].tot.toFixed(2)
               }}</span><span>€</span>
