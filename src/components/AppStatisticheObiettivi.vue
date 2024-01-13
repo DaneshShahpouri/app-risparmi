@@ -10,7 +10,11 @@ export default {
       dynamicProgress: [],
     }
   },
-
+  watch: {
+    'store.darkmode': function () {
+      this.createBar()
+    }
+  },
 
   props: {
     // msg: String
@@ -25,19 +29,54 @@ export default {
   methods: {
     createBar() {
       this.setPerc();
-
+      // CREA TROFEI OBBIETTIVI MEDAGLIE PERCENTUALE
       //style="  background: conic-gradient(${course.color} ${3.6 * course.percent}deg, #fff 0deg);"
+      let elColor = document.getElementById('app')
+      let backgroundValue = getComputedStyle(elColor.querySelector('._app')).getPropertyValue('border-left-color')
+
+      if (this.store.darkmode == false) {
+        backgroundValue = getComputedStyle(elColor.querySelector('._app')).getPropertyValue('border-right-color')
+      }
+
+      function caratteriTraParentesi(inputString) {
+        const startIndex = inputString.indexOf('(');
+        const endIndex = inputString.indexOf(')');
+
+        if (startIndex !== -1 && endIndex !== -1) {
+          return inputString.slice(startIndex + 1, endIndex);
+        } else {
+          return null; // Parentesi non trovate
+        }
+      }
+
+      // Esempio
+      backgroundValue = caratteriTraParentesi(backgroundValue);
 
       const progressGroups = document.querySelectorAll(".progress-group");
 
       let progessTimer = []
+
       progressGroups.forEach((progress, index) => {
+        let backgrounds = [];
+        backgrounds.push(backgroundValue)
+
         let progressStartValue = 0;
+
         let progressStartEnd = parseInt(this.dynamicProgress[index]);
-        if (progressStartEnd > 100 || progressStartEnd == Infinity) {
+        if (progressStartEnd >= 100 || progressStartEnd == Infinity) {
           progressStartEnd = 100;
+          backgrounds[index] = '250, 176, 5'
+        } else {
+          backgrounds[index] = getComputedStyle(elColor.querySelector('._app')).getPropertyValue('border-left-color')
+
+          if (this.store.darkmode == false) {
+            backgrounds[index] = getComputedStyle(elColor.querySelector('._app')).getPropertyValue('border-right-color')
+          }
+          // Esempio
+          backgrounds[index] = caratteriTraParentesi(backgrounds[index]);
         }
-        let speed = 20;
+
+        let speed = 25;
         progessTimer[index] = setInterval(() => {
           progressStartValue++;
           if (progressStartValue == progressStartEnd) {
@@ -45,10 +84,11 @@ export default {
           }
 
           progress.querySelector(".circular-progress").style.background = `
-          conic-gradient(rgb(29, 149, 210) ${3.6 * progressStartValue}deg, rgba(29, 150, 210, 0.142) 0deg)`;
+          conic-gradient(rgb(${backgrounds[index]}) ${3.6 * progressStartValue}deg, rgba(${backgrounds[index]}, 0.1) 0deg)`;
 
           progress.querySelector(".course-value").innerHTML = progressStartValue + "%";
         }, speed);
+
       });
     },
 
@@ -70,7 +110,7 @@ export default {
         this.dynamicProgress.push(percentuale)
       });
 
-      console.log(this.dynamicProgress)
+      //console.log(this.dynamicProgress)
     },
 
 
@@ -141,6 +181,7 @@ export default {
 
           <div class=" o_container">
             <div class="progress-group" v-for="( element, key ) in  this.store.data.o " :key="key">
+              <i class="fa-solid fa-award" :class="this.dynamicProgress[key] >= 100 ? 'show' : 'hide'"></i>
               <div class="circular-progress">
                 <span class="course-value">0%</span>
               </div>
@@ -339,12 +380,36 @@ export default {
         display: flex;
         gap: 10px;
 
+
         .progress-group {
           width: calc((70vw / 6) - 10px);
           display: flex;
           flex-direction: column;
           align-items: center;
           border-radius: 5px;
+          position: relative;
+
+          i {
+            transition: all 1.3s;
+            transform: scale(1.5);
+            color: grey;
+            text-shadow: 1px 2px 4px rgb(0 0 0 / 41%);
+
+            &.hide {
+              position: absolute;
+              top: 10px;
+              opacity: 0;
+
+            }
+
+            &.show {
+              position: absolute;
+              top: -25px;
+              opacity: 1;
+              color: #eeb302;
+            }
+          }
+
 
 
           .circular-progress {

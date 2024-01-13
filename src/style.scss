@@ -16,6 +16,11 @@
     -webkit-text-size-adjust: 100%;
 }
 
+._app {
+    border-left-color: $circle-perc-dark;
+    border-right-color: $circle-perc-dark;
+}
+
 * {
     font-family: 'League Spartan', sans-serif;
     font-family: 'Roboto', sans-serif;

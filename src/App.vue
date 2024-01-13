@@ -84,7 +84,7 @@ export default {
       } else {
         this.showNavInfo = true
       }
-      console.log(this.showNavInfo)
+      //console.log(this.showNavInfo)
     },
 
     setAnno(anno) {
@@ -441,7 +441,7 @@ export default {
 
 ._app {
   background-color: $background;
-  color:$color-light;
+  color: $color-light;
   width: 100vw;
   height: 100vh;
   padding: 0em;
@@ -996,7 +996,7 @@ export default {
       left: -5px;
       transform: rotate(0deg);
       color: rgb(11, 11, 11);
-      text-shadow: 0px 0px 3px rgb(33 159 223);
+      text-shadow: 0px 0px 3px $primary;
     }
   }
 
@@ -1046,7 +1046,7 @@ export default {
 
     &:hover {
       opacity: 1;
-      background: darken($primary, 46%);
+      background: $primary-transparent-ultra;
       color: $primary;
 
     }
@@ -1776,18 +1776,13 @@ export default {
   color: $color-dark;
 
   ._top {
-
     .navbar {
-
       ._border-nav {
         border: 1px solid #035e737a;
         box-shadow: 0px 0px 6px #c2e7f0;
-
       }
 
       .anno-slyder {
-
-
 
         .btn-left,
         .btn-right {
@@ -1813,7 +1808,18 @@ export default {
 
       }
 
+      ._btn-principale {
+        border: 1px solid darken($primary-light, 30%);
 
+        &:hover {
+          background-color: darken($background-light, 10%);
+        }
+
+        &:active {
+          background-color: darken($primary-light, 35%);
+          color: white;
+        }
+      }
     }
 
     .navbar-nav {
@@ -2044,10 +2050,8 @@ export default {
     }
 
     &:hover {
-
-      background: lighten($primary-light, 66%);
+      background: $primary-transparent-light-ultra;
       color: $primary-light;
-
     }
 
     &:active {
@@ -2493,7 +2497,7 @@ export default {
 
   ::-webkit-scrollbar-thumb:horizontal,
   ::-webkit-scrollbar-thumb {
-    background-color: lighten($primary-light, 65%);
+    background-color: darken($primary-light, 5%);
     border: 1px solid $primary-light;
     /* Colore del pulsante di scorrimento */
     border-radius: 6px;
@@ -2502,7 +2506,7 @@ export default {
 
   ::-webkit-scrollbar-track:horizontal,
   ::-webkit-scrollbar-track {
-    background-color: $background-light;
+    background-color: $background-transparent-ultra;
     //border: 1px solid darken($primary, 35%);
     /* Colore di sfondo della barra di scorrimento */
   }

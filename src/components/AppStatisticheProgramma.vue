@@ -163,10 +163,14 @@ export default {
           align-items: center;
           justify-content: center;
           flex-direction: column;
-          margin-bottom: .8em;
-          padding: 0;
-          padding-bottom: .4em;
+          padding: 1em .2em;
           border-bottom: 1px solid darken($primary, 40%);
+          transition: all .5s;
+
+          &:hover {
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.329);
+            background-color: rgba(123, 123, 124, 0.05);
+          }
 
           .nome_wrapper {
             position: relative;

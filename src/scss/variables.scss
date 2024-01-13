@@ -1,20 +1,29 @@
-$primary: rgb(33, 159, 223);
-$secondary: rgb(15, 136, 163);
-$thirdary: rgb(152, 34, 77);
-$background: rgb(21, 21, 21);
+$primary: #3b85c6;
+$secondary: #3468ad;
+$thirdary: #6e1938;
+$background: #151515;
 $success: rgb(11, 154, 11);
 $backgroundColor: rgb(11, 11, 11);
 $alternative-backgroundColor: rgb(20, 20, 20);
-$color-light : rgb(244, 242, 242);
+
+
+
+$color-light : #f4f2f2;
 $color-dark : #353535;
 
-$primary-light: rgb(4, 135, 165);
-$secondary-light: rgb(21, 77, 90);
-$thirdary-light: rgb(122, 0, 12);
-$background-light: rgb(227, 225, 225);
+$primary-light: #0487a5;
+$secondary-light: #154d5a;
+$thirdary-light: #b5295c;
+$background-light: #dcd9d9;
 $success-light: rgb(11, 154, 11);
 $backgroundColor-light: rgb(11, 11, 11);
 $alternative-backgroundColor-light: rgb(235 235 235);
+
+$circle-perc-dark : rgb(152, 39, 158);
+$circle-perc-light : rgb(4, 135, 165);
+
+$circle-perc-dark :lighten($primary, 10%);
+$circle-perc-light : lighten($primary-light, 10%);
 
 @mixin d-flex-col-center {
     display: flex;
@@ -22,3 +31,35 @@ $alternative-backgroundColor-light: rgb(235 235 235);
     justify-content: center;
     align-items: center;
 }
+
+$primary-transparent: rgba($primary, 0.5);
+$secondary-transparent: rgba($secondary, 0.5);
+$thirdary-transparent: rgba($thirdary, 0.5);
+$background-transparent: rgba($background, 0.5);
+
+$primary-transparent-ultra: rgba($primary, 0.1);
+$secondary-transparent-ultra: rgba($secondary, 0.1);
+$thirdary-transparent-ultra: rgba($thirdary, 0.1);
+$background-transparent-ultra: rgba($background, 0.1);
+
+$primary-transparent-small: rgba($primary, 0.8);
+$secondary-transparent-small: rgba($secondary, 0.8);
+$thirdary-transparent-small: rgba($thirdary, 0.8);
+$background-transparent-small: rgba($background, 0.8);
+
+
+$primary-transparent-light: rgba($primary-light, 0.5);
+$secondary-transparent-light: rgba($secondary-light, 0.5);
+$thirdary-transparent-light: rgba($thirdary-light, 0.5);
+$background-transparent-light: rgba($background-light, 0.5);
+
+$primary-transparent-light-ultra: rgba($primary-light, 0.1);
+$secondary-transparent-light-ultra: rgba($secondary-light, 0.1);
+$thirdary-transparent-light-ultra: rgba($thirdary-light, 0.1);
+$background-transparent-light-ultra: rgba($background-light, 0.1);
+
+$primary-transparent-light-small: rgba($primary-light, 0.8);
+$secondary-transparent-light-small: rgba($secondary-light, 0.8);
+$thirdary-transparent-light-small: rgba($thirdary-light, 0.8);
+$background-transparent-light-small: rgba($background-light, 0.8);
+

@@ -373,17 +373,7 @@ export default {
 
     },
 
-    calcRisparmiMese() {
 
-      //this.store.risparmi[this.anno][this.meseIndex] = this.store.data.user[this.anno][this.meseIndex].s.tot - this.store.data.user[this.anno][this.meseIndex].sc.tot - this.store.data.user[this.anno][this.meseIndex].ss.tot - this.store.data.user[this.anno][this.meseIndex].sb.tot - this.store.data.user[this.anno][this.meseIndex].sas.tot;
-      console.log(this.store.risparmi[this.anno - 2000][this.meseIndex])
-      console.log(this.store.spese[this.anno - 2000][this.meseIndex])
-      console.log(this.store.data.user[this.anno - 2000][this.meseIndex].s.tot.toFixed(2))
-      console.log(this.store.data.user[this.anno - 2000][this.meseIndex].sc.tot.toFixed(2))
-      console.log(this.store.data.user[this.anno - 2000][this.meseIndex].sb.tot.toFixed(2))
-      console.log(this.store.data.user[this.anno - 2000][this.meseIndex].ss.tot.toFixed(2))
-      console.log(this.store.data.user[this.anno - 2000][this.meseIndex].sas.tot.toFixed(2))
-    },
 
     // Funzione per salvare myData in localStorage
     save() {
@@ -412,7 +402,7 @@ export default {
     this.setCurrentItem('s');
 
     this.calcRisparmio();
-    this.calcRisparmiMese();
+
   },
 }
 </script>
@@ -543,6 +533,15 @@ export default {
 
         <!-- VOCI DI SPESA -->
         <div class="left-side-voci">
+          <!-- ICONE sfondo -->
+          <div id="icon-bg">
+            <i class="fa-solid fa-money-bill" v-if="this.currentVoce == 'ENTRATE'"></i>
+            <i class="fa-solid fa-house" v-if="this.currentVoce == 'AFFITTO'"></i>
+            <i class="fa-solid fa-newspaper" v-if="this.currentVoce == 'BOLLETTE'"></i>
+            <i class="fa-solid fa-utensils" v-if="this.currentVoce == 'ALIMENTI'"></i>
+            <i class="fa-solid fa-martini-glass-citrus" v-if="this.currentVoce == 'ALTRE SPESE'"></i>
+            <i class="fa-solid fa-coins" v-if="this.currentVoce == 'RISPARMI'"></i>
+          </div>
 
           <div class="text-voce-corrente">
 
@@ -788,6 +787,7 @@ export default {
       .left-side-voci {
         width: calc(25% - 10px);
         height: calc(100% - 10px);
+        position: relative;
 
         padding: .5em;
         display: flex;
@@ -800,6 +800,23 @@ export default {
         margin: 5px;
         border-radius: 12px;
 
+        overflow: hidden;
+
+        #icon-bg {
+          position: absolute;
+          z-index: 1;
+          top: 27px;
+          left: 40px;
+          opacity: .7;
+          transform: rotate(350deg);
+
+
+          i {
+            transform: scale(6);
+            opacity: .2
+          }
+        }
+
 
         .text-voce-corrente {
           display: flex;
@@ -807,6 +824,8 @@ export default {
           justify-content: center;
           align-items: center;
           height: calc(60px - 1em);
+          position: relative;
+          z-index: 2;
 
           h6 {
             margin: 0;
@@ -832,6 +851,8 @@ export default {
           gap: 1em;
 
           list-style-type: none;
+          position: relative;
+          z-index: 2;
 
           li {
             display: flex;

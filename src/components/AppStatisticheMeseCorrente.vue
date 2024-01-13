@@ -775,7 +775,7 @@ export default {
     }
 
     .my_badge {
-      background-color: darken($primary, 30%);
+      background-color: darken($primary, 50%);
       border: 1px solid $primary;
       font-size: .55em;
       width: 65px;
