@@ -443,7 +443,7 @@ export default {
 
 
 ._app {
-  background-color: $background;
+  background: linear-gradient(to bottom, darken($background, 2%) 20%, $background);
   color: $color-light;
   width: 100vw;
   height: 100vh;
@@ -710,13 +710,6 @@ export default {
         color: white;
         border: 1px solid rgb(183, 182, 182);
         background-color: $background;
-
-        .wrapper-icon {
-
-          i {
-            //color: rgb(215, 215, 215);
-          }
-        }
 
         .circle_fisso {
           border: 1px solid $primary;
@@ -1779,7 +1772,7 @@ export default {
 
 //LIGHT MODE
 ._app.light {
-  background-color: $background-light;
+  background: linear-gradient(to bottom, $background-light, lighten($background-light, 3%));
   color: $color-dark;
 
   ._top {

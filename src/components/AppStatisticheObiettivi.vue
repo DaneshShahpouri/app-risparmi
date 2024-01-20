@@ -563,6 +563,8 @@ export default {
         ._title-wrapper {
 
           ul {
+            height: auto;
+            margin-bottom: 1em;
 
             li {
 

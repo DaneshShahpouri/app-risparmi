@@ -16,6 +16,28 @@ export default {
       currentSpesa: '',
       currentVoce: 'ENTRATE',
 
+
+      questoMeseIndex: 0,
+      annoMedia: 24,
+      questoMese: '',
+      mesePassato: '',
+      mesiPassati: [],
+      mesiPassatiIndex: [],
+
+      mediaAffitto: 0,
+      mediaBollette: 0,
+      mediaAlimentari: 0,
+      mediaAltreSpese: 0,
+      mediaStipendi: 0,
+      mediaRisparmi: 0,
+
+      speseAffittoDodiciMesi: [],
+      speseBolletteDodiciMesi: [],
+      speseAlimentariDodiciMesi: [],
+      speseAltreSpeseDodiciMesi: [],
+      stipendiDodiciMesi: [],
+      risparmiDodiciMesi: [],
+
     }
   },
 
@@ -223,13 +245,13 @@ export default {
       this.store.totaleRisparmi = parseInt(this.store.totaleRisparmioMese[23]) + parseInt(this.store.totaleRisparmioMese[24]) + parseInt(this.store.totaleRisparmioMese[25]) + parseInt(this.store.totaleRisparmioMese[26])
       this.store.totaleSpese = parseInt(this.store.totaleSpeseMese[23]) + parseInt(this.store.totaleSpeseMese[24]) + parseInt(this.store.totaleRisparmioMese[25]) + parseInt(this.store.totaleRisparmioMese[26])
 
-      //console.log('risaprmio calcolato')
+      console.log('risaprmio calcolato')
     },
 
     //calcola il totale
     calcVoci(dato, mese) {
       // console.log(eval(this.store.data.user[this.store.anno][11].s.mag.pre))
-
+      console.log('calcolo Voci')
       let tot = 0;
       if (dato == 's') {
         Object.keys(this.store.data.user[this.store.anno][mese].s.mag.pre).forEach(key => {
@@ -390,6 +412,154 @@ export default {
       //console.log(this.dynamicProgress)
     },
 
+    setDodiciMesi(quantita = 12) {
+      let index = this.store.currentMonth + 1
+      let mesiindex = this.store.currentMonth
+
+      this.mesiPassati = []
+
+      this.mediaAffitto = 0;
+      this.mediaBollette = 0;
+      this.mediaAlimentari = 0;
+      this.mediaAltreSpese = 0;
+      this.mediaStipendi = 0;
+      this.mediaRisparmi = 0;
+
+      let anno = this.store.currentYear.toString().substring(2, 4)
+      let contatore = 0;
+
+      for (let i = quantita; i > 0; i--) {
+
+        if (this.store.data.user[anno][index] != undefined) {
+
+          this.stipendiDodiciMesi.push(this.store.data.user[anno][index].s.tot)
+          this.mesiPassati.push(this.store.mesi[mesiindex] + ' 20' + anno)
+          if (mesiindex < 10) {
+
+            this.mesiPassatiIndex.push('20' + anno + '-0' + (mesiindex + 1))
+          } else {
+
+            this.mesiPassatiIndex.push('20' + anno + '-' + (mesiindex + 1))
+          }
+
+          this.speseAffittoDodiciMesi.push(this.store.data.user[anno][index].sc.tot)
+          this.speseBolletteDodiciMesi.push(this.store.data.user[anno][index].sb.tot)
+          this.speseAlimentariDodiciMesi.push(this.store.data.user[anno][index].ss.tot)
+          this.speseAltreSpeseDodiciMesi.push(this.store.data.user[anno][index].sas.tot)
+
+          let risparmio = this.store.data.user[anno][index].s.tot - (this.store.data.user[anno][index].sc.tot + this.store.data.user[anno][index].sb.tot + this.store.data.user[anno][index].ss.tot + this.store.data.user[anno][index].sas.tot)
+          this.risparmiDodiciMesi.push(risparmio)
+
+
+          if (this.store.data.user[anno][index].s.tot != 0) {
+
+            this.mediaStipendi += this.store.data.user[anno][index].s.tot;
+            this.mediaAffitto += this.store.data.user[anno][index].sc.tot;
+            this.mediaBollette += this.store.data.user[anno][index].sb.tot;
+            this.mediaAlimentari += this.store.data.user[anno][index].ss.tot;
+            this.mediaAltreSpese += this.store.data.user[anno][index].sas.tot;
+            this.mediaRisparmi += risparmio;
+            contatore++;
+          }
+
+
+        }
+
+        if (index == 1) {
+          index = 12
+          anno--
+        } else {
+          index--
+        }
+
+        if (mesiindex == 0) {
+          mesiindex = 11
+        } else {
+          mesiindex--
+        }
+
+      }
+
+
+      this.mediaRisparmi = this.mediaRisparmi / contatore
+      this.mediaStipendi = this.mediaStipendi / contatore
+      this.mediaAffitto = this.mediaAffitto / contatore
+      this.mediaBollette = this.mediaBollette / contatore
+      this.mediaAlimentari = this.mediaAlimentari / contatore
+      this.mediaAltreSpese = this.mediaAltreSpese / contatore
+
+      console.log(this.mediaStipendi)
+      console.log(this.mediaRisparmi)
+      console.log(this.mediaAffitto)
+      console.log(this.mediaBollette)
+      console.log(this.mediaAlimentari)
+
+      this.setPercentuali()
+    },
+
+    setPercentuali() {
+
+      // STIPENDIO
+      let stipendioDif = this.store.data.user[this.annoMedia][this.questoMeseIndex + 1].s.tot - this.mediaStipendi
+      this.percStipendio = (stipendioDif / this.mediaStipendi) * 100
+      this.percStipendio = Math.round(this.percStipendio * 100) / 100
+      if (this.mediaStipendi == 0) {
+        this.percStipendio = 0
+      }
+
+      //AFFITTO
+      let affittoDif = this.store.data.user[this.annoMedia][this.questoMeseIndex + 1].sc.tot - this.mediaAffitto
+      this.percAffitto = (affittoDif / this.mediaAffitto) * 100
+      this.percAffitto = Math.round(this.percAffitto * 100) / 100
+      if (this.mediaAffitto == 0) {
+        this.percAffitto = 0
+      }
+
+      //BOLLETTE
+      let bolletteDif = this.store.data.user[this.annoMedia][this.questoMeseIndex + 1].sb.tot - this.mediaBollette
+      this.percBollette = (bolletteDif / this.mediaBollette) * 100
+      this.percBollette = Math.round(this.percBollette * 100) / 100
+      if (this.mediaBollette == 0) {
+        this.percBollette = 0
+      }
+
+      //ALIMENTARI
+      let alimentariDif = this.store.data.user[this.annoMedia][this.questoMeseIndex + 1].ss.tot - this.mediaAlimentari
+      this.percAlimentari = (alimentariDif / this.mediaAlimentari) * 100
+      this.percAlimentari = Math.round(this.percAlimentari * 100) / 100
+      if (this.mediaAlimentari == 0) {
+        this.percAlimentari = 0
+      }
+
+      //ALIMENTARI
+      let altreSpeseDif = this.store.data.user[this.annoMedia][this.questoMeseIndex + 1].sas.tot - this.mediaAltreSpese
+      this.percAltreSpese = (altreSpeseDif / this.mediaAltreSpese) * 100
+      this.percAltreSpese = Math.round(this.percAltreSpese * 100) / 100
+      if (this.mediaAltreSpese == 0) {
+        this.percAltreSpese = 0
+      }
+
+      //RISPARMI
+      let risparmiDif = (this.store.data.user[this.annoMedia][this.questoMeseIndex + 1].s.tot -
+        (this.store.data.user[this.annoMedia][this.questoMeseIndex + 1].sc.tot +
+          this.store.data.user[this.annoMedia][this.questoMeseIndex + 1].sb.tot +
+          this.store.data.user[this.annoMedia][this.questoMeseIndex + 1].ss.tot +
+          this.store.data.user[this.annoMedia][this.questoMeseIndex + 1].sas.tot)) - this.mediaRisparmi
+
+      this.percRisparmi = (risparmiDif / this.mediaRisparmi) * 100
+      this.percRisparmi = Math.round(this.percRisparmi * 100) / 100
+      if (this.mediaRisparmi == 0) {
+        this.percRisparmi = 0
+      }
+
+      // console.log('AFFITTO:' + this.percAffitto)
+      // console.log('Bollette:' + this.percBollette)
+      // console.log('Alimentari:' + this.percAlimentari)
+      // console.log('AltreSpese:' + this.percAltreSpese)
+      // console.log('Stipendio:' + this.percStipendio)
+      // console.log('Risparmi:' + this.percRisparmi)
+    },
+
     // Funzione per salvare myData in localStorage
     save() {
       const myData = this.store.data
@@ -405,7 +575,8 @@ export default {
     this.calcRisparmio();
     this.focusInput();
     this.setCurrentItem('s');
-    this.setPerc()
+    this.setPerc();
+    this.setDodiciMesi();
   },
 
   mounted() {
@@ -414,10 +585,12 @@ export default {
     this.anno = date.getFullYear()
     this.mese = this.store.mesi[date.getMonth()]
     this.meseIndex = date.getMonth() + 1
+    this.currentVoce = "RISPARMI"
 
-    this.setCurrentItem('s');
+    this.setCurrentItem('risparmi');
 
     this.calcRisparmio();
+
 
   },
 }
@@ -436,7 +609,7 @@ export default {
           <!-- SingleOption -->
           <div class="_sidebar-option">
 
-            <div class="icon-wrapper" @click="setCurrentItem('s')">
+            <div class="icon-wrapper" @click="setCurrentItem('s')" :class="this.currentVoce == 'ENTRATE' ? 'active' : ''">
               <i class="fa-solid fa-money-bill"></i>
             </div>
 
@@ -456,7 +629,8 @@ export default {
           <!-- SingleOption -->
           <div class="_sidebar-option">
 
-            <div class="icon-wrapper" @click="setCurrentItem('sc')">
+            <div class="icon-wrapper" @click="setCurrentItem('sc')"
+              :class="this.currentVoce == 'AFFITTO' ? 'active' : ''">
               <i class="fa-solid fa-house "></i>
             </div>
 
@@ -470,7 +644,8 @@ export default {
           <!-- SingleOption -->
           <div class="_sidebar-option">
 
-            <div class="icon-wrapper" @click="setCurrentItem('sb')">
+            <div class="icon-wrapper" @click="setCurrentItem('sb')"
+              :class="this.currentVoce == 'BOLLETTE' ? 'active' : ''">
               <i class="fa-solid fa-newspaper"></i>
             </div>
 
@@ -484,7 +659,8 @@ export default {
           <!-- SingleOption -->
           <div class="_sidebar-option">
 
-            <div class="icon-wrapper" @click="setCurrentItem('ss')">
+            <div class="icon-wrapper" @click="setCurrentItem('ss')"
+              :class="this.currentVoce == 'ALIMENTI' ? 'active' : ''">
               <i class="fa-solid fa-utensils"></i>
             </div>
 
@@ -498,7 +674,8 @@ export default {
           <!-- SingleOption -->
           <div class="_sidebar-option">
 
-            <div class="icon-wrapper" @click="setCurrentItem('sas')">
+            <div class="icon-wrapper" @click="setCurrentItem('sas')"
+              :class="this.currentVoce == 'ALTRE SPESE' ? 'active' : ''">
               <i class="fa-solid fa-martini-glass-citrus me-2"></i>
             </div>
 
@@ -519,7 +696,8 @@ export default {
         <!-- SingleOption -->
         <div class="_sidebar-option">
 
-          <div class="icon-wrapper" @click="setCurrentItem('risparmi')">
+          <div class="icon-wrapper" @click="setCurrentItem('risparmi')"
+            :class="this.currentVoce == 'RISPARMI' ? 'active' : ''">
             <i class="fa-solid fa-coins"></i>
           </div>
 
@@ -538,10 +716,35 @@ export default {
 
       <!-- MESE ANNO -->
       <div class="_main-top-title">
-        <h1>
-          {{ this.mese }}
-        </h1>
-        <span>{{ this.anno }}</span>
+
+        <div class="_left">
+          <h1>
+            {{ this.mese }}
+          </h1>
+          <span>{{ this.anno }}</span>
+        </div>
+
+        <div class="_right">
+          <!-- Percentuale risparmio Header -->
+          <div class="_percent-header"
+            :class="(this.perRisparmi == 0 ? 'neutro' : (this.percRisparmi >= 95 ? 'pos-gold' : (this.percRisparmi > 0 ? (this.percRisparmi > 75 ? 'pos-super' : (this.percRisparmi > 40 ? 'pos' : 'pos-light')) : (this.percRisparmi < -75 ? 'neg-super' : (this.percRisparmi < -40 ? 'neg' : 'neg-light')))))">
+            <i class="fa-solid fa-arrow-trend-up" v-if="this.percRisparmi > 0"></i>
+            <i class="fa-solid fa-arrow-trend-down" v-else></i>
+
+
+            <div class="_perc">
+
+              <div class="d-flex align-items-center" style="font-size:2em">
+
+                <span>{{ (this.percRisparmi > 0 ? '+ ' : ' ') }}</span>
+                <span class="">{{ (this.percRisparmi > 100 || this.percRisparmi < -100 ? '100' : this.percRisparmi)
+                }}</span>
+                    <span>%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- INFO DI DESTRA -->
@@ -571,6 +774,26 @@ export default {
               }}</span><span>€</span>
             </div>
 
+            <!-- MEDIA ANTEPRIMA  -->
+            <div class="_media-mensile" style="margin:0; padding:0; font-size: .8em;">
+              <span><i class="fa-solid fa-gauge"></i></span>
+              <span class="_text-thirdary" v-if="this.currentVoce == 'RISPARMI'">{{
+                this.mediaRisparmi.toFixed(2) }}</span>
+              <span class="_text-thirdary" v-if="this.currentVoce == 'ENTRATE'">{{
+                this.mediaStipendi.toFixed(2) }}</span>
+              <span class="_text-thirdary" v-if="this.currentVoce == 'BOLLETTE'">{{
+                this.mediaBollette.toFixed(2) }}</span>
+              <span class="_text-thirdary" v-if="this.currentVoce == 'AFFITTO'">{{
+                this.mediaAffitto.toFixed(2) }}</span>
+              <span class="_text-thirdary" v-if="this.currentVoce == 'ALIMENTI'">{{
+                this.mediaAlimentari.toFixed(2) }}</span>
+              <span class="_text-thirdary" v-if="this.currentVoce == 'ALTRE SPESE'">{{
+                this.mediaAltreSpese.toFixed(2) }}</span>
+              <span>€</span>
+
+              <span class="_hover-badge">Media annuale</span>
+            </div>
+
           </div>
 
           <ul class="elenco-voci" v-if="this.currentVoce != 'RISPARMI'">
@@ -578,18 +801,19 @@ export default {
             <li v-for="(el, key) in this.currentSpesa.mag.art " :key="key">
 
               <div class="btn-delete-wrapper">
-                <button class="btn-delete" @click.stop="deleteEl(this.meseIndex, this.currentItem, key)">
+                <button class="btn-delete"
+                  @click.stop="deleteEl(this.meseIndex, this.currentItem, key), calcVoci(this.currentItem, this.meseIndex), calcRisparmio(), save()">
                   <i class="fa-solid fa-minus"></i>
                 </button>
               </div>
 
               <div class="name-input">
-                <input type="text" @change="calcRisparmio(), calcVoci(this.currentItem, this.meseIndex), save()"
+                <input type="text" @change="calcVoci(this.currentItem, this.meseIndex), calcRisparmio(), save()"
                   v-model="this.store.data.user[this.store.anno][this.meseIndex][this.currentItem].mag.art[key]">
               </div>
 
               <div class="prezzo-input">
-                <input type="num" @change="calcRisparmio(), calcVoci(this.currentItem, this.meseIndex), save()"
+                <input type="num" @change="calcVoci(this.currentItem, this.meseIndex), calcRisparmio(), save()"
                   v-model="this.store.data.user[this.store.anno][this.meseIndex][this.currentItem].mag.pre[key]">
                 <span>€</span>
               </div>
@@ -637,6 +861,7 @@ export default {
             </ul>
 
             <p v-else>Nessun Obbiettivo aggiunto</p>
+
           </div>
 
           <div class="btn-wrapper">
@@ -644,6 +869,14 @@ export default {
               @click.stop="createEl(this.meseIndex, this.currentItem, 'Nuovo', 0); save()">
               <i class="fa-solid fa-circle-plus"></i>
             </button>
+
+            <div class="d-flex flex-column justify-content-center align-items-center" v-else>
+              <span class="_bold text-center">Disponibile:</span>
+              <span>
+                <span class="_text-primary">{{ this.store.totaleRisparmi.toFixed(2) }}</span>
+                <span>€</span>
+              </span>
+            </div>
           </div>
 
         </div>
@@ -769,29 +1002,51 @@ export default {
         width: 50px;
         height: 50px;
         position: relative;
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba($primary, .1);
         border-radius: 50%;
-        transition: all .3s;
         cursor: pointer;
         margin-bottom: .4em;
+        border: 2px solid transparent;
+        transition: all .5s;
 
         &:hover {
-          background-color: rgba(255, 255, 255, 0.2);
+          background-color: rgba($primary, .3);
           transition: all .1s;
         }
 
-        &:active {
-          background-color: rgba(143, 143, 143, 0.2);
-        }
 
         i {
           position: absolute;
           top: 50%;
           left: 50%;
-          transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%) scale(.9);
           cursor: pointer;
+          opacity: .3;
+          transition: all .5s;
+        }
+
+        &.active {
+          // border: 2px solid white;
+          border: 2px solid $primary;
+          background-color: $primary;
+
+          i {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-50%) scale(1.3);
+            animation: .3s zoom;
+          }
         }
       }
+    }
+  }
+
+  @keyframes zoom {
+    0% {
+      transform: translateX(-50%) translateY(-50%) scale(.9);
+    }
+
+    100% {
+      transform: translateX(-50%) translateY(-50%) scale(1.5);
     }
   }
 
@@ -810,29 +1065,134 @@ export default {
       width: 100%;
       height: 75px;
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
       background-color: lighten($background, 4%);
       border-radius: 12px;
-      margin-bottom: 5px;
 
-      h1 {
-        margin-left: 10px;
-        margin-bottom: 0;
-        text-transform: uppercase;
-        font-weight: 900;
-        display: inline-block;
-        padding: 0;
-        height: 35px;
-        padding-top: 5px;
 
-      }
-
-      span {
-        margin-left: 13px;
-        padding-top: 5px;
+      ._left {
         display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin-bottom: 5px;
+        height: 75px;
+
+        h1 {
+          margin-left: 10px;
+          margin-bottom: 0;
+          text-transform: uppercase;
+          font-weight: 900;
+          display: inline-block;
+          padding: 0;
+          height: 35px;
+          padding-top: 5px;
+
+        }
+
+        span {
+          margin-left: 13px;
+          padding-top: 5px;
+          display: flex;
+        }
+
       }
+
+      ._right {
+        display: flex;
+        flex-direction: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 5px;
+        height: 75px;
+
+
+        ._percent-header {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          /* padding: 0.5em; */
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          margin-right: 1em;
+          box-shadow: 1px 1px 5px #00000057;
+          position: relative;
+          color: rgb(236, 230, 230);
+
+          i {
+            text-shadow: 0px 0px 2px black;
+            color: white;
+          }
+
+          &.pos {
+            background: rgba($success, 70%);
+            color: rgba($success, 70%);
+          }
+
+          &.pos-light {
+            background: rgba($success, 30%);
+            color: rgba($success, 30%);
+          }
+
+          &.pos-super {
+            background: $success;
+            color: $success;
+          }
+
+          &.pos-gold {
+            background: rgb(223, 197, 0);
+            color: rgb(223, 197, 0);
+          }
+
+
+          &.neg {
+            background: rgba($primary, 70%);
+            color: rgba($primary, 70%);
+          }
+
+          &.neg-light {
+            background: rgba($thirdary, 30%);
+            color: rgba($thirdary, 30%);
+          }
+
+          &.neg-super {
+            background: $thirdary;
+            color: $thirdary;
+          }
+
+          ._perc {
+            width: 130px;
+            font-size: 0.7em;
+            position: absolute;
+            bottom: -3px;
+            right: -10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.5s;
+            /* background-color: rgba(0, 0, 0, 0.726); */
+            padding: 0.2em 1em;
+            border-radius: 8px;
+            font-weight: 900;
+            text-shadow: 0px 0px 2px black;
+
+          }
+
+          &:hover {
+            ._perc {
+              opacity: 1;
+              right: 10px;
+            }
+          }
+        }
+      }
+
     }
 
     ._main-bottom-container {
@@ -880,9 +1240,51 @@ export default {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          height: calc(60px - 1em);
+          height: calc(65px - 0em);
           position: relative;
           z-index: 2;
+          width: 100%;
+
+          ._media-mensile {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: .2em;
+            position: relative;
+
+            &:hover {
+              span {
+                text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.402);
+                opacity: 1;
+              }
+
+              ._hover-badge {
+                bottom: 20px;
+                opacity: 1;
+              }
+            }
+
+            ._hover-badge {
+              position: absolute;
+              bottom: 0px;
+              opacity: 0;
+              background-color: rgb(12 12 12);
+              color: #c2c2c2;
+              display: block;
+              padding: .2em 1em;
+              z-index: 40;
+              border-radius: 10px;
+            }
+
+            span {
+              font-size: .9em;
+              font-weight: 600;
+              opacity: .7;
+              transition: all .4s;
+
+            }
+          }
 
           h6 {
             margin: 0;
@@ -993,6 +1395,12 @@ export default {
             border-radius: 12px;
             padding: .5em;
             background: rgba(128, 128, 128, 0.091);
+            opacity: .8;
+            transition: all .4s;
+
+            &:hover {
+              opacity: 1;
+            }
 
             .list-info {
               display: flex;
@@ -1111,18 +1519,29 @@ export default {
     ._sidebar-option {
 
       .icon-wrapper {
-        background-color: darken($background-light, 2%);
-        border: 1px solid;
+        background-color: rgba($primary-light, .1);
+        //border: 1px solid;
+        transition: all .5s;
 
 
         &:hover {
-          background-color: rgba(255, 255, 255, 0.2);
+          background-color: rgba($primary-light, .3)
         }
 
-        &:active {
-          background-color: darken($background-light, 20%);
+
+
+        i {
+          color: rgb(44, 43, 43);
+          transition: .6s;
         }
 
+        &.active {
+          background-color: $primary-light;
+
+          i {
+            color: white;
+          }
+        }
 
       }
     }
