@@ -613,10 +613,13 @@ export default {
               <i class="fa-solid fa-money-bill"></i>
             </div>
 
-            <span>ENTRATE</span>
-            <div class="_soldi-btn">
-              <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].s.tot.toFixed(2)
-              }}</span><span>€</span>
+            <div class="_info">
+
+              <span>ENTRATE</span>
+              <div class="_soldi-btn">
+                <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].s.tot.toFixed(2)
+                }}</span><span>€</span>
+              </div>
             </div>
           </div>
 
@@ -634,10 +637,13 @@ export default {
               <i class="fa-solid fa-house "></i>
             </div>
 
-            <span>AFFITTO</span>
-            <div class="_soldi-btn">
-              <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].sc.tot.toFixed(2)
-              }}</span><span>€</span>
+            <div class="_info">
+
+              <span>AFFITTO</span>
+              <div class="_soldi-btn">
+                <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].sc.tot.toFixed(2)
+                }}</span><span>€</span>
+              </div>
             </div>
           </div>
 
@@ -649,10 +655,13 @@ export default {
               <i class="fa-solid fa-newspaper"></i>
             </div>
 
-            <span>BOLLETTE</span>
-            <div class="_soldi-btn">
-              <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].sb.tot.toFixed(2)
-              }}</span><span>€</span>
+            <div class="_info">
+
+              <span>BOLLETTE</span>
+              <div class="_soldi-btn">
+                <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].sb.tot.toFixed(2)
+                }}</span><span>€</span>
+              </div>
             </div>
           </div>
 
@@ -664,10 +673,13 @@ export default {
               <i class="fa-solid fa-utensils"></i>
             </div>
 
-            <span>ALIMENTI</span>
-            <div class="_soldi-btn">
-              <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].ss.tot.toFixed(2)
-              }}</span><span>€</span>
+            <div class="_info">
+
+              <span>ALIMENTI</span>
+              <div class="_soldi-btn">
+                <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].ss.tot.toFixed(2)
+                }}</span><span>€</span>
+              </div>
             </div>
           </div>
 
@@ -679,10 +691,13 @@ export default {
               <i class="fa-solid fa-martini-glass-citrus me-2"></i>
             </div>
 
-            <span>ALTRO</span>
-            <div class="_soldi-btn">
-              <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].sas.tot.toFixed(2)
-              }}</span><span>€</span>
+            <div class="_info">
+
+              <span>ALTRO</span>
+              <div class="_soldi-btn">
+                <span class="_text-primary">{{ this.store.data.user[this.anno - 2000][this.meseIndex].sas.tot.toFixed(2)
+                }}</span><span>€</span>
+              </div>
             </div>
           </div>
 
@@ -701,10 +716,13 @@ export default {
             <i class="fa-solid fa-coins"></i>
           </div>
 
-          <span>RISPARMI</span>
-          <div class="_soldi-btn">
-            <span class="_text-primary">{{ this.store.risparmi[this.anno - 2000][this.meseIndex].toFixed(2)
-            }}</span><span>€</span>
+          <div class="_info">
+
+            <span>RISPARMI</span>
+            <div class="_soldi-btn">
+              <span class="_text-primary">{{ this.store.risparmi[this.anno - 2000][this.meseIndex].toFixed(2)
+              }}</span><span>€</span>
+            </div>
           </div>
         </div>
       </div>
@@ -915,7 +933,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   margin-top: 40px;
-  width: 95%;
   margin: 0 auto;
   overflow-y: auto;
   position: relative;
@@ -985,17 +1002,29 @@ export default {
       justify-content: center;
 
 
-      ._soldi-btn {
+      ._info {
+        width: 100%;
+        height: 30px;
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        padding: 0;
+        margin-top: -5px;
 
-        &>span {
+        ._soldi-btn {
           display: flex;
-        }
-      }
 
-      span {
-        font-size: .7em;
-        font-weight: 700;
+          &>span {
+            display: flex;
+          }
+        }
+
+        span {
+          font-size: .7em;
+          font-weight: 700;
+        }
       }
 
       .icon-wrapper {
@@ -1508,7 +1537,157 @@ export default {
 }
 
 
+@media only screen and (max-width: 1100px) {
+  ._main {
+    height: calc(100% - 40px);
+    width: 95%;
+    justify-content: center;
 
+    .sidebar-wrapper {
+      width: 65px;
+    }
+
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  ._main {
+    height: calc(100% - 40px);
+    width: 95%;
+    justify-content: center;
+
+    .sidebar-wrapper {
+      width: 100%;
+      height: 65px;
+      flex-direction: row;
+
+      .bottom-side,
+      .top-side {
+        width: 70px;
+        height: 65px;
+        flex-direction: row;
+        gap: 0em;
+
+        .downer,
+        .upper {
+          width: 80px;
+          height: 65px;
+
+          flex-direction: row;
+          gap: 0.4em;
+        }
+
+      }
+
+
+      ._sidebar-option {
+        width: 70px;
+        height: 65px;
+        position: relative;
+
+        ._info {
+          position: absolute;
+          bottom: -10px;
+          background: #000000bb;
+          border-radius: 6px;
+          opacity: 0;
+          transition: all .4s;
+          padding: .2em;
+        }
+
+        &:hover {
+          ._info {
+            bottom: -20px;
+            opacity: 1;
+          }
+        }
+
+      }
+    }
+
+    ._main-container {
+      width: 100%;
+      height: calc(100% - 65px);
+    }
+
+  }
+}
+
+
+@media only screen and (max-width: 680px) {
+  ._main {
+
+
+    .sidebar-wrapper {
+      flex-direction: row;
+      padding: 0;
+
+
+
+      .bottom-side {
+        display: flex;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+      }
+
+      .top-side {
+        width: 60px;
+        height: 60px;
+      }
+
+
+      ._sidebar-option {
+        width: 50px;
+        height: 50px;
+        position: relative;
+
+        .icon-wrapper {
+          width: 40px;
+          height: 40px;
+        }
+
+      }
+    }
+
+    ._main-container {
+
+      ._main-top-title {
+
+        ._right {
+
+          ._percent-header {
+
+            ._perc {
+              opacity: 1;
+              right: 50px;
+              font-size: 0.5em;
+            }
+          }
+        }
+      }
+
+      ._main-bottom-container {
+        width: calc(100% - 10px);
+        flex-direction: column;
+
+        .left-side-voci {
+          width: 100%;
+          height: 100%;
+          min-height: 550px;
+          padding: 1em;
+        }
+
+        .right-side-info {
+          width: 100%;
+          height: 100%;
+          min-height: 550px;
+        }
+      }
+
+    }
+  }
+}
 
 
 ._main.light {
