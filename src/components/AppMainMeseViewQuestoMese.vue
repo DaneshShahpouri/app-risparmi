@@ -12,11 +12,11 @@ export default {
   data() {
     return {
       chartData: {
-        labels: ["entrate", "risparmi", "affitto", "bollette", "alimenti", "altro"],
+        labels: ["RISPARMI", "AFFITTO", "BOLLETTE", "ALIMENTI", "ALTRO"],
         datasets: [
           {
             data: [0], // Imposta a 0 per ora
-            backgroundColor: ['rgba(1, 1, 4, 0.454)', 'rgba(42, 149, 3, .7)', 'rgba(209, 209, 50,.7)', 'rgba(217, 146, 15,.7)', 'rgba(217, 15, 214,.7)', 'rgba(32, 191, 169, .7)'],
+            backgroundColor: ['rgba(42, 149, 3, .7)', 'rgba(209, 209, 50,.7)', 'rgba(217, 146, 15,.7)', 'rgba(217, 15, 214,.7)', 'rgba(32, 191, 169, .7)'],
             //borderColor: ['rgba(1, 1, 4, 0.8)', 'rgba(42, 149, 3, 1)', 'rgba(209, 209, 50, 1)', 'rgba(217, 146, 15, 1)', 'rgba(217, 15, 214, 1)', 'rgb(32, 191, 169)'],
           },
         ],
@@ -26,8 +26,27 @@ export default {
           legend: {
             display: false
           },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                let label = context.label.toUpperCase();
+                let value = parseFloat(context.parsed.toFixed(2))
+
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed.y !== null) {
+                  label += value + '%';
+                }
+                return label;
+              }
+            }
+          }
         },
       },
+
+
+
 
 
 
@@ -50,7 +69,6 @@ export default {
   },
   methods: {
     createDoughnut() {
-      this.chartData.labels[0] = this.store.mesi[this.meseIndex - 1];
 
       let entrate = this.store.data.user[this.anno - 2000][this.meseIndex].s.tot;
       let bollette = this.store.data.user[this.anno - 2000][this.meseIndex].sb.tot;
@@ -59,15 +77,19 @@ export default {
       let altro = this.store.data.user[this.anno - 2000][this.meseIndex].sas.tot;
 
 
+      if ((((entrate - (bollette + affitto + alimenti + altro)) / entrate) * 100) < 0) {
+        this.chartData.datasets[0].backgroundColor[0] = 'rgb(203, 24, 60)'
+        this.chartData.labels[0] = 'PERDITE'
+      }
 
       // Imposta i dati proporzionali
       this.chartData.datasets[0].data = [
-        0,
-        (entrate - (bollette + affitto + alimenti + altro)),
-        affitto,
-        bollette,
-        alimenti,
-        altro
+
+        ((entrate - (bollette + affitto + alimenti + altro)) / entrate) * 100,
+        (affitto / entrate) * 100,
+        (bollette / entrate) * 100,
+        (alimenti / entrate) * 100,
+        (altro / entrate) * 100,
       ];
     },
 

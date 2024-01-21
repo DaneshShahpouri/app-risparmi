@@ -61,6 +61,9 @@ export default {
         if (progressStartEnd >= 100 || progressStartEnd == Infinity) {
           progressStartEnd = 100;
           backgrounds[index] = '250, 176, 5'
+        } else if (progressStartEnd < 0) {
+          progressStartEnd = 0;
+
         } else {
           backgrounds[index] = getComputedStyle(elColor.querySelector('._app')).getPropertyValue('border-left-color')
 
@@ -89,7 +92,10 @@ export default {
           progress.querySelector(".circular-progress").style.background = `
           conic-gradient(rgb(${backgrounds[index]}) ${3.6 * progressStartValue}deg, rgba(${backgrounds[index]}, 0.1) 0deg)`;
 
-          progress.querySelector(".course-value").innerHTML = progressStartValue + "%";
+          if (this.store.totaleRisparmi >= 0) {
+
+            progress.querySelector(".course-value").innerHTML = progressStartValue + "%";
+          }
         }, speed);
 
       });

@@ -110,6 +110,7 @@ export default {
           legend: {
             display: false
           },
+
         },
 
         scales: {
