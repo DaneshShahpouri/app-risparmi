@@ -1679,7 +1679,6 @@ export default {
           border-radius: 8px;
           background-color: lighten($background, 4%);
 
-          border: 1px solid rgb(46, 46, 135);
         }
 
       }
@@ -2185,5 +2184,9 @@ export default {
     /* Colore di sfondo della barra di scorrimento */
   }
 
+}
+
+.prova {
+  color: rgba(1, 1, 4, 0.454)
 }
 </style>
