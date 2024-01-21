@@ -41,9 +41,378 @@ export default {
       //console.log('myData salvato con successo!');
     },
     //Reset
+    // resetData() {
+
+    //   const myData = this.store.tempData
+
+    //   // Salva myData in localStorage
+    //   localStorage.setItem('myData', JSON.stringify(myData));
+    //   setTimeout(() => {
+    //     window.location.reload();
+    //   }, 1000);
+    // },
     resetData() {
 
-      const myData = this.store.tempData
+      const myData = {
+        user: {
+          nome: 'Danesh',
+          cognome: 'Shahpouri',
+          eta: 30,
+          sesso: 'M',
+          23: {
+            1: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            2: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            3: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            4: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            5: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            6: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            7: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            8: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            9: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            10: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            11: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            12: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            }
+
+          },
+          24: {
+            1: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            2: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            3: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            4: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            5: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            6: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            7: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            8: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            9: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            10: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            11: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            12: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            }
+
+          },
+          25: {
+            1: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            2: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            3: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            4: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            5: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            6: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            7: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            8: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            9: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            10: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            11: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            12: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            }
+
+          },
+          26: {
+            1: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            2: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            3: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            4: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            5: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            6: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            7: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            8: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            9: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            10: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            11: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            },
+            12: {
+              s: { mag: { art: [], pre: [] }, tot: 0 },
+              sb: { mag: { art: [], pre: [] }, tot: 0 },
+              sc: { mag: { art: [], pre: [] }, tot: 0 },
+              ss: { mag: { art: [], pre: [] }, tot: 0 },
+              sas: { mag: { art: [], pre: [] }, tot: 0 },
+            }
+
+          },
+        },
+        'dm': true,
+        'o': [],
+        'sp': [],
+
+      }
 
       // Salva myData in localStorage
       localStorage.setItem('myData', JSON.stringify(myData));

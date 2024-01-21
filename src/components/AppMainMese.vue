@@ -1,5 +1,8 @@
 <script>
 import { store } from '../store.js';
+import AppMainMeseViewQuestoMese from './AppMainMeseViewQuestoMese.vue'
+import AppMainMeseViewScorsoMese from './AppMainMeseViewScorsoMese.vue'
+import AppMainMeseViewInfo from './AppMainMeseViewInfo.vue'
 export default {
   name: 'AppMainMese',
 
@@ -38,7 +41,15 @@ export default {
       stipendiDodiciMesi: [],
       risparmiDodiciMesi: [],
 
+      panelCurrent: 'questomese',
+
     }
+  },
+
+  components: {
+    AppMainMeseViewQuestoMese,
+    AppMainMeseViewScorsoMese,
+    AppMainMeseViewInfo,
   },
 
   props: {
@@ -481,18 +492,44 @@ export default {
       }
 
 
-      this.mediaRisparmi = this.mediaRisparmi / contatore
-      this.mediaStipendi = this.mediaStipendi / contatore
-      this.mediaAffitto = this.mediaAffitto / contatore
-      this.mediaBollette = this.mediaBollette / contatore
-      this.mediaAlimentari = this.mediaAlimentari / contatore
-      this.mediaAltreSpese = this.mediaAltreSpese / contatore
+      if (this.mediaRisparmi != 0) {
 
-      console.log(this.mediaStipendi)
-      console.log(this.mediaRisparmi)
-      console.log(this.mediaAffitto)
-      console.log(this.mediaBollette)
-      console.log(this.mediaAlimentari)
+        this.mediaRisparmi = this.mediaRisparmi / contatore
+      } else {
+        this.mediaRisparmi = 0
+      }
+      if (this.mediaStipendi != 0) {
+
+        this.mediaStipendi = this.mediaStipendi / contatore
+      } else {
+        this.mediaStipendi = 0
+      }
+      if (this.mediaAffitto != 0) {
+
+        this.mediaAffitto = this.mediaAffitto / contatore
+      } else {
+        this.mediaAffitto = 0
+      }
+      if (this.mediaBollette != 0) {
+
+        this.mediaBollette = this.mediaBollette / contatore
+      } else {
+        this.mediaBollette = 0
+      }
+      if (this.mediaAlimentari != 0) {
+
+        this.mediaAlimentari = this.mediaAlimentari / contatore
+      } else {
+        this.mediaAlimentari = 0
+      }
+      if (this.mediaAltreSpese != 0) {
+
+        this.mediaAltreSpese = this.mediaAltreSpese / contatore
+      } else {
+        this.mediaAltreSpese = 0
+      }
+
+
 
       this.setPercentuali()
     },
@@ -902,16 +939,61 @@ export default {
         <!-- NOME - INFO - CONTATORI -->
         <div class="right-side-info">
 
-          <!-- NOME DELLA SPESA -->
+          <!-- navbar MAin -->
           <div class="nome-spesa-wrapper">
+
+            <!-- Questo mese -->
+            <div class="_single-icon" :class="this.panelCurrent == 'questomese' ? 'active' : ''"
+              @click="this.panelCurrent = 'questomese'">
+
+              <div class="_icon-wrapper">
+                <i class="fa-regular fa-calendar-check"></i>
+              </div>
+
+              <div class="_text">
+                <span>Questo Mese</span>
+              </div>
+
+            </div>
+
+            <!-- mese Passato -->
+            <div class="_single-icon" :class="this.panelCurrent == 'scorsomese' ? 'active' : ''"
+              @click="this.panelCurrent = 'scorsomese'">
+
+              <div class="_icon-wrapper">
+                <i class="fa-regular fa-calendar-minus"></i>
+              </div>
+
+              <div class="_text">
+                <span>Scorso Mese</span>
+              </div>
+
+            </div>
+
+            <!-- Info -->
+            <div class="_single-icon" :class="this.panelCurrent == 'info' ? 'active' : ''"
+              @click="this.panelCurrent = 'info'">
+
+              <div class="_icon-wrapper">
+                <i class="fa-solid fa-info"></i>
+              </div>
+
+              <div class="_text">
+                <span>Informazioni</span>
+              </div>
+
+            </div>
 
           </div>
 
           <!-- INFOBOX -->
-          <div class="info-box-wrapper"></div>
+          <div class="info-box-wrapper">
+            <AppMainMeseViewQuestoMese v-if="this.panelCurrent == 'questomese'"></AppMainMeseViewQuestoMese>
+            <AppMainMeseViewScorsoMese v-if="this.panelCurrent == 'scorsomese'"></AppMainMeseViewScorsoMese>
+            <AppMainMeseViewInfo v-if="this.panelCurrent == 'info'"></AppMainMeseViewInfo>
+          </div>
 
-          <!-- RIASSUNTO SPESE -->
-          <div class="riassunto-spese"></div>
+
 
         </div>
 
@@ -1503,31 +1585,103 @@ export default {
       .right-side-info {
         width: 75%;
         height: 100%;
+        padding: .5em;
 
-        border: 1px solid rgb(84, 148, 11);
 
         display: flex;
         flex-direction: column;
+        gap: .2em;
 
         .nome-spesa-wrapper {
           width: 100%;
-          height: 60px;
-          background-color: rgba(255, 255, 255, 0.1);
+          height: 50px;
+          background-color: lighten($background, 4%);
+          border-radius: 8px;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          gap: .2em;
 
+          ._single-icon {
+            height: 50px;
+            width: 50px;
+            display: flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            ._icon-wrapper {
+              cursor: pointer;
+              width: 35px;
+              height: 35px;
+              background: rgba($primary, 0.4);
+              border-radius: 50%;
+              position: relative;
+              transition: all .4s;
+
+              i {
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                color: white
+              }
+            }
+
+            ._text {
+              width: 100px;
+              position: absolute;
+              top: 25px;
+              left: 50%;
+              transform: translateX(-50%);
+              background: rgba(0, 0, 0, 0.527);
+              border-radius: 6px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              opacity: 0;
+              transition: all .4s;
+
+              span {
+                font-size: .75em;
+                width: 100%;
+                text-align: center;
+                color: rgb(124, 124, 124);
+              }
+
+            }
+
+            &:hover {
+              ._icon-wrapper {
+
+                background: rgba($primary, 0.6);
+              }
+
+              ._text {
+                top: 45px;
+                opacity: 1;
+              }
+            }
+          }
+
+          ._single-icon.active {
+            ._icon-wrapper {
+              background: $primary;
+            }
+          }
         }
 
         .info-box-wrapper {
-          height: calc(100% - 120px);
+          height: calc(100% - 50px);
           width: 100%;
+          border-radius: 8px;
+          background-color: lighten($background, 4%);
 
           border: 1px solid rgb(46, 46, 135);
         }
 
-        .riassunto-spese {
-          width: 100%;
-          height: 60px;
-          background-color: rgba(255, 255, 255, 0.1);
-        }
       }
     }
   }
@@ -1791,6 +1945,17 @@ export default {
         }
 
       }
+
+      .right-side-info {
+        .nome-spesa-wrapper {
+          background-color: darken($background-light, 4%);
+        }
+
+        .info-box-wrapper {
+          background-color: darken($background-light, 4%);
+        }
+      }
+
     }
   }
 

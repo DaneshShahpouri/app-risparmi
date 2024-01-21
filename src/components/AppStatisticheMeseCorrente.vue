@@ -141,12 +141,44 @@ export default {
       }
 
 
-      this.mediaRisparmi = this.mediaRisparmi / contatore
-      this.mediaStipendi = this.mediaStipendi / contatore
-      this.mediaAffitto = this.mediaAffitto / contatore
-      this.mediaBollette = this.mediaBollette / contatore
-      this.mediaAlimentari = this.mediaAlimentari / contatore
-      this.mediaAltreSpese = this.mediaAltreSpese / contatore
+      if (this.mediaRisparmi != 0) {
+
+        this.mediaRisparmi = this.mediaRisparmi / contatore
+      } else {
+        this.mediaRisparmi = 0
+      }
+      if (this.mediaStipendi != 0) {
+
+        this.mediaStipendi = this.mediaStipendi / contatore
+      } else {
+        this.mediaStipendi = 0
+      }
+      if (this.mediaAffitto != 0) {
+
+        this.mediaAffitto = this.mediaAffitto / contatore
+      } else {
+        this.mediaAffitto = 0
+      }
+      if (this.mediaBollette != 0) {
+
+        this.mediaBollette = this.mediaBollette / contatore
+      } else {
+        this.mediaBollette = 0
+      }
+      if (this.mediaAlimentari != 0) {
+
+        this.mediaAlimentari = this.mediaAlimentari / contatore
+      } else {
+        this.mediaAlimentari = 0
+      }
+      if (this.mediaAltreSpese != 0) {
+
+        this.mediaAltreSpese = this.mediaAltreSpese / contatore
+      } else {
+        this.mediaAltreSpese = 0
+      }
+
+
 
       this.setPercentuali()
     },
