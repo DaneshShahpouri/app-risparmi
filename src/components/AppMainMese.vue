@@ -860,7 +860,7 @@ export default {
 
             </ul>
 
-            <p v-else>Nessun Obbiettivo aggiunto</p>
+            <p v-else class="text-center">Nessun Obbiettivo aggiunto</p>
 
           </div>
 
@@ -1166,28 +1166,29 @@ export default {
 
           ._perc {
             width: 130px;
+            height: 100%;
             font-size: 0.7em;
             position: absolute;
             bottom: -3px;
-            right: -10px;
+            right: 0px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
             opacity: 0;
             transition: all 0.5s;
-            /* background-color: rgba(0, 0, 0, 0.726); */
-            padding: 0.2em 1em;
+
             border-radius: 8px;
             font-weight: 900;
-            text-shadow: 0px 0px 2px black;
+            text-shadow: 0px 0px 2px #0000004a;
+
 
           }
 
           &:hover {
             ._perc {
               opacity: 1;
-              right: 10px;
+              right: 50px;
             }
           }
         }

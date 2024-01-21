@@ -1,0 +1,15 @@
+{
+    "build": {
+        "appId": "app-risparmi.app",
+        "productName": "Danesh Shahpouri",
+        "files": [
+            "dist_electron/bundled/**/*"
+        ],
+        "mac": {
+            "icon": "logo.png"
+        },
+        "win": {
+            "icon": "logo.png"
+        }
+    }
+}
