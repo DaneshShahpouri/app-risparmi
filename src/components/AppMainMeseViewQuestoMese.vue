@@ -61,11 +61,11 @@ export default {
       meseIndex: '',
 
       speseGrandi: {
-        s: 0,
-        sb: 0,
-        sc: 0,
-        ss: 0,
-        sas: 0,
+        s: { nome: '', valore: 0 },
+        sb: { nome: '', valore: 0 },
+        sc: { nome: '', valore: 0 },
+        ss: { nome: '', valore: 0 },
+        sas: { nome: '', valore: 0 },
       },
       entrate: 0,
       bollette: 0,
@@ -110,7 +110,7 @@ export default {
         (this.altro / this.entrate) * 100,
       ];
 
-      console.log('eseguito creazione grafico torta')
+      //console.log('eseguito creazione grafico torta')
     },
 
 
@@ -118,18 +118,22 @@ export default {
     setSpesaMaggioreCategoria() {
 
       for (const key in this.store.data.user[this.store.anno][this.meseIndex]) {
-        this.speseGrandi[key] = 0;
+
+
         for (const key2 in this.store.data.user[this.store.anno][this.meseIndex][key].mag.pre) {
 
           const valoreMag = this.store.data.user[this.store.anno][this.meseIndex][key].mag.pre[key2];
 
-
+          console.log(this.speseGrandi[key].valore)
           //console.log('this.speseGrandi[key] = ' + this.speseGrandi[key] + ' quando il valore di ckeck è ' + valoreMag + ' in ' + key + ' e la chiave è ' + key2)
-          if (parseInt(valoreMag) > parseInt(this.speseGrandi[key])) {
+          if (parseInt(valoreMag) > parseInt(this.speseGrandi[key].valore)) {
+            console.log(valoreMag)
             this.speseGrandi[key] = { nome: this.store.data.user[this.store.anno][this.meseIndex][key].mag.art[key2], valore: valoreMag };
           }
         }
+
       }
+
 
     }
   },
@@ -156,7 +160,61 @@ export default {
       <h5>Questo Mese</h5>
     </div>
     <div class="_main-contain">
-      <div class="_left"></div>
+
+      <!-- INFO -->
+      <div class="_left">
+
+        <div class="_top-info">
+
+          <h5>Spese - <span class="_text-thirdary">{{ (this.affitto + this.bollette + this.alimenti +
+            this.altro).toFixed(2) }}</span> €</h5>
+          <h5>Entrate - <span class="_text-primary">{{ this.entrate.toFixed(2) }}</span> €</h5>
+        </div>
+
+        <div class="_info-center">
+          <h5>Spese Maggiori:</h5>
+          <ul>
+
+            <li>
+              <span>Affitto:</span>
+              <span>
+                <span class="_text-secondary">{{ this.speseGrandi['sc'].nome + ' ' }} </span>
+                <span class="_text-primary">{{ this.speseGrandi['sc'].valore }}</span>
+                <span>€</span>
+              </span>
+            </li>
+            <li>
+              <span>Bollette:</span>
+              <span>
+                <span class="_text-secondary">{{ this.speseGrandi['sb'].nome + ' ' }} </span>
+                <span class="_text-primary">{{ this.speseGrandi['sb'].valore }}</span>
+                <span>€</span>
+              </span>
+            </li>
+            <li>
+              <span>Alimenti:</span>
+              <span>
+                <span class="_text-secondary">{{ this.speseGrandi['ss'].nome + ' ' }} </span>
+                <span class="_text-primary">{{ this.speseGrandi['ss'].valore }}</span>
+                <span>€</span>
+              </span>
+            </li>
+            <li>
+              <span>Altro:</span>
+              <span>
+                <span class="_text-secondary">{{ this.speseGrandi['sas'].nome + ' ' }} </span>
+                <span class="_text-primary">{{ this.speseGrandi['sas'].valore }}</span>
+                <span>€</span>
+              </span>
+            </li>
+
+          </ul>
+        </div>
+
+
+      </div>
+
+      <!-- GRAFICO -->
       <div class="_right">
         <div class="_top">
           <Doughnut id="my-chart-id" :options="chartOptions" :data="chartData" v-if="this.store.viewGraph" />
@@ -248,6 +306,55 @@ export default {
       gap: 1em;
       align-items: center;
       justify-content: center;
+    }
+
+    ._left {
+      ._top-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        width: calc(100% - 8px);
+        margin-left: 8px;
+        height: 15%;
+        padding-left: .8em;
+        border-radius: 8px;
+        background-color: rgba(79, 79, 79, 0.15);
+      }
+
+      ._info-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: calc(100% - 8px);
+        margin-left: 8px;
+        height: 65%;
+        padding-left: .8em;
+        border-radius: 8px;
+        background-color: rgba(79, 79, 79, 0.15);
+
+        ul {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          gap: .5em;
+          padding: 0;
+          margin: 0;
+          padding-top: 1em;
+
+          li {
+            padding: 1em;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(79, 79, 79, 0.15);
+            width: 100%;
+          }
+        }
+      }
     }
 
     ._right {
@@ -352,7 +459,18 @@ export default {
 
 
 ._main.light {
-  ._main-inner {}
+  ._main-inner {
+    ._main-contain {
+      ._left {
+
+        ._top-info,
+        ._info-center {
+          background-color: rgba(248, 248, 248, 0.3);
+        }
+
+      }
+    }
+  }
 
 }
 </style>
