@@ -128,6 +128,7 @@ export default {
     //calcola il risparmio di tutti gli anni
     calcRisparmio() {
       //console.log('calcola risparmio')
+
       //20this.anno - risparmio
       this.store.risparmi[23][1] = this.store.data.user[23][1].s.tot - this.store.data.user[23][1].sc.tot - this.store.data.user[23][1].ss.tot - this.store.data.user[23][1].sb.tot - this.store.data.user[23][1].sas.tot;
       this.store.risparmi[23][2] = this.store.data.user[23][2].s.tot - this.store.data.user[23][2].sc.tot - this.store.data.user[23][2].ss.tot - this.store.data.user[23][2].sb.tot - this.store.data.user[23][2].sas.tot;
@@ -257,6 +258,7 @@ export default {
       this.store.totaleSpese = parseFloat(this.store.totaleSpeseMese[23]) + parseFloat(this.store.totaleSpeseMese[24]) + parseFloat(this.store.totaleRisparmioMese[25]) + parseFloat(this.store.totaleRisparmioMese[26])
 
       console.log('risaprmio calcolato')
+      this.viewGraphBool()
     },
 
     //calcola il totale
@@ -304,6 +306,14 @@ export default {
       }
 
 
+    },
+
+    viewGraphBool() {
+      this.store.viewGraph = false;
+      setTimeout(() => {
+        this.store.viewGraph = true;
+        console.log('ritorno variabile')
+      }, 100);
     },
 
     //focus automatico su tutto l'input

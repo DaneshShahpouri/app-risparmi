@@ -41,7 +41,12 @@ export default {
                 return label;
               }
             }
+          },
+          hover: {
+            mode: 'index',
+            intersect: false
           }
+
         },
       },
 
@@ -54,6 +59,7 @@ export default {
       anno: '',
       mese: '',
       meseIndex: '',
+
       speseGrandi: {
         s: 0,
         sb: 0,
@@ -61,23 +67,35 @@ export default {
         ss: 0,
         sas: 0,
       },
+      entrate: 0,
+      bollette: 0,
+      affitto: 0,
+      alimenti: 0,
+      altro: 0,
     }
   },
   components: { Doughnut },
   props: {
     // msg: String
   },
+
+  watch: {
+    'store.viewGraph': function () {
+      this.createDoughnut()
+    },
+  },
+
   methods: {
     createDoughnut() {
 
-      let entrate = this.store.data.user[this.anno - 2000][this.meseIndex].s.tot;
-      let bollette = this.store.data.user[this.anno - 2000][this.meseIndex].sb.tot;
-      let affitto = this.store.data.user[this.anno - 2000][this.meseIndex].sc.tot;
-      let alimenti = this.store.data.user[this.anno - 2000][this.meseIndex].ss.tot;
-      let altro = this.store.data.user[this.anno - 2000][this.meseIndex].sas.tot;
+      this.entrate = this.store.data.user[this.anno - 2000][this.meseIndex].s.tot;
+      this.bollette = this.store.data.user[this.anno - 2000][this.meseIndex].sb.tot;
+      this.affitto = this.store.data.user[this.anno - 2000][this.meseIndex].sc.tot;
+      this.alimenti = this.store.data.user[this.anno - 2000][this.meseIndex].ss.tot;
+      this.altro = this.store.data.user[this.anno - 2000][this.meseIndex].sas.tot;
 
 
-      if ((((entrate - (bollette + affitto + alimenti + altro)) / entrate) * 100) < 0) {
+      if ((((this.entrate - (this.bollette + this.affitto + this.alimenti + this.altro)) / this.entrate) * 100) < 0) {
         this.chartData.datasets[0].backgroundColor[0] = 'rgb(203, 24, 60)'
         this.chartData.labels[0] = 'PERDITE'
       }
@@ -85,13 +103,17 @@ export default {
       // Imposta i dati proporzionali
       this.chartData.datasets[0].data = [
 
-        ((entrate - (bollette + affitto + alimenti + altro)) / entrate) * 100,
-        (affitto / entrate) * 100,
-        (bollette / entrate) * 100,
-        (alimenti / entrate) * 100,
-        (altro / entrate) * 100,
+        ((this.entrate - (this.bollette + this.affitto + this.alimenti + this.altro)) / this.entrate) * 100,
+        (this.affitto / this.entrate) * 100,
+        (this.bollette / this.entrate) * 100,
+        (this.alimenti / this.entrate) * 100,
+        (this.altro / this.entrate) * 100,
       ];
+
+      console.log('eseguito creazione grafico torta')
     },
+
+
 
     setSpesaMaggioreCategoria() {
 
@@ -137,12 +159,49 @@ export default {
       <div class="_left"></div>
       <div class="_right">
         <div class="_top">
-          <Doughnut id="my-chart-id" :options="chartOptions" :data="chartData" />
+          <Doughnut id="my-chart-id" :options="chartOptions" :data="chartData" v-if="this.store.viewGraph" />
           <div class="_infobox">
             INFO GENERICHE
           </div>
         </div>
-        <div class="_bottom"></div>
+        <div class="_bottom">
+          <div class="upper-info">
+            <p>Grafico della tua situazione attuale del mese corrente.</p>
+          </div>
+          <div class="_downer-info-legend">
+
+            <div class="_single-legend">
+              <div class="_box" style="background-color: rgb(34, 105, 9);"></div>
+              <div class="_label">Risparmi: <b>{{ (((this.entrate - (this.bollette + this.affitto + this.alimenti +
+                this.altro)) / this.entrate) * 100).toFixed(2)
+              }} %</b></div>
+            </div>
+
+            <div class="_single-legend">
+              <div class="_box" style="background-color:rgb(168, 168, 13);"></div>
+              <div class="_label">Affitto: <b>{{ ((this.affitto / this.entrate) * 100).toFixed(2) }} %</b></div>
+            </div>
+
+            <div class="_single-legend">
+              <div class="_box" style="background-color:rgb(155, 104, 9);"></div>
+              <div class="_label">Bollette: <b>{{ ((this.bollette / this.entrate) * 100).toFixed(2) }}%</b></div>
+            </div>
+
+            <div class="_single-legend">
+              <div class="_box" style="background-color:rgb(135, 8, 132);"></div>
+              <div class="_label">Alimenti: <b>{{ ((this.alimenti / this.entrate) * 100).toFixed(2) }}%</b></div>
+            </div>
+
+            <div class="_single-legend">
+              <div class="_box" style="background-color:rgb(9, 149, 130)"></div>
+              <div class="_label">Altro: <b>{{ ((this.altro / this.entrate) * 100).toFixed(2) }}%</b></div>
+            </div>
+
+
+
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
@@ -154,6 +213,7 @@ export default {
 ._main-inner {
   width: 100%;
   height: 100%;
+  max-height: calc(100vh - 285px);
   display: flex;
   flex-direction: column;
 
@@ -192,6 +252,12 @@ export default {
 
     ._right {
 
+      align-items: center;
+      justify-content: space-between;
+      align-content: center;
+      height: calc(100vh - 290px);
+
+
       ._top,
       ._bottom {
         width: 100%;
@@ -203,8 +269,14 @@ export default {
       }
 
       ._top {
-        height: 65%;
+        height: 60%;
         position: relative;
+
+
+        #my-chart-id {
+          position: relative;
+          z-index: 10;
+        }
 
         ._infobox {
           width: 100px;
@@ -218,11 +290,61 @@ export default {
           justify-content: center;
           text-align: center;
           border: 1px solid;
+          z-index: 2;
         }
       }
 
       ._bottom {
-        height: 35%
+        height: 35%;
+        flex-direction: column;
+        justify-content: flex-end;
+
+
+        .upper-info {
+          height: 30%;
+          padding-top: 2em;
+
+
+          p {
+            text-align: center;
+          }
+        }
+
+        ._downer-info-legend {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: flex-start;
+          width: 100%;
+          height: 60%;
+          gap: .5em;
+          flex-wrap: wrap;
+
+
+          ._single-legend {
+            width: 100px;
+            height: 35px;
+            display: flex;
+            gap: .5em;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            gap: .4em;
+
+            ._box {
+              width: 20px;
+              height: 10px;
+              border-radius: 0px;
+              transform: rotate(0deg);
+              border: 1px solid;
+            }
+
+            ._label {
+              font-size: .6em;
+            }
+          }
+        }
       }
     }
   }

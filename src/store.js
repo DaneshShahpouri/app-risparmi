@@ -12,6 +12,7 @@ export const store = reactive({
     totaleSpese: 0,
     anno: 23,
     changeGraph: true,
+    viewGraph: true,
     //----------------------------------------------
 
     //DATA
