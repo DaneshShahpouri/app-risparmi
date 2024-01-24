@@ -157,8 +157,10 @@ export default {
 <template>
   <div class="_main-inner">
     <div class="header">
-      <h5>Questo Mese</h5>
+      <h5>{{ this.mese + ' ' + this.anno }}</h5>
+      <span>Questo Mese</span>
     </div>
+
     <div class="_main-contain">
 
       <!-- INFO -->
@@ -219,7 +221,8 @@ export default {
         <div class="_top">
           <Doughnut id="my-chart-id" :options="chartOptions" :data="chartData" v-if="this.store.viewGraph" />
           <div class="_infobox">
-            INFO GENERICHE
+            <!-- SI potrebbe mettere l'icona informativa e all'hover mostrare una descrizione del grafico -->
+            le tue spese
           </div>
         </div>
         <div class="_bottom">
@@ -232,12 +235,12 @@ export default {
               <div class="_box" style="background-color: rgb(34, 105, 9);"></div>
               <div class="_label">Risparmi: <b>{{ (((this.entrate - (this.bollette + this.affitto + this.alimenti +
                 this.altro)) / this.entrate) * 100).toFixed(2)
-              }} %</b></div>
+              }}%</b></div>
             </div>
 
             <div class="_single-legend">
               <div class="_box" style="background-color:rgb(168, 168, 13);"></div>
-              <div class="_label">Affitto: <b>{{ ((this.affitto / this.entrate) * 100).toFixed(2) }} %</b></div>
+              <div class="_label">Affitto: <b>{{ ((this.affitto / this.entrate) * 100).toFixed(2) }}%</b></div>
             </div>
 
             <div class="_single-legend">
@@ -280,7 +283,8 @@ export default {
     height: 50px;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
 
     h5 {
       display: flex;
@@ -288,6 +292,12 @@ export default {
       padding: .4em;
       padding-left: 1em;
       text-transform: uppercase;
+      height: 15px;
+    }
+
+    span {
+      padding-left: 1.3em;
+      height: 10px;
     }
   }
 
@@ -396,7 +406,7 @@ export default {
           align-items: center;
           justify-content: center;
           text-align: center;
-          border: 1px solid;
+
           z-index: 2;
         }
       }
@@ -409,7 +419,7 @@ export default {
 
         .upper-info {
           height: 30%;
-          padding-top: 2em;
+          padding: .5em 1em;
 
 
           p {
@@ -430,8 +440,8 @@ export default {
 
 
           ._single-legend {
-            width: 100px;
-            height: 35px;
+            width: 120px;
+            height: 20px;
             display: flex;
             gap: .5em;
             flex-direction: row;
