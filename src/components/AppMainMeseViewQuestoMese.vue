@@ -124,10 +124,10 @@ export default {
 
           const valoreMag = this.store.data.user[this.store.anno][this.meseIndex][key].mag.pre[key2];
 
-          console.log(this.speseGrandi[key].valore)
+          //console.log(this.speseGrandi[key].valore)
           //console.log('this.speseGrandi[key] = ' + this.speseGrandi[key] + ' quando il valore di ckeck è ' + valoreMag + ' in ' + key + ' e la chiave è ' + key2)
           if (parseInt(valoreMag) > parseInt(this.speseGrandi[key].valore)) {
-            console.log(valoreMag)
+            //console.log(valoreMag)
             this.speseGrandi[key] = { nome: this.store.data.user[this.store.anno][this.meseIndex][key].mag.art[key2], valore: valoreMag };
           }
         }

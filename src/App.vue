@@ -1093,7 +1093,7 @@ export default {
       top: 5px;
       right: 20px;
       bottom: -15px;
-      z-index: 2;
+      z-index: 21;
 
       * {
         cursor: pointer;
@@ -1168,7 +1168,7 @@ export default {
       max-height: 0px;
 
       transition: all 1s;
-      z-index: 1;
+
 
       .bg-theme {
         position: absolute;

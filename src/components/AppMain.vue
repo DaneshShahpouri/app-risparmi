@@ -55,9 +55,9 @@ export default {
 
       const myData = {
         user: {
-          nome: 'Danesh',
-          cognome: 'Shahpouri',
-          eta: 30,
+          nome: '',
+          cognome: '',
+          eta: 0,
           sesso: 'M',
           23: {
             1: {
@@ -418,7 +418,7 @@ export default {
       localStorage.setItem('myData', JSON.stringify(myData));
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 1200);
     },
     //visualizza la riga al click
     allowRow(index) {

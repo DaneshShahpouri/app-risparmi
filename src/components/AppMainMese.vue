@@ -257,14 +257,14 @@ export default {
       this.store.totaleRisparmi = parseFloat(this.store.totaleRisparmioMese[23]) + parseFloat(this.store.totaleRisparmioMese[24]) + parseFloat(this.store.totaleRisparmioMese[25]) + parseFloat(this.store.totaleRisparmioMese[26])
       this.store.totaleSpese = parseFloat(this.store.totaleSpeseMese[23]) + parseFloat(this.store.totaleSpeseMese[24]) + parseFloat(this.store.totaleRisparmioMese[25]) + parseFloat(this.store.totaleRisparmioMese[26])
 
-      console.log('risaprmio calcolato')
+      //console.log('risaprmio calcolato')
       this.viewGraphBool()
     },
 
     //calcola il totale
     calcVoci(dato, mese) {
       // console.log(eval(this.store.data.user[this.store.anno][11].s.mag.pre))
-      console.log('calcolo Voci')
+      //console.log('calcolo Voci')
       let tot = 0;
       if (dato == 's') {
         Object.keys(this.store.data.user[this.store.anno][mese].s.mag.pre).forEach(key => {
@@ -312,7 +312,7 @@ export default {
       this.store.viewGraph = false;
       setTimeout(() => {
         this.store.viewGraph = true;
-        console.log('ritorno variabile')
+        //console.log('ritorno variabile')
       }, 100);
     },
 

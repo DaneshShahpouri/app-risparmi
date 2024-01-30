@@ -154,7 +154,7 @@ export default {
 
           <ul v-if="this.store.data.o.length > 0">
 
-            <li v-for="(element, key) in this.store.data.o" :key="key" @click.stop="console.log('aprimi')">
+            <li v-for="(element, key) in this.store.data.o" :key="key" @click.stop="">
 
               <div>
                 <button class="_btn-delete" @click.stop="this.store.data.o.splice(key, 1); save(); createBar()">

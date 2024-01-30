@@ -148,8 +148,8 @@ export default {
       this.anno = this.anno - 1
     }
     this.mese = this.store.mesi[this.scorsoMese - 1]
-    console.log(this.scorsoMese)
-    console.log(this.anno)
+    // console.log(this.scorsoMese)
+    // console.log(this.anno)
     this.setSpesaMaggioreCategoria()
     this.createDoughnut();
 
