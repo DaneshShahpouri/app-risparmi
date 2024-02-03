@@ -141,15 +141,39 @@ export default {
 
   created() {
     let date = new Date;
+
     this.anno = date.getFullYear()
     this.meseIndex = date.getMonth() + 1
+
+    // console.log('giorno settato: ' + (this.store.data.day))
+    // console.log('giorno corrente: ' + date.getDate())
+    // console.log('mese corrente: ' + date.getMonth())
+
+    if (this.store.data.day <= date.getDate()) {
+      this.mese = this.store.mesi[date.getMonth()]
+      this.meseIndex = date.getMonth() + 1
+      this.anno = date.getFullYear()
+    } else {
+      this.mese = this.store.mesi[date.getMonth() - 1]
+      this.meseIndex = date.getMonth()
+
+      if (date.getMonth() == 0) {
+        this.meseIndex = 12
+        this.anno = date.getFullYear() - 1
+      } else {
+        this.anno = date.getFullYear()
+
+      }
+    }
+
     if (this.meseIndex == 1) {
       this.scorsoMese = 12
       this.anno = this.anno - 1
+    } else {
+      this.scorsoMese = this.meseIndex - 1
     }
     this.mese = this.store.mesi[this.scorsoMese - 1]
-    // console.log(this.scorsoMese)
-    // console.log(this.anno)
+
     this.setSpesaMaggioreCategoria()
     this.createDoughnut();
 

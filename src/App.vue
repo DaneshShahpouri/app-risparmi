@@ -483,6 +483,7 @@ export default {
         'dm': true,
         'o': [],
         'sp': [],
+        'day': 1,
 
       }
       function getLocalStorageSize() {
@@ -555,11 +556,24 @@ export default {
 
 
     this.store.darkmode = this.store.data.dm
+
     //Set DATE
     //------------------------------------------------------
     let date = new Date();
-    this.store.currentYear = date.getFullYear();
-    this.store.currentMonth = date.getMonth();
+    console.log(this.store.data.day)
+    if (date.getDate() >= this.store.data.day) {
+      this.store.currentMonth = date.getMonth();
+      this.store.currentYear = date.getFullYear();
+    } else {
+      this.store.currentMonth = date.getMonth() - 1;
+      if (this.store.currentMonth == 11) {
+
+        this.store.currentYear = date.getFullYear() - 1;
+      } else {
+        this.store.currentYear = date.getFullYear();
+
+      }
+    }
     this.store.currentDay = date.getDate();
     this.store.currentHours = date.getHours();
     this.store.currentMin = date.getMinutes();
@@ -567,7 +581,21 @@ export default {
 
 
     setInterval(() => {
+
       let date = new Date();
+      if (date.getDate() >= this.store.data.day) {
+        this.store.currentMonth = date.getMonth();
+        this.store.currentYear = date.getFullYear();
+      } else {
+        this.store.currentMonth = date.getMonth() - 1;
+        if (this.store.currentMonth == 11) {
+
+          this.store.currentYear = date.getFullYear() - 1;
+        } else {
+          this.store.currentYear = date.getFullYear();
+
+        }
+      }
       this.store.currentYear = date.getFullYear();
       this.store.currentMonth = date.getMonth();
       this.store.currentDay = date.getDate();
@@ -717,22 +745,27 @@ export default {
 
             <fieldset class="d-flex align-items-center gap-2 " style="justify-content: space-between;">
               <label style="font-size:.5em;" for="nome">Nome.</label>
-              <input type="text" name="nome" v-model="this.store.data.user.nome">
+              <input type="text" name="nome" v-model="this.store.data.user.nome" @change="this.save()">
             </fieldset>
 
             <fieldset class="d-flex align-items-center gap-2 " style="justify-content: space-between;">
               <label style="font-size:.5em;" for="cognome">Cognome.</label>
-              <input type="text" name="cognome" v-model="this.store.data.user.cognome">
+              <input type="text" name="cognome" v-model="this.store.data.user.cognome" @change="this.save()">
             </fieldset>
 
             <fieldset class="d-flex align-items-center gap-2 " style="justify-content: space-between;">
               <label style="font-size:.5em;" for="eta">Età.</label>
-              <input type="text" name="eta" v-model="this.store.data.user.eta">
+              <input type="text" name="eta" v-model="this.store.data.user.eta" @change="this.save()">
             </fieldset>
 
             <fieldset class="d-flex align-items-center gap-2 " style="justify-content: space-between;">
               <label style="font-size:.5em;" for="sesso">Sesso.</label>
-              <input type="text" name="sesso" v-model="this.store.data.user.sesso">
+              <input type="text" name="sesso" v-model="this.store.data.user.sesso" @change="this.save()">
+            </fieldset>
+
+            <fieldset class="d-flex align-items-center gap-2 mt-2" style="justify-content: space-between;">
+              <label style="font-size:.5em;" for="day">Seleziona il giorno di cambio mese.</label>
+              <input type="num" name="day" v-model="this.store.data.day" @change="this.save()">
             </fieldset>
 
             <div class="info-wrapper-money mt-3 pe-1 d-flex flex-column">

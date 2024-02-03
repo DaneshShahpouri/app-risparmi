@@ -629,9 +629,27 @@ export default {
   mounted() {
     let date = new Date;
     this.store.anno = date.getFullYear() - 2000;
-    this.anno = date.getFullYear()
-    this.mese = this.store.mesi[date.getMonth()]
-    this.meseIndex = date.getMonth() + 1
+    // console.log('giorno settato: ' + (this.store.data.day))
+    // console.log('giorno corrente: ' + date.getDate())
+    // console.log('mese corrente: ' + date.getMonth())
+
+    if (this.store.data.day <= date.getDate()) {
+      this.mese = this.store.mesi[date.getMonth()]
+      this.meseIndex = date.getMonth() + 1
+      this.anno = date.getFullYear()
+    } else {
+      this.mese = this.store.mesi[date.getMonth() - 1]
+      this.meseIndex = date.getMonth()
+
+      if (date.getMonth() == 0) {
+        this.meseIndex = 12
+        this.anno = date.getFullYear() - 1
+      } else {
+        this.anno = date.getFullYear()
+
+      }
+    }
+
     this.currentVoce = "RISPARMI"
 
     this.setCurrentItem('risparmi');

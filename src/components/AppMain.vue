@@ -411,6 +411,7 @@ export default {
         'dm': true,
         'o': [],
         'sp': [],
+        'day': 1,
 
       }
 
