@@ -1678,7 +1678,7 @@ export default {
                 font-size: .75em;
                 width: 100%;
                 text-align: center;
-                color: rgb(124, 124, 124);
+                color: rgb(213, 213, 213);
               }
 
             }
