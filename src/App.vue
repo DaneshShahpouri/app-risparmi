@@ -16,6 +16,10 @@ export default {
       animationModule: false,
       principalVar: true,
 
+      valoriMinMax: '',
+      inizioAnno: '',
+      fineAnno: '',
+
     }
   },
 
@@ -121,6 +125,25 @@ export default {
       localStorage.setItem('myData', JSON.stringify(myData));
 
       //console.log('myData salvato con successo!');
+    },
+    contaChiaviNumeriche(oggetto) {
+      let array = [];
+      for (let key in oggetto) {
+        if (key !== 'nome' && key !== 'cognome' && key !== 'eta' && key !== 'sesso') {
+          array.push(key);
+        }
+      }
+      return array;
+    },
+    ottieniValoreMinMax(array) {
+      const minValue = Math.min(...array.map(Number));
+      const maxValue = Math.max(...array.map(Number));
+      return { min: minValue, max: maxValue };
+    },
+    settaAnni() {
+      this.valoriMinMax = this.ottieniValoreMinMax(this.contaChiaviNumeriche(this.store.data.user));
+      this.inizioAnno = this.valoriMinMax.min;
+      this.fineAnno = this.valoriMinMax.max;
     },
 
     setData() {
@@ -518,6 +541,11 @@ export default {
   },
 
   created() {
+    //settaggi
+    this.settaAnni()
+
+    //settaggi
+
     this.setData()
     // Ottieni la dimensione totale dello spazio di archiviazione locale
     function VediLocalStorage() {
@@ -871,6 +899,19 @@ export default {
   <!-- SETTINGS -->
   <div class="_settings-module" :class="this.store.viewSetting ? 'open ' : 'close'">
 
+    <div class="_years">
+      <h4>Anni</h4>
+      <div class="_anni-wrapper">
+        <div class="_da">
+          <label>Da</label>
+          <input type="number" v-model="this.inizioAnno">
+        </div>
+        <div class="_a">
+          <label>A</label>
+          <input type="number" v-model="this.fineAnno">
+        </div>
+      </div>
+    </div>
   </div>
   <div class="_bkgr" :class="this.store.viewSetting ? 'open ' : 'close'" @click="this.store.viewSetting = false"></div>
 </template>
@@ -1503,17 +1544,46 @@ export default {
 //------------------------------------------------
 ._settings-module {
   position: absolute;
-  width: 80vw;
-  height: 70vh;
+  width: 40vw;
+  min-width: 270px;
+  height: 50vh;
+  min-height: 300px;
   border-radius: 10px;
-  background-color: blue;
+  background-color: lighten($background, 10%);
   top: 90px;
   left: 0px;
   z-index: 100;
   box-shadow: 2px 3px 10px #00000040;
+  padding: 1em;
+  transition: all .5s;
+
+  display: flex;
+  flex-direction: column;
 
   &.close {
     left: -80vw;
+  }
+
+  ._years {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    border-bottom: 1px solid;
+
+    ._anni-wrapper {
+      display: flex;
+      gap: 1em;
+      justify-content: space-around;
+
+      ._da,
+      ._a {
+        display: flex;
+
+        input {
+          width: 50px;
+        }
+      }
+    }
   }
 }
 
