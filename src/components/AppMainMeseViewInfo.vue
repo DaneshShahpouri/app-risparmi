@@ -32,6 +32,7 @@ export default {
       <h5>Informazioni</h5>
     </div>
     <div class="_main-contain">
+
       <p style="font-size:.9em; font-weight: 100;">Grazie per aver installato EuroSave 1.0.</p>
       <br>
       <p>Il servizio principale che offre EuroSave è quello di tenere traccia delle spese e delle entrate del tuo

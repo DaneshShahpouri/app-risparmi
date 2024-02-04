@@ -768,6 +768,11 @@ export default {
               <input type="num" name="day" v-model="this.store.data.day" @change="this.save()">
             </fieldset>
 
+            <fieldset class="d-flex align-items-center gap-2 my-4" style="justify-content: center;">
+              <button class="_btn-primary"
+                @click="this.store.viewSetting == true ? this.store.viewSetting = false : this.store.viewSetting = true">Settings</button>
+            </fieldset>
+
             <div class="info-wrapper-money mt-3 pe-1 d-flex flex-column">
 
               <span style=" text-align: center; margin-top: 1em;">Credito: <span style="font-size: 1.2em;"
@@ -862,6 +867,12 @@ export default {
 
     <div class="bg"></div>
   </div>
+
+  <!-- SETTINGS -->
+  <div class="_settings-module" :class="this.store.viewSetting ? 'open ' : 'close'">
+
+  </div>
+  <div class="_bkgr" :class="this.store.viewSetting ? 'open ' : 'close'" @click="this.store.viewSetting = false"></div>
 </template>
 
 <style lang="scss" scoped>
@@ -1488,9 +1499,41 @@ export default {
 
 
 //------------------------------------------------
+//MODULO SETTINGS
+//------------------------------------------------
+._settings-module {
+  position: absolute;
+  width: 80vw;
+  height: 70vh;
+  border-radius: 10px;
+  background-color: blue;
+  top: 90px;
+  left: 0px;
+  z-index: 100;
+  box-shadow: 2px 3px 10px #00000040;
+
+  &.close {
+    left: -80vw;
+  }
+}
+
+._bkgr {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  &.close {
+    z-index: -1;
+  }
+}
+
+//------------------------------------------------
 //MODULO SAVE _ RESET
 //------------------------------------------------
-
 ._modulo_save {
   position: absolute;
   top: 50%;

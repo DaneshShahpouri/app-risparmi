@@ -204,37 +204,37 @@ export default {
         </div>
 
         <div class="_info-center">
-          <h5>Spese Maggiori:</h5>
+          <h5 style="margin-top:1em">Spese Maggiori:</h5>
           <ul>
 
             <li>
-              <span>Affitto:</span>
-              <span>
-                <span class="_text-secondary">{{ this.speseGrandi['sc'].nome + ' ' }} </span>
+              <span class="title-span">Affitto:</span>
+              <span class="_text-secondary">{{ this.speseGrandi['sc'].nome + ' ' }} </span>
+              <span class="text-euro">
                 <span class="_text-primary">{{ this.speseGrandi['sc'].valore }}</span>
                 <span>€</span>
               </span>
             </li>
             <li>
-              <span>Bollette:</span>
-              <span>
-                <span class="_text-secondary">{{ this.speseGrandi['sb'].nome + ' ' }} </span>
+              <span class="title-span">Bollette:</span>
+              <span class="_text-secondary">{{ this.speseGrandi['sb'].nome + ' ' }} </span>
+              <span class="text-euro">
                 <span class="_text-primary">{{ this.speseGrandi['sb'].valore }}</span>
                 <span>€</span>
               </span>
             </li>
             <li>
-              <span>Alimenti:</span>
-              <span>
-                <span class="_text-secondary">{{ this.speseGrandi['ss'].nome + ' ' }} </span>
+              <span class="title-span">Alimenti:</span>
+              <span class="_text-secondary">{{ this.speseGrandi['ss'].nome + ' ' }} </span>
+              <span class="text-euro">
                 <span class="_text-primary">{{ this.speseGrandi['ss'].valore }}</span>
                 <span>€</span>
               </span>
             </li>
             <li>
-              <span>Altro:</span>
-              <span>
-                <span class="_text-secondary">{{ this.speseGrandi['sas'].nome + ' ' }} </span>
+              <span class="title-span">Altro:</span>
+              <span class="_text-secondary">{{ this.speseGrandi['sas'].nome + ' ' }} </span>
+              <span class="text-euro">
                 <span class="_text-primary">{{ this.speseGrandi['sas'].valore }}</span>
                 <span>€</span>
               </span>
@@ -367,9 +367,9 @@ export default {
         align-items: center;
         justify-content: flex-start;
         width: calc(100% - 8px);
-        margin-left: 8px;
+        margin-left: 0px;
         height: 65%;
-        padding-left: .8em;
+        padding-left: 0em;
         border-radius: 8px;
         background-color: rgba(79, 79, 79, 0.15);
 
@@ -382,15 +382,38 @@ export default {
           padding: 0;
           margin: 0;
           padding-top: 1em;
+          width: 100%;
 
           li {
             padding: 1em;
             border-radius: 6px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             background-color: rgba(79, 79, 79, 0.15);
             width: 100%;
+
+            .title-span {
+              display: inline-block;
+              width: 70px;
+              border-radius: 5px;
+              text-align: center;
+            }
+
+            ._text-secondary {
+              width: 30%;
+
+              text-align: center;
+            }
+
+            .text-euro {
+              width: 70px;
+              display: flex;
+
+              text-align: center;
+              justify-content: flex-end;
+
+            }
           }
         }
       }

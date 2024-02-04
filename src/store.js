@@ -149,6 +149,7 @@ export const store = reactive({
     viewModule: false,
     confermReset: false,
     animationReset: false,
+    viewSetting:false,
 
     currentYear: '',
     currentMonth: '',

@@ -810,7 +810,7 @@ export default {
         <div class="_right">
           <!-- Percentuale risparmio Header -->
           <div class="_percent-header"
-            :class="(this.perRisparmi == 0 ? 'neutro' : (this.percRisparmi >= 95 ? 'pos-gold' : (this.percRisparmi > 0 ? (this.percRisparmi > 75 ? 'pos-super' : (this.percRisparmi > 40 ? 'pos' : 'pos-light')) : (this.percRisparmi < -75 ? 'neg-super' : (this.percRisparmi < -40 ? 'neg' : 'neg-light')))))">
+            :class="(this.percRisparmi == 0 ? 'neutro' : (this.percRisparmi >= 95 ? 'pos-gold' : (this.percRisparmi > 0 ? (this.percRisparmi > 75 ? 'pos-super' : (this.percRisparmi > 40 ? 'pos' : 'pos-light')) : (this.percRisparmi < -75 ? 'neg-super' : (this.percRisparmi < -40 ? 'neg' : 'neg-light')))))">
             <i class="fa-solid fa-arrow-trend-up" v-if="this.percRisparmi > 0"></i>
             <i class="fa-solid fa-arrow-trend-down" v-else></i>
 
