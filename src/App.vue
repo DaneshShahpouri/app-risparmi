@@ -15,10 +15,13 @@ export default {
       navMenuToggle: 'open',
       animationModule: false,
       principalVar: true,
+      unmodificable: false,
+      annononmodificabile: 0,
 
-      valoriMinMax: '',
+
       inizioAnno: '',
       fineAnno: '',
+      anni: [],
 
     }
   },
@@ -37,7 +40,7 @@ export default {
     'store.viewModule': function () {
 
       this.animationModule = true;
-      // console.log('partito')
+
       setTimeout(() => {
         this.store.viewModule = false;
       }, 1800);
@@ -57,6 +60,16 @@ export default {
         setTimeout(() => {
           this.store.animationReset = false;
         }, 2700);
+      }
+
+    },
+    'store.viewSetting': function () {
+
+      if (this.store.viewSetting == false) {
+        this.save()
+        // Ricarica la pagina corrente
+        window.location.reload();
+
       }
 
     },
@@ -88,7 +101,6 @@ export default {
       } else {
         this.showNavInfo = true
       }
-      //console.log(this.showNavInfo)
     },
 
     setAnno(anno) {
@@ -113,9 +125,7 @@ export default {
       this.store.confermReset = true;
       setTimeout(() => {
         this.store.confermReset = false
-        //console.log(this.store.confermReset)
       }, 500);
-      //console.log(this.store.confermReset)
     },
 
     save() {
@@ -123,9 +133,8 @@ export default {
       const myData = this.store.data;
       // Salva myData in localStorage
       localStorage.setItem('myData', JSON.stringify(myData));
-
-      //console.log('myData salvato con successo!');
     },
+
     contaChiaviNumeriche(oggetto) {
       let array = [];
       for (let key in oggetto) {
@@ -141,9 +150,227 @@ export default {
       return { min: minValue, max: maxValue };
     },
     settaAnni() {
-      this.valoriMinMax = this.ottieniValoreMinMax(this.contaChiaviNumeriche(this.store.data.user));
-      this.inizioAnno = this.valoriMinMax.min;
-      this.fineAnno = this.valoriMinMax.max;
+      this.store.valoriMinMax = this.ottieniValoreMinMax(this.contaChiaviNumeriche(this.store.data.user));
+      this.inizioAnno = 2000 + this.store.valoriMinMax.min;
+      this.fineAnno = 2000 + this.store.valoriMinMax.max;
+    },
+
+    aggiornaValori() {
+      let oggetto = {
+        1: {
+          s: { mag: { art: [], pre: [] }, tot: 0 },
+          sb: { mag: { art: [], pre: [] }, tot: 0 },
+          sc: { mag: { art: [], pre: [] }, tot: 0 },
+          ss: { mag: { art: [], pre: [] }, tot: 0 },
+          sas: { mag: { art: [], pre: [] }, tot: 0 },
+        },
+        2: {
+          s: { mag: { art: [], pre: [] }, tot: 0 },
+          sb: { mag: { art: [], pre: [] }, tot: 0 },
+          sc: { mag: { art: [], pre: [] }, tot: 0 },
+          ss: { mag: { art: [], pre: [] }, tot: 0 },
+          sas: { mag: { art: [], pre: [] }, tot: 0 },
+        },
+        3: {
+          s: { mag: { art: [], pre: [] }, tot: 0 },
+          sb: { mag: { art: [], pre: [] }, tot: 0 },
+          sc: { mag: { art: [], pre: [] }, tot: 0 },
+          ss: { mag: { art: [], pre: [] }, tot: 0 },
+          sas: { mag: { art: [], pre: [] }, tot: 0 },
+        },
+        4: {
+          s: { mag: { art: [], pre: [] }, tot: 0 },
+          sb: { mag: { art: [], pre: [] }, tot: 0 },
+          sc: { mag: { art: [], pre: [] }, tot: 0 },
+          ss: { mag: { art: [], pre: [] }, tot: 0 },
+          sas: { mag: { art: [], pre: [] }, tot: 0 },
+        },
+        5: {
+          s: { mag: { art: [], pre: [] }, tot: 0 },
+          sb: { mag: { art: [], pre: [] }, tot: 0 },
+          sc: { mag: { art: [], pre: [] }, tot: 0 },
+          ss: { mag: { art: [], pre: [] }, tot: 0 },
+          sas: { mag: { art: [], pre: [] }, tot: 0 },
+        },
+        6: {
+          s: { mag: { art: [], pre: [] }, tot: 0 },
+          sb: { mag: { art: [], pre: [] }, tot: 0 },
+          sc: { mag: { art: [], pre: [] }, tot: 0 },
+          ss: { mag: { art: [], pre: [] }, tot: 0 },
+          sas: { mag: { art: [], pre: [] }, tot: 0 },
+        },
+        7: {
+          s: { mag: { art: [], pre: [] }, tot: 0 },
+          sb: { mag: { art: [], pre: [] }, tot: 0 },
+          sc: { mag: { art: [], pre: [] }, tot: 0 },
+          ss: { mag: { art: [], pre: [] }, tot: 0 },
+          sas: { mag: { art: [], pre: [] }, tot: 0 },
+        },
+        8: {
+          s: { mag: { art: [], pre: [] }, tot: 0 },
+          sb: { mag: { art: [], pre: [] }, tot: 0 },
+          sc: { mag: { art: [], pre: [] }, tot: 0 },
+          ss: { mag: { art: [], pre: [] }, tot: 0 },
+          sas: { mag: { art: [], pre: [] }, tot: 0 },
+        },
+        9: {
+          s: { mag: { art: [], pre: [] }, tot: 0 },
+          sb: { mag: { art: [], pre: [] }, tot: 0 },
+          sc: { mag: { art: [], pre: [] }, tot: 0 },
+          ss: { mag: { art: [], pre: [] }, tot: 0 },
+          sas: { mag: { art: [], pre: [] }, tot: 0 },
+        },
+        10: {
+          s: { mag: { art: [], pre: [] }, tot: 0 },
+          sb: { mag: { art: [], pre: [] }, tot: 0 },
+          sc: { mag: { art: [], pre: [] }, tot: 0 },
+          ss: { mag: { art: [], pre: [] }, tot: 0 },
+          sas: { mag: { art: [], pre: [] }, tot: 0 },
+        },
+        11: {
+          s: { mag: { art: [], pre: [] }, tot: 0 },
+          sb: { mag: { art: [], pre: [] }, tot: 0 },
+          sc: { mag: { art: [], pre: [] }, tot: 0 },
+          ss: { mag: { art: [], pre: [] }, tot: 0 },
+          sas: { mag: { art: [], pre: [] }, tot: 0 },
+        },
+        12: {
+          s: { mag: { art: [], pre: [] }, tot: 0 },
+          sb: { mag: { art: [], pre: [] }, tot: 0 },
+          sc: { mag: { art: [], pre: [] }, tot: 0 },
+          ss: { mag: { art: [], pre: [] }, tot: 0 },
+          sas: { mag: { art: [], pre: [] }, tot: 0 },
+        }
+      }
+      let annoInizio = this.inizioAnno - 2000;
+      let annoFine = this.fineAnno - 2000;
+
+
+
+      let modificabile = {};
+
+
+      //ciclo tutti i dati esistenti per capire quali sono modificabili
+      for (let i = this.store.valoriMinMax.min; i <= this.store.valoriMinMax.max; i++) {
+
+        if (this.unmodificable) {
+          break
+        }
+        modificabile[i] = true;
+        //se esiste un anno già settato
+        if (this.store.data.user[i]) {
+
+          //per ogni mese dell'anno
+          for (let mese in this.store.data.user[i]) {
+            const valore = this.store.data.user[i][mese]
+            //let trovato = false; // Flag per segnalare se l'if è soddisfatto
+
+            //per ogni campo del mese
+            for (let chiave in valore) {
+              const valore2 = valore[chiave] //creo un flag per uscire dal ciclo se almeno un valore è diverso da 0
+
+              if (valore2.tot != 0) {
+
+
+                modificabile[i] = false;
+
+              }
+
+            }
+            // if (modificabile[i] && (annoInizio > i || annoFine < i)) {
+            //   console.log('posso eliminare ' + i)
+            // }
+          }
+
+        }
+
+        //elimino el
+
+        if (modificabile[i]) {
+
+          if (annoInizio > i || annoFine < i) {
+            //console.log('elimino anno' + i)
+            delete this.store.data.user[i];
+          }
+
+
+        } else {
+          if (annoInizio > i || annoFine < i) {
+            this.inizioAnno = annoInizio - 1 + 2000
+            this.fineAnno = annoFine + 1 + 2000
+
+            this.unmodificable = true;
+            this.annononmodificabile = i
+            break
+          }
+        }
+
+      }
+
+
+
+      //ciclo i nuovi estremi per aggiungere i dati
+      for (let i = annoInizio; i <= annoFine; i++) {
+
+        //se l'elemento è modificabile o indefinito (quindi non esiste )posso creare gli elementi
+        if (modificabile[i] || modificabile[i] == undefined) {
+          //ciclo per creare elementi nuovi
+
+          if (!this.store.data.user[i]) {
+
+            this.store.data.user[i] = oggetto;
+            this.store.risparmi[i] = {
+              [1]: 0,
+              [2]: 0,
+              [3]: 0,
+              [4]: 0,
+              [5]: 0,
+              [6]: 0,
+              [7]: 0,
+              [8]: 0,
+              [9]: 0,
+              [10]: 0,
+              [11]: 0,
+              [12]: 0,
+            }
+            this.store.spese[i] = {
+              [1]: 0,
+              [2]: 0,
+              [3]: 0,
+              [4]: 0,
+              [5]: 0,
+              [6]: 0,
+              [7]: 0,
+              [8]: 0,
+              [9]: 0,
+              [10]: 0,
+              [11]: 0,
+              [12]: 0,
+            }
+            this.store.totaleRisparmioMese[i] = 0;
+            this.store.totaleSpeseMese[i] = 0;
+            this.store.totaleEntrateAnnue[i] = 0;
+
+            console.log('aggiungo anno ' + i)
+          }
+
+        }
+
+      }
+
+      this.save()
+      console.log(this.store.data.user)
+    },
+
+    deleteAnno(anno) {
+
+
+      delete this.store.data.user[anno];
+
+      this.save();
+      // Ricarica la pagina corrente
+      window.location.reload();
+
     },
 
     setData() {
@@ -503,6 +730,7 @@ export default {
 
           },
         },
+
         'dm': true,
         'o': [],
         'sp': [],
@@ -537,12 +765,57 @@ export default {
         localStorage.setItem('myData', JSON.stringify(myData));
       }
 
-    }
+    },
+    calcRisparmio() {
+      this.store.totaleEntrate = 0;
+      this.store.totaleRisparmi = 0;
+
+
+      if (this.store.valoriMinMax.min < 20) {
+        this.store.valoriMinMax.min = 20
+      }
+      if (this.store.valoriMinMax.max > 50) {
+        this.store.valoriMinMax.max = 50
+      }
+
+
+      for (let anno = this.store.valoriMinMax.min; anno <= this.store.valoriMinMax.max; anno++) {
+
+        this.store.totaleRisparmioMese[anno] = 0;
+        this.store.totaleEntrateAnnue[anno] = 0
+        this.store.totaleSpeseMese[anno] = 0
+
+        if (!this.store.risparmi[anno]) {
+          this.store.risparmi[anno] = {};
+        }
+        if (!this.store.spese[anno]) {
+          this.store.spese[anno] = {};
+        }
+
+        for (let key in this.store.data.user[anno]) {
+
+          this.store.risparmi[anno][key] = this.store.data.user[anno][key].s.tot - this.store.data.user[anno][key].sc.tot - this.store.data.user[anno][key].ss.tot - this.store.data.user[anno][key].sb.tot - this.store.data.user[anno][key].sas.tot;
+          this.store.spese[anno][key] = this.store.data.user[anno][key].sc.tot + this.store.data.user[anno][key].ss.tot + this.store.data.user[anno][key].sb.tot + this.store.data.user[anno][key].sas.tot;
+
+
+          this.store.totaleRisparmioMese[anno] += parseFloat(this.store.risparmi[anno][key])
+          this.store.totaleEntrateAnnue[anno] += parseFloat(this.store.data.user[anno][key].s.tot)
+          this.store.totaleSpeseMese[anno] += parseFloat(this.store.spese[anno][key])
+        }
+
+        this.store.totaleEntrate += parseFloat(this.store.totaleEntrateAnnue[anno])
+        this.store.totaleRisparmi += parseFloat(this.store.totaleRisparmioMese[anno])
+        this.store.totaleSpese += parseFloat(this.store.totaleSpeseMese[anno])
+
+      }
+    },
   },
 
   created() {
     //settaggi
+    this.anni = this.contaChiaviNumeriche(this.store.data.user)
     this.settaAnni()
+    this.calcRisparmio()
 
     //settaggi
 
@@ -588,7 +861,7 @@ export default {
     //Set DATE
     //------------------------------------------------------
     let date = new Date();
-    console.log(this.store.data.day)
+
     if (date.getDate() >= this.store.data.day) {
       this.store.currentMonth = date.getMonth();
       this.store.currentYear = date.getFullYear();
@@ -688,19 +961,22 @@ export default {
           :class="this.store.currentPage == 'graph' || this.store.currentPage == 'home' ? '' : 'btn-dis'">
 
           <button class="btn-left" :class="this.principalVar && this.store.currentPage == 'home' ? 'btn-dis' : ''"
-            @click="this.store.anno > 23 ? this.setAnno(this.store.anno - 1) : ''">
+            @click="this.store.anno > this.store.valoriMinMax.min ? this.setAnno(this.store.anno - 1) : ''">
             <i class="fa-solid fa-caret-left"></i>
           </button>
 
           <div class="_anno-wrapper">
-            <span v-if="this.store.anno == 23">2023</span>
-            <span v-if="this.store.anno == 24">2024</span>
-            <span v-if="this.store.anno == 25">2025</span>
-            <span v-if="this.store.anno == 26">2026</span>
+            <span v-for="(anno, key) in anni" :key="key">
+
+              <span v-if="this.store.anno == anni[key]">{{ 2000 + parseInt(anni[key]) }}</span>
+
+            </span>
+
+
           </div>
 
           <button class="btn-right" :class="this.principalVar && this.store.currentPage == 'home' ? 'btn-dis' : ''"
-            @click="console.log(this.store.anno); this.store.anno < 26 ? this.setAnno(parseInt(this.store.anno) + 1) : ''">
+            @click=" this.store.anno < this.store.valoriMinMax.max ? this.setAnno(parseInt(this.store.anno) + 1) : ''">
             <i class="fa-solid fa-caret-right"></i>
           </button>
         </div>
@@ -903,17 +1179,28 @@ export default {
       <h4>Anni</h4>
       <div class="_anni-wrapper">
         <div class="_da">
-          <label>Da</label>
-          <input type="number" v-model="this.inizioAnno">
+          <label>Dal</label>
+          <input type="number" v-model="this.inizioAnno" :max="this.fineAnno" min="2020" @change="this.aggiornaValori()">
         </div>
         <div class="_a">
-          <label>A</label>
-          <input type="number" v-model="this.fineAnno">
+          <label>Al</label>
+          <input type="number" v-model="this.fineAnno" :min="this.inizioAnno" max="2050" @change="this.aggiornaValori()">
         </div>
       </div>
     </div>
   </div>
   <div class="_bkgr" :class="this.store.viewSetting ? 'open ' : 'close'" @click="this.store.viewSetting = false"></div>
+  <div class="_setannomodule" :class="this.unmodificable ? 'open' : ''">
+    <div class="wrapper-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+    <p style="margin-top:2em;">{{ "L'anno " + (this.annononmodificabile + 2000) + ' contiene dei dati.' }} </p>
+    <p>Sei sicuro di volerlo eliminare?</p>
+    <div class="btn-wrapper">
+      <button class="_btn-thirdary" @click="this.unmodificable = false">Annulla</button>
+      <button class="_btn-primary"
+        @click="this.unmodificable = false; deleteAnno(this.annononmodificabile)">Conferma</button>
+    </div>
+  </div>
+  <div class="_bkgr2" :class="this.unmodificable ? 'open ' : 'close'" @click="this.unmodificable = false"></div>
 </template>
 
 <style lang="scss" scoped>
@@ -1086,7 +1373,8 @@ export default {
 
       ._anno-wrapper {
         display: inline-block;
-        max-width: 60px;
+        width: 60px;
+        text-align: center;
         overflow: hidden;
         border: 1px solid darken($primary, 30%);
 
@@ -1097,7 +1385,7 @@ export default {
 
 
         span {
-          margin: 0em .6em;
+          margin: 0em 0em;
         }
       }
 
@@ -1549,14 +1837,14 @@ export default {
   height: 50vh;
   min-height: 300px;
   border-radius: 10px;
-  background-color: lighten($background, 10%);
+  background-color: darken($background, 10%);
   top: 90px;
   left: 0px;
   z-index: 100;
   box-shadow: 2px 3px 10px #00000040;
   padding: 1em;
   transition: all .5s;
-
+  border: 1px solid;
   display: flex;
   flex-direction: column;
 
@@ -1575,18 +1863,26 @@ export default {
       gap: 1em;
       justify-content: space-around;
 
+      padding-bottom: 1em;
+
       ._da,
       ._a {
         display: flex;
+        gap: 1em;
+        justify-content: space-between;
 
         input {
-          width: 50px;
+          width: 55px;
+          border: none;
+          background: transparent;
+          font-weight: 900;
         }
       }
     }
   }
 }
 
+._bkgr2,
 ._bkgr {
   position: absolute;
   width: 100vw;
@@ -1600,6 +1896,64 @@ export default {
     z-index: -1;
   }
 }
+
+._bkgr2 {
+  z-index: 999;
+}
+
+._setannomodule {
+  position: absolute;
+  width: 50vw;
+  height: 0vw;
+  top: 50%;
+  left: 50%;
+  background-color: darken($background, 10%);
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 1000;
+  border-radius: 20px;
+  padding: 0em 2em;
+  display: flex;
+  align-items: center;
+
+  flex-direction: column;
+  color: white;
+  overflow: hidden;
+  transition: all .5s;
+
+  &.open {
+    border: 1px solid;
+    height: 30vw;
+    padding: 2em;
+
+  }
+
+  .wrapper-icon {
+    width: 70px;
+    height: 70px;
+    border: 1px solid;
+    border-radius: 50%;
+    position: relative;
+
+    i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      font-size: 4.5em;
+      color: rgb(255, 196, 0);
+    }
+
+  }
+
+  .btn-wrapper {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+  }
+}
+
 
 //------------------------------------------------
 //MODULO SAVE _ RESET

@@ -506,7 +506,7 @@ export default {
 
     },
     //calcola il risparmio di tutti gli anni
-    calcRisparmio() {
+    calcRisparmio2() {
       //console.log('calcola risparmio')
       //2023 - risparmio
       this.store.risparmi[23][1] = this.store.data.user[23][1].s.tot - this.store.data.user[23][1].sc.tot - this.store.data.user[23][1].ss.tot - this.store.data.user[23][1].sb.tot - this.store.data.user[23][1].sas.tot;
@@ -637,6 +637,50 @@ export default {
       this.store.totaleSpese = parseFloat(this.store.totaleSpeseMese[23]) + parseFloat(this.store.totaleSpeseMese[24]) + parseFloat(this.store.totaleRisparmioMese[25]) + parseFloat(this.store.totaleRisparmioMese[26])
 
       //console.log('risaprmio calcolato')
+    },
+
+    calcRisparmio() {
+      this.store.totaleEntrate = 0;
+      this.store.totaleRisparmi = 0;
+
+
+      // if (this.store.valoriMinMax.min < 20) {
+      //   this.store.valoriMinMax.min = 20
+      // }
+      // if (this.store.valoriMinMax.max > 50) {
+      //   this.store.valoriMinMax.max = 50
+      // }
+
+
+      for (let anno = this.store.valoriMinMax.min; anno <= this.store.valoriMinMax.max; anno++) {
+
+        this.store.totaleRisparmioMese[anno] = 0;
+        this.store.totaleEntrateAnnue[anno] = 0
+        this.store.totaleSpeseMese[anno] = 0
+
+        if (!this.store.risparmi[anno]) {
+          this.store.risparmi[anno] = {};
+        }
+        if (!this.store.spese[anno]) {
+          this.store.spese[anno] = {};
+        }
+
+        for (let key in this.store.data.user[anno]) {
+
+          this.store.risparmi[anno][key] = this.store.data.user[anno][key].s.tot - this.store.data.user[anno][key].sc.tot - this.store.data.user[anno][key].ss.tot - this.store.data.user[anno][key].sb.tot - this.store.data.user[anno][key].sas.tot;
+          this.store.spese[anno][key] = this.store.data.user[anno][key].sc.tot + this.store.data.user[anno][key].ss.tot + this.store.data.user[anno][key].sb.tot + this.store.data.user[anno][key].sas.tot;
+
+
+          this.store.totaleRisparmioMese[anno] += parseFloat(this.store.risparmi[anno][key])
+          this.store.totaleEntrateAnnue[anno] += parseFloat(this.store.data.user[anno][key].s.tot)
+          this.store.totaleSpeseMese[anno] += parseFloat(this.store.spese[anno][key])
+        }
+
+        this.store.totaleEntrate += parseFloat(this.store.totaleEntrateAnnue[anno])
+        this.store.totaleRisparmi += parseFloat(this.store.totaleRisparmioMese[anno])
+        this.store.totaleSpese += parseFloat(this.store.totaleSpeseMese[anno])
+
+      }
     },
     //calcola il totale
     calcVoci(dato, mese) {

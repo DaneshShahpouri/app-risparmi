@@ -143,13 +143,15 @@ export const store = reactive({
     totaleRisparmioMese: { 23: 0, 24: 0, 25: 0, 26: 0 },
     totaleSpeseMese: { 23: 0, 24: 0, 25: 0, 26: 0 },
     totaleEntrateAnnue: { 23: 0, 24: 0, 25: 0, 26: 0 },
+    //anni minimi e massimi
+    valoriMinMax: '',
     //----------------------------------------------
 
     viewModuleReset: false,
     viewModule: false,
     confermReset: false,
     animationReset: false,
-    viewSetting:false,
+    viewSetting: false,
 
     currentYear: '',
     currentMonth: '',
