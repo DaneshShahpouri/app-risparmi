@@ -627,7 +627,7 @@ export default {
       </div>
 
       <div class="_perc-alimentari _perc">
-        <span class="_text"><i class="fa-solid fa-utensils me-2"></i> <span>Alimentari:</span></span> <span
+        <span class="_text"><i class="fa-solid fa-utensils me-2"></i> <span>Alimenti:</span></span> <span
           :class="this.percAlimentari == 0 ? '' : (this.percAlimentari > 0 ? (this.percAlimentari > 25 ? '_perc-ultra-neg' : '_perc-neg') : (this.percAlimentari < -25 ? '_perc-ultra' : '_perc-pos'))">{{
             this.percAlimentari > 0
             ?
@@ -639,7 +639,7 @@ export default {
       </div>
 
       <div class="_perc-altrespese _perc">
-        <span class="_text"><i class="fa-solid fa-martini-glass-citrus me-2"></i> <span>Altre Spese:</span> </span>
+        <span class="_text"><i class="fa-solid fa-martini-glass-citrus me-2"></i> <span>Altro:</span> </span>
         <span
           :class="this.percAltreSpese == 0 ? '' : (this.percAltreSpese > 0 ? (this.percAltreSpese > 25 ? '_perc-ultra-neg' : '_perc-neg') : (this.percAltreSpese < -25 ? '_perc-ultra' : '_perc-pos'))">{{
             this.percAltreSpese > 0
@@ -759,8 +759,8 @@ export default {
     margin: .4em auto;
     padding: .4em 0.2em;
     position: relative;
-    border-top: 1px solid darken($primary, 40%);
-    border-bottom: 1px solid darken($primary, 40%);
+    border-top: 1px solid darken($primary, 10%);
+    border-bottom: 1px solid darken($primary, 10%);
 
 
     ._add {
@@ -782,8 +782,8 @@ export default {
       padding: 0.6em !important;
       background: transparent;
 
-      border: 1px solid darken($primary, 30%);
-      color: darken($primary, 30%);
+      border: 1px solid darken($primary, 10%);
+      color: darken($primary, 10%);
       transition: all .5s;
 
       span {
@@ -794,9 +794,9 @@ export default {
       }
 
       &:hover {
-        background: darken($primary, 40%);
+        background: darken($primary, 10%);
         border: 1px solid darken($primary, 0%);
-        color: darken($primary, 0%);
+        color: darken($color-light, 0%);
       }
 
       &:active {
@@ -844,8 +844,30 @@ export default {
         display: flex;
         justify-content: space-between;
         position: relative;
+        border: 1px solid transparent;
+        transition: all .3s;
+
+        &:hover {
+          border-bottom: 1px solid $primary;
+
+          ._media-text {
+            font-weight: 900;
+
+
+          }
+
+          span {
+            font-weight: 900;
+
+          }
+        }
 
         ._media-text {
+          font-weight: 100;
+
+        }
+
+        span {
           font-weight: 100;
         }
 
@@ -897,10 +919,12 @@ export default {
     justify-content: space-between;
     padding: .5em 2em;
     border: 1px solid rgb(67, 67, 67);
-
+    transition: all .3s;
     border-radius: 20px;
 
-
+    &:hover {
+      background-color: rgba($primary, 10%)
+    }
 
     &._impo {
       width: calc((100% / 2) - 1em);
@@ -1132,7 +1156,7 @@ export default {
 
 
       &:hover {
-        background: darken($background-light, 5%);
+        background: rgba($primary, 25%);
         border: 1px solid darken($primary-light, 0%);
         color: darken($primary-light, 0%);
       }
@@ -1149,9 +1173,10 @@ export default {
       border: 1px solid $primary-light;
 
       &:hover {
-        background-color: darken($background-light, 10%);
+        background-color: rgba($primary, 65%);
         border: 1px solid $primary-light;
         box-shadow: 0px 0px 5px $primary-light;
+        color: $color-light;
       }
     }
   }

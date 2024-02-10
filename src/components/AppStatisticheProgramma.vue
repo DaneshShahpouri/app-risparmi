@@ -163,9 +163,11 @@ export default {
           align-items: center;
           justify-content: center;
           flex-direction: column;
-          padding: 1em .2em;
-          border-bottom: 1px solid rgba($primary, 0.2);
+          padding: .5em;
           transition: all .5s;
+          background: #60606024;
+          margin: 0.4em;
+          border-radius: 10px;
 
           &:hover {
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.329);
@@ -303,6 +305,13 @@ export default {
 
 
 .light {
+  .container_programma .main_programma ._elenco .spesefisse {
+    background: rgb(255 255 255 / 23%);
+
+  }
+
+ 
+
   .container_programma .main_programma ._elenco .spesefisse li .nome_wrapper input.nome {
     color: $primary;
   }

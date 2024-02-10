@@ -65,11 +65,19 @@ export default {
       </p>
       <br>
       <p style="font-size:.85em; font-weight: 300;">© 2024 Danesh Shahpouri - EuroSave 1.0.0 </p>
+
+    </div>
+    <div class="img_wrapper">
+      <div class="logo">
+        <i class="fa-solid fa-euro-sign"></i>
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@use '../scss/variables' as *;
+
 ._main-inner {
   width: 100%;
   height: 100%;
@@ -77,6 +85,8 @@ export default {
   flex-direction: column;
   overflow-y: auto;
   max-height: calc(100vh - 250px);
+  position: relative;
+
 
   .header {
     width: 100%;
@@ -96,12 +106,67 @@ export default {
 
   ._main-contain {
     padding: 1em;
+    position: relative;
+    z-index: 100;
+  }
+
+  .img_wrapper {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: .2;
+    z-index: 2;
+    top: 0;
+    left: 0;
+
+    .logo {
+      width: 500px;
+      height: 500px;
+      border: 5px solid rgba(35, 137, 201, 0.8431372549);
+      position: absolute;
+      top: 6em;
+      left: 6em;
+      transform: translateX(-50%) translateY(-50%) scale(1.4);
+      border-radius: 50%;
+      box-shadow: 0px 0px 10px #2389c9;
+      transform: rotate(320deg);
+
+      i {
+        position: absolute;
+        font-size: 36em;
+        top: 50%;
+        left: -17%;
+        transform: translateY(-50%);
+        text-shadow: 0px 0px 24px #2389c9;
+        color: $background;
+      }
+    }
+
   }
 }
 
 
 ._main.light {
-  ._main-inner {}
+  ._main-inner {
+
+    .img_wrapper {
+
+
+      .logo {
+
+        border: 5px solid #2389c9d7;
+
+        box-shadow: 0px 0px 10px #2389c9;
+
+        i {
+
+          color: #d6d3d3;
+        }
+      }
+
+    }
+  }
 
 }
 </style>

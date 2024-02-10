@@ -397,7 +397,7 @@ export default {
               display: inline-block;
               width: 70px;
               border-radius: 5px;
-              text-align: center;
+              text-align: left;
             }
 
             ._text-secondary {

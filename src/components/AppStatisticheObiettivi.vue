@@ -231,7 +231,11 @@ export default {
 
     .left-side {
       width: 30vw;
-      border-right: 1px solid darken($primary, 20%);
+      margin-left: .2em;
+      background: #ffffff06;
+      border-radius: 6px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.445);
+
 
       h4 {
         text-align: center;
@@ -280,7 +284,7 @@ export default {
             }
 
             &:hover {
-              background-color: darken($thirdary, 28%);
+              background-color: rgba($color-light, 5%);
               cursor: pointer;
             }
 
@@ -459,9 +463,13 @@ export default {
             text-align: center;
           }
 
-          span {
+          div {
             text-align: center;
-            font-size: .9em;
+
+            span {
+              text-align: center;
+              font-size: .9em;
+            }
           }
         }
 
@@ -672,7 +680,9 @@ export default {
     ._principale {
 
       .left-side {
-        border-right: 1px solid lighten($primary-light, 20%);
+        background: #ffffff42;
+        border-radius: 6px;
+        box-shadow: 0px 0px 5px #0000001f;
 
         ._title-wrapper {
 
@@ -682,7 +692,7 @@ export default {
 
             li {
               &:hover {
-                background-color: lighten($primary-light, 62%);
+                background-color: rgba($color-dark, 10%);
               }
 
               input,
@@ -691,7 +701,8 @@ export default {
                 color: $primary-light;
 
                 &:hover {
-                  background-color: lighten($primary-light, 40%);
+                  background-color: rgba($primary-light, 50%);
+                  color: white;
                 }
 
               }

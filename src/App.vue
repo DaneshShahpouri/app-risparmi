@@ -17,6 +17,8 @@ export default {
       principalVar: true,
       unmodificable: false,
       annononmodificabile: 0,
+      checksetting: false,
+      startanimationsaved: false,
 
 
       inizioAnno: '',
@@ -65,11 +67,11 @@ export default {
     },
     'store.viewSetting': function () {
 
-      if (this.store.viewSetting == false) {
+      if (this.store.viewSetting == false && this.checksetting) {
         this.save()
         // Ricarica la pagina corrente
         window.location.reload();
-
+        this.checksetting = false;
       }
 
     },
@@ -291,6 +293,8 @@ export default {
           if (annoInizio > i || annoFine < i) {
             //console.log('elimino anno' + i)
             delete this.store.data.user[i];
+            this.animationsavechecked()
+
           }
 
 
@@ -352,9 +356,11 @@ export default {
             this.store.totaleEntrateAnnue[i] = 0;
 
             console.log('aggiungo anno ' + i)
+            this.animationsavechecked()
           }
 
         }
+        this.checksetting = true;
 
       }
 
@@ -371,6 +377,14 @@ export default {
       // Ricarica la pagina corrente
       window.location.reload();
 
+    },
+
+    animationsavechecked() {
+      this.startanimationsaved = false;
+      this.startanimationsaved = true;
+      setTimeout(() => {
+        this.startanimationsaved = false;
+      }, 1000);
     },
 
     setData() {
@@ -1173,10 +1187,11 @@ export default {
   </div>
 
   <!-- SETTINGS -->
-  <div class="_settings-module" :class="this.store.viewSetting ? 'open ' : 'close'">
+  <div class="_settings-module"
+    :class="this.store.darkmode ? (this.store.viewSetting ? 'open ' : 'close') : (this.store.viewSetting ? 'open light ' : 'close light')">
 
     <div class="_years">
-      <h4>Anni</h4>
+      <h4>Periodo di riferimento:</h4>
       <div class="_anni-wrapper">
         <div class="_da">
           <label>Dal</label>
@@ -1188,11 +1203,25 @@ export default {
         </div>
       </div>
     </div>
+
+
+    <!-- saving module -->
+    <div class="_saving-module">
+      <span class="text-saved-setting" :class="this.startanimationsaved ? 'anima' : ''"><i class="fa-solid fa-check"></i>
+        Saved</span>
+      <div class="bar" id="bar-setting" :class="this.startanimationsaved ? 'anima' : ''">
+      </div>
+    </div>
   </div>
+
   <div class="_bkgr" :class="this.store.viewSetting ? 'open ' : 'close'" @click="this.store.viewSetting = false"></div>
-  <div class="_setannomodule" :class="this.unmodificable ? 'open' : ''">
+
+  <!-- conferma modifiche -->
+  <div class="_setannomodule"
+    :class="this.store.darkmode ? (this.unmodificable ? 'open' : '') : (this.unmodificable ? 'open light' : 'light')">
     <div class="wrapper-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
-    <p style="margin-top:2em;">{{ "L'anno " + (this.annononmodificabile + 2000) + ' contiene dei dati.' }} </p>
+    <p style="margin-top:2em;">L'anno <b class="_text-primary">{{ (this.annononmodificabile + 2000) }}</b> contiene dei
+      dati. </p>
     <p>Sei sicuro di volerlo eliminare?</p>
     <div class="btn-wrapper">
       <button class="_btn-thirdary" @click="this.unmodificable = false">Annulla</button>
@@ -1263,6 +1292,7 @@ export default {
           color: inherit;
           background: transparent;
           transition: all .5s;
+          width: 60px;
 
           &:hover {
             background-color: darken($primary, 45%);
@@ -1545,7 +1575,7 @@ export default {
 
       .bg-theme {
         position: absolute;
-        top: -10%;
+        top: -7%;
         left: 50%;
         width: 114px;
         height: 100px;
@@ -1834,29 +1864,126 @@ export default {
   position: absolute;
   width: 40vw;
   min-width: 270px;
-  height: 50vh;
+  height: 100vh;
   min-height: 300px;
-  border-radius: 10px;
-  background-color: darken($background, 10%);
-  top: 90px;
+  border-radius: 0px 10px 10px 0px;
+  background-color: darken($background, 4%);
+  top: 0px;
   left: 0px;
   z-index: 100;
-  box-shadow: 2px 3px 10px #00000040;
-  padding: 1em;
+  box-shadow: 2px 3px 10px #000000b4;
+  padding: 4em 1em;
   transition: all .5s;
-  border: 1px solid;
+  //border: 1px solid;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+
 
   &.close {
     left: -80vw;
+  }
+
+
+  ._saving-module {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    height: 20px;
+    padding: 0em 2em;
+
+    .text-saved-setting {
+      position: absolute;
+      top: -10px;
+      left: 40px;
+      color: rgb(64 168 149);
+      opacity: 0;
+
+      &.anima {
+        animation: 1s savedup;
+      }
+    }
+
+    .bar {
+      background: rgb(64 168 149);
+      height: 5px;
+      width: 100%;
+      position: relative;
+      left: 0;
+      bottom: -11px;
+      border-radius: 10px;
+      opacity: 0;
+
+      &.anima {
+        animation: 1.5s barup;
+      }
+    }
+
+    @keyframes barup {
+      0% {
+        opacity: 1;
+        width: 0%;
+      }
+
+      20% {
+        opacity: 1;
+        width: 100%;
+      }
+
+      95% {
+        opacity: 1;
+        width: 100%;
+      }
+
+      100% {
+        opacity: 0;
+        width: 100%;
+      }
+    }
+
+    @keyframes savedup {
+      0% {
+        opacity: 0;
+        top: 10px;
+      }
+
+      20% {
+        opacity: 1;
+        top: -10px;
+      }
+
+      95% {
+        opacity: 1;
+        top: -10px;
+      }
+
+      100% {
+        opacity: 0;
+        top: -10px;
+      }
+    }
   }
 
   ._years {
     display: flex;
     flex-direction: column;
     color: white;
-    border-bottom: 1px solid;
+    border: 1px solid #ffffff24;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+
+    h4 {
+
+      width: 100%;
+      padding: .3em;
+      text-align: center;
+      background: #ffffff1c;
+      border-radius: 5px 5px 0px 0px;
+      //text-transform: uppercase;
+      font-size: 1.1em;
+    }
 
     ._anni-wrapper {
       display: flex;
@@ -1876,6 +2003,7 @@ export default {
           border: none;
           background: transparent;
           font-weight: 900;
+          color: $primary;
         }
       }
     }
@@ -1907,10 +2035,10 @@ export default {
   height: 0vw;
   top: 50%;
   left: 50%;
-  background-color: darken($background, 10%);
+  background-color: darken($background, 4%);
   transform: translateX(-50%) translateY(-50%);
   z-index: 1000;
-  border-radius: 20px;
+  border-radius: 12px;
   padding: 0em 2em;
   display: flex;
   align-items: center;
@@ -1921,7 +2049,7 @@ export default {
   transition: all .5s;
 
   &.open {
-    border: 1px solid;
+
     height: 30vw;
     padding: 2em;
 
@@ -1947,12 +2075,81 @@ export default {
 
   .btn-wrapper {
     width: 100%;
-    height: 60px;
+    height: 80px;
     display: flex;
     justify-content: center;
     gap: 1em;
+    padding-top: 2.5em;
   }
 }
+
+.light {
+  &._settings-module {
+    background: $background-light;
+    box-shadow: 2px 3px 10px rgb(0 0 0 / 41%);
+
+    ._saving-module {
+
+
+      .text-saved-setting {
+
+        color: rgb(73, 123, 114);
+
+      }
+
+      .bar {
+        background: rgb(73, 123, 114);
+
+      }
+
+    }
+
+    ._years {
+      color: $color-dark;
+      border: 1px solid #aaaaaa61;
+
+
+      h4 {
+        background: #aaaaaa61;
+        color: $color-dark;
+      }
+
+      ._anni-wrapper {
+        display: flex;
+        gap: 1em;
+        justify-content: space-around;
+
+        padding-bottom: 1em;
+
+        ._da,
+        ._a {
+          color: $color-dark;
+
+          input {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+
+  &._setannomodule {
+    background-color: darken($background-light, 4%);
+    color: $color-dark;
+
+    .wrapper-icon {
+
+
+      i {
+        text-shadow: 0px 0px 4px #00000047;
+        color: rgb(255, 196, 0);
+      }
+
+    }
+
+  }
+}
+
 
 
 //------------------------------------------------
