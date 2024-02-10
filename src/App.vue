@@ -974,7 +974,8 @@ export default {
         <div class="anno-slyder"
           :class="this.store.currentPage == 'graph' || this.store.currentPage == 'home' ? '' : 'btn-dis'">
 
-          <button class="btn-left" :class="this.principalVar && this.store.currentPage == 'home' ? 'btn-dis' : ''"
+          <button class="btn-left"
+            :class="(this.principalVar && this.store.currentPage == 'home') || (this.store.anno == this.store.valoriMinMax.min) ? 'btn-dis' : ''"
             @click="this.store.anno > this.store.valoriMinMax.min ? this.setAnno(this.store.anno - 1) : ''">
             <i class="fa-solid fa-caret-left"></i>
           </button>
@@ -989,9 +990,10 @@ export default {
 
           </div>
 
-          <button class="btn-right" :class="this.principalVar && this.store.currentPage == 'home' ? 'btn-dis' : ''"
-            @click=" this.store.anno < this.store.valoriMinMax.max ? this.setAnno(parseInt(this.store.anno) + 1) : ''">
-            <i class="fa-solid fa-caret-right"></i>
+          <button class="btn-right"
+            :class="(this.principalVar && this.store.currentPage == 'home') || (this.store.anno == this.store.valoriMinMax.max) ? 'btn-dis' : ''"
+            @click=" this.store.anno < this.store.valoriMinMax.max ? this.setAnno(parseInt(this.store.anno) + 1) : console.log(this.principalVar && this.store.currentPage == 'home' && this.store.anno != this.store.valoriMinMax.max)">
+            <i class=" fa-solid fa-caret-right"></i>
           </button>
         </div>
 

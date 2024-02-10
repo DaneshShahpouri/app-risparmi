@@ -94,6 +94,8 @@ export default {
 <style lang="scss" scoped>
 @use '../scss/variables' as *;
 
+
+
 .degub {
   border: 1px solid green;
 }

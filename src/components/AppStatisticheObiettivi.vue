@@ -223,23 +223,24 @@ export default {
 
 .container_obiettivi {
   width: 100%;
-  padding: .8em 0em;
+  height: 30vh;
 
   ._principale {
-    height: calc(((100vh - 80px) / 12 * 4) - 1.6em);
+    height: calc(((100vh - 80px) / 12 * 4));
     display: flex;
 
     .left-side {
       width: 30vw;
-      margin-left: .2em;
-      background: #ffffff06;
+      margin: .2em;
+      background: rgb(32 32 32 / 2%);
       border-radius: 6px;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.445);
+      box-shadow: inset 0px 0px 5px rgb(0 0 0 / 45%);
+
 
 
       h4 {
         text-align: center;
-        margin-bottom: .5em;
+        margin: 0.2em;
       }
 
       ._title-wrapper {
@@ -257,14 +258,15 @@ export default {
           list-style-type: none;
           display: flex;
           flex-direction: column;
-          height: 18vh;
+          height: 20.5vh;
           flex-wrap: wrap;
-          align-content: space-between;
+          align-content: center;
           justify-content: flex-start;
-          align-items: flex-start;
+          align-items: center;
           padding: 0em;
           gap: 0em;
           margin: 0;
+          width: 100%;
 
           li {
             display: flex;
@@ -275,7 +277,7 @@ export default {
             transition: all .5s;
             padding: .2em;
             border-radius: 10px;
-            width: 100%;
+            width: 90%;
 
             div {
               cursor: pointer;
@@ -489,12 +491,11 @@ export default {
     padding: 0em;
 
     ._principale {
-      height: calc(((100vh - 80px) / 12 * 4) - 1.6em);
+      height: calc(((100vh - 80px) / 12 * 4));
       display: flex;
 
       .left-side {
         width: 30vw;
-        border-right: 1px solid darken($primary, 20%);
 
         ._title-wrapper {
 
@@ -680,9 +681,9 @@ export default {
     ._principale {
 
       .left-side {
-        background: #ffffff42;
+        background: rgb(255 255 255 / 11%);
         border-radius: 6px;
-        box-shadow: 0px 0px 5px #0000001f;
+        box-shadow: inset 0px 0px 9px rgb(0 0 0 / 10%);
 
         ._title-wrapper {
 

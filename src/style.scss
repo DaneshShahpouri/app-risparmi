@@ -22,6 +22,11 @@
     border-top-color: desaturate($circle-perc-dark, 40%);
     border-bottom-color: desaturate($circle-perc-light, 40%);
 
+    h2,
+    h3,
+    h4 {
+        font-weight: 900;
+    }
 }
 
 * {

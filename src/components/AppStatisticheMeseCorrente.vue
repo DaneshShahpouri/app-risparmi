@@ -923,7 +923,15 @@ export default {
     border-radius: 20px;
 
     &:hover {
-      background-color: rgba($primary, 10%)
+      background-color: rgba($primary, 70%);
+      color: white !important;
+
+      ._perc-neg,
+      ._perc-pos,
+      ._perc-ultra-neg,
+      ._perc-ultra {
+        color: white;
+      }
     }
 
     &._impo {

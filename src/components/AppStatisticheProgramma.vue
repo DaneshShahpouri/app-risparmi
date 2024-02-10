@@ -155,6 +155,12 @@ export default {
 
         max-height: 365px;
         overflow: auto;
+        min-height: 45vh;
+        border-radius: 10px;
+        box-shadow: inset 0px 0px 10px #00000023;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
 
 
 
@@ -165,13 +171,14 @@ export default {
           flex-direction: column;
           padding: .5em;
           transition: all .5s;
-          background: #60606024;
+          border: 1px solid rgba(255, 255, 255, 0.468);
           margin: 0.4em;
           border-radius: 10px;
+          width: 90%;
 
           &:hover {
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.329);
-            background-color: rgba(123, 123, 124, 0.05);
+
+            background-color: rgba(123, 123, 124, 0.15);
           }
 
           .nome_wrapper {
@@ -185,6 +192,12 @@ export default {
               border: 1px solid rgba($primary, 0.2);
               border-radius: 10px;
               margin-bottom: .4em;
+              transition: all .3s;
+
+              &:hover {
+                background-color: rgba($primary, 60%);
+                color: $color-light;
+              }
             }
           }
 
@@ -202,9 +215,11 @@ export default {
               color: white;
               border: 1px solid rgba($primary, 0.3);
               margin: 0 .3em;
+              transition: all .3s;
 
               &:hover {
-                background-color: darken($primary, 40%);
+                background-color: rgba($primary, 60%);
+                color: $color-light;
               }
 
               &:focus-visible {
@@ -307,18 +322,26 @@ export default {
 .light {
   .container_programma .main_programma ._elenco .spesefisse {
     background: rgb(255 255 255 / 23%);
-
+    border: 1px solid rgba(0, 0, 0, 0.232);
   }
 
- 
+  .container_programma .main_programma ._elenco .spesefisse li {
+    border: 1px solid rgba(0, 0, 0, 0.295);
+  }
 
   .container_programma .main_programma ._elenco .spesefisse li .nome_wrapper input.nome {
     color: $primary;
   }
 
+  .container_programma .main_programma ._elenco .spesefisse li .nome_wrapper input.nome:hover {
+    background: rgba($primary, 60%);
+    color: white;
+  }
+
   .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info input[data-v-3db7df0c]:hover,
   .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info select:hover {
-    background: darken($background-light, 3%);
+    background: rgba($primary, 60%);
+    color: white;
   }
 
   .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info input[data-v-3db7df0c],

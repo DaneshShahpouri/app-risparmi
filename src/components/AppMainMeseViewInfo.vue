@@ -44,12 +44,13 @@ export default {
       </p>
 
       <p>Tieni sotto controllo il tuo andamento finanziario nella sezione 'DETTAGLI'. Qui troverai
-        un pannello di controllo per analizzare le spese, la media tramite impostazioni personalizzate che ti aiuteranno
-        nel tuo percorso di risparmio. In 'DETTAGLI' potrai anche fissare fino a 6 obbiettivi a lungo termine e
-        avere riscontro grafico dei tuoi progressi.
+        un pannello di controllo per analizzare le spese o la media degli altri mesi tramite impostazioni personalizzate
+        che ti aiuteranno
+        nel tuo percorso di risparmio. In 'DETTAGLI' potrai anche fissare fino a 6 obiettivi a lungo termine e
+        avere un responso grafico dei tuoi progressi.
       </p>
       <p>
-        Nella sezione 'GRAFICI' potrai selezionare diversi opzioni di visualizzazione per concentrarti sui risparmi
+        Nella sezione 'GRAFICI' potrai selezionare diverse opzioni di visualizzazione per concentrarti sui risparmi
         annuali o
         sulle spese, a loro volta personalizzabili, oppure in un grafico riassuntivo degli ultimi 12 mesi.
       </p>
