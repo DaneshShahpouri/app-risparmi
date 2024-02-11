@@ -21,11 +21,37 @@ export default {
       let year = date.getFullYear();
       let month = date.getMonth();
       let day = date.getDate();
-      let object = { n: 'Aggiungi Nome', s: 0, f: 'om', d: year + '-' + month + '-' + day, c: 'sas' }
+      let object = { n: 'Aggiungi Nome', s: 0, f: 1, d: year + '-' + month + '-' + day, c: 'sas' }
 
       this.store.data.sp.push(object)
       this.save();
 
+    },
+
+    //restituisce la data di aggiornamento da una data data.. lol
+    getDataProgrammata(data, frequenza) {
+      let meseUscita = 0;
+      let annoUscita = 0;
+      let dataUscita = '';
+      let meseEntrata = parseInt(data.split('-')[1]);
+      let annoEntrata = parseInt(data.split('-')[0]);
+
+
+      if (meseEntrata + frequenza > 12) {
+        meseUscita = meseEntrata + frequenza - 12;
+        annoUscita = annoEntrata + 1
+      } else {
+        meseUscita = meseEntrata + frequenza
+        annoUscita = annoEntrata
+      }
+
+      if (meseUscita < 10) {
+        meseUscita = '0' + meseUscita;
+      }
+      dataUscita = '01-' + meseUscita + '-' + annoUscita
+
+
+      return dataUscita;
     },
 
     save() {
@@ -38,6 +64,7 @@ export default {
   },
 
   created() {
+    //console.log(this.store.data.sp)
   },
 
   mounted() {
@@ -73,26 +100,40 @@ export default {
 
             <!-- INFO SPESA FISSA -->
             <div class="spesefisse-info">
-              <span class="spesa">
-                <input class="" type="num" v-model="el.s" @change.stop="save()">
-                <span class="me-2">€</span>
-              </span>
 
-              <span class="categoria  pe-1">
-                <select type="text" v-model="el.c" @change.stop="save()">
-                  <option value="s">Stipendio</option>
-                  <option value="sc">Affitto</option>
-                  <option value="sb">Bollette</option>
-                  <option value="ss">Alimentari</option>
-                  <option value="sas">Altre Spese</option>
-                </select>
-              </span>
+              <div class="prezzo_tipo">
+                <span class="spesa">
+                  <input class="" type="num" v-model="el.s" @change.stop="save()">
+                  <span class="">€</span>
+                </span>
+
+                <span class="categoria" style="width:50%">
+                  <select type="text" v-model="el.c" @change.stop="save()">
+                    <option value="s">Stipendio</option>
+                    <option value="sc">Affitto</option>
+                    <option value="sb">Bollette</option>
+                    <option value="ss">Alimentari</option>
+                    <option value="sas">Altre Spese</option>
+                  </select>
+                </span>
+              </div>
 
               <span class="frequenza">
-                <span>{{ el.f != 'om' ? 'ogni ' : '' }}</span>
-                <input type="num" v-model="el.f" class="frequenza_input" @change.stop="save()">
-                <span>{{ el.f != 'om' ? ' mesi' : ' - Ogni mese' }}</span>
+                <span>Ogni</span>
+                <input type="number" v-model="el.f" class="frequenza_input" @change.stop="save()">
+                <span>{{ el.f != 'om' && el.f != 1 ? ' mesi' : ' mese' }}</span>
               </span>
+
+              <div>
+                <span>Aggiornato a: </span>
+                <b class="_text-primary">{{ (el.d.split('-')[2] < 10 ? '0' + el.d.split('-')[2] : el.d.split('-')[2])
+                  + '-' + (el.d.split('-')[1] < 10 ? '0' + el.d.split('-')[1] : el.d.split('-')[1]) + '-' +
+                  el.d.split('-')[0] }}</b>
+              </div>
+              <div>
+                <span>Programmato per : </span>
+                <b class="_text-primary">{{ getDataProgrammata(el.d, el.f) }}</b>
+              </div>
 
             </div>
 
@@ -177,7 +218,6 @@ export default {
           width: 90%;
 
           &:hover {
-
             background-color: rgba(123, 123, 124, 0.15);
           }
 
@@ -203,11 +243,23 @@ export default {
 
           .spesefisse-info {
             text-align: center;
-            font-size: .8em;
+            font-size: 0.8em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: .2em;
 
 
-            input,
-            select {
+            .prezzo_tipo {
+              display: flex;
+              gap: .5em;
+              justify-content: center;
+              width: 100%;
+            }
+
+            .spesa {
+              width: 50%;
               background-color: transparent;
               border: none;
               padding: 0 .3em;
@@ -221,6 +273,25 @@ export default {
                 background-color: rgba($primary, 60%);
                 color: $color-light;
               }
+            }
+
+
+            input,
+            select {
+              background-color: transparent;
+              border: none;
+              padding: 0 .3em;
+              border-radius: 14px;
+              color: white;
+              border: 1px solid rgba($primary, 0.3);
+              margin: 0 .3em;
+              transition: all .3s;
+              width: 100%;
+
+              &:hover {
+                background-color: rgba($primary, 60%);
+                color: $color-light;
+              }
 
               &:focus-visible {
                 outline: none;
@@ -228,8 +299,15 @@ export default {
             }
 
             input[type=num] {
-              width: 15%;
+              width: 40%;
               text-align: end;
+              padding: 0;
+              border: 0;
+              border-radius: 0;
+
+              &:hover {
+                background: transparent;
+              }
             }
 
             option {
@@ -246,8 +324,15 @@ export default {
 
             .frequenza {
               .frequenza_input {
-                width: 35px;
+                width: 55px;
                 text-align: center;
+                border-radius: 5px;
+                color: $primary;
+                font-weight: 900;
+
+                &:hover {
+                  color: white;
+                }
               }
             }
           }
@@ -329,6 +414,13 @@ export default {
     border: 1px solid rgba(0, 0, 0, 0.295);
   }
 
+  .container_programma .main_programma ._elenco .spesefisse li:hover {
+    background-color: rgb(245 245 245 / 15%);
+    box-shadow: 0px 0px 10px #2d879c42;
+  }
+
+
+  .container_programma .main_programma ._elenco .spesefisse li .spesa,
   .container_programma .main_programma ._elenco .spesefisse li .nome_wrapper input.nome {
     color: $primary;
   }
@@ -338,7 +430,12 @@ export default {
     color: white;
   }
 
-  .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info input[data-v-3db7df0c]:hover,
+  //input prezzo hover
+  .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info input[data-v-3db7df0c],
+  .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info input[data-v-3db7df0c]:hover {
+    color: white
+  }
+
   .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info select:hover {
     background: rgba($primary, 60%);
     color: white;
@@ -347,6 +444,10 @@ export default {
   .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info input[data-v-3db7df0c],
   .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info select {
     color: $color-dark;
+  }
+
+  .container_programma .main_programma ._elenco .spesefisse li .spesefisse-info .frequenza .frequenza_input {
+    color: $primary-light;
   }
 
   ._btn-outline-primary-darkness-hover {

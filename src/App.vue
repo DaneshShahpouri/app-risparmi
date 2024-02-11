@@ -355,7 +355,7 @@ export default {
             this.store.totaleSpeseMese[i] = 0;
             this.store.totaleEntrateAnnue[i] = 0;
 
-            console.log('aggiungo anno ' + i)
+            //console.log('aggiungo anno ' + i)
             this.animationsavechecked()
           }
 
@@ -365,7 +365,7 @@ export default {
       }
 
       this.save()
-      console.log(this.store.data.user)
+      //console.log(this.store.data.user)
     },
 
     deleteAnno(anno) {
@@ -823,6 +823,127 @@ export default {
 
       }
     },
+    //Calcola le spese programmate
+    speseProgrammateSet() {
+      let spese = this.store.data.sp;
+
+      let date = new Date();
+      let year = date.getFullYear();
+      //il mese da index 0=gennaio 
+      let month = date.getMonth();
+      let day = date.getDate();
+
+      //PROVA_-----------
+      //data di oggi = 
+      // year = 2024;
+      // month = 2;
+      //-----------------
+
+      let arrayYear = String(year).slice(2)
+      let dateNow = year + '-' + (month + 1) + '-' + day;
+
+      //console.log('data di riferimento di oggi :' + dateNow)
+
+
+
+      //per ogni spesa programmata
+      for (let i = 0; i < spese.length; i++) {
+
+        //creo una variabile per il mese prossimo
+        //PRIMO PROBLEMA - che succede se mese + 1 è uguale a 13?
+        //PROBLEMA 2 - dopo aggiungo la frequenza al mese. ma che senso ha? cosi aggiungo un mese in più
+        let mesespesa = spese[i].d.split('-')
+        mesespesa = parseFloat(mesespesa[1])
+
+        //Se la spesa non è gia stata inserita
+        if (!this.store.data.user[arrayYear][month + 1][spese[i].c].mag.art.includes(spese[i].n)) {
+
+          if (spese[i].f == 'om' || spese[i].f == 1) {
+
+            this.store.data.user[arrayYear][month + 1][spese[i].c].mag.art.push(spese[i].n)
+            this.store.data.user[arrayYear][month + 1][spese[i].c].mag.pre.push(spese[i].s)
+            this.store.data.user[arrayYear][month + 1][spese[i].c].mag.tot += spese[i].s
+            spese[i].d = dateNow
+            this.calcVoci(spese[i].c, month + 1)
+
+
+          } else {
+            //Logica per spese programmatiche: si va a cercare il mese di inserimento 
+            //in base alla frequenza e poi se corrisponde al mese corrente si aggiunge il dato
+
+            let mesePerInserimento = parseFloat(mesespesa) + parseFloat(spese[i].f)
+
+            if (mesePerInserimento > 12) {
+              mesePerInserimento -= 12
+            }
+
+
+            // console.log(spese[i].f)
+            // console.log(spese[i].n + 'ha una data di inseimento : ' + spese[i].d)
+            // console.log(spese[i].n + 'si aggiornerà in data: ' + year + '-' + mesePerInserimento + '-1')
+
+            if (year + '-' + mesePerInserimento + '-1' <= dateNow && year + '-' + mesePerInserimento + '28' >= dateNow) {
+              this.store.data.user[arrayYear][month + 1][spese[i].c].mag.art.push(spese[i].n)
+              this.store.data.user[arrayYear][month + 1][spese[i].c].mag.pre.push(spese[i].s)
+              this.store.data.user[arrayYear][month + 1][spese[i].c].mag.tot += spese[i].s
+              spese[i].d = dateNow
+              this.calcVoci(spese[i].c, month + 1)
+
+            }
+
+          }
+
+        }
+
+      }
+
+    },
+    //calcola il totale
+    calcVoci(dato, mese) {
+      // console.log(eval(this.store.data.user[this.store.anno][11].s.mag.pre))
+
+      let tot = 0;
+      if (dato == 's') {
+        Object.keys(this.store.data.user[this.store.anno][mese].s.mag.pre).forEach(key => {
+          //console.log(this.store.data.user[this.store.anno][mese].s.mag.pre[key]);
+          tot += parseFloat(this.store.data.user[this.store.anno][mese].s.mag.pre[key]);
+        });
+
+        this.store.data.user[this.store.anno][mese].s.tot = tot;
+      } else if (dato == 'sb') {
+        Object.keys(this.store.data.user[this.store.anno][mese].sb.mag.pre).forEach(key => {
+          //console.log(this.store.data.user[this.store.anno][mese].sb.mag.pre[key]);
+          tot += parseFloat(this.store.data.user[this.store.anno][mese].sb.mag.pre[key]);
+        });
+
+        this.store.data.user[this.store.anno][mese].sb.tot = tot;
+      } else if (dato == 'sc') {
+        Object.keys(this.store.data.user[this.store.anno][mese].sc.mag.pre).forEach(key => {
+          //console.log(this.store.data.user[this.store.anno][mese].sc.mag.pre[key]);
+          tot += parseFloat(this.store.data.user[this.store.anno][mese].sc.mag.pre[key]);
+        });
+
+
+        this.store.data.user[this.store.anno][mese].sc.tot = tot;
+      } else if (dato == 'ss') {
+        Object.keys(this.store.data.user[this.store.anno][mese].ss.mag.pre).forEach(key => {
+          //console.log(this.store.data.user[this.store.anno][mese].ss.mag.pre[key]);
+          tot += parseFloat(this.store.data.user[this.store.anno][mese].ss.mag.pre[key]);
+        });
+
+
+        this.store.data.user[this.store.anno][mese].ss.tot = tot;
+      } else if (dato == 'sas') {
+        Object.keys(this.store.data.user[this.store.anno][mese].sas.mag.pre).forEach(key => {
+          //console.log(this.store.data.user[this.store.anno][mese].sas.mag.pre[key]);
+          tot += parseFloat(this.store.data.user[this.store.anno][mese].sas.mag.pre[key]);
+        });
+
+        this.store.data.user[this.store.anno][mese].sas.tot = tot;
+      }
+
+
+    },
   },
 
   created() {
@@ -830,6 +951,7 @@ export default {
     this.anni = this.contaChiaviNumeriche(this.store.data.user)
     this.settaAnni()
     this.calcRisparmio()
+    this.speseProgrammateSet()
 
     //settaggi
 

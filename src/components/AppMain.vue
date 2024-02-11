@@ -752,72 +752,11 @@ export default {
         this.store.viewModule = true
       }
     },
-    //Calcola le spese programmate
-    speseProgrammateSet() {
-      let spese = this.store.data.sp;
-
-      let date = new Date();
-      let year = date.getFullYear();
-      let month = date.getMonth();
-      let day = date.getDate();
-
-      //PROVA_-----------
-      //data di oggi = 
-      // year = 2024;
-      // month = 2;
-      //-----------------
-
-      let arrayYear = String(year).slice(2)
-      let dateNow = year + '-' + (month + 1) + '-' + day;
-
-
-
-      for (let i = 0; i < spese.length; i++) {
-
-        let mesespesa = spese[i].d.split('-')
-        mesespesa = parseFloat(mesespesa[1]) + 1
-
-        if (!this.store.data.user[arrayYear][month + 1][spese[i].c].mag.art.includes(spese[i].n)) {
-
-          if (spese[i].f == 'om') {
-
-            this.store.data.user[arrayYear][month + 1][spese[i].c].mag.art.push(spese[i].n)
-            this.store.data.user[arrayYear][month + 1][spese[i].c].mag.pre.push(spese[i].s)
-            this.store.data.user[arrayYear][month + 1][spese[i].c].mag.tot += spese[i].s
-            spese[i].d = dateNow
-            this.calcVoci(spese[i].c, month + 1)
-
-
-          } else {
-            //Logica per spese programmatiche: si va a cercare il mese di inserimento 
-            //in base alla frequenza e poi se corrisponde al mese corrente si aggiunge il dato
-
-            let mesePerInserimento = parseFloat(mesespesa) + parseFloat(spese[i].f)
-
-            if (mesePerInserimento > 12) {
-              mesePerInserimento -= 12
-            }
-
-            if (year + '-' + mesePerInserimento + '-1' <= dateNow && year + '-' + mesePerInserimento + '28' >= dateNow) {
-              this.store.data.user[arrayYear][month + 1][spese[i].c].mag.art.push(spese[i].n)
-              this.store.data.user[arrayYear][month + 1][spese[i].c].mag.pre.push(spese[i].s)
-              this.store.data.user[arrayYear][month + 1][spese[i].c].mag.tot += spese[i].s
-              spese[i].d = dateNow
-              this.calcVoci(spese[i].c, month + 1)
-
-            }
-
-          }
-
-        }
-
-      }
-
-    }
+  
   },
 
   created() {
-    this.speseProgrammateSet();
+    
     this.calcRisparmio();
     this.focusInput();
   },
