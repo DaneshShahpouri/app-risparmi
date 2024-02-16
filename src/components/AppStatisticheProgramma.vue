@@ -120,7 +120,7 @@ export default {
 
               <span class="frequenza">
                 <span>Ogni</span>
-                <input type="number" v-model="el.f" class="frequenza_input" @change.stop="save()">
+                <input type="number" v-model="el.f" class="frequenza_input" @change.stop="save();" max="12">
                 <span>{{ el.f != 'om' && el.f != 1 ? ' mesi' : ' mese' }}</span>
               </span>
 

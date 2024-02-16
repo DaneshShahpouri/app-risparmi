@@ -132,6 +132,7 @@ export default {
     flex-wrap: nowrap;
     overflow: auto;
 
+
   }
 
   ._bottom-left {

@@ -373,13 +373,16 @@ export default {
           width: 100%;
 
           li {
-            padding: 1em;
+            padding: 0.9em;
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: rgba(79, 79, 79, 0.15);
-            width: 100%;
+            background-color: rgb(78 78 78 / 0%);
+            width: 90%;
+            margin: auto;
+            border: 1px solid;
+
 
             .title-span {
               display: inline-block;

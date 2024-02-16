@@ -491,8 +491,8 @@ export default {
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
             <i v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sc.tot < this.mediaAffitto"
-              class="fa-solid fa-angle-down _text-thirdary"></i>
-            <i class="fa-solid fa-angle-up _text-primary "
+              class="fa-solid fa-angle-down _text-primary"></i>
+            <i class="fa-solid fa-angle-up _text-thirdary"
               v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sc.tot > this.mediaAffitto"></i>
             <span v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sc.tot == this.mediaAffitto">=</span>
           </span>
@@ -504,8 +504,8 @@ export default {
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
             <i v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sb.tot < this.mediaBollette"
-              class="fa-solid fa-angle-down _text-thirdary"></i>
-            <i class="fa-solid fa-angle-up _text-primary"
+              class="fa-solid fa-angle-down _text-primary"></i>
+            <i class="fa-solid fa-angle-up _text-thirdary"
               v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sb.tot > this.mediaBollette"></i>
             <span v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sb.tot == this.mediaBollette">=</span>
           </span>
@@ -517,8 +517,8 @@ export default {
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
             <i v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].ss.tot < this.mediaAlimentari"
-              class="fa-solid fa-angle-down _text-thirdary"></i>
-            <i class="fa-solid fa-angle-up _text-primary "
+              class="fa-solid fa-angle-down _text-primary"></i>
+            <i class="fa-solid fa-angle-up _text-thirdary"
               v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].ss.tot > this.mediaAlimentari"></i>
             <span v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].ss.tot == this.mediaAlimentari">=</span>
           </span>
@@ -530,8 +530,8 @@ export default {
               :class="this.store.darkmode ? 'text-light' : 'text-dark'">€</span></span>
           <span class="_up-down-sign">
             <i v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sas.tot < this.mediaAltreSpese"
-              class="fa-solid fa-angle-down _text-thirdary"></i>
-            <i class="fa-solid fa-angle-up _text-primary"
+              class="fa-solid fa-angle-down _text-primary"></i>
+            <i class="fa-solid fa-angle-up  _text-thirdary"
               v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sas.tot > this.mediaAltreSpese"></i>
             <span
               v-if="this.store.data.user[this.anno][this.questoMeseIndex + 1].sas.tot == this.mediaAltreSpese">=</span>
@@ -680,7 +680,7 @@ export default {
   width: 100%;
   align-items: center;
   flex-direction: column;
-
+  padding-top: .5em;
 
   .top_side {
     display: flex;

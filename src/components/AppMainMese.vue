@@ -503,6 +503,9 @@ export default {
       if (this.mediaRisparmi == 0) {
         this.percRisparmi = 0
       }
+      console.log('risparmiDif ' + risparmiDif)
+      console.log('this.percRisparmi ' + this.percRisparmi)
+      console.log('this.mediaRisparmi ' + this.mediaRisparmi)
 
     },
 
@@ -1349,6 +1352,8 @@ export default {
           list-style-type: none;
           position: relative;
           z-index: 2;
+
+          box-shadow: 0px 0px 5px rgba(white, 0.5);
 
           li {
             display: flex;
