@@ -351,11 +351,12 @@ export default {
 </script>
 
 <template>
-  <div class="graph-container" :class="this.store.darkmode ? '' : 'light'">
-    <Bar id="my-chart-id" :options="chartOptions" :data="chartData" v-if="this.store.changeGraph == true" />
-    <Bar id="my-chart-id" :options="chartOptions" :data="chartData" v-else />
+  <div class="graph-container " :class="this.store.darkmode ? '' : 'light'">
+    <Bar class="_mycard" id="my-chart-id" :options="chartOptions" :data="chartData"
+      v-if="this.store.changeGraph == true" />
+    <Bar class="_mycard" id="my-chart-id" :options="chartOptions" :data="chartData" v-else />
 
-    <div class="console_legend">
+    <div class="console_legend _mycard">
 
       <div class="first">
 
@@ -420,7 +421,6 @@ export default {
   #my-chart-id {
     padding: 8px;
     border-radius: 12px;
-    background-color: rgba(128, 128, 128, 0.094);
   }
 }
 
@@ -437,7 +437,6 @@ export default {
 
   padding: 8px;
   border-radius: 12px;
-  background-color: rgba(128, 128, 128, 0.094);
 
 
   .first,

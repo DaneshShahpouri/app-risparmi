@@ -139,6 +139,10 @@ export const store = reactive({
         },
     },
 
+
+    //Aspettativa
+    aspettative:{},
+
     optionGraph: 'spese',
     totaleRisparmioMese: { 23: 0, 24: 0, 25: 0, 26: 0 },
     totaleSpeseMese: { 23: 0, 24: 0, 25: 0, 26: 0 },

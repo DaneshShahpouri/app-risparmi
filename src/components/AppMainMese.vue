@@ -3,6 +3,7 @@ import { store } from '../store.js';
 import AppMainMeseViewQuestoMese from './AppMainMeseViewQuestoMese.vue'
 import AppMainMeseViewScorsoMese from './AppMainMeseViewScorsoMese.vue'
 import AppMainMeseViewInfo from './AppMainMeseViewInfo.vue'
+import AppMainMeseViewPanoramica from './AppMainMeseViewPanoramica.vue'
 export default {
   name: 'AppMainMese',
 
@@ -41,7 +42,7 @@ export default {
       stipendiDodiciMesi: [],
       risparmiDodiciMesi: [],
 
-      panelCurrent: 'questomese',
+      panelCurrent: 'panoramica',
 
     }
   },
@@ -50,6 +51,7 @@ export default {
     AppMainMeseViewQuestoMese,
     AppMainMeseViewScorsoMese,
     AppMainMeseViewInfo,
+    AppMainMeseViewPanoramica,
   },
 
   props: {
@@ -693,12 +695,12 @@ export default {
     </div>
 
     <!-- MAIN -->
-    <div class="_main-container">
+    <div class="_main-container ">
 
       <!-- MESE ANNO -->
-      <div class="_main-top-title">
+      <div class="_main-top-title _mycard">
 
-        <div class="_left">
+        <div class="_left ">
           <h1>
             {{ this.mese }}
           </h1>
@@ -729,10 +731,10 @@ export default {
       </div>
 
       <!-- INFO DI DESTRA -->
-      <div class="_main-bottom-container">
+      <div class="_main-bottom-container ">
 
         <!-- VOCI DI SPESA -->
-        <div class="left-side-voci">
+        <div class="left-side-voci _mycard">
           <!-- ICONE sfondo -->
           <div id="icon-bg">
             <i class="fa-solid fa-money-bill" v-if="this.currentVoce == 'ENTRATE'"></i>
@@ -743,7 +745,7 @@ export default {
             <i class="fa-solid fa-coins" v-if="this.currentVoce == 'RISPARMI'"></i>
           </div>
 
-          <div class="text-voce-corrente">
+          <div class="text-voce-corrente ">
 
             <h6 class="_bold">{{ this.currentVoce }}</h6>
 
@@ -777,7 +779,7 @@ export default {
 
           </div>
 
-          <ul class="elenco-voci" v-if="this.currentVoce != 'RISPARMI'">
+          <ul class="elenco-voci _mycard" v-if="this.currentVoce != 'RISPARMI'">
 
             <li v-for="(el, key) in this.currentSpesa.mag.art " :key="key">
 
@@ -810,14 +812,14 @@ export default {
 
             <ul v-if="this.store.data.o.length > 0">
 
-              <li class="list-ob mb-3" v-for="(el, key) in   this.store.data.o   " :key="key">
+              <li class="list-ob mb-3 _mycardhover" v-for="(el, key) in   this.store.data.o   " :key="key">
 
                 <div class="list-info">
 
                   <span>{{ el.n }}</span>
 
                   <span>
-                    <span>{{ el.p }}</span>
+                    <span style="font-weight:800">{{ el.p }}</span>
                     <span>€</span>
                   </span>
 
@@ -868,7 +870,21 @@ export default {
         <div class="right-side-info">
 
           <!-- navbar MAin -->
-          <div class="nome-spesa-wrapper">
+          <div class="nome-spesa-wrapper _mycard">
+
+            <!-- Questo mese -->
+            <div class="_single-icon" :class="this.panelCurrent == 'panoramica' ? 'active' : ''"
+              @click="this.panelCurrent = 'panoramica'">
+
+              <div class="_icon-wrapper">
+                <i class="fa-solid fa-euro-sign"></i>
+              </div>
+
+              <div class="_text">
+                <span>Panoramica</span>
+              </div>
+
+            </div>
 
             <!-- Questo mese -->
             <div class="_single-icon" :class="this.panelCurrent == 'questomese' ? 'active' : ''"
@@ -915,10 +931,13 @@ export default {
           </div>
 
           <!-- INFOBOX -->
-          <div class="info-box-wrapper">
+          <div class="info-box-wrapper _mycard">
             <AppMainMeseViewQuestoMese v-if="this.panelCurrent == 'questomese'"></AppMainMeseViewQuestoMese>
             <AppMainMeseViewScorsoMese v-if="this.panelCurrent == 'scorsomese'"></AppMainMeseViewScorsoMese>
             <AppMainMeseViewInfo v-if="this.panelCurrent == 'info'"></AppMainMeseViewInfo>
+            <AppMainMeseViewPanoramica v-if="this.panelCurrent == 'panoramica'" :mediaBollette="mediaBollette"
+              :mediaAltreSpese="mediaAltreSpese" :mediaAffitto="mediaAffitto" :mediaAlimenti="mediaAlimentari">
+            </AppMainMeseViewPanoramica>
           </div>
 
 
@@ -935,7 +954,7 @@ export default {
 @use '../scss/variables' as *;
 
 ._main {
-  height: calc(100vh - 100px);
+  height: calc(100vh - 90px);
   width: 95%;
   margin: 0 auto;
   overflow-y: auto;
@@ -1107,7 +1126,6 @@ export default {
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      background-color: lighten($background, 4%);
       border-radius: 12px;
 
 
@@ -1253,7 +1271,6 @@ export default {
         justify-content: space-between;
         gap: .5em;
 
-        background-color: lighten($background, 4%);
         margin: 5px;
         border-radius: 12px;
 
@@ -1338,7 +1355,6 @@ export default {
           overflow-y: auto;
           padding: 0;
           margin: 0;
-          background-color: $background;
           padding-top: 1em;
           padding-left: .5em;
           border-radius: 8px;
@@ -1352,8 +1368,6 @@ export default {
           list-style-type: none;
           position: relative;
           z-index: 2;
-
-          box-shadow: 0px 0px 5px rgba(white, 0.5);
 
           li {
             display: flex;
@@ -1389,10 +1403,11 @@ export default {
                 background-color: transparent;
                 padding: .2em .6em;
                 border-radius: 16px;
-                background-color: lighten($background, 8%);
+                background-color: lighten(rgba($primary, .1), 8%);
+                transition: all .2s;
 
                 &:hover {
-                  background-color: lighten($background, 10%);
+                  background-color: lighten(rgba($primary, .2), 10%);
                 }
               }
             }
@@ -1401,13 +1416,14 @@ export default {
               width: calc(40% - .5em);
               display: flex;
               border-radius: 16px;
-              background-color: lighten($background, 8%);
+              background-color: lighten(rgba($primary, .1), 8%);
+              transition: all .2s;
               padding: .2em .6em;
               justify-content: flex-end;
 
 
               &:hover {
-                background-color: lighten($background, 10%);
+                background-color: lighten(rgba($primary, .2), 10%);
               }
 
               input[type=num] {
@@ -1436,7 +1452,6 @@ export default {
             width: 100%;
             border-radius: 12px;
             padding: .5em;
-            background: rgba(128, 128, 128, 0.091);
             opacity: .8;
             transition: all .4s;
 
@@ -1525,7 +1540,6 @@ export default {
         .nome-spesa-wrapper {
           width: 100%;
           height: 50px;
-          background-color: lighten($background, 4%);
           border-radius: 8px;
           display: flex;
           justify-content: space-around;
@@ -1607,7 +1621,6 @@ export default {
           height: calc(100% - 50px);
           width: 100%;
           border-radius: 8px;
-          background-color: lighten($background, 4%);
 
         }
 
@@ -1814,17 +1827,14 @@ export default {
 
   ._main-container {
 
-    ._main-top-title {
-      background: darken($background-light, 5%);
-    }
+    ._main-top-title {}
 
     ._main-bottom-container {
 
       .left-side-voci {
-        background-color: darken($background-light, 4%);
+
 
         .elenco-voci {
-          background: $background-light;
 
           li {
             .btn-delete-wrapper {
@@ -1875,15 +1885,7 @@ export default {
 
       }
 
-      .right-side-info {
-        .nome-spesa-wrapper {
-          background-color: darken($background-light, 4%);
-        }
 
-        .info-box-wrapper {
-          background-color: darken($background-light, 4%);
-        }
-      }
 
     }
   }

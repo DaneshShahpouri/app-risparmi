@@ -397,7 +397,7 @@ export default {
 </script>
 
 <template>
-  <div class="_top-right-top" :class="this.store.darkmode ? '' : 'light'">
+  <div class="_top-right-top " :class="this.store.darkmode ? '' : 'light'">
 
     <div class="top_side">
 
@@ -463,7 +463,7 @@ export default {
 
   </div>
 
-  <div class=" _top-right-bottom">
+  <div class=" _top-right-bottom ">
     <!-- MEDIA -->
     <div class="_media">
       <!-- MEDIE -->

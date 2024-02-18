@@ -63,28 +63,28 @@ export default {
   <div class="_main" :class="this.store.darkmode ? '' : 'light'">
     <!-- TOP LEFT -->
     <div class="_top-left">
-      <div class="_inner">
+      <div class="_inner _mycard">
         <AppStatisticheProgramma></AppStatisticheProgramma>
       </div>
     </div>
 
     <!-- TOP RIGHT -->
     <div class=" _top-right">
-      <div class="_inner">
+      <div class="_inner _mycard">
         <AppStatisticheMeseCorrente></AppStatisticheMeseCorrente>
       </div>
     </div>
 
     <!-- BOTTOM LEFT -->
     <div class="degub _bottom-left">
-      <div class="_inner">
+      <div class="_inner _mycard">
         <AppStatisticheScorsoMese></AppStatisticheScorsoMese>
       </div>
     </div>
 
     <!-- BOTTOM RIGHT -->
     <div class="_bottom-right">
-      <div class="_inner">
+      <div class="_inner _mycard">
         <AppStatisticheObiettivi></AppStatisticheObiettivi>
       </div>
     </div>
@@ -159,9 +159,8 @@ export default {
   ._inner {
     width: 100%;
     height: 100%;
-    background-color: lighten($background, 5%);
     border-radius: 8px;
-    box-shadow: 0px 2px 7px 0px rgb(0 0 0 / 15%);
+
   }
 
 }
@@ -215,10 +214,6 @@ export default {
 
 .light {
 
-  ._inner {
-    background-color: darken($background-light, 3%);
-
-  }
 
   ._btn-outline-primary-darkness-hover {
     border: 1px solid darken($primary-light, 15%);

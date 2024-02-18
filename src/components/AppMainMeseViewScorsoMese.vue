@@ -185,29 +185,29 @@ export default {
 </script>
 
 <template>
-  <div class="_main-inner">
+  <div class="_main-inner ">
     <div class="header">
       <h5>{{ this.mese + ' ' + this.anno }}</h5>
       <span>Scorso Mese</span>
     </div>
 
-    <div class="_main-contain">
+    <div class="_main-contain ">
 
       <!-- INFO -->
       <div class="_left">
 
-        <div class="_top-info">
+        <div class="_top-info _mycard">
 
           <h5>Spese - <span class="_text-thirdary">{{ (this.affitto + this.bollette + this.alimenti +
             this.altro).toFixed(2) }}</span> €</h5>
           <h5>Entrate - <span class="_text-primary">{{ this.entrate.toFixed(2) }}</span> €</h5>
         </div>
 
-        <div class="_info-center">
+        <div class="_info-center _mycard">
           <h5 style="margin-top:1em">Spese Maggiori:</h5>
           <ul>
 
-            <li>
+            <li class="_mycardhover">
               <span class="title-span">Affitto:</span>
               <span class="_text-secondary">{{ this.speseGrandi['sc'].nome + ' ' }} </span>
               <span class="text-euro">
@@ -215,7 +215,7 @@ export default {
                 <span>€</span>
               </span>
             </li>
-            <li>
+            <li class="_mycardhover">
               <span class="title-span">Bollette:</span>
               <span class="_text-secondary">{{ this.speseGrandi['sb'].nome + ' ' }} </span>
               <span class="text-euro">
@@ -223,7 +223,7 @@ export default {
                 <span>€</span>
               </span>
             </li>
-            <li>
+            <li class="_mycardhover">
               <span class="title-span">Alimenti:</span>
               <span class="_text-secondary">{{ this.speseGrandi['ss'].nome + ' ' }} </span>
               <span class="text-euro">
@@ -231,7 +231,7 @@ export default {
                 <span>€</span>
               </span>
             </li>
-            <li>
+            <li class="_mycardhover">
               <span class="title-span">Altro:</span>
               <span class="_text-secondary">{{ this.speseGrandi['sas'].nome + ' ' }} </span>
               <span class="text-euro">
@@ -358,7 +358,6 @@ export default {
         height: 15%;
         padding-left: .8em;
         border-radius: 8px;
-        background-color: rgba(79, 79, 79, 0.15);
       }
 
       ._info-center {
@@ -371,7 +370,6 @@ export default {
         height: 65%;
         padding-left: 0em;
         border-radius: 8px;
-        background-color: rgba(79, 79, 79, 0.15);
 
         ul {
           display: flex;
@@ -390,10 +388,10 @@ export default {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: rgb(78 78 78 / 0%);
+
             width: 90%;
             margin: auto;
-            border: 1px solid;
+
 
             .title-span {
               display: inline-block;

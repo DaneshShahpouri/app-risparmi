@@ -88,7 +88,7 @@ export default {
       <div class="_elenco">
 
         <ul class="spesefisse" v-if="this.store.data.sp.length > 0">
-          <li v-for="(el, key) in this.store.data.sp" :key="key">
+          <li v-for="(el, key) in this.store.data.sp" :key="key" class="_mycardhover">
 
             <!-- Nome SPESA FISSA -->
             <div class="nome_wrapper">
@@ -212,14 +212,11 @@ export default {
           flex-direction: column;
           padding: .5em;
           transition: all .5s;
-          border: 1px solid rgba(255, 255, 255, 0.468);
           margin: 0.4em;
           border-radius: 10px;
           width: 90%;
 
-          &:hover {
-            background-color: rgba(123, 123, 124, 0.15);
-          }
+
 
           .nome_wrapper {
             position: relative;
