@@ -303,7 +303,7 @@ export default {
 .graph-container {
   display: flex;
   flex-direction: column;
-  height: calc(90vh - 80px);
+  height: calc(100vh - 105px);
 
   align-content: center;
   justify-content: space-between;

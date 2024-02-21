@@ -130,6 +130,7 @@ export default {
           if (parseInt(valoreMag) > parseInt(this.speseGrandi[key].valore)) {
             //console.log(valoreMag)
             this.speseGrandi[key] = { nome: this.store.data.user[this.anno - 2000][this.scorsoMese][key].mag.art[key2], valore: valoreMag };
+            this.speseGrandi[key].valore = parseFloat(this.speseGrandi[key].valore).toFixed(2)
           }
         }
 
@@ -194,7 +195,7 @@ export default {
     <div class="_main-contain ">
 
       <!-- INFO -->
-      <div class="_left">
+      <div class="_left" style=" margin-top: 1.5em;">
 
         <div class="_top-info _mycard">
 
@@ -241,6 +242,19 @@ export default {
             </li>
 
           </ul>
+        </div>
+
+        <div class="_mycard" style="width: 100%; padding:1em; margin:.5em">
+          <div class="_mycardhover" style=" padding:1em; display: flex; justify-content: center;">
+
+            <span class="title-span"
+              style="margin-right:.5em; text-transform: uppercase; font-weight: 800;">Risparmio:</span>
+            <span class="text-euro">
+              <span class="_text-primary">{{ (this.entrate - (this.affitto + this.bollette + this.alimenti +
+                this.altro)).toFixed(2) }}</span>
+              <span>€</span>
+            </span>
+          </div>
         </div>
 
 
@@ -398,6 +412,8 @@ export default {
               width: 70px;
               border-radius: 5px;
               text-align: left;
+              text-transform: uppercase;
+              font-weight: 800;
             }
 
             ._text-secondary {

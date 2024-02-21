@@ -998,6 +998,7 @@ export default {
     //------------------------------------------------------
     let date = new Date();
 
+
     if (date.getDate() >= this.store.data.day) {
       this.store.currentMonth = date.getMonth();
       this.store.currentYear = date.getFullYear();
@@ -1121,7 +1122,7 @@ export default {
 
         <div class="home-top-side" :class="this.store.currentPage == 'home' ? '' : 'btn-dis'">
           <button class="_btn-principale"
-            @click="this.principalVar ? this.principalVar = false : this.principalVar = true">
+            @click="this.principalVar ? this.principalVar = false : this.principalVar = true; this.store.anno = this.store.currentYear - 2000">
             <i class="fa-solid fa-table-list" v-if="this.principalVar"></i>
             <i class="fa-solid fa-table" v-else></i>
           </button>
