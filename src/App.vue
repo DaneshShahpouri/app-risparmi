@@ -75,6 +75,7 @@ export default {
       }
 
     },
+
   },
 
   methods: {
@@ -1621,7 +1622,7 @@ export default {
       top: 5px;
       right: 20px;
       bottom: -15px;
-      z-index: 21;
+      z-index: 201;
 
       * {
         cursor: pointer;
@@ -1684,7 +1685,7 @@ export default {
     ._module-btn {
       overflow-y: hidden;
       position: absolute;
-      z-index: 20;
+      z-index: 200;
       top: -5px;
       opacity: 0;
       right: 20px;

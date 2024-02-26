@@ -195,9 +195,10 @@ export default {
               </div>
               <label class="text">{{ element.n == 'Aggiungi Nome' ? ' - ' : element.n }}</label>
               <div v-if="element.p > 0">
-                <span v-if="element.p - this.store.totaleRisparmi > 0">Ti mancano: <span class="_text-primary">{{
-                  element.p
-                  - this.store.totaleRisparmi }}</span>€</span>
+                <span v-if="element.p - this.store.totaleRisparmi > 0">Ti mancano: <span style="font-weight: 700;"
+                    class="_text-primary">{{
+                      (element.p
+                        - this.store.totaleRisparmi).toFixed(2) }}</span>€</span>
                 <span class="_text-primary" v-else>Hai raggiunto l'obiettivo!</span>
               </div>
               <span v-else>Buona fortuna per il tuo nuovo obiettivo.</span>

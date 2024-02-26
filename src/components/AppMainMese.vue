@@ -3,7 +3,7 @@ import { store } from '../store.js';
 import AppMainMeseViewQuestoMese from './AppMainMeseViewQuestoMese.vue'
 import AppMainMeseViewScorsoMese from './AppMainMeseViewScorsoMese.vue'
 import AppMainMeseViewInfo from './AppMainMeseViewInfo.vue'
-import AppMainMeseViewPanoramica from './AppMainMeseViewPanoramica.vue'
+import AppMainMeseViewRisparmio from './AppMainMeseViewRisparmio.vue'
 export default {
   name: 'AppMainMese',
 
@@ -42,7 +42,7 @@ export default {
       stipendiDodiciMesi: [],
       risparmiDodiciMesi: [],
 
-      panelCurrent: 'panoramica',
+      panelCurrent: 'risparmio',
 
     }
   },
@@ -51,7 +51,7 @@ export default {
     AppMainMeseViewQuestoMese,
     AppMainMeseViewScorsoMese,
     AppMainMeseViewInfo,
-    AppMainMeseViewPanoramica,
+    AppMainMeseViewRisparmio,
   },
 
   props: {
@@ -59,7 +59,15 @@ export default {
   },
 
   watch: {
-
+    'store.calcRisparmio': function () {
+      this.calcRisparmio()
+      this.speseProgrammateSet();
+      this.calcVoci('sb', this.meseIndex)
+      this.calcVoci('sc', this.meseIndex)
+      this.calcVoci('ss', this.meseIndex)
+      this.calcVoci('sas', this.meseIndex)
+      console.log('calcolo')
+    },
   },
 
   methods: {
@@ -505,9 +513,11 @@ export default {
       if (this.mediaRisparmi == 0) {
         this.percRisparmi = 0
       }
-      console.log('risparmiDif ' + risparmiDif)
-      console.log('this.percRisparmi ' + this.percRisparmi)
-      console.log('this.mediaRisparmi ' + this.mediaRisparmi)
+
+      //LOCAL STORAGE
+      //console.log('risparmiDif ' + risparmiDif)
+      //console.log('this.percRisparmi ' + this.percRisparmi)
+      //console.log('this.mediaRisparmi ' + this.mediaRisparmi)
 
     },
 
@@ -783,22 +793,42 @@ export default {
 
             <li v-for="(el, key) in this.currentSpesa.mag.art " :key="key">
 
-              <div class="btn-delete-wrapper">
-                <button class="btn-delete"
-                  @click.stop="deleteEl(this.meseIndex, this.currentItem, key), calcVoci(this.currentItem, this.meseIndex), calcRisparmio(), save()">
-                  <i class="fa-solid fa-minus"></i>
-                </button>
-              </div>
+              <div class="_inner-li"
+                v-if="this.store.data.user[this.store.anno][this.meseIndex][this.currentItem].mag.art[key] != 'ASPETTATIVA'">
 
-              <div class="name-input">
-                <input type="text" @change="calcVoci(this.currentItem, this.meseIndex), calcRisparmio(), save()"
-                  v-model="this.store.data.user[this.store.anno][this.meseIndex][this.currentItem].mag.art[key]">
-              </div>
+                <div class="btn-delete-wrapper">
+                  <button class="btn-delete"
+                    @click.stop="deleteEl(this.meseIndex, this.currentItem, key), calcVoci(this.currentItem, this.meseIndex), calcRisparmio(), save()">
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                </div>
 
-              <div class="prezzo-input">
-                <input type="num" @change="calcVoci(this.currentItem, this.meseIndex), calcRisparmio(), save()"
-                  v-model="this.store.data.user[this.store.anno][this.meseIndex][this.currentItem].mag.pre[key]">
-                <span>€</span>
+                <div class="name-input">
+                  <input type="text" @change="calcVoci(this.currentItem, this.meseIndex), calcRisparmio(), save()"
+                    v-model="this.store.data.user[this.store.anno][this.meseIndex][this.currentItem].mag.art[key]">
+                </div>
+
+                <div class="prezzo-input">
+                  <input type="num" @change="calcVoci(this.currentItem, this.meseIndex), calcRisparmio(), save()"
+                    v-model="this.store.data.user[this.store.anno][this.meseIndex][this.currentItem].mag.pre[key]">
+                  <span>€</span>
+                </div>
+
+              </div>
+              <div class="_inner-li-aspettativa" v-else>
+
+                <div class="name-input">
+                  <span style="text-align: center; text-transform: lowercase;">{{ 'Aspettativa per ' + this.currentVoce
+                  }}</span>
+                </div>
+
+                <div class="prezzo-input">
+                  <span class="_text-primary" style="font-weight: 700;">{{
+                    this.store.data.user[this.store.anno][this.meseIndex][this.currentItem].mag.pre[key].toFixed(2)
+                  }}</span>
+                  <span>€</span>
+                </div>
+
               </div>
 
             </li>
@@ -873,15 +903,15 @@ export default {
           <div class="nome-spesa-wrapper _mycard">
 
             <!-- Questo mese -->
-            <div class="_single-icon" :class="this.panelCurrent == 'panoramica' ? 'active' : ''"
-              @click="this.panelCurrent = 'panoramica'">
+            <div class="_single-icon" :class="this.panelCurrent == 'risparmio' ? 'active' : ''"
+              @click="this.panelCurrent = 'risparmio'">
 
               <div class="_icon-wrapper">
                 <i class="fa-solid fa-euro-sign"></i>
               </div>
 
               <div class="_text">
-                <span>Panoramica</span>
+                <span>Risparmio</span>
               </div>
 
             </div>
@@ -935,9 +965,9 @@ export default {
             <AppMainMeseViewQuestoMese v-if="this.panelCurrent == 'questomese'"></AppMainMeseViewQuestoMese>
             <AppMainMeseViewScorsoMese v-if="this.panelCurrent == 'scorsomese'"></AppMainMeseViewScorsoMese>
             <AppMainMeseViewInfo v-if="this.panelCurrent == 'info'"></AppMainMeseViewInfo>
-            <AppMainMeseViewPanoramica v-if="this.panelCurrent == 'panoramica'" :mediaBollette="mediaBollette"
+            <AppMainMeseViewRisparmio v-if="this.panelCurrent == 'risparmio'" :mediaBollette="mediaBollette"
               :mediaAltreSpese="mediaAltreSpese" :mediaAffitto="mediaAffitto" :mediaAlimenti="mediaAlimentari">
-            </AppMainMeseViewPanoramica>
+            </AppMainMeseViewRisparmio>
           </div>
 
 
@@ -1370,72 +1400,88 @@ export default {
           z-index: 2;
 
           li {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: center;
-            gap: .5em;
+            ._inner-li {
 
-            .btn-delete-wrapper {
-              width: calc(30px - .5em);
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-start;
+              align-items: center;
+              gap: .5em;
 
-              button {
-                background-color: darken($thirdary, 10%);
-                border: none;
-                width: 25px;
-                height: 25px;
-                border-radius: 20px;
-                transition: all .4s;
+              .btn-delete-wrapper {
+                width: calc(30px - .5em);
 
-                &:hover {
-                  background-color: darken($thirdary, 0%);
+                button {
+                  background-color: darken($thirdary, 10%);
+                  border: none;
+                  width: 25px;
+                  height: 25px;
+                  border-radius: 20px;
+                  transition: all .4s;
+
+                  &:hover {
+                    background-color: darken($thirdary, 0%);
+                  }
                 }
               }
-            }
 
-            .name-input {
-              width: calc(60% - .5em - 30px);
+              .name-input {
+                width: calc(60% - .5em - 30px);
 
 
-              input[type=text] {
-                width: 100%;
-                border: none;
-                background-color: transparent;
-                padding: .2em .6em;
+                input[type=text] {
+                  width: 100%;
+                  border: none;
+                  background-color: transparent;
+                  padding: .2em .6em;
+                  border-radius: 16px;
+                  background-color: lighten(rgba($primary, .1), 8%);
+                  transition: all .2s;
+
+                  &:hover {
+                    background-color: lighten(rgba($primary, .2), 10%);
+                  }
+                }
+              }
+
+              .prezzo-input {
+                width: calc(40% - .5em);
+                display: flex;
                 border-radius: 16px;
                 background-color: lighten(rgba($primary, .1), 8%);
                 transition: all .2s;
+                padding: .2em .6em;
+                justify-content: flex-end;
+
 
                 &:hover {
                   background-color: lighten(rgba($primary, .2), 10%);
                 }
+
+                input[type=num] {
+                  border: none;
+                  background-color: transparent;
+                  width: calc(100% - 10px);
+                  text-align: end;
+                  padding-right: .4em;
+                  color: $primary;
+                }
               }
+
             }
 
-            .prezzo-input {
-              width: calc(40% - .5em);
+            ._inner-li-aspettativa {
               display: flex;
-              border-radius: 16px;
-              background-color: lighten(rgba($primary, .1), 8%);
-              transition: all .2s;
-              padding: .2em .6em;
-              justify-content: flex-end;
-
-
-              &:hover {
-                background-color: lighten(rgba($primary, .2), 10%);
-              }
-
-              input[type=num] {
-                border: none;
-                background-color: transparent;
-                width: calc(100% - 10px);
-                text-align: end;
-                padding-right: .4em;
-                color: $primary;
-              }
+              flex-direction: column;
+              gap: .5em;
+              background: rgba($primary, .4);
+              width: 100%;
+              padding: .2em 1.2em;
+              align-items: center;
+              justify-content: center;
+              border-radius: 20px;
+              border: 2px solid white;
             }
-
           }
         }
 

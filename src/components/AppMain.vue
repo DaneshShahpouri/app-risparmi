@@ -412,7 +412,7 @@ export default {
         'o': [],
         'sp': [],
         'day': 1,
-        asp: {af: 0, bo: 0, al: 0, as: 0}
+        asp: { af: 0, bo: 0, al: 0, as: 0 }
 
       }
 
@@ -744,11 +744,11 @@ export default {
         this.store.viewModule = true
       }
     },
-  
+
   },
 
   created() {
-    
+
     this.calcRisparmio();
     this.focusInput();
   },
@@ -1090,19 +1090,24 @@ export default {
               <div class="_detailsRow">
                 <ul v-if="Object.keys(mese.sb.mag.art).length > 0">
                   <li v-for="(articolo, index) in mese.sb.mag.art" :key="index">
-                    <input type="text" v-model="this.store.data.user[this.store.anno][key].sb.mag.art[index]"
-                      @click.stop="() => { this.prop() }" class="art_class">
-                    <span class="_sepa"> : </span>
-                    <input type="num" v-model="this.store.data.user[this.store.anno][key].sb.mag.pre[index]"
-                      @click.stop="() => { this.prop() }" class="pre_class"
-                      @change="calcVoci('sb', key), calcRisparmio()">
-                    <span class="_euro">€</span>
+                    <div class="_inner-li"
+                      v-if="this.store.data.user[this.store.anno][key].sb.mag.art[index] != 'ASPETTATIVA'">
 
-                    <!-- Cancella record -->
-                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
-                      @click.stop="deleteEl(key, 'sb', index), calcVoci('sb', key), calcRisparmio()">
-                      <i class="fa-regular fa-trash-can"></i>
-                    </button>
+                      <input type="text" v-model="this.store.data.user[this.store.anno][key].sb.mag.art[index]"
+                        @click.stop="() => { this.prop() }" class="art_class">
+                      <span class="_sepa"> : </span>
+                      <input type="num" v-model="this.store.data.user[this.store.anno][key].sb.mag.pre[index]"
+                        @click.stop="() => { this.prop() }" class="pre_class"
+                        @change="calcVoci('sb', key), calcRisparmio()">
+                      <span class="_euro">€</span>
+
+                      <!-- Cancella record -->
+                      <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
+                        @click.stop="deleteEl(key, 'sb', index), calcVoci('sb', key), calcRisparmio()">
+                        <i class="fa-regular fa-trash-can"></i>
+                      </button>
+
+                    </div>
                   </li>
 
                 </ul>
@@ -1132,19 +1137,24 @@ export default {
               <div class="_detailsRow">
                 <ul v-if="Object.keys(mese.sc.mag.art).length > 0">
                   <li v-for="(articolo, index) in mese.sc.mag.art" :key="index">
-                    <input type="text" v-model="this.store.data.user[this.store.anno][key].sc.mag.art[index]"
-                      @click.stop="() => { this.prop() }" class="art_class">
-                    <span class="_sepa"> : </span>
-                    <input type="num" v-model="this.store.data.user[this.store.anno][key].sc.mag.pre[index]"
-                      @click.stop="() => { this.prop() }" class="pre_class"
-                      @change="calcVoci('sc', key), calcRisparmio()">
-                    <span class="_euro">€</span>
+                    <div class="_inner-li"
+                      v-if="this.store.data.user[this.store.anno][key].sb.mag.art[index] != 'ASPETTATIVA'">
 
-                    <!-- Cancella record -->
-                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
-                      @click.stop="deleteEl(key, 'sc', index), calcVoci('sc', key), calcRisparmio()">
-                      <i class="fa-regular fa-trash-can"></i>
-                    </button>
+                      <input type="text" v-model="this.store.data.user[this.store.anno][key].sc.mag.art[index]"
+                        @click.stop="() => { this.prop() }" class="art_class">
+                      <span class="_sepa"> : </span>
+                      <input type="num" v-model="this.store.data.user[this.store.anno][key].sc.mag.pre[index]"
+                        @click.stop="() => { this.prop() }" class="pre_class"
+                        @change="calcVoci('sc', key), calcRisparmio()">
+                      <span class="_euro">€</span>
+
+                      <!-- Cancella record -->
+                      <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
+                        @click.stop="deleteEl(key, 'sc', index), calcVoci('sc', key), calcRisparmio()">
+                        <i class="fa-regular fa-trash-can"></i>
+                      </button>
+
+                    </div>
                   </li>
 
                 </ul>
@@ -1173,19 +1183,24 @@ export default {
               <div class="_detailsRow">
                 <ul v-if="Object.keys(mese.ss.mag.art).length > 0">
                   <li v-for="(articolo, index) in mese.ss.mag.art" :key="index">
-                    <input type="text" v-model="this.store.data.user[this.store.anno][key].ss.mag.art[index]"
-                      @click.stop="() => { this.prop() }" class="art_class">
-                    <span class="_sepa"> : </span>
-                    <input type="num" v-model="this.store.data.user[this.store.anno][key].ss.mag.pre[index]"
-                      @click.stop="() => { this.prop() }" class="pre_class"
-                      @change="calcVoci('ss', key), calcRisparmio()">
-                    <span class="_euro">€</span>
+                    <div class="_inner-li"
+                      v-if="this.store.data.user[this.store.anno][key].sb.mag.art[index] != 'ASPETTATIVA'">
 
-                    <!-- Cancella record -->
-                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
-                      @click.stop="deleteEl(key, 'ss', index), calcVoci('ss', key), calcRisparmio()">
-                      <i class="fa-regular fa-trash-can"></i>
-                    </button>
+                      <input type="text" v-model="this.store.data.user[this.store.anno][key].ss.mag.art[index]"
+                        @click.stop="() => { this.prop() }" class="art_class">
+                      <span class="_sepa"> : </span>
+                      <input type="num" v-model="this.store.data.user[this.store.anno][key].ss.mag.pre[index]"
+                        @click.stop="() => { this.prop() }" class="pre_class"
+                        @change="calcVoci('ss', key), calcRisparmio()">
+                      <span class="_euro">€</span>
+
+                      <!-- Cancella record -->
+                      <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
+                        @click.stop="deleteEl(key, 'ss', index), calcVoci('ss', key), calcRisparmio()">
+                        <i class="fa-regular fa-trash-can"></i>
+                      </button>
+
+                    </div>
                   </li>
 
                 </ul>
@@ -1214,19 +1229,24 @@ export default {
               <div class="_detailsRow">
                 <ul v-if="Object.keys(mese.sas.mag.art).length > 0">
                   <li v-for="(articolo, index) in mese.sas.mag.art" :key="index">
-                    <input type="text" v-model="this.store.data.user[this.store.anno][key].sas.mag.art[index]"
-                      @click.stop="() => { this.prop() }" class="art_class">
-                    <span class="_sepa"> : </span>
-                    <input type="num" v-model="this.store.data.user[this.store.anno][key].sas.mag.pre[index]"
-                      @click.stop="() => { this.prop() }" class="pre_class"
-                      @change="calcVoci('sas', key), calcRisparmio()">
-                    <span class="_euro">€</span>
+                    <div class="_inner-li"
+                      v-if="this.store.data.user[this.store.anno][key].sb.mag.art[index] != 'ASPETTATIVA'">
 
-                    <!-- Cancella record -->
-                    <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
-                      @click.stop="deleteEl(key, 'sas', index), calcVoci('sas', key), calcRisparmio()">
-                      <i class="fa-regular fa-trash-can"></i>
-                    </button>
+                      <input type="text" v-model="this.store.data.user[this.store.anno][key].sas.mag.art[index]"
+                        @click.stop="() => { this.prop() }" class="art_class">
+                      <span class="_sepa"> : </span>
+                      <input type="num" v-model="this.store.data.user[this.store.anno][key].sas.mag.pre[index]"
+                        @click.stop="() => { this.prop() }" class="pre_class"
+                        @change="calcVoci('sas', key), calcRisparmio()">
+                      <span class="_euro">€</span>
+
+                      <!-- Cancella record -->
+                      <button class="_btn-outline-thirdary-darkness-hover _btn-delete"
+                        @click.stop="deleteEl(key, 'sas', index), calcVoci('sas', key), calcRisparmio()">
+                        <i class="fa-regular fa-trash-can"></i>
+                      </button>
+
+                    </div>
                   </li>
 
                 </ul>

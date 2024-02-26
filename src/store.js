@@ -141,7 +141,7 @@ export const store = reactive({
 
 
     //Aspettativa
-    aspettative:{},
+    aspettative: {},
 
     optionGraph: 'spese',
     totaleRisparmioMese: { 23: 0, 24: 0, 25: 0, 26: 0 },
@@ -163,5 +163,8 @@ export const store = reactive({
     currentHour: '',
     currentMin: '',
     currentWeekDay: '',
+
+    AppMainMeseViewRisparmioSalva: false,
+    calcRisparmio: false,
 
 });
