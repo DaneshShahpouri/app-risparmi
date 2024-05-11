@@ -20,11 +20,9 @@ export default {
       checksetting: false,
       startanimationsaved: false,
 
-
       inizioAnno: '',
       fineAnno: '',
       anni: [],
-
     }
   },
 
@@ -750,8 +748,8 @@ export default {
         'o': [],
         'sp': [],
         'day': 1,
-
       }
+
       function getLocalStorageSize() {
         let totalSize = 0;
 
@@ -948,6 +946,14 @@ export default {
   },
 
   created() {
+
+    if(localStorage.length==0){
+      console.log('resaetData')
+      this.setData()
+      console.log('localStorage')
+      console.log(localStorage.length)
+    }
+    
     //settaggi
     this.anni = this.contaChiaviNumeriche(this.store.data.user)
     this.settaAnni()
